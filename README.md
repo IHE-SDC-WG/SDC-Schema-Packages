@@ -1,0 +1,1 @@
+# sdc-schema-package
