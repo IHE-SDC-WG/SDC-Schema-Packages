@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://healthIT.gov/sdc" xmlns="http://healthIT.gov/sdc">
+
+    <xs:include schemaLocation="SDCResources.xsd"/>
+    <xs:element name="TemplateAdmin" type="TemplateAdminType">
+        <xs:annotation>
+            <xs:documentation>General information about the associated XML package, including a description of the package contents and purpose (PackageDescription), information about the registry that contains the package (RegistryData), and information about the package file characteristics (TemplateMetadata).</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="TemplateAdminType">
+        <xs:annotation>
+            <xs:documentation>Contains information about a registered package, including a description of the package contents and purpose (PackageDescription), information about the registry that contains the package XML (RegistryData), and information about the package file characteristics (TemplateFile).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="PackageDescription" type="RichTextType">
+                        <xs:annotation>
+                            <xs:documentation>Decription of the XML package contents and the purpose for the contained XML templates.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="RegistryData" minOccurs="0" type="RegistryType">
+                        <xs:annotation>
+                            <xs:documentation>Information about the registry that contains the XML template, and registration status of the XML template. (The XML template may contain a package of sub-templates.  In this case, the the RegistryData refers primarily to the package, not the sub-templates.)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="TemplateFile" type="FileType">
+                        <xs:annotation>
+                            <xs:documentation>Information about the  XML template's file characteristics (The XML template may contain a package of sub-templates.  In this case, the the RegistryData refers primarily to the entire package, not the sub-templates.)</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RegistryType">
+        <xs:annotation>
+            <xs:documentation>This type provides data about the current and original registries that host the template or package, and also provides information about the status of the template/package within the current registry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element name="OriginalRegistry" minOccurs="0" maxOccurs="1"
+                        type="RegistrySummaryType"> </xs:element>
+                    <xs:element name="CurrentRegistry" minOccurs="1" maxOccurs="1"
+                        type="RegistrySummaryType"> </xs:element>
+                    <xs:element name="RegistrationStatus" minOccurs="0" maxOccurs="1"
+                        type="RegisteredItemType"> </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RegistrySummaryType">
+        <xs:annotation>
+            <xs:documentation>This type provides a structure to record information about a registry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:choice>
+                    <xs:element name="RegistryName" type="string_Stype"/>
+                    <xs:element name="Contact" type="ContactType" maxOccurs="unbounded"
+                        minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>People and organizational contact information at the registry.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="ReferenceStandardIdentifier"
+                        type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="ServiceLevelAgreement"
+                        type="FileType"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="RegistryPurpose" type="FileType">
+                        <xs:annotation>
+                            <xs:documentation>Information about the file that describes the purpose of the registry.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Manual" type="FileType">
+                        <xs:annotation>
+                            <xs:documentation>Information about the file that describes how to use the registry.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="RegistryInterface"
+                        type="InterfaceType">
+                        <xs:annotation>
+                            <xs:documentation>Specification for accessing the registry using programming code.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RegisteredItemType">
+        <xs:annotation>
+            <xs:documentation>This type provides a structure to record information about a file, template or package stored in a registry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="RegisteredItemDescription"
+                        type="RichTextType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Description of the Registered Item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="State" minOccurs="0" maxOccurs="1"
+                        type="RegisteredItemStateType">
+                        <xs:annotation>
+                            <xs:documentation>Status of the Registered Item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Contact" type="ContactType" minOccurs="0"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Person(s) and Organization(s) to contact regarding the Registration Status of the Registered Item</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ReferenceDocument" type="FileType" minOccurs="0"
+                        maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RegisteredItemStateType">
+        <xs:annotation>
+            <xs:documentation>This type provides a structure to record status information about a file, template or package stored in a registry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element name="Acceptability" type="AcceptabilityType"> </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="AdministrativeStatus"
+                        type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="AdministrativeNote"
+                        type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="1" name="RegistrationStatus"
+                        type="string_Stype"/>
+                    <xs:element name="RegistrationStatusDate" minOccurs="0" maxOccurs="1"
+                        type="date_Stype"> </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="EffectiveDate" type="date_Stype"> </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="UntilDate" type="date_Stype"> </xs:element>
+                    <xs:element maxOccurs="1" minOccurs="0" name="PreviousStatus"
+                        type="string_Stype"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="InterfaceType">
+        <xs:annotation>
+            <xs:documentation>This type provides information about an Applications Programming Interface (API)</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="1" minOccurs="0" name="Identifer" type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="InterfaceName" type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Description" type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="URL" type="string_Stype"/>
+                    <xs:element maxOccurs="1" minOccurs="0" name="Version" type="string_Stype"/>
+                    <xs:element minOccurs="0" name="Fields">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="BaseType">
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" minOccurs="1" name="Field">
+                                            <xs:complexType>
+                                                <xs:complexContent>
+                                                  <xs:extension base="ExtensionBaseType">
+                                                  <xs:sequence>
+                                                  <xs:element minOccurs="0" name="Getter"
+                                                  type="string_Stype"> </xs:element>
+                                                  <xs:element minOccurs="0" name="Setter"
+                                                  type="string_Stype"> </xs:element>
+                                                  <xs:element minOccurs="0" name="Action"
+                                                  type="string_Stype"> </xs:element>
+                                                  </xs:sequence>
+                                                  </xs:extension>
+                                                </xs:complexContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Documentation" minOccurs="0">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="BaseType">
+                                    <xs:sequence>
+                                        <xs:element name="File" type="FileType"
+                                            maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
