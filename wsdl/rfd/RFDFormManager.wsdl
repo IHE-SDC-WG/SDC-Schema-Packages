@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    name="RFDFormManager"
+    targetNamespace="urn:ihe:iti:rfd:2007"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:ihe="urn:ihe:iti:rfd:2007"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>IHE Retrieve Form for Data Capture (RFD) WSDL definitions for FormManager.</wsdl:documentation>
+    
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="urn:ihe:iti:rfd:2007" schemaLocation="../../schema/rfd/RFD.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="RetrieveForm_Message">
+        <wsdl:documentation>Retrieve Form request message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:RetrieveFormRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="RetrieveFormResponse_Message">
+        <wsdl:documentation>Retrieve Form response message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:RetrieveFormResponse"/>
+    </wsdl:message>
+    
+    <wsdl:message name="RetrieveClarification_Message">
+        <wsdl:documentation>Retrieve Clarification request message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:RetrieveClarificationRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="RetrieveClarificationResponse_Message">
+        <wsdl:documentation>Retrieve Clarification response message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:RetrieveClarificationResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="RFDFormManager_PortType">
+        <wsdl:operation name="RFDFormManager_RetrieveForm">
+            <wsdl:documentation>Corresponds to Transaction ITI-34 of the IHE Technical Framework.</wsdl:documentation>
+            <wsdl:input name="RetrieveForm_Message" message="ihe:RetrieveForm_Message"
+                wsaw:Action="urn:ihe:iti:2007:RetrieveForm"/>
+            <wsdl:output name="RetrieveFormResponse_Message" message="ihe:RetrieveFormResponse_Message"
+                wsaw:Action="urn:ihe:iti:2007:RetrieveFormResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="RFDFormManager_RetrieveClarification">
+            <wsdl:documentation>Corresponds to Transaction ITI-37 of the IHE Technical Framework.</wsdl:documentation>
+            <wsdl:input name="RetrieveClarification_Message" message="ihe:RetrieveClarification_Message"
+                wsaw:Action="urn:ihe:iti:2007:RetrieveClarification"/>
+            <wsdl:output name="RetrieveClarificationResponse_Message" message="ihe:RetrieveClarificationResponse_Message"
+                wsaw:Action="urn:ihe:iti:2007:RetrieveClarificationResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="RFDFormManager_Binding_Soap12" type="ihe:RFDFormManager_PortType">
+        <soap12:binding style="document" transport="http://www.w3.org/2003/05/soap/bindings/HTTP/"/>
+        <wsdl:operation name="RFDFormManager_RetrieveForm">
+            <soap12:operation style="document" soapAction="urn:ihe:iti:2007:RetrieveForm"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="RFDFormManager_RetrieveClarification">
+            <soap12:operation style="document" soapAction="urn:ihe:iti:2007:RetrieveClarification"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="RFDFormManager_Service">
+        <wsdl:port name="RFDFormManager_Port_Soap12" binding="ihe:RFDFormManager_Binding_Soap12">
+            <soap12:address location="http://localhost/RFDFormManager"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

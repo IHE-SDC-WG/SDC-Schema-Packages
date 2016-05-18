@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    name="RFDFormReceiver"
+    targetNamespace="urn:ihe:iti:rfd:2007"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:ihe="urn:ihe:iti:rfd:2007"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>IHE Retrieve Form for Data Capture (RFD) WSDL definitions for FormReceiver.</wsdl:documentation>
+    
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="urn:ihe:iti:rfd:2007" schemaLocation="../../schema/rfd/RFD.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="SubmitForm_Message">
+        <wsdl:documentation>Submit Form request message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:SubmitFormRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="SubmitFormResponse_Message">
+        <wsdl:documentation>Submit Form response message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:SubmitFormResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="RFDFormReceiver_PortType">
+        <wsdl:operation name="RFDFormReceiver_SubmitForm">
+            <wsdl:documentation>Corresponds to Transaction ITI-35 of the IHE Technical Framework.</wsdl:documentation>
+            <wsdl:input name="SubmitForm_Message" message="ihe:SubmitForm_Message"
+                wsaw:Action="urn:ihe:iti:2007:SubmitForm"/>
+            <wsdl:output name="SubmitFormResponse_Message" message="ihe:SubmitFormResponse_Message"
+                wsaw:Action="urn:ihe:iti:2007:SubmitFormResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="RFDFormReceiver_Binding_Soap12" type="ihe:RFDFormReceiver_PortType">
+        <soap12:binding style="document" transport="http://www.w3.org/2003/05/soap/bindings/HTTP/"/>
+        <wsdl:operation name="RFDFormReceiver_SubmitForm">
+            <soap12:operation style="document" soapAction="urn:ihe:iti:2007:SubmitForm"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="RFDFormReceiver_Service">
+        <wsdl:port name="RFDFormReceiver_Port_Soap12" binding="ihe:RFDFormReceiver_Binding_Soap12">
+            <soap12:address location="http://localhost/RFDFormReceiver"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

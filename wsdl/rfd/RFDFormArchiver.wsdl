@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+    name="RFDFormArchiver"
+    targetNamespace="urn:ihe:iti:rfd:2007"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:ihe="urn:ihe:iti:rfd:2007"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    
+    <wsdl:documentation>IHE Retrieve Form for Data Capture (RFD) WSDL definitions for FormArchiver.</wsdl:documentation>
+    
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="urn:ihe:iti:rfd:2007" schemaLocation="../../schema/rfd/RFD.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="ArchiveForm_Message">
+        <wsdl:documentation>Archive Form request message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:ArchiveFormRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="ArchiveFormResponse_Message">
+        <wsdl:documentation>Archive Form response message.</wsdl:documentation>
+        <wsdl:part name="body" element="ihe:ArchiveFormResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="RFDFormArchiver_PortType">
+        <wsdl:operation name="RFDFormArchiver_ArchiveForm">
+            <wsdl:documentation>Corresponds to Transaction ITI-36 of the IHE Technical Framework.</wsdl:documentation>
+            <wsdl:input name="ArchiveForm_Message" message="ihe:ArchiveForm_Message"
+                wsaw:Action="urn:ihe:iti:2007:ArchiveForm"/>
+            <wsdl:output name="ArchiveFormResponse_Message" message="ihe:ArchiveFormResponse_Message"
+                wsaw:Action="urn:ihe:iti:2007:ArchiveFormResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="RFDFormArchiver_Binding_Soap12" type="ihe:RFDFormArchiver_PortType">
+        <soap12:binding style="document" transport="http://www.w3.org/2003/05/soap/bindings/HTTP/"/>
+        <wsdl:operation name="RFDFormArchiver_ArchiveForm">
+            <soap12:operation style="document" soapAction="urn:ihe:iti:2007:ArchiveForm"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="RFDFormArchiver_Service">
+        <wsdl:port name="RFDFormArchiver_Port_Soap12" binding="ihe:RFDFormArchiver_Binding_Soap12">
+            <soap12:address location="http://localhost/RFDFormArchiver"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
