@@ -728,7 +728,7 @@
    </xs:complexType>
    <xs:simpleType name="EmailAddress_Stype">
       <xs:restriction base="xs:string">
-         <xs:maxInclusive value="254"/>
+         <xs:maxLength value="254"/>
          <xs:pattern value="[\w\-\.\+]{1,63}@([a-zA-Z\d]{1,2}|[a-zA-Z\d][a-zA-Z\d\-]{0,61}[a-zA-Z\d])(\.([a-zA-Z\d]{1,2}|[a-zA-Z\d][a-zA-Z\d\-]{0,61}[a-zA-Z\d]))*"/>
       </xs:restriction>
    </xs:simpleType>
