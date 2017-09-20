@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+   <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+    <xs:include schemaLocation="SDCResources.xsd"/>
+    <xs:element name="Map" type="MappingType"/>
+    <xs:complexType name="MappingType">
+        <xs:annotation>
+            <xs:documentation>This type supports the mapping of the targeted template items to any other template items or code system.  The @type tokens include PrePop, AutoPop, SNOMED, LOINC, Keys, LocalValues, etc.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
+                        <xs:annotation>
+                            <xs:documentation>Specifies the default coding system to be implied for all MappedCode elements listed in thte ItemMap entries.  Any CodeSystem explicitly used in a MappedCode entry will override the default value.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ItemMap" maxOccurs="unbounded" type="ItemMapType">
+                        <xs:annotation>
+                            <xs:documentation>Entries under this element map a target item in a FormDesignTemplate to a terminology code, local value, XML-based document entry, database record, RDF store triple, etc.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="templateAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DataStoreType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="SecurityInfo" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Logon credentials should be provided only if the connection is trusted, secure, and encrypted.  Whenever possible, this information should not be communicated in this manner, and another security model should be adopted.</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="string_Stype">
+                                    <xs:attribute name="password" type="xs:string"/>
+                                    <xs:attribute name="userName" type="xs:string"/>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DataStoreLocation" type="string_Stype">
+                        <xs:annotation>
+                            <xs:documentation>The path to the database server.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DatabaseSoftware" type="string_Stype" minOccurs="1"/>
+                    <xs:element name="DatabaseName" type="string_Stype"/>
+                    <xs:element name="ConnectiontonString" type="string_Stype"/>
+                    <xs:element name="OtherConnectionParameters" type="string_Stype" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SQL_Type">
+        <xs:complexContent>
+            <xs:extension base="string_Stype">
+                <xs:attribute name="sqlDialect" type="xs:string"/>
+                <xs:attribute name="sqlDialectVersion" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="XQueryType">
+        <xs:complexContent>
+            <xs:extension base="string_Stype">
+                <xs:attribute name="version" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="XPathType">
+        <xs:complexContent>
+            <xs:extension base="string_Stype">
+                <xs:attribute name="version" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DataSourceType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:choice maxOccurs="1">
+                    <xs:element name="Database">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="DataStoreType">
+                                    <xs:sequence>
+                                        <xs:element name="SQL" type="SQL_Type"/>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="RDF_Store">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="DataStoreType">
+                                    <xs:sequence>
+                                        <xs:element name="SPARQL">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                  <xs:attribute name="version" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="XML">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="DataStoreType">
+                                    <xs:choice>
+                                        <xs:element name="XPath" type="XPathType"/>
+                                        <xs:element name="ItemID" type="string_Stype"/>
+                                        <xs:element name="SQL" type="SQL_Type"/>
+                                        <xs:element name="XQuery" type="XQueryType"/>
+                                    </xs:choice>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="MappedCode" type="CodingType">
+                        <xs:annotation>
+                            <xs:documentation>This structure is used to map codes and local values of any type to target items in a FormDesignTemplate</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TemplateTargetType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element name="TargetItemID" type="anyURI_Stype"> </xs:element>
+                    <xs:element name="TargetDisplayText" maxOccurs="1" minOccurs="0"
+                        type="RichTextType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ItemMapType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element name="TemplateTarget" type="TemplateTargetType">
+                        <xs:annotation>
+                            <xs:documentation>Target item in a FormDesignTemplate.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="DataSource" type="DataSourceType">
+                        <xs:annotation>
+                            <xs:documentation>The DataSource is an object that maps to a target item in a FormDesignTemplate.  DataSources objects can include terminology codes, local values, XML-based document entries, database records, RDF store triples, etc.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="MapComment" maxOccurs="unbounded" minOccurs="0"
+                        type="RichTextType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

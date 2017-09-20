@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+   <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+   <xs:include schemaLocation="SDCTemplateAdmin.xsd"/>
+
+   <xs:include schemaLocation="SDCFormDesign.xsd"/>
+   <xs:include schemaLocation="SDCMapping.xsd"/>
+   <xs:include schemaLocation="SDCOverrides.xsd"/>
+   <xs:complexType name="BasePackageType">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence>
+               <xs:element name="Admin" minOccurs="0" type="TemplateAdminType">
+                  <xs:annotation>
+                     <xs:documentation>Admin contains information about a package, including a description of the package contents and purpose (PackageDescription), information about the registry that contains the package file (RegistryData), and information about the package file characteristics (TemplateFile).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute form="unqualified" name="packageID" type="URI_Atype" use="required"/>
+            <xs:attribute name="title" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>NEW</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="SDCPackage" type="SimpleSdcRetrieveFormPackageType"/>
+   <xs:complexType name="SimpleSdcRetrieveFormPackageType">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+                  <xs:annotation>
+                     <xs:documentation/>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+                  <xs:annotation>
+                     <xs:documentation/>
+                  </xs:annotation>
+               </xs:element>
+               <xs:choice>
+                  <xs:element name="HTMLPackage" type="xs:base64Binary"/>
+                  <xs:element name="XMLPackage">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element minOccurs="0" name="DemogFormDesign" type="FormDesignType"/>
+                           <xs:element minOccurs="0" name="FormDesign" type="FormDesignType"/>
+                           <xs:element maxOccurs="unbounded" name="MapTemplate" type="MappingType" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Describes mappings between FormDesignTemplate items and data elements, terminologies, databases, XML files, local values, etc.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element maxOccurs="unbounded" name="FormOverridesTemplate" type="OverrideTemplateType" minOccurs="0"/>
+                           <xs:element maxOccurs="unbounded" name="ReportDesignTemplate" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>ReportDesignTemplate describes the information content of a report (e.g., sections, questions etc).  This enables control of the presentation view of the user responses derived from a designated FormDesignTemplate.  It allows the report presentation to look substantially different from the data-entry form view defined by the FormDesignTemplate.</xs:documentation>
+                              </xs:annotation>
+                              <xs:complexType>
+                                 <xs:complexContent>
+                                    <xs:extension base="FormDesignType">
+                                       <xs:attribute name="targetTemplateID" use="required">
+                                          <xs:annotation>
+                                             <xs:documentation>Globally unique identifier for the template targeted by this template</xs:documentation>
+                                          </xs:annotation>
+                                          <xs:simpleType>
+                                             <xs:restriction base="URI_Atype"> </xs:restriction>
+                                          </xs:simpleType>
+                                       </xs:attribute>
+                                    </xs:extension>
+                                 </xs:complexContent>
+                              </xs:complexType>
+                           </xs:element>
+                           <xs:element name="HelperFile" minOccurs="0" maxOccurs="unbounded">
+                              <xs:complexType>
+                                 <xs:complexContent>
+                                    <xs:extension base="ExtensionBaseType">
+                                       <xs:attributeGroup ref="templateAttributes"/>
+                                    </xs:extension>
+                                 </xs:complexContent>
+                              </xs:complexType>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:choice>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>
