@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+   <schemaSystemId>file:/C:/Users/rmoldwi/Desktop/ONC-SDC/SDC%20Schemas%20Phase%202/SDCRetrieveForm.xsd</schemaSystemId>
+   <documentRoot>Changes</documentRoot>
+   <outputFolder>C:\Users\rmoldwi\Desktop\ONC-SDC\SDC Schemas Phase 2</outputFolder>
+   <filenamePrefix>instance</filenamePrefix>
+   <filenameExtension>xml</filenameExtension>
+   <noOfInstances>1</noOfInstances>
+   <openFirstInstance>true</openFirstInstance>
+   <defaultNamespace>http://healthIT.gov/sdc</defaultNamespace>
+   <valuesMaxLength>30</valuesMaxLength>
+   <isUseIncrementalNamesForValues>true</isUseIncrementalNamesForValues>
+   <discardOptionalElementsAfterNestedLevel>6</discardOptionalElementsAfterNestedLevel>
+   <namespaceMapping ns="http://healthIT.gov/sdc" proxy="sdc"/>
+   <namespaceMapping ns="urn:ihe:qrph:dex:2013" proxy="dex"/>
+   <namespaceMapping ns="http://www.w3.org/2007/XMLSchema-versioning" proxy="vc"/>
+   <element namespace="&lt;ANY>" name="&lt;ANY>">
+      <generateOptionalElements>true</generateOptionalElements>
+      <generateOptionalAttributes>false</generateOptionalAttributes>
+      <valuesForContentType>DEFAULT</valuesForContentType>
+      <preferredNumberOfRepetitions>2</preferredNumberOfRepetitions>
+      <maximumRecursivityLevel>1</maximumRecursivityLevel>
+      <alternativeStrategy>FIRST</alternativeStrategy>
+      <choicesAndSubstitutions strategy="RANDOM" generateOthersAsComments="false"/>
+      <attribute namespace="&lt;ANY>" name="&lt;ANY>">
+      </attribute>
+   </element>
+</settings>
