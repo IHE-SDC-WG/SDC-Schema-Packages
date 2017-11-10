@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <!--   IHE Retrieve Form for Data Capture (RFD) XML Schema   for usage in WSDL defintions.    Distributed in package 4 for 2009 Trial Implementation   --> 
-<xs:schema xmlns="urn:ihe:iti:rfd:2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ihe="urn:ihe:iti:rfd:2007" targetNamespace="urn:ihe:iti:rfd:2007"
+<!--AG Added attribute @responseContentType with enumerations for formID element--> 
+<xs:schema xmlns="urn:ihe:iti:rfd:2007" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:ihe="urn:ihe:iti:rfd:2007" targetNamespace="urn:ihe:iti:rfd:2007"
    xmlns:sdc="http://nlm.nih.gov/sdc/form" elementFormDefault="qualified">
 
    <xs:annotation>
@@ -22,11 +24,26 @@
                     </xs:documentation>
             </xs:annotation>
          </xs:element>
-         <xs:element name="encodedResponse" type="xs:boolean" default="true">
+         <xs:element name="encodedResponse" default="true">
             <xs:annotation>
                <xs:documentation> true - return either Structured or Unstructured inline form
                         content false - return a URL to the form </xs:documentation>
             </xs:annotation>
+            <xs:complexType>
+               <xs:simpleContent>
+                  <xs:extension base="xs:boolean">
+                     <xs:attribute name="responseContentType">
+                        <xs:simpleType>
+                           <xs:restriction base="xs:string">
+                              <xs:enumeration value="text/html+sdc"/>
+                              <xs:enumeration value="application/xml+sdc"/>
+                              <xs:enumeration value=""/>
+                           </xs:restriction>
+                        </xs:simpleType>
+                     </xs:attribute>
+                  </xs:extension>
+               </xs:simpleContent>
+            </xs:complexType>
          </xs:element>
          <xs:element name="archiveURL" type="xs:anyURI" minOccurs="0">
             <xs:annotation>
