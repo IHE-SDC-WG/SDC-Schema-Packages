@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
    <xs:include schemaLocation="SDCFormDesign.xsd"/>
    <xs:element name="SDCSubmissionPackage">
@@ -8,13 +9,8 @@
       </xs:annotation>
       <xs:complexType>
          <xs:complexContent>
-            <xs:extension base="ExtensionType">
+            <xs:extension base="ExtensionBaseType">
                <xs:sequence>
-                  <xs:element maxOccurs="unbounded" minOccurs="0" name="Property" type="PropertyType">
-                     <xs:annotation>
-                        <xs:documentation>NEW</xs:documentation>
-                     </xs:annotation>
-                  </xs:element>
                   <xs:element minOccurs="0" name="DemogFormDesign" type="FormDesignType"/>
                   <xs:element maxOccurs="unbounded" name="FormDesign" type="FormDesignType"/>
                </xs:sequence>
@@ -38,7 +34,7 @@
                      <xs:documentation>NEW: Unique URI used to identify the immediate previous instance of an SDCSubmitForm package.  Used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a package instance.</xs:documentation>
                   </xs:annotation>
                </xs:attribute>
-               <xs:attribute name="pkgDateTimeStamp" type="xs:dateTimeStamp" use="required">
+               <xs:attribute name="pkgDateTimeStamp" type="xs:dateTime" use="required">
                   <xs:annotation>
                      <xs:documentation>NEW</xs:documentation>
                   </xs:annotation>

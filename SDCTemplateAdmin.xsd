@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
 
    <xs:include schemaLocation="SDCResources.xsd"/>
@@ -55,44 +56,48 @@
                                              <xs:element name="Signer" type="ContactType"/>
                                              <xs:element name="SignerPublicKeyCertificate">
                                                 <xs:annotation>
-                                                   <xs:documentation>This certificate is a structured document in ASN.1 format, that is created by a certificate authority (CA) to verify that certifiacte owner (the signer) has registered his/her/its identity with the CA.  The certificate contains information about the signer and the CA, and also contains the public key of the signer.  The signer's public key (obtained from the certificate) may be used to verify or decrypt any document signed by the signer.
+                                                  <xs:documentation>This certificate is a structured document in ASN.1 format, that is created by a certificate authority (CA) to verify that certifiacte owner (the signer) has registered his/her/its identity with the CA.  The certificate contains information about the signer and the CA, and also contains the public key of the signer.  The signer's public key (obtained from the certificate) may be used to verify or decrypt any document signed by the signer.
 
 The signer's certificate is signed with the CA's public key, and thus the CA's public key may be used to verify the validity of the signer's certificate.  The CA's public key can be stored locally or may be obtained directly from the CA's own certificate.  A long list of CA certificates is provided with the operating system software of most systems.  
 
 Software to verify signatures and certificates and decrypt documents is provided with most operating systems and most programming languages.</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:base64Binary" use="optional"/>
+                                                  <xs:attribute name="val" type="xs:base64Binary"
+                                                  use="optional"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="SignatureReason">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:string"/>
+                                                  <xs:attribute name="val" type="xs:string"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="SignatureDateTimeStamp">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:dateTimeStamp" use="optional"/>
+                                                  <xs:attribute name="val" type="xs:dateTime"
+                                                  use="optional"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="X_CertificateAuthority" minOccurs="0">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:string"/>
+                                                  <xs:attribute name="val" type="xs:string"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="X_SignerPublicKey" minOccurs="0">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:base64Binary" use="optional"/>
+                                                  <xs:attribute name="val" type="xs:base64Binary"
+                                                  use="optional"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="X_SignatureAlgorithm" minOccurs="0">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:string"/>
+                                                  <xs:attribute name="val" type="xs:string"/>
                                                 </xs:complexType>
                                              </xs:element>
                                              <xs:element name="Image" minOccurs="0">
                                                 <xs:complexType>
-                                                   <xs:attribute name="val" type="xs:base64Binary" use="optional"/>
+                                                  <xs:attribute name="val" type="xs:base64Binary"
+                                                  use="optional"/>
                                                 </xs:complexType>
                                              </xs:element>
                                           </xs:sequence>
@@ -116,9 +121,12 @@ Software to verify signatures and certificates and decrypt documents is provided
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:sequence>
-               <xs:element name="OriginalRegistry" minOccurs="0" maxOccurs="1" type="RegistrySummaryType"> </xs:element>
-               <xs:element name="CurrentRegistry" minOccurs="1" maxOccurs="1" type="RegistrySummaryType"> </xs:element>
-               <xs:element name="RegistrationStatus" minOccurs="0" maxOccurs="1" type="RegisteredItemType"> </xs:element>
+               <xs:element name="OriginalRegistry" minOccurs="0" maxOccurs="1"
+                  type="RegistrySummaryType"> </xs:element>
+               <xs:element name="CurrentRegistry" minOccurs="1" maxOccurs="1"
+                  type="RegistrySummaryType"> </xs:element>
+               <xs:element name="RegistrationStatus" minOccurs="0" maxOccurs="1"
+                  type="RegisteredItemType"> </xs:element>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -136,7 +144,8 @@ Software to verify signatures and certificates and decrypt documents is provided
                      <xs:documentation>People and organizational contact information at the registry.</xs:documentation>
                   </xs:annotation>
                </xs:element>
-               <xs:element maxOccurs="1" minOccurs="0" name="ReferenceStandardIdentifier" type="string_Stype"/>
+               <xs:element maxOccurs="1" minOccurs="0" name="ReferenceStandardIdentifier"
+                  type="string_Stype"/>
                <xs:element maxOccurs="1" minOccurs="0" name="ServiceLevelAgreement" type="FileType"/>
                <xs:element maxOccurs="1" minOccurs="0" name="RegistryPurpose" type="FileType">
                   <xs:annotation>
@@ -165,7 +174,8 @@ Software to verify signatures and certificates and decrypt documents is provided
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:sequence>
-               <xs:element maxOccurs="unbounded" name="RegisteredItemDescription" type="RichTextType" minOccurs="0">
+               <xs:element maxOccurs="unbounded" name="RegisteredItemDescription"
+                  type="RichTextType" minOccurs="0">
                   <xs:annotation>
                      <xs:documentation>Description of the Registered Item</xs:documentation>
                   </xs:annotation>
@@ -180,7 +190,8 @@ Software to verify signatures and certificates and decrypt documents is provided
                      <xs:documentation>Person(s) and Organization(s) to contact regarding the Registration Status of the Registered Item</xs:documentation>
                   </xs:annotation>
                </xs:element>
-               <xs:element name="ReferenceDocument" type="FileType" minOccurs="0" maxOccurs="unbounded"/>
+               <xs:element name="ReferenceDocument" type="FileType" minOccurs="0"
+                  maxOccurs="unbounded"/>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
@@ -193,10 +204,12 @@ Software to verify signatures and certificates and decrypt documents is provided
          <xs:extension base="ExtensionBaseType">
             <xs:sequence>
                <xs:element name="Acceptability" type="AcceptabilityType"> </xs:element>
-               <xs:element maxOccurs="1" minOccurs="0" name="AdministrativeStatus" type="string_Stype"/>
+               <xs:element maxOccurs="1" minOccurs="0" name="AdministrativeStatus"
+                  type="string_Stype"/>
                <xs:element maxOccurs="1" minOccurs="0" name="AdministrativeNote" type="string_Stype"/>
                <xs:element maxOccurs="1" minOccurs="1" name="RegistrationStatus" type="string_Stype"/>
-               <xs:element name="RegistrationStatusDate" minOccurs="0" maxOccurs="1" type="date_Stype"> </xs:element>
+               <xs:element name="RegistrationStatusDate" minOccurs="0" maxOccurs="1"
+                  type="date_Stype"> </xs:element>
                <xs:element maxOccurs="1" minOccurs="0" name="EffectiveDate" type="date_Stype"> </xs:element>
                <xs:element maxOccurs="1" minOccurs="0" name="UntilDate" type="date_Stype"> </xs:element>
                <xs:element maxOccurs="1" minOccurs="0" name="PreviousStatus" type="string_Stype"/>
@@ -226,9 +239,12 @@ Software to verify signatures and certificates and decrypt documents is provided
                                     <xs:complexContent>
                                        <xs:extension base="ExtensionBaseType">
                                           <xs:sequence>
-                                             <xs:element minOccurs="0" name="Getter" type="string_Stype"> </xs:element>
-                                             <xs:element minOccurs="0" name="Setter" type="string_Stype"> </xs:element>
-                                             <xs:element minOccurs="0" name="Action" type="string_Stype"> </xs:element>
+                                             <xs:element minOccurs="0" name="Getter"
+                                                type="string_Stype"> </xs:element>
+                                             <xs:element minOccurs="0" name="Setter"
+                                                type="string_Stype"> </xs:element>
+                                             <xs:element minOccurs="0" name="Action"
+                                                type="string_Stype"> </xs:element>
                                           </xs:sequence>
                                        </xs:extension>
                                     </xs:complexContent>
