@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-<<<<<<< HEAD
    targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
-=======
-   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
-   <!-- 8/23/2017 Corrected Schema 1.0 incompatability with xs:dateTimeStamp -->
->>>>>>> 967431409f25b3f353b5ef0b1062dc989d346cf2
 
    <xs:include schemaLocation="SDCResources.xsd"/>
    <xs:element name="TemplateAdmin" type="TemplateAdminType">
@@ -79,11 +74,7 @@ Software to verify signatures and certificates and decrypt documents is provided
                                              </xs:element>
                                              <xs:element name="SignatureDateTimeStamp">
                                                 <xs:complexType>
-<<<<<<< HEAD
                                                   <xs:attribute name="val" type="xs:dateTime"
-=======
-                                                  <xs:attribute name="val" type="xs:string"
->>>>>>> 967431409f25b3f353b5ef0b1062dc989d346cf2
                                                   use="optional"/>
                                                 </xs:complexType>
                                              </xs:element>
