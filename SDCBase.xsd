@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+<<<<<<< HEAD
    targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
    <xs:complexType name="ExtensionType" abstract="true">
+=======
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+   <!-- rlm:3/8/2017 Includes changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+   <xs:complexType name="ExtensionType">
+>>>>>>> 967431409f25b3f353b5ef0b1062dc989d346cf2
 
       <xs:annotation>
          <xs:documentation>Similar to the Schema type xs:anyType, but requires strict validation, and includes optional baseAttributes. Developer will need to declare a namespace and provide a Schema to validate the contents.</xs:documentation>
