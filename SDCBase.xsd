@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
-   <xs:complexType name="ExtensionType" abstract="true">
+   <xs:complexType abstract="true" name="X_ExtensionBaseType">
+      <xs:annotation>
+         <xs:documentation>MOVED to SDCResources</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BaseType">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="Comment" type="CommentType"> </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="Extension" type="ExtensionType"> </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ExtensionType">
 
       <xs:annotation>
          <xs:documentation>Similar to the Schema type xs:anyType, but requires strict validation, and includes optional baseAttributes. Developer will need to declare a namespace and provide a Schema to validate the contents.</xs:documentation>
