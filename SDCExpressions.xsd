@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+   <!--rlm:7/17/2017 Changes to support SDC rules-->
+
+   <xs:include schemaLocation="SDCResources.xsd"/>
+   <xs:element name="___ListHelpers___" abstract="true" final="#all" block="#all"/>
+   <xs:attribute default="false" name="useDelimiter" type="xs:boolean"/>
+   <xs:attribute default=" " name="delimiter">
+      <xs:annotation>
+         <xs:documentation>Default delimiter is a space (" ").</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="|"/>
+            <xs:enumeration value=","/>
+            <xs:enumeration value=":"/>
+            <xs:enumeration value=";"/>
+            <xs:enumeration value="="/>
+            <xs:enumeration value="."/>
+            <xs:enumeration value="/"/>
+            <xs:enumeration value="\"/>
+            <xs:enumeration value="^"/>
+            <xs:enumeration value="&amp;"/>
+            <xs:enumeration value="*"/>
+            <xs:enumeration value="~"/>
+            <xs:enumeration value="`"/>
+            <xs:enumeration value="!"/>
+            <xs:enumeration value="%"/>
+            <xs:minLength value="0"/>
+            <xs:maxLength value="1"/>
+            <xs:enumeration value=" "/>
+            <xs:whiteSpace value="preserve"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:attribute>
+   <xs:element name="___BasicTypes___" abstract="true" final="#all" block="#all"/>
+   <xs:complexType name="BoolType000" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of bool values or references to bool values inside a string list.  Allows constraints on the values in the list. Each value in the list must be validated per the constraints in the list attributes.
+
+Precede named references with "$" to distinguish them from literal strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute name="val" type="xs:boolean"/>
+            <xs:attributeGroup ref="BoolAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="IntegerType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>Numeric value.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute name="val" type="xs:long"/>
+            <xs:attributeGroup ref="IntegerAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="NumType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>Numeric value.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute name="val" type="xs:double"/>
+            <xs:attributeGroup ref="NumericAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="DateTimeType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>DateTime value.
+
+Precede named references with "$" to distinguish them from literal DateTime strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute name="val" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>DateTime value come in many formats, forcing teh use of string for data entry.  However, implementations must validate the user input against the pre-selected DateTime subtype in @dataTypeDateTime</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attributeGroup ref="DateTimeAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="StrType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of string values or references to string values inside a string list.  Allows constraints on the values in the list. Each value in the list must be validated per the constraints in the list attributes.
+
+Precede named references with "$" to distinguish them from literal strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute name="val" type="xs:string"/>
+            <xs:attributeGroup ref="StringAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="___BasicListTypes___" abstract="true" final="#all" block="#all"/>
+   <xs:complexType name="AnyListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of typed items and or named references to objects that return typed values.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$".
+</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute ref="dataTypeListAll"/>
+            <xs:attribute name="pattern" type="xs:string"/>
+            <xs:attributeGroup ref="ListAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="BoolListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of Boolean values or references to Boolean values inside a string list.  Allows constraints on the values in the list. Each value in the list must be validated per the constraints in the list attributes.  True is represented as 1, and false is 0.
+
+Precede named references with "$" to distinguish them from literal strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="ListAttributes"/>
+            <xs:attributeGroup ref="BoolAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="StrListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of typed items and or named references to objects that return typed values.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$".
+</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="StringAttributes"/>
+            <xs:attributeGroup ref="ListAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="IntegerListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of numeric values or references to numeric values inside a string list.  Allows constraints on the values in the list. Each value in the list must be validated per the constraints in the list attributes.
+
+Precede named references with "$" to distinguish them from literal strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="ListAttributes"/>
+            <xs:attributeGroup ref="IntegerAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="NumListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of numeric values or references to numeric values inside a string list.  Allows constraints on the values in the list. Each value in the list must be validated per the constraints in the list attributes.
+
+Precede named references with "$" to distinguish them from literal strings. </xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="ListAttributes"/>
+            <xs:attributeGroup ref="NumericAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="DateTimeListType" abstract="true">
+      <xs:annotation>
+         <xs:documentation>List of dateTime items and or named references to objects that return dateTime values.  Precede named references with "$" to distinguish them from literal DateTime strings. Strings that actually start with "$" should be escaped with "\$".</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute ref="dataTypeDateTime"/>
+            <xs:attributeGroup ref="ListAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="___FunctionReturnTypes___" abstract="true" final="#all" block="#all"/>
+   <xs:complexType name="SDCExceptionType">
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence minOccurs="0">
+               <xs:element name="InnerException" type="SDCExceptionType"/>
+            </xs:sequence>
+            <xs:attribute ref="not"/>
+            <xs:attribute default="EmptyOrMissing" name="exceptionType">
+               <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                     <xs:enumeration value="Empty"/>
+                     <xs:enumeration value="Missing"/>
+                     <xs:enumeration value="EmptyOrMissing"/>
+                     <xs:enumeration value="NaN"/>
+                     <xs:enumeration value="Error"/>
+                     <xs:enumeration value="EmptyMissingOrNaN"/>
+                     <xs:enumeration value="IncompatibleDataType"/>
+                     <xs:enumeration value="Other Exception"/>
+                     <xs:enumeration value="ExceedsBounds"/>
+                     <xs:enumeration value="Overflow"/>
+                     <xs:enumeration value="Underflow"/>
+                     <xs:enumeration value="BadPointerToFormItem"/>
+                     <xs:enumeration value="ExpectedList"/>
+                     <xs:enumeration value="ExpectedAtomicDataType"/>
+                  </xs:restriction>
+               </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="errorMessage" type="xs:string"/>
+            <xs:attribute name="helpLink" type="URI_Atype"/>
+            <xs:attribute name="source" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Gets or sets the name of the application or the object that causes the error.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="stackTrace" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnBaseType">
+      <xs:annotation>
+         <xs:documentation>Base type for all functions that a value of a defined data type.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Exception" type="SDCExceptionType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DataTypes_DEType"/>
+               <xs:element name="ReturnList" type="ReturnListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnAtomicOrListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DataTypes_DEType"/>
+               <xs:element name="ReturnList" type="ReturnListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnAtomicType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DataTypes_DEType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnBoolType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="boolean_DEtype"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnStrType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="string_DEtype"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnIntegerType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="long_DEtype"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnNumType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DataTypesNumeric_DEType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnDateTimeType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DataTypesDateTime_DEType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element name="___FunctionReturnListTypes___" abstract="true" final="#all" block="#all"/>
+   <xs:complexType abstract="true" name="ReturnListBaseType">
+      <xs:annotation>
+         <xs:documentation>Base type for all functions that Return a list data type</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ReturnBaseType"> </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="AnyListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnStrListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="StrListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnBoolListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="BoolListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnNumListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="NumListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnIntegerListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="IntegerListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType abstract="true" name="ReturnDateTimeListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListBaseType">
+            <xs:choice minOccurs="0">
+               <xs:element name="Return" type="DateTimeListType"/>
+            </xs:choice>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element abstract="true" block="#all" final="#all" name="___ReferenceTypes___">
+      <xs:annotation>
+         <xs:documentation>ToDo: Need list types for all FuncRef types</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="RefBaseType">
+      <xs:annotation>
+         <xs:documentation>Reference Type that points to a named object and returns the Return element's value of the object.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ItemNameAttributeType"> </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefType">
+      <xs:annotation>
+         <xs:documentation>RefType points to a named object and returns the value of the named object's Return element.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ReturnType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefBoolType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBoolType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefStrType">
+      <xs:complexContent>
+         <xs:extension base="ReturnStrType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefNumType">
+      <xs:complexContent>
+         <xs:extension base="ReturnNumType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefIntegerType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnIntegerType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefDateTimeType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnDateTimeType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element abstract="true" block="#all" final="#all" name="___ConvertRepeatToListTypes___">
+      <xs:annotation>
+         <xs:documentation>Create list out of repeated user responses (captured responses)
+
+ToDo: Need list types for all FuncRef types;</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="Repeats.BoolListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBoolListType">
+            <xs:sequence>
+               <xs:element name="Target" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Repeats.StrListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnStrListType">
+            <xs:sequence>
+               <xs:element name="Target" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Repeats.NumListType">
+      <xs:annotation>
+         <xs:documentation>Gather all repeats of a target response and create a list of all the responses</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ReturnNumListType">
+            <xs:sequence>
+               <xs:element name="Target" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Repeats.IntegerListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnIntegerListType">
+            <xs:sequence>
+               <xs:element name="Target" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="Repeats.DateTimeListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnDateTimeListType">
+            <xs:sequence>
+               <xs:element name="Target" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element abstract="true" block="#all" final="#all" name="___ReferenceRuleTypes___">
+      <xs:annotation>
+         <xs:documentation>ToDo: Need list types for all FuncRef types</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="RefRuleType">
+      <xs:annotation>
+         <xs:documentation>Reference Type that points to a named object and returns the Return element's value of the object.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ReturnType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefRuleBoolType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnBoolType">
+            <xs:attribute ref="not"/>
+            <xs:attribute name="itemName" type="xs:NCName" use="required">
+               <xs:annotation>
+                  <xs:documentation>The @name attribute of the referenced element.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefRuleStrType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnStrType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefRuleNumType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnNumType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefRuleIntegerType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnIntegerType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefRuleDateTimeType000">
+      <xs:complexContent>
+         <xs:extension base="ReturnDateTimeType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:element abstract="true" block="#all" final="#all" name="___ReferenceListTypes___">
+      <xs:annotation>
+         <xs:documentation>ToDo: Need list types for all FuncRef types</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="RefListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefStrListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnStrListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefNumListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnNumListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefIntegerListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnIntegerListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefBoolListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnBoolListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="RefDateTimeListType">
+      <xs:complexContent>
+         <xs:extension base="ReturnDateTimeListType">
+            <xs:sequence>
+               <xs:element name="Ref" type="ItemNameAttributeType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>

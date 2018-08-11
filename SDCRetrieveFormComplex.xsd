@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+   <xs:include schemaLocation="SDCTemplateAdmin.xsd"/>
+
+   <xs:include schemaLocation="SDCFormDesign.xsd"/>
+   <xs:include schemaLocation="SDCMapping.xsd"/>
+   <xs:include schemaLocation="SDCOverrides.xsd"/>
+   <xs:element name="IDR_Package" type="PackageType">
+      <xs:annotation>
+         <xs:documentation>The Package contains a PackageGroup object that can be administered by a registry, if desired.
+
+The Admin element contains metadata conerning the registry status and file characteristcs of the PackageGroup content.
+
+PackageGroup contains: the MainFormPackage, an optional DemogFormPackage (containing  boilerplate demographic and administrative information used for exchanging Main Form data), and optional InjectedFormPackage(s).  The InjectedFormPackage contains an optional sub-form to be injected into the FormDesignTemplate(s) for MainFormPackage and/or DemogFormPackage).
+
+General notes on registered packages:
+
+A Package may be registered as a single administered entity, and/or it may contain other independently-registered packages that may be nested to any level.  
+
+Any child element name that ends with "Package" or "Pkg" has an optional sibling Admin section and may be registered as an independent package if desired, or may be included inside a registered parent package.  The registration granularity depends on the use case.
+
+An element with a name that ends in "Package" derives from the FormPackageType.  These include: MainFormPackage, DemogFormPackage, and InjectedFormPackage.  FormPackageType derives from BasePackageType
+
+An element with a name that ends in "Pkg" derives from the BasePackageType.  These include FormDesignPkg, FormRulesPkg, MapPkg, FormOverridesPkg, ReportingPkg, and HelperFilesPkg.
+
+</xs:documentation>
+      </xs:annotation>
+   </xs:element>
+   <xs:complexType name="FormPackageType">
+      <xs:annotation>
+         <xs:documentation>FormPackageType contains object types to completely describe the information content of a data-entry form, its metadata, and support modules.  
+
+It contains an Admin element that represents metadata conerning the registration status and file characteristcs of the registerred FormPackageGroup content.
+
+It also contains a registered FormPackageGroup object that can be stored and administered by a registry, if desired.
+
+FormPackageGroup contains one FormDesignPkg (describes the form content), several several ancillary packages (these end with the letters "Pkg,"), a SubmissionRule, and a ComplianceRule.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element name="FormPackageGroup" type="FormPackageGroupType">
+                  <xs:annotation>
+                     <xs:documentation>FormPackageGroup groups together all elements covered by the Admin element metadata.  It is designed to create a registered package object that can be stored and administered by a registry, if desired.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormDesignPkgType">
+      <xs:annotation>
+         <xs:documentation>Describes the information content (FormDesignTemplate element) of a data-entry form (e.g., sections, questions etc) as well as administrative data (Admin element) about the form's registration in a form repository and its XML file metadata.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element ref="FormDesign"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormOverridesPkgType">
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element maxOccurs="1" name="FormOverridesTemplate" type="OverrideTemplateType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormRulesPkgType">
+      <xs:annotation>
+         <xs:documentation>This rules model type is extremely preliminary, and is only used as a mechanism for testing out ideas for a rules language.  Fundamentally, we would like to support:
+--Referencing any object in the FormDesignTemplate, possibly using XPath 2.0 or similar object-based mechanism.
+--Variable definition and referencing
+--Variable value assignment
+--Function definition and referencing
+--Function libraries
+--Web service calls that return objects or values
+--Definition of polling rules (continual reading of the form's state to execute a function/action when a polling condition is met)
+--Events (actions performed by the user that trigger the execution of a function/action)
+--a simple pseudo-language, possibly XML-based, that could be translated into implementable code in popular programming languages.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element maxOccurs="1" name="RulesTemplate">
+                  <xs:complexType>
+                     <xs:complexContent>
+                        <xs:extension base="ExtensionBaseType">
+                           <xs:attribute name="requiredFramework" type="xs:NMTOKENS">
+                              <xs:annotation>
+                                 <xs:documentation>Programming Framework(s), API(s), and version(s) for rules in the current template</xs:documentation>
+                              </xs:annotation>
+                           </xs:attribute>
+                           <xs:attribute name="rulesLanguage" type="xs:NMTOKENS">
+                              <xs:annotation>
+                                 <xs:documentation>Programming language(s) (and versions) for rules in the current template</xs:documentation>
+                              </xs:annotation>
+                           </xs:attribute>
+                           <xs:attributeGroup ref="templateAttributes"/>
+                        </xs:extension>
+                     </xs:complexContent>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="MapPkgType">
+      <xs:annotation>
+         <xs:documentation>Describes the mappings (e.g., to data elements, terminologies, databases, XML files, local values, etc.) in the MapTemplate element, as well as administrative data (Admin element) about a map's registration in a form repository and its XML file metadata.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element maxOccurs="1" name="MapTemplate" type="MappingType">
+                  <xs:annotation>
+                     <xs:documentation>Describes mappings between FormDesignTemplate items and data elements, terminologies, databases, XML files, local values, etc.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ReportingPkgType">
+      <xs:annotation>
+         <xs:documentation>Describes the information content (ReportDesignTemplate element) of a report (e.g., sections, questions etc) as well as administrative data (Admin element) about the report's registration in a form/report repository and its XML file metadata.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element maxOccurs="1" name="ReportDesignTemplate">
+                  <xs:annotation>
+                     <xs:documentation>ReportDesignTemplate describes the information content of a report (e.g., sections, questions etc).  This enables control of the presentation view of the user responses derived from a designated FormDesignTemplate.  It allows the report presentation to look substantially different from the data-entry form view defined by the FormDesignTemplate.</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:complexContent>
+                        <xs:extension base="FormDesignType">
+                           <xs:attribute name="targetTemplateID" use="required">
+                              <xs:annotation>
+                                 <xs:documentation>Globally unique identifier for the template targeted by this template</xs:documentation>
+                              </xs:annotation>
+                              <xs:simpleType>
+                                 <xs:restriction base="URI_Atype"> </xs:restriction>
+                              </xs:simpleType>
+                           </xs:attribute>
+                        </xs:extension>
+                     </xs:complexContent>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="HelperFilePkgType">
+      <xs:annotation>
+         <xs:documentation>Any supplemental file(s) required for the display of the primary FormDesignTemplate or ReportDesignTemplate.  HelperDisplayFiles include e.g., XSLT, CSS3, and javascript files.  If not in XML format, these files should be enclosed in CDATA tags to avoid parsing errors.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:attributeGroup ref="templateAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PackageType">
+      <xs:annotation>
+         <xs:documentation>The PackageType is used to group a MainFormPackage (inside PackageGroup) together with its supporting metadata (Admin element) and all of its supporting objects (inside PackageGroup).  The MainFormPackage in turn is designed primarily to group the FormDesignTemplate with all of its supporting objects.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BasePackageType">
+            <xs:sequence>
+               <xs:element name="PackageGroup" type="PackageGroupType">
+                  <xs:annotation>
+                     <xs:documentation>PackageGroup groups together all elements covered by the Admin element metadata.  It is the wrapper element for a registered package object that can be stored and administered by a registry, if desired.  
+
+The main parts of PackageGroup are: MainFormPackage, an optional DemogFormPackage (containing  boilerplate demographic and administrative information used for exchanging Main Form data), and optional InjectedFormPackage(s).  
+
+The InjectedFormPackage contains an optional sub-form to be injected into the FormDesignTemplate(s) for MainFormPackage and/or DemogFormPackage).  
+
+PackageGroup also contains sections for SubmitFormRule and ComplianceRule.  
+
+It also allows for any number of nested child Packages.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="BasePackageType">
+      <xs:annotation>
+         <xs:documentation/>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence>
+               <xs:element name="Admin" minOccurs="0" type="TemplateAdminType">
+                  <xs:annotation>
+                     <xs:documentation>Admin contains information about a package, including a description of the package contents and purpose (PackageDescription), information about the registry that contains the package file (RegistryData), and information about the package file characteristics (TemplateFile).</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+            <xs:attribute form="unqualified" name="packageID" type="URI_Atype" use="required"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="PackageGroupType">
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+                  <xs:annotation>
+                     <xs:documentation>A SubmissionRule contains information about where and how to submit a completed form.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+                  <xs:annotation>
+                     <xs:documentation>A ComplianceRule contains general information about how information in a particular form package must be handled.  This may include, e.g., security, completeness, transmission, and validation criteria.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:choice minOccurs="0">
+                  <xs:element minOccurs="0" name="DemogFormPackage" type="FormPackageType">
+                     <xs:annotation>
+                        <xs:documentation>The DemogFormPackage is an optional package of XML templates to represent, collect and display boilerplate demographic and administrative data required for use with the MainFormPackage.  DemogFormPackage data may be used for message transmission, authentication, authorization, distribution, etc.  The DemogFormPackage may be shared among many different MainFormPackage modules.
+
+See MainFormPackage for more information.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="DemogFormPkgLink" type="LinkType"/>
+               </xs:choice>
+               <xs:choice maxOccurs="unbounded">
+                  <xs:element name="MainFormPackage" type="FormPackageType">
+                     <xs:annotation>
+                        <xs:documentation>The MainFormPackage is designed primarily to group the FormDesignPkg (contained inside FormPackageGroup) with most of its supporting objects.  The supporting objects are used for more control over form display, reporting, customizing, and mapping.  
+
+The Admin element contains metadata conerning the registration status and file characteristcs of the package's included XML templates.
+
+The MainFormPackage does not contain any other FormPackageType objects (i.e., the DemogFormPackage and the InjectedFormPackage).  These 2 types of objects are managed as sibling FormPackageTypes because each of them represent complete independently-registered forms.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="MainFormPkgLink" type="LinkType"/>
+               </xs:choice>
+               <xs:choice maxOccurs="unbounded" minOccurs="0">
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="InjectedFormPackage" type="FormPackageType">
+                     <xs:annotation>
+                        <xs:documentation>The InjectedFormPackage contains optional packages of form templates that are provided for "injection" into specified locations in the FormDesignTemplate contained in the MainFormPackage.
+
+See MainFormPackage for more information.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="InjectedFormPkgLink" type="LinkType"/>
+               </xs:choice>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="Package" type="PackageType">
+                  <xs:annotation>
+                     <xs:documentation>A Package may contain multiple independant forms, each contained in its own sub-Package.  This nested Package model supports the following use-cases: 
+
+Production of a a data-entry screen with composite forms or composite reports
+
+Retrieval of an entire package of related forms, each contained in its own sub-Package. Sub-packages may be nested to any level.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="PackageLink" type="LinkType"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="FormGroupType">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FormDesignPkg" minOccurs="0" type="FormDesignPkgType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FormRulesPkg" minOccurs="0" maxOccurs="unbounded" type="FormRulesPkgType"> </xs:element>
+         <xs:element name="MapPkg" minOccurs="0" maxOccurs="unbounded" type="MapPkgType"> </xs:element>
+         <xs:element name="FormOverridesPkg" minOccurs="0" type="FormOverridesPkgType"> </xs:element>
+         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"> </xs:element>
+         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0" type="HelperFilePkgType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FormPackageGroupType">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="FormDesignPkg" minOccurs="0" type="FormDesignPkgType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="MapPkg" minOccurs="0" maxOccurs="unbounded" type="MapPkgType"> </xs:element>
+         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"> </xs:element>
+         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0" type="HelperFilePkgType">
+            <xs:annotation>
+               <xs:documentation/>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="X_FormOverridesPkg" minOccurs="0" type="FormOverridesPkgType"> </xs:element>
+         <xs:element name="X_FormRulesPkg" minOccurs="0" maxOccurs="unbounded" type="FormRulesPkgType"> </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+   <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+   <xs:complexType name="ExtensionType">
+
+      <xs:annotation>
+         <xs:documentation>Similar to the Schema type xs:anyType, but requires strict validation, and includes optional baseAttributes. Developer will need to declare a namespace and provide a Schema to validate the contents.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="BaseType">
+            <xs:sequence>
+               <xs:any maxOccurs="unbounded" processContents="strict" namespace="##any"/>
+            </xs:sequence>
+            <xs:anyAttribute processContents="strict" namespace="##any">
+               <xs:annotation>
+                  <xs:documentation>Developer must supply a namespace and a Schema to validate the attributes.</xs:documentation>
+               </xs:annotation>
+            </xs:anyAttribute>
+         </xs:extension>
+      </xs:complexContent>
+
+   </xs:complexType>
+
+   <xs:complexType abstract="true" name="BaseType" block="">
+
+      <xs:attributeGroup ref="baseAttributes"/>
+
+   </xs:complexType>
+   <xs:attributeGroup name="baseAttributes">
+      <xs:annotation>
+         <xs:documentation>A set of optional attributes that may apply to any type of element in
+                an XML document.</xs:documentation>
+      </xs:annotation>
+      <xs:attribute name="name" type="xs:ID">
+         <xs:annotation>
+            <xs:documentation>Developer assigned identifier, similar to a unique control/object
+                    name, used to provide the ability for programmatic manipulation of an
+                    element.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="type" type="xs:NMTOKENS">
+         <xs:annotation>
+            <xs:documentation>The @type attribute can contain custom metadata "tokens" for the
+                    element, chosen from a standardized list of terms. Tokens are short alphanumeric
+                    text strings, defined by the W3C Schema NMTOKEN specification, that are defined
+                    in an Implementation Guide. The type xsd:NMTOKEN represents a single string
+                    token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -
+                    ), underscores ( _ ), and colons ( : ). They may start with any of these
+                    characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be
+                    specific for one or more kinds of SDC elements. Multiple tokens in the type
+                    attribute should be separated by whitespace. Type tokens may be used to specify
+                    special handling by an application, and are usually used to define form display
+                    constraints, but may include other custom metadata as well. Style metadata
+                    should generally be handled with @styleClass rather than @type. @type token
+                    examples include: tooltip, statusLineText, alignTopLeft, align:bottom,
+                    _pageBreak-after, etc. @type metadata should generally not affect the
+                    information content of a form.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="styleClass" type="xs:NMTOKENS">
+         <xs:annotation>
+            <xs:documentation>Developer assigned class name for display styling, generally for
+                    use with an external style sheet.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="order">
+         <xs:annotation>
+            <xs:documentation>@order allows the form template developer to define a sequential
+                    order for elements in a template. This serves the purpose of providing a
+                    definitive/original order to sections, questions, answer choices, etc., when
+                    required for display purposes. This is important when the original XML ordering
+                    may become disrupted due to the use of an implementation technology that does
+                    not natively support ordering (e.g., object collections), and it can also
+                    provide a check on the proper importing of the XML tree during
+                    implementation.</xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+               <xs:minInclusive value="0"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:attribute>
+   </xs:attributeGroup>
+   <xs:complexType name="CommentType">
+      <xs:complexContent>
+         <xs:extension base="BaseType">
+            <xs:attribute name="val" type="xs:string"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+</xs:schema>

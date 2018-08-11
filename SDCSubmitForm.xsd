@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+   <!-- 9/15/2016 rlm Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+   <!-- 11/13/2017 rlm Rebased on ExtensionBaseType instead of ExtensionType
+         Removed duplicate Property type
+         Changed pkgDateTimeStamp type: was xs:dateTimeStamp (not available in Schema 1.0) to xs:dateTime
+         (for Jan 2018 Connectathon) 
+   -->
+   <xs:include schemaLocation="SDCFormDesign.xsd"/>
+   <xs:element name="SDCSubmissionPackage">
+      <xs:annotation>
+         <xs:documentation>NEW: Converted to ExtensionType</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="DemogFormDesign" type="FormDesignType"/>
+                  <xs:element maxOccurs="unbounded" name="FormDesign" type="FormDesignType"/>
+               </xs:sequence>
+               <xs:attribute name="title" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>NEW</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="pkgInstanceURI" type="URI_Atype" use="required">
+                  <xs:annotation>
+                     <xs:documentation>NEW: Unique URI used to identify a unique instance of a package.  Used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI does not change for each edit session of a package instance.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="pkgInstanceVersionURI" type="URI_Atype" use="required">
+                  <xs:annotation>
+                     <xs:documentation>NEW: Unique URI used to identify a unique instance of a package.  Used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a package instance.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="pkgPreviousInstanceVersionURI" type="URI_Atype" use="required">
+                  <xs:annotation>
+                     <xs:documentation>NEW: Unique URI used to identify the immediate previous instance of an SDCSubmitForm package.  Used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a package instance.</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+               <xs:attribute name="pkgDateTimeStamp" type="xs:dateTime" use="required">
+                  <xs:annotation>
+                     <xs:documentation>NEW</xs:documentation>
+                  </xs:annotation>
+               </xs:attribute>
+            </xs:extension>
+         </xs:complexContent>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
