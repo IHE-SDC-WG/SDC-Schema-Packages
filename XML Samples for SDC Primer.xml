@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    
+    <Question ID="1" title="Specify Type" >
+        <Property propName="reportText" val="Type" />
+        <ResponseField >
+            <Response>
+                <string val= " />
+            </Response>
+        </ResponseField>
+    </Question>
+    
+    
+    <DisplayedItem ID="2" title="My DEF Instruction" >
+        <Property propName="reportText" val="{no text}" />
+    </DisplayedItem>
+    
+</root>	

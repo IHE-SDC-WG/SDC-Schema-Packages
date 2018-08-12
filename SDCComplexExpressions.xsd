@@ -1,0 +1,3193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+    <xs:include schemaLocation="SDCExpressions.xsd"/>
+    <xs:element abstract="true" block="#all" final="#all"
+        name="___InputStrReturnValAbstractTypes___"/>
+    <xs:complexType abstract="true" name="InputStr_ReturnType000">
+        <xs:complexContent>
+            <xs:extension base="ReturnType">
+                <xs:sequence>
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnBoolType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="StringPredicate" type="String.Functions.BoolType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnStrType">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence minOccurs="0">
+                    <xs:element minOccurs="1" name="InputString" type="ReturnStrType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnIntegerType">
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerType">
+                <xs:sequence>
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all"
+        name="___InputStrReturnListAbstractTypes___"/>
+    <xs:complexType abstract="true" name="InputStr_ReturnListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnBoolListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnStrListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnIntegerListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnNumListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputStr_ReturnDateTimeListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeListType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputStr" type="String.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___InputListReturnAbstractTypes___"/>
+    <xs:complexType abstract="true" name="InputList_ReturnAnyType">
+        <xs:annotation>
+            <xs:documentation>Used by types: List.GetItemAtIndex.AnyType</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnType">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnIntegerType000">
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerType">
+                <xs:sequence>
+                    <xs:element name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnNumType">
+        <xs:annotation>
+            <xs:documentation>Used by types: 
+List.GetItemAtIndex.NumType, 
+List.MonadicFunctions.NumType</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:sequence>
+                    <xs:element name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnStrType111">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence>
+                    <xs:element name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnBoolType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnDateTimeType">
+        <xs:annotation>
+            <xs:documentation>Used by types: 
+List.GetItemAtIndex.DateTimeType, </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType abstract="true" name="InputList_ReturnListType">
+        <xs:annotation>
+            <xs:documentation>Used by types: 
+Many types</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:sequence>
+                    <xs:element minOccurs="1" name="InputList" type="Any.Functions.ListType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___StringOperationFunctions___"/>
+    <xs:complexType name="String.Concatenate.StringType">
+        <xs:annotation>
+            <xs:documentation>NEW: </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="InputString"
+                        type="Any.Functions.StrType"/>
+                </xs:sequence>
+                <xs:attribute default="true" name="suppressForNullEmptyParameter" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If any parameter generates a Null or empty string value or returns an error, then return an empty string ("").  Default is true. Named parameters are preceded with "$".  C# string interpolation syntax (.NET 4.7.1) is used.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attributeGroup ref="StringDelimeters"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.ParameterizedType">
+        <xs:annotation>
+            <xs:documentation>NEW: This type is for C# interpolated strings only.  Java and JavaScript do not offer such a concise declarative format.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:attribute default="true" name="suppressForNullEmptyParameter" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If any parameter generates a Null or empty string value or returns an error, then return an empty string ("").  Default is true. Named parameters are preceded with "$".  C# string interpolation syntax (.NET 4.7.1) is used.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Comtains the parameterized string.  Parameters are named elements, and they must pre prefixed with $.  C# syntax (.NET 4.7.1) is required.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Substring.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType">
+                <xs:attribute name="length" type="xs:unsignedLong"/>
+                <xs:attribute default="0" name="start" type="xs:unsignedLong"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Trim.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType">
+                <xs:attribute default="Trim" name="trimType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="LTrim"/>
+                            <xs:enumeration value="RTrim"/>
+                            <xs:enumeration value="Trim"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.ReplacePattern.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="ReplacementString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.ReplaceAtIndex.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType">
+                <xs:choice minOccurs="0">
+                    <xs:element minOccurs="1" name="ReplacementString" type="Any.Functions.StrType"
+                    />
+                </xs:choice>
+                <xs:attribute name="startIndexInclusive" type="xs:nonNegativeInteger" use="required"/>
+                <xs:attribute name="endIndexInclusive" type="xs:nonNegativeInteger" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.PatternMatch.ListType000">
+        <xs:annotation>
+            <xs:documentation>Return a list of matches to a pattern filter.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnListType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="ReplacementString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.ToLower.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.ToUpper.StrType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.IsNull.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.IsEmpty.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.IsNullOrEmpty.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.StartsWith.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType">
+                <xs:attribute name="substring" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.EndsWith.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType">
+                <xs:attribute name="substring" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Like.BoolType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType">
+                <xs:attribute name="patternType" type="xs:string" use="required"/>
+                <xs:attribute name="pattern" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Compare.IntegerType000">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerType">
+                <xs:sequence>
+                    <xs:element name="CompareString" type="String.Functions.StrType"> </xs:element>
+                </xs:sequence>
+                <xs:attribute default="true" name="ignoreCase" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="StrList.Count.IntegerType000">
+        <xs:annotation>
+            <xs:documentation>Input a list (of type string) and return a count of the items in the list.  If matchPattern is empty, then count all items in the list.  If matchPattern is present, count only the items that match the pattern.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="CompareString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.MatchCount.IntegerType">
+        <xs:annotation>
+            <xs:documentation>Return the number of matches to the pattern or substring</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="CompareString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.MatchPos.NumListType000">
+        <xs:annotation>
+            <xs:documentation>Return a numeric list with the starting positions of all matches to the pattern or CompareString.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnNumListType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="CompareString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Match.StrListType000">
+        <xs:annotation>
+            <xs:documentation>Return the a list of all matches to the pattern or substring</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrListType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="CompareString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Contains.BoolType">
+        <xs:annotation>
+            <xs:documentation>Determine if CompareString exists in InputString.  The algorithm returns with a "true" result after the first match.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="CompareString" type="Any.Functions.StrType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Length.IntegerType000">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.ListType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.StrListType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnStrListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.NumListType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnNumListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.IntegerListType000">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.DateTimeListType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnDateTimeListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Split.BoolListType000">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnBoolListType"> </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="StrList.IndexOf.IntegerType">
+        <xs:complexContent>
+            <xs:extension base="InputStr_ReturnIntegerType">
+                <xs:attribute name="matchExpression" type="xs:string"/>
+                <xs:attribute name="matchPattern" type="xs:string"/>
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+                <xs:attribute name="matchType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="firstMatch"/>
+                            <xs:pattern value=""/>
+                            <xs:enumeration value="lastMatch"/>
+                            <xs:enumeration value="indexMatch"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___ListOperationFunctions___"> </xs:element>
+    <xs:complexType name="List.InsertAtIndex.ListType111">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType">
+                <xs:choice>
+                    <xs:element name="X_SourceList" type="Any.Functions.ListType"/>
+                    <xs:element minOccurs="1" name="InsertValue" type="DataTypes_SType"/>
+                    <xs:element name="RefListGroup111"/>
+                    <xs:element name="RefGroup111"/>
+                    <xs:element name="RefList111" type="RefListType"/>
+                    <xs:element name="RefNum111" type="RefNumListType"/>
+                    <xs:element name="Numerics" type="Any.Functions.NumListOrNumType111"/>
+                    <xs:element name="Strings">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="StrFunctions" type="Any.Functions.StrType"/>
+                                <xs:element name="StrListFunctions">
+                                    <xs:complexType>
+                                        <xs:choice>
+                                            <xs:element name="StrToStrList"
+                                                type="InputStr_ReturnStrListType"/>
+                                            <xs:element name="RepeatsToStrList"
+                                                type="Repeats.StrListType"/>
+                                            <xs:element name="Str.Split.StrList"
+                                                type="String.Split.StrListType"/>
+                                        </xs:choice>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DateTimes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="DateTime111" type="Any.Functions.DateTimeType"/>
+                                <xs:element name="RepeatsToList" type="Repeats.DateTimeListType"/>
+                                <xs:element name="StrSplitToList"
+                                    type="String.Split.DateTimeListType"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Bool111" type="Any.Functions.BoolType"/>
+                    <xs:element minOccurs="1" name="InputList" type="Any.Functions.ListType"/>
+                </xs:choice>
+                <xs:attribute name="index" type="xs:positiveInteger" use="required"/>
+                <xs:attribute default="insertAtIndex" name="insertType">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="replaceAtIndex"/>
+                            <xs:enumeration value="insertAtIndex"/>
+                            <xs:enumeration value="insertAfterIndex"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.ReplaceAtIndex.ListType000">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType">
+                <xs:choice>
+                    <xs:element name="X_SourceList" type="Any.Functions.ListType"/>
+                    <xs:element minOccurs="1" name="InsertValue" type="DataTypes_SType"/>
+                    <xs:element name="RefListGroup111"/>
+                    <xs:element name="RefGroup111"/>
+                    <xs:element name="RefList111" type="RefListType"/>
+                    <xs:element name="RefNum111" type="RefNumListType"/>
+                    <xs:element name="Numerics" type="Any.Functions.NumListOrNumType111"/>
+                    <xs:element name="Strings">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="StrFunctions" type="Any.Functions.StrType"/>
+                                <xs:element name="StrListFunctions">
+                                    <xs:complexType>
+                                        <xs:choice>
+                                            <xs:element name="StrToStrList"
+                                                type="InputStr_ReturnStrListType"/>
+                                            <xs:element name="RepeatsToStrList"
+                                                type="Repeats.StrListType"/>
+                                            <xs:element name="Str.Split.StrList"
+                                                type="String.Split.StrListType"/>
+                                        </xs:choice>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DateTimes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="DateTime111" type="Any.Functions.DateTimeType"/>
+                                <xs:element name="RepeatsToList" type="Repeats.DateTimeListType"/>
+                                <xs:element name="StrSplitToList"
+                                    type="String.Split.DateTimeListType"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Bool111" type="Any.Functions.BoolType"/>
+                    <xs:element minOccurs="1" name="InputList" type="Any.Functions.ListType"/>
+                </xs:choice>
+                <xs:attribute name="index" type="xs:positiveInteger" use="required"/>
+                <xs:attribute name="patternType" type="xs:string" use="required"/>
+                <xs:attribute default="*" name="pattern" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Default is match everything</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute default="EQ" ref="CompareOpEnum"/>
+                <xs:attribute name="compareTo" type="xs:string"/>
+                <xs:attribute default="String" name="compareFlag">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="String"/>
+                            <xs:enumeration value="Binary"/>
+                            <xs:enumeration value="Numeric"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.InsertListAtIndex.ListType000">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.InsertAtomAtIndex.NumListType000"/>
+    <xs:complexType name="List.InsertAtomAtIndex.StrListType000"/>
+    <xs:complexType name="List.InsertAtomAtIndex.DateTimeListType000"/>
+    <xs:complexType name="List.InsertAtomAtIndex.BoolListType000"/>
+    <xs:complexType name="List.InsertAtomAtIndex.Base64ListType000"/>
+    <xs:complexType name="List.Filter.ListType000">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType">
+                <xs:attributeGroup ref="FilterAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:attributeGroup name="FilterAttributes">
+        <xs:attribute name="patternType" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>The pattern system in use, such as "XPath 1.0 RegEx", etc.  
+                    TODO: Define an enumerated list for this attribute</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="*" name="searchPattern" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Default is match everything</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="0" name="startMatch" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Start changing the list only after the @startMatch (i.e., first, second...) match.  Default is 0, meaning, start from the first match</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="0" name="count" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>The max number of items to filter (e.g., include in in a new list).  If the value is 0, then count is unlimited.  The value of this attribute will cause the search to abort after the specified number of matches to the filter criteria.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="0" name="startIndex" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Start looking for matches only at the @startIndex item in the list.  Default is 0, meaning, start looking for a match in the first item.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="0" name="stopIndex" type="xs:integer">
+            <xs:annotation>
+                <xs:documentation>Stop looking for matches only after the @stopLooking item in the list match.  Default is 0, meaning, attempt a match to all items.  Negative numbers indicate that the count starts from the end, i.e., -1 means do not include the last match.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="EQ" ref="CompareOpEnum"/>
+        <xs:attribute name="compareTo" type="xs:string">
+            <xs:annotation>
+                <xs:documentation>Operand for comparisons that result in a Boolean value.  Each match must satisfy the comparison to be included in the output.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="String" name="compareFlag">
+            <xs:annotation>
+                <xs:documentation>Determines the type of comparison: String (default), Binary, Numeric.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="String"/>
+                    <xs:enumeration value="Binary"/>
+                    <xs:enumeration value="Numeric"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="forward" name="direction">
+            <xs:annotation>
+                <xs:documentation>Direction of the search: forward (the default) starts from the begining of the list, reverse starts from the end.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="forward"/>
+                    <xs:enumeration value="reverse"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute default="0" name="X_startItem" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Default is 0, meaning, start from the first item in the list</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute default="all" name="X_flags">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="all"/>
+                    <xs:enumeration value="first"/>
+                    <xs:enumeration value="last"/>
+                    <xs:enumeration value="instanceFromStart"/>
+                    <xs:enumeration value="instanceFromEnd"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="allowOverlapingPatterns" type="xs:boolean" default="false"> </xs:attribute>
+
+        <xs:attribute default="true" name="ignoreCase" type="xs:boolean"/>
+    </xs:attributeGroup>
+    <xs:complexType name="List.RemoveAtIndex.ListType">
+        <xs:annotation>
+            <xs:documentation>Remove list items beginning with the index, and continue to remove the number of items specified in @items.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType">
+                <xs:attribute default="1" name="index" type="xs:positiveInteger"/>
+                <xs:attribute default="1" name="count" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.GetItemAtIndex.AnyType">
+        <xs:annotation>
+            <xs:documentation>Return the item at a supplied index (zero-based).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnAnyType">
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.GetItemAtIndex.StrType">
+        <xs:annotation>
+            <xs:documentation>Return the item at a supplied index (zero-based).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnStrType111">
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.GetItemAtIndex.NumType">
+        <xs:annotation>
+            <xs:documentation>Return the numeric item at a supplied index (zero-based).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnNumType">
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.GetItemAtIndex.BoolType">
+        <xs:annotation>
+            <xs:documentation>Return the item at a supplied index (zero-based).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnBoolType">
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.GetItemAtIndex.DateTimeType">
+        <xs:annotation>
+            <xs:documentation>Return the item at a supplied index (zero-based).</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnDateTimeType">
+                <xs:attribute name="index" type="xs:positiveInteger"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType final="" name="List.MonadicFunctions.NumType000">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnNumType">
+                <xs:attribute name="function">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Count"/>
+                            <xs:enumeration value="SizeKB"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType final="" name="List.MonadicFunctions.BoolType111">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnBoolType">
+                <xs:attribute name="function">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="IsEmpty"/>
+                            <xs:enumeration value="IsNotEmpty"/>
+                            <xs:enumeration value="IsNumeric"/>
+                            <xs:enumeration value="IsString"/>
+                            <xs:enumeration value="IsBoolean"/>
+                            <xs:enumeration value="IsDateTime"/>
+                            <xs:enumeration value="IsDate"/>
+                            <xs:enumeration value="IsTime"/>
+                            <xs:enumeration value=""/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___DateTimeFunctions___"> </xs:element>
+    <xs:complexType name="DateTimeFunctions.AnyType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="X_LiteralDateTime" type="DateTimeType"/>
+                    <xs:element name="GetListItem.DateTime" type="List.GetItemAtIndex.DateTimeType"/>
+                    <xs:element name="NiladicFunctions.DateTime"
+                        type="NiladicFunctions.DateTimeType"> </xs:element>
+                    <xs:element name="DateTime.MonadicFunctions.DateTime"
+                        type="DateTime.MonadicFunctions.DateTimeType"> </xs:element>
+                    <xs:element name="DateTime.MonadicFunctions.Boolean"
+                        type="DateTime.MonadicFunctions.BooleanType"> </xs:element>
+                    <xs:element name="DateTime.DiffFunctions.DateTime"
+                        type="DateTime.DiffFunctions.DateTimeType"> </xs:element>
+                    <xs:element name="DateTime.AddFunctions.DateTime"
+                        type="DateTime.AddFunctions.DateTimeType"> </xs:element>
+                    <xs:element name="DateTime.Format.String" type="DateTime.Format.StringType"> </xs:element>
+                    <xs:element name="String.Parse.DateTime" type="String.Convert.DateTimeType"> </xs:element>
+                    <xs:element name="DateTime.Compare.Integer"
+                        type="DateTime.Compare.IntegerType111"> </xs:element>
+                    <xs:element name="DateTimeListFunctions"
+                        type="DateTime.AddFunctions.DateTimeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="NiladicFunctions.DateTimeType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:attribute name="function" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+
+                            <xs:enumeration value="Now"/>
+                            <xs:enumeration value="CurrentTime"/>
+                            <xs:enumeration value="CurrentDate"/>
+                            <xs:enumeration value="CurrentMonthStart"/>
+                            <xs:enumeration value="CurrentWeekStart"/>
+                            <xs:enumeration value="CurrentWeekStart"/>
+                            <xs:enumeration value="CurrentYearStart"/>
+
+                            <xs:enumeration value="Tomorrow"/>
+                            <xs:enumeration value="DayAfterTomorrow"/>
+                            <xs:enumeration value="NextMon"/>
+                            <xs:enumeration value="NextTues"/>
+                            <xs:enumeration value="NextWed"/>
+                            <xs:enumeration value="NextThurs"/>
+                            <xs:enumeration value="NextFri"/>
+                            <xs:enumeration value="NextSat"/>
+                            <xs:enumeration value="NextSun"/>
+
+                            <xs:enumeration value="NextWeek"/>
+                            <xs:enumeration value="NextTwoWeeks"/>
+                            <xs:enumeration value="NextThreeWeeks"/>
+                            <xs:enumeration value="NextMonth"/>
+                            <xs:enumeration value="NextYear"/>
+
+                            <xs:enumeration value="Yesterday"/>
+
+                            <xs:enumeration value="LastMon"/>
+                            <xs:enumeration value="LastTues"/>
+                            <xs:enumeration value="LastWed"/>
+                            <xs:enumeration value="LastThurs"/>
+                            <xs:enumeration value="LastFri"/>
+                            <xs:enumeration value="LastSat"/>
+                            <xs:enumeration value="LastSun"/>
+
+                            <xs:enumeration value="LastWeek"/>
+                            <xs:enumeration value="TwoWeeksAgo"/>
+                            <xs:enumeration value="ThreeWeeksAgo"/>
+                            <xs:enumeration value="LastMonth"/>
+                            <xs:enumeration value="LastYear"/>
+
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute ref="timeZone"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.MonadicFunctions.DateTimeType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence minOccurs="0">
+                    <xs:element name="InputDateTime" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute name="function" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DatePart"/>
+                            <xs:enumeration value="DayPart"/>
+                            <xs:enumeration value="DayOfWeek"/>
+                            <xs:enumeration value="DayOfYear"/>
+                            <xs:enumeration value="HourPart"/>
+                            <xs:enumeration value="MilliSecondPart"/>
+                            <xs:enumeration value="MinutePart"/>
+                            <xs:enumeration value="MonthPart"/>
+                            <xs:enumeration value="SecondPart"/>
+                            <xs:enumeration value="TimeOfDayPart"/>
+                            <xs:enumeration value="YearPart"/>
+
+                            <xs:enumeration value="NextMon"/>
+                            <xs:enumeration value="NextTues"/>
+                            <xs:enumeration value="NextWed"/>
+                            <xs:enumeration value="NextThurs"/>
+                            <xs:enumeration value="NextFri"/>
+                            <xs:enumeration value="NextSat"/>
+                            <xs:enumeration value="NextSun"/>
+
+                            <xs:enumeration value="PrevMon"/>
+                            <xs:enumeration value="PrevTues"/>
+                            <xs:enumeration value="PrevWed"/>
+                            <xs:enumeration value="PrevThurs"/>
+                            <xs:enumeration value="PrevFri"/>
+                            <xs:enumeration value="PrevSat"/>
+                            <xs:enumeration value="PrevSun"/>
+
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute ref="timeZone"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.MonadicFunctions.BooleanType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="InputDateTime" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute name="function" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="IsToday"/>
+                            <xs:enumeration value="IsThisMonth"/>
+                            <xs:enumeration value="IsThisWeek"/>
+                            <xs:enumeration value="IsThisYear"/>
+                            <xs:enumeration value="IsDaylightSavingsTime"/>
+                            <xs:enumeration value="IsLeapYear"/>
+                            <xs:enumeration value="IsPast"/>
+                            <xs:enumeration value="IsFuture"/>
+                            <xs:enumeration value="IsNull"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.DiffFunctions.DateTimeType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="DateTimeStart" type="DateTimeFunctions.AnyType"/>
+                    <xs:element name="DateTimeEnd" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute name="function" use="required">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DateDiffDay"/>
+                            <xs:enumeration value="DateDiffHour"/>
+                            <xs:enumeration value="DateDiffMilliSecond"/>
+                            <xs:enumeration value="DateDiffMinute"/>
+                            <xs:enumeration value="DateDiffMonth"/>
+                            <xs:enumeration value="DateDiffSecond"/>
+                            <xs:enumeration value="DateDiffTick"/>
+                            <xs:enumeration value="DateDiffYear"/>
+                            <xs:enumeration value="DateDiffDuration"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute ref="timeZone"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.AddFunctions.DateTimeType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="addDateTimePart" type="Any.Functions.NumType"/>
+                    <xs:element name="StartDateTime" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute name="function">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+
+                            <xs:enumeration value="AddYears"/>
+                            <xs:enumeration value="AddMonths"/>
+                            <xs:enumeration value="AddWeeks"/>
+                            <xs:enumeration value="AddDays"/>
+
+                            <xs:enumeration value="AddHours"/>
+                            <xs:enumeration value="AddMinutes"/>
+                            <xs:enumeration value="AddSeconds"/>
+                            <xs:enumeration value="AddMilliSeconds"/>
+                            <xs:enumeration value="AddTicks"/>
+
+
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute default="+" name="operator">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="+"/>
+                            <xs:enumeration value="-"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute ref="timeZone"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.Format.StringType">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence>
+                    <xs:element name="InputDateTime" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute default="General date/time (short time) (g)" name="format">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Short date (d)"/>
+                            <xs:enumeration value="Long date (D)"/>
+                            <xs:enumeration value="Full date/time (short time) (f)"/>
+                            <xs:enumeration value="Full date/time (long time) (F)"/>
+                            <xs:enumeration value="General date/time (short time) (g)"/>
+                            <xs:enumeration value="General date/time (long time) (G)"/>
+                            <xs:enumeration value="Month/day pattern (M, m))"/>
+                            <xs:enumeration value="Round-trip date/time (O,o)"/>
+                            <xs:enumeration value="RFC1123 (R,r)"/>
+                            <xs:enumeration value="Sortable date/time (s)"/>
+                            <xs:enumeration value="Short time (t)"/>
+                            <xs:enumeration value="Long time (T)"/>
+                            <xs:enumeration value="Universal sortable date/time (u)"/>
+                            <xs:enumeration value="Universal full date/time (U)"/>
+                            <xs:enumeration value="Year month (Y,y)"/>
+                            <xs:enumeration value="UsePattern"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute ref="timeZone"/>
+                <xs:attribute name="pattern" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Need Regex to constrain pattern
+Need Reference to Microsoft pattern language
+Consider Javascript reference instead</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="DateTime.Compare.IntegerType111">
+        <xs:annotation>
+            <xs:documentation>Return 0 if equal, 1 if DT1 is larger, and 2 if DT2 is larger????
+Should we instead use comparison operators (GT, LTE, EQ etc)??  This would return a Bool.
+
+Or perhaps we need 2 functions, one integer and one Bool?</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerType">
+                <xs:sequence>
+                    <xs:element name="InputDateTime1" type="DateTimeFunctions.AnyType"/>
+                    <xs:element name="InputDateTime2" type="DateTimeFunctions.AnyType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:attribute default="Local" name="timeZone">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Local"/>
+                <xs:enumeration value="UTC"/>
+                <xs:enumeration value="LocalMinus1"/>
+                <xs:enumeration value="LocalMinus2"/>
+                <xs:enumeration value="LocalMinus3"/>
+                <xs:enumeration value="LocalPlus1"/>
+                <xs:enumeration value="LocalPlus2"/>
+                <xs:enumeration value="LocalPlus3"/>
+                <xs:enumeration value="Other"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:element abstract="true" block="#all" final="#all" name="___NumericFunctions___"/>
+    <xs:element abstract="true" name="__NumericConstants000__">
+        <xs:annotation>
+            <xs:documentation>e.g., pi</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="Num.Function.BoolType111" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Integer.Function.Integer111" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Num.Trig.NumType111">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:sequence>
+                    <xs:element name="ConvertAngle">
+                        <xs:complexType>
+                            <xs:attribute name="function">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="DegreesToRadians"/>
+                                        <xs:enumeration value="RadiansToDegrees"/>
+                                        <xs:enumeration value=""/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="TrigRadians">
+                        <xs:complexType>
+                            <xs:choice maxOccurs="2" minOccurs="2">
+                                <xs:element name="AngleRadRef111" type="ParameterValueType"/>
+                                <xs:element name="AngleRadValue111" type="ParameterValueType"/>
+                            </xs:choice>
+                            <xs:attribute name="function">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="sin"/>
+                                        <xs:enumeration value="cos"/>
+                                        <xs:enumeration value="tan"/>
+                                        <xs:enumeration value="asin"/>
+                                        <xs:enumeration value="acos"/>
+                                        <xs:enumeration value="atan"/>
+                                        <xs:enumeration value="atan2"/>
+                                        <xs:enumeration value="sinh"/>
+                                        <xs:enumeration value="cosh"/>
+                                        <xs:enumeration value="tanh"/>
+                                        <xs:enumeration value="asinh"/>
+                                        <xs:enumeration value="acosh"/>
+                                        <xs:enumeration value="atanh"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ListAggregate.NumType">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element maxOccurs="unbounded" name="NumValue" type="NumType"/>
+                    <xs:element maxOccurs="unbounded" name="NumListLiteral" type="NumListType"> </xs:element>
+                    <xs:element maxOccurs="unbounded" name="FuncNum" type="FuncNumType"/>
+                    <xs:element maxOccurs="unbounded" name="RefNum" type="RefNumType"/>
+                    <xs:element maxOccurs="unbounded" name="Functions" type="Any.Functions.NumType"/>
+                    <xs:element maxOccurs="unbounded" name="NumericConstant"
+                        type="NumericConstantsType111"/>
+                    <xs:element maxOccurs="unbounded" name="NumericFunction"
+                        type="Num.NumFunction.NumType"/>
+                    <xs:element maxOccurs="unbounded" name="NumberFromSet"
+                        type="SetFunction.NumListType"/>
+                    <xs:element maxOccurs="unbounded" name="NumericAttributeValue"
+                        type="GetAttrValueType"/>
+                    <xs:element maxOccurs="unbounded" name="IntegerFunction111"
+                        type="Integer.Function.Integer111"/>
+                    <xs:element maxOccurs="unbounded" name="ScriptNum" type="ScriptCode.NumType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="ScriptAny" type="ScriptCode.AnyType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="Group" type="ListAggregate.NumType"/>
+                </xs:choice>
+                <xs:attribute ref="op"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Num.NumFunction.NumType">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:choice>
+                    <xs:element name="Number" type="DataTypesNumeric_DEType"> </xs:element>
+                    <xs:element name="ListMath" type="ListAggregate.NumType"/>
+                    <xs:element name="NumberReference" type="RefNumType"/>
+                    <xs:element name="ListAggregateNumber" type="ListAggregate.NumType"/>
+                    <xs:element name="NumFunc" type="Num.NumFunction.NumType"/>
+                </xs:choice>
+                <xs:attribute name="opMathList">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="RoundMidUp"/>
+                            <xs:enumeration value="RoundMidDown"/>
+                            <xs:enumeration value="RoundToEven"/>
+                            <xs:enumeration value="RoundToOdd"/>
+                            <xs:enumeration value="Ceiling"/>
+                            <xs:enumeration value="Floor"/>
+                            <xs:enumeration value="Inverse"/>
+                            <xs:enumeration value="Square"/>
+                            <xs:enumeration value="Sqrt"/>
+                            <xs:enumeration value="RootX"/>
+                            <xs:enumeration value="Abs"/>
+                            <xs:enumeration value="Neg">
+                                <xs:annotation>
+                                    <xs:documentation>negate, i.e., multiply by -1</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="Power"/>
+                            <xs:enumeration value="Exp"/>
+                            <xs:enumeration value="Ln"/>
+                            <xs:enumeration value="Log2"/>
+                            <xs:enumeration value="Log10"/>
+                            <xs:enumeration value="LogX"/>
+                            <xs:enumeration value="ReturnIfNull">
+                                <xs:annotation>
+                                    <xs:documentation>The value to return if the input value is null.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="IntPart"/>
+                            <xs:enumeration value="DecPart"/>
+                            <xs:enumeration value="Mod"/>
+                            <xs:enumeration value="Factorial"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="param" type="xs:double"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SetFunction.NumListType">
+        <xs:annotation>
+            <xs:documentation>Set functions that work on lists and retun lists.  Examples are union, intersection, etc.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumListType">
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Run a set function (e.g., union) over numeric types.  The numeric types can derive from any combination of numeric lists and single numeric values/references.</xs:documentation>
+                    </xs:annotation>
+                    <xs:element name="NumListLiteral" type="NumListType"> </xs:element>
+                    <xs:element name="NumListRef" type="RefNumListType"/>
+                    <xs:element name="NumFunctions" type="Any.Functions.NumType"/>
+                    <xs:element name="NumListFromRepeat" type="Repeats.NumListType"/>
+                    <xs:element name="IntListFromRepeat" type="Repeats.IntegerListType"/>
+                    <xs:element name="StringToNumList" type="String.Split.NumListType"/>
+                    <xs:element name="Group" type="SetFunction.NumListType"/>
+                </xs:choice>
+                <xs:attribute default="union" name="opListNumeric">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="union"/>
+                            <xs:enumeration value="intersection"/>
+                            <xs:enumeration value="difference">
+                                <xs:annotation>
+                                    <xs:documentation>The difference is the first list minus the second list (or group).  All other lists (or groups) are ignored.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="symmetricDifference">
+                                <xs:annotation>
+                                    <xs:documentation>The union of the first list (or group) and the second list (or group), minus the intersection of the 2 lists.  All other lists are ignored.  In other words, this function returns the list itmes that are not in common between the lists.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___Parameters___"/>
+    <xs:complexType name="ParameterItemType111">
+        <xs:annotation>
+            <xs:documentation>Parameters are named, uniquely identifiable, instances of form properties (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
+
+Parameters using this construct are derived from other locations in the XML instance document, including user-entered Response values.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:attribute ref="dataTypeListAll"/>
+                <xs:attribute name="paramName" type="xs:NCName">
+                    <xs:annotation>
+                        <xs:documentation>A locally useful name that describes the parameter</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="sourceItemName" type="xs:NCName" use="required">
+                    <xs:annotation>
+                        <xs:documentation>The @name of an item in the current form that holds the @itemAttribute value that will become the parameter value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute default="val" name="SourceItemAttribute" type="xs:NCName">
+                    <xs:annotation>
+                        <xs:documentation>The name of any XML attribute on a named element.  The property value is the parameter's value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ParameterValueType">
+        <xs:annotation>
+            <xs:documentation>This type describes strongly-typed parameters used in functions and web services.  Values are hard-coded as constants in the XML instance document.  They are not user-entered values.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="DataTypes_SType">
+                <xs:attribute name="paramName" type="xs:NCName" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ParamNumType000">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:group maxOccurs="1" minOccurs="1" ref="ParameterGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:group name="ParameterGroup">
+        <xs:choice>
+            <xs:annotation>
+                <xs:documentation>Ordered list of parameters</xs:documentation>
+            </xs:annotation>
+            <xs:element name="ParameterRef" type="ParameterItemType111">
+                <xs:annotation>
+                    <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="ParameterValue" type="ParameterValueType"/>
+        </xs:choice>
+    </xs:group>
+    <xs:element abstract="true" block="#all" final="#all" name="___ExternalFunctionTemplates___"/>
+    <xs:complexType name="FuncType">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncBoolType">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a Boolean value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:group ref="FunctionGroup"/>
+                <xs:attributeGroup ref="Negation"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncStrType">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a string value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncNumType">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a numeric value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncDateTimeType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a DateTime value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncIntegerType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns an integer (non-decimal) value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncListType00000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a string list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncStrListType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a string list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncNumListType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a numeric list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncIntegerListType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a numeric list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnIntegerListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncDateTimeListType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a numeric list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="FuncBoolListType000">
+        <xs:annotation>
+            <xs:documentation>Function or web service that returns a numeric list value.  Contains an optional location to store the value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolListType">
+                <xs:group ref="FunctionGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:group name="FunctionGroup">
+        <xs:sequence>
+            <xs:annotation>
+                <xs:documentation/>
+            </xs:annotation>
+            <xs:element name="Function" type="anyURI_Stype">
+                <xs:annotation>
+                    <xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
+
+The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Security" type="RichTextType">
+                <xs:annotation>
+                    <xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
+        </xs:sequence>
+    </xs:group>
+    <xs:attribute name="op">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="+"/>
+                <xs:enumeration value="-"/>
+                <xs:enumeration value="*"/>
+                <xs:enumeration value="/"/>
+                <xs:enumeration value="min"/>
+                <xs:enumeration value="max"/>
+                <xs:enumeration value="mean"/>
+                <xs:enumeration value="median"/>
+                <xs:enumeration value="mode"/>
+                <xs:enumeration value="stdDev"/>
+                <xs:enumeration value="pStdDev"/>
+                <xs:enumeration value="count"/>
+                <xs:enumeration value="first"/>
+                <xs:enumeration value="last"/>
+                <xs:enumeration value="midLow"/>
+                <xs:enumeration value="midHigh"/>
+                <xs:enumeration value="var"/>
+                <xs:enumeration value="pVar"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:element abstract="true" block="#all" final="#all" name="___ScriptCode___">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="___DateTimeFunctions___"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="ScriptCode.AnyType">
+        <xs:annotation>
+            <xs:documentation>Programming code or pseudocode that describes a calculation.  THe code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+                        type="ParameterItemType111">
+                        <xs:annotation>
+                            <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="language" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Programming language.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Script contents.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ScriptCode.NumType">
+        <xs:annotation>
+            <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+                        type="ParameterItemType111">
+                        <xs:annotation>
+                            <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="language" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Programming language.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Script contents.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ScriptCode.BoolType">
+        <xs:annotation>
+            <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+                        type="ParameterItemType111">
+                        <xs:annotation>
+                            <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="language" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Programming language.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Script contents.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ScriptCode.StrType">
+        <xs:annotation>
+            <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+                        type="ParameterItemType111">
+                        <xs:annotation>
+                            <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="language" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Programming language.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Script contents.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ScriptCode.DateTimeType">
+        <xs:annotation>
+            <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence minOccurs="0">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+                        type="ParameterItemType111">
+                        <xs:annotation>
+                            <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+                <xs:attribute name="language" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Programming language.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="val" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>Script contents.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" final="#all" name="___ConversionFunctions___">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="___DateTimeFunctions___"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Any.Convert.StrType">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:choice>
+                    <xs:element name="Input" type="Any.Functions.AnyType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Convert.NumType">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:choice>
+                    <xs:element name="Input" type="Any.Functions.AnyType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Convert.BoolType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:choice>
+                    <xs:element name="Input" type="Any.Functions.AnyType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Convert.DateTimeType">
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="Input" type="string_DEtype"/>
+                </xs:sequence>
+                <xs:attribute ref="timeZone"/>
+                <xs:attribute name="culture" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.Convert.ListType">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnListType">
+                <xs:attribute default="Truncate" name="truncation">
+                    <xs:annotation>
+                        <xs:documentation>For conversion that result in "shortened" objects (e.g., decimal to integer), this attribute controls how the truncation takes place.  For conversions that would result in fundamental data changes (e.g., long to integer) an exception should be thrown.  However, some types of changes may be acceptable (e.g., DateTime to Time, Decimal to Long).</xs:documentation>
+                    </xs:annotation>
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Truncate"/>
+                            <xs:enumeration value="Ceiling"/>
+                            <xs:enumeration value="Floor"/>
+                            <xs:enumeration value="RoundMidUp"/>
+                            <xs:enumeration value="RoundMidDown"/>
+                            <xs:enumeration value="RoundToEven"/>
+                            <xs:enumeration value="RoundToOdd"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="List.Convert.StringType">
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnStrType111"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType block="#all" final="#all" name="ConversionFunctions">
+        <xs:choice>
+            <xs:element name="ToString" type="Any.Convert.StrType" minOccurs="0"/>
+            <xs:element name="ToNum" type="Any.Convert.NumType" minOccurs="0"/>
+            <xs:element name="ToDateTime" type="String.Convert.DateTimeType" minOccurs="0"/>
+            <xs:element name="ToBool" type="Any.Convert.BoolType" minOccurs="0"/>
+            <xs:element name="ListToList" type="List.Convert.ListType" minOccurs="0"/>
+            <xs:element name="ListToString" type="List.Convert.StringType" minOccurs="0"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___ComparisonOperatorsBool___"/>
+    <xs:complexType name="CompareType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="LHS_Expression" type="Any.Functions.AnyType"/>
+                    <xs:element name="RHS_Expression" type="Any.Functions.AnyType"/>
+                </xs:sequence>
+                <xs:attribute ref="CompareOpEnum"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="InListType">
+        <xs:annotation>
+            <xs:documentation>Determine if a supplied target value is a member of a supplied space-delimited list (@list) of numeric or string values.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="Expression" type="Any.Functions.AnyType"/>
+                    <xs:element name="List" type="Any.Functions.ListType"/>
+                </xs:sequence>
+                <xs:attributeGroup ref="Negation"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="BetweenType">
+        <xs:annotation>
+            <xs:documentation>Determine if a supplied target value is between a min and a max values of a compatible datatype</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="Expression" type="Any.Functions.AnyType"/>
+                    <xs:element name="IsBetween" type="IsBetweenType"> </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="Negation"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="IsBetweenType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element name="Min_Expression">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="Any.Functions.AnyType">
+                                    <xs:attribute name="boundry" default="Inclusive">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="Inclusive"/>
+                                                <xs:enumeration value="Exclusive"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Max_Expression">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="Any.Functions.AnyType">
+                                    <xs:attribute name="boundry">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="Inclusive"/>
+                                                <xs:enumeration value="Exclusive"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:attribute name="CompareOpEnum">
+        <xs:annotation>
+            <xs:documentation>Operator for comparisons that result in a Boolean value.  Each match must satisfy the comparison to be included in the output.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="EQ"/>
+                <xs:enumeration value="GT"/>
+                <xs:enumeration value="GTE"/>
+                <xs:enumeration value="LT"/>
+                <xs:enumeration value="LTE"/>
+                <xs:enumeration value="NE"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:element abstract="true" block="#all" final="#all" name="___SelectionRules___"/>
+    <xs:attributeGroup name="SelectionDependencyAttributes">
+        <xs:attributeGroup ref="BoolAttributes"/>
+        <xs:attribute name="selectedItemSet" type="xs:NMTOKENS" use="required">
+            <xs:annotation>
+                <xs:documentation>This list contains names of ListItems (answer choices) that are watched for being selected or unselected.
+
+If a ListItem appears in this list, then it evaluates to true when it is selected.  If a ListItem is prefixed with a hyphen (-), then it evaluates to true when unselected.  These Boolean values, derived from each named ListItem in the list, are ANDed together (by default) to produce a return value of true or false.  The default Boolean operator (AND) may be changed using @boolOp.  If @not = true, then the Boolean result is logically negated.
+
+Renamed from: ListItemSelections</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:attributeGroup>
+    <xs:complexType name="RuleSelectionTestBoolType">
+        <xs:annotation>
+            <xs:documentation>This declarative rule specifies a set of ListItems that cannot be selected (@listItemNames) when a test ListItem (@testItemName) is selected. If any selection occurs in @listItemNames when @testItemName is selected, the rule evaluate to true.  In all other cases, the rule evaluates to false.
+
+Multiple selections in @listItemNames are acceptable as long as @testItemName is unselected, and in this case, the rule evaluates to false.
+
+Legal selections evaluate to false
+Illegal selections evaluate to true
+These values can be reversed if @not is set to true
+
+Renamed from: IllegalSelectionTest</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RuleSingleSelectionSetsBoolType">
+                <xs:attribute name="testItemName" type="xs:NMTOKEN" use="required">
+                    <xs:annotation>
+                        <xs:documentation>The ListItem that is being evaluated for the presence of disallowed selections (in @listItemNames).  This attributes contains the @name of one ListItem.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RuleSingleSelectionSetsBoolType">
+        <xs:annotation>
+            <xs:documentation>NEW: This declarative rule restricts combinations of co-selected ListItems (answers).  In other words, only zero or one item in this list may be selected at a time.  
+
+In most cases, all ListItems should be children of a single multi-select question. 
+
+Legal selections evaluate to false
+Illegal selections evaluate to true
+These values can be reversed if @not is set to true
+
+Renamed from: IllegalSelectionSets</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="Negation"/>
+                <xs:attribute name="listItemNames" type="xs:NMTOKENS" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Set of @name references for a set ListItems, delimited by spaces.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RuleSelectionSetsBoolType">
+        <xs:annotation>
+            <xs:documentation>NEW: This declarative rule restricts combinations of co-selected ListItems (answers).  In the default case, where @maxSelections = 1, only zero or one item in this list may be selected at a time.  @maxSelections sets max number of items that may be selected. @minSelections sets the minimum number of items that must be selected.
+
+In most cases, all ListItems should be children of a single multi-select question. 
+
+Legal selections evaluate to false
+Illegal selections evaluate to true
+These values can be reversed if @not is set to true</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="RuleSingleSelectionSetsBoolType">
+                <xs:attribute default="1" name="maxSelections" type="xs:int" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Determines the maximum number of co-selected ListItems in listItemNames</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute default="0" name="minSelections" type="xs:int" use="optional">
+                    <xs:annotation>
+                        <xs:documentation>Determines the minimum number of co-selected ListItems in listItemNames</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="RuleMultiSelectionSetBoolType">
+        <xs:annotation>
+            <xs:documentation>This rule component evaluates the @selected status of any set of ListItems at runtime, and returns a true or false value.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="SelectionDependencyAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___FunctionGroupers___"> </xs:element>
+    <xs:group name="ListFunctionsGroup">
+        <xs:choice>
+            <xs:annotation>
+                <xs:documentation>Lists</xs:documentation>
+            </xs:annotation>
+            <xs:element name="ListLiteral" type="AnyListType"> </xs:element>
+            <xs:element name="TypedList" type="ReturnListType"/>
+            <xs:element name="LiteralStringList" type="ReturnStrListType"/>
+            <xs:element name="FuncList" type="FuncListType00000"/>
+            <xs:element name="FuncBoolList" type="FuncBoolListType000"/>
+            <xs:element name="FuncDateTimeList" type="FuncDateTimeListType000"/>
+            <xs:element name="FuncIntList" type="FuncIntegerListType000"/>
+            <xs:element name="FuncNumList" type="FuncNumListType000"/>
+            <xs:element name="FuncStrList" type="FuncStrListType000"/>
+            <xs:element name="RefList" type="RefListType"/>
+            <xs:element name="RefNumList" type="RefNumListType"/>
+            <xs:element name="RefIntegerList" type="RefIntegerListType"/>
+            <xs:element name="RefStrList" type="RefStrListType"/>
+            <xs:element name="RefBoolList" type="RefBoolListType"/>
+            <xs:element name="RefDateTimeList" type="RefDateTimeListType"/>
+            <xs:element name="ConvertStrToBoolList" type="InputStr_ReturnBoolListType"/>
+            <xs:element name="ConvertStrToDateTimeList" type="InputStr_ReturnDateTimeListType"/>
+            <xs:element name="ConvertStrToIntegerList" type="InputStr_ReturnIntegerListType"/>
+            <xs:element name="ConvertStrToNumList" type="InputStr_ReturnNumListType"/>
+            <xs:element name="ConvertStrToStrList" type="InputStr_ReturnStrListType"/>
+            <xs:element name="ConvertStrToAnyList" type="InputStr_ReturnListType"/>
+            <xs:element name="ConvertAnyList111" type="List.Convert.ListType"/>
+            <xs:element name="StringSplitToAnyList" type="String.Split.ListType"/>
+            <xs:element name="StringSplitToNumList" type="String.Split.NumListType"/>
+            <xs:element name="StringSplitToStrList" type="String.Split.StrListType"/>
+            <xs:element name="StringToDateTimeList" type="String.Split.DateTimeListType"/>
+            <xs:element name="DateTimeList" type="DateTimeListType"/>
+            <xs:element name="BoolList" type="BoolListType"/>
+            <xs:element name="InsertAtListIndex" type="List.InsertAtIndex.ListType111"/>
+            <xs:element name="RemoveAtListIndex" type="List.RemoveAtIndex.ListType"/>
+            <xs:element name="ListMatchToList000" type="List.Filter.ListType000"/>
+            <xs:element name="ListSetFunctions111" type="Any.ListSetFunctions.ListType111"/>
+            <xs:element name="NumListSetFunctions" type="SetFunction.NumListType"/>
+            <xs:element name="RepeatBoolList" type="Repeats.BoolListType"/>
+            <xs:element name="RepeatDateTimeList" type="Repeats.DateTimeListType"/>
+            <xs:element name="RepeatIntegerList" type="Repeats.IntegerListType"/>
+            <xs:element name="RepeatNumList" type="Repeats.NumListType">
+                <xs:annotation>
+                    <xs:documentation>Gather all numeric responses into a List for a repeated named item.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RepeatStringList" type="Repeats.StrListType"/>
+            <xs:element name="ObjectList"/>
+            <xs:element name="SelectionsToList111">
+                <xs:annotation>
+                    <xs:documentation>Gather all selected items into a list of ListItem names</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="ExtensionBaseType">
+                            <xs:attribute name="ItemType">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="selectedListItems"/>
+                                        <xs:pattern value=""/>
+                                        <xs:enumeration value="unselectedListItems"/>
+                                        <xs:enumeration value="repeatSelectedListItems"/>
+                                        <xs:enumeration value="repeatUnselectedListItems"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                            <xs:attribute name="topNode"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="UnSelectionsToList111" type="ExtensionBaseType">
+                <xs:annotation>
+                    <xs:documentation>Gather all un-selected items into a list of ListItem names</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="RepeatSelectionsToList111" type="ExtensionBaseType"/>
+            <xs:element name="RepeatUnSelectionsToList111" type="ExtensionBaseType"/>
+            <xs:element name="Sections000" type="ExtensionBaseType"/>
+            <xs:element name="Questions000">
+                <xs:annotation>
+                    <xs:documentation>Gather Questions into a list, and optionally filter them.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="ExtensionBaseType">
+                            <xs:attributeGroup ref="BoolAttributes"/>
+                            <xs:attribute name="filter">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="withAnswers"/>
+                                        <xs:enumeration value="withoutAnswers"/>
+                                        <xs:enumeration value="singleSelect"/>
+                                        <xs:enumeration value="mulitSelect"/>
+                                        <xs:enumeration value=""/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                            <xs:attribute default="false" name="getReps" type="xs:boolean"/>
+                            <xs:attribute default="all" name="questionType">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="all"/>
+                                        <xs:enumeration value="singleSelect"/>
+                                        <xs:enumeration value="multiSelect"/>
+                                        <xs:enumeration value="singleAndMultiSelect"/>
+                                        <xs:enumeration value="response"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Responses000">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="ExtensionBaseType">
+                            <xs:attribute default="all" name="hasResponseFilter">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="all"/>
+                                        <xs:enumeration value="true"/>
+                                        <xs:enumeration value="false"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="LookupSelections000" type="ExtensionBaseType"/>
+            <xs:element name="ListItems000">
+                <xs:annotation>
+                    <xs:documentation>Gather ListItems into a list, and optionally filter them.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="ExtensionBaseType">
+                            <xs:attribute default="all" name="selectedFilter">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="all"/>
+                                        <xs:enumeration value="selected"/>
+                                        <xs:enumeration value="unselected"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType name="Any.Functions.AnyType">
+        <xs:annotation>
+            <xs:documentation>A block of scripting or programming code, provide either directly (ScriptCode), via WebService, or via a Reference to a named Expression elsewhere in the active template.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnAtomicOrListType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="GetResponse" type="RefType"> </xs:element>
+                    <xs:element name="GetAttributeValue" type="GetAttrValueType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies, by reference, a named expression at another location in the SDCFormDesign template, using the @name attribute.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Func" type="FuncType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.AnyType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ConversionFunctions" type="ConversionFunctions"/>
+                    <xs:element name="ConvertToNum" type="Any.Convert.NumType"/>
+                    <xs:element name="BoolFunctions" type="Any.Functions.BoolType"/>
+                    <xs:element name="NumFunctions" type="Any.Functions.NumListOrNumType111"/>
+                    <xs:element name="DateTimeFunctions" type="DateTimeFunctions.AnyType"/>
+                    <xs:element name="StringPredicates" type="String.Functions.BoolType"/>
+                    <xs:element name="StringFunctions" type="Any.Functions.StrType"/>
+                    <xs:element name="ListFunctions" type="Any.Functions.ListType"/>
+                    <xs:element name="GetListEntryAt" type="List.GetItemAtIndex.AnyType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.AtomicType">
+        <xs:annotation>
+            <xs:documentation>A block of scripting or programming code, provide either directly (ScriptCode), via WebService, or via a Reference to a named Expression elsewhere in the active template.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnAtomicType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="GetResponse" type="RefType"> </xs:element>
+                    <xs:element name="GetAttrValue" type="GetAttrValueType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies, by reference, a named expression at another location in the SDCFormDesign template, using the @name attribute.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Func" type="FuncType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.AnyType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ConversionFunctions" type="ConversionFunctions"/>
+                    <xs:element name="BoolFunctions" type="Any.Functions.BoolType"/>
+                    <xs:element name="NumFunctions" type="Any.Functions.NumType"/>
+                    <xs:element name="DateTimeFunctions" type="DateTimeFunctions.AnyType"/>
+                    <xs:element name="StringPredicates" type="String.Functions.BoolType"/>
+                    <xs:element name="StringFunctions" type="Any.Functions.StrType"/>
+                    <xs:element ref="___StrToNumOrNumList___"/>
+                    <xs:element name="GetListItemAt" type="List.GetItemAtIndex.AnyType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="___StrToNumOrNumList___"/>
+    <xs:complexType name="List.Aggregate.StrType">
+        <xs:annotation>
+            <xs:documentation>Input a list (of type string) and return a single list member, or a single value derived by computing a function over the list.  The returned value need is of type string  even if the returned value is an numeric (e.g., count).
+
+The delimiter attributes determine whether a delimiter should be used to separate items in the aggregated list.  If u@seDelimiter is "true", then the delimiter may be selected from the @delimiter list.  The default delimiter is a single space.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="InputList_ReturnStrType111">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="List" type="Any.Functions.ListType"/>
+                </xs:sequence>
+                <xs:attribute name="opStringList">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="concat"/>
+                            <xs:enumeration value="min"/>
+                            <xs:enumeration value="max"/>
+                            <xs:enumeration value="mode"/>
+                            <xs:enumeration value="first"/>
+                            <xs:enumeration value="last"/>
+                            <xs:enumeration value="midLow"/>
+                            <xs:enumeration value="midHigh"/>
+                            <xs:enumeration value="upper"/>
+                            <xs:enumeration value="lower"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.StrType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="GetResponse" type="RefStrType"> </xs:element>
+                    <xs:element name="GetAttrValue" type="GetStrAttrValueType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies, by reference, a named expression at another location in the SDCFormDesign template, using the @name attribute.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ConcatenatedString" type="String.Concatenate.StringType"/>
+                    <xs:element name="ParameterizedString" type="String.ParameterizedType"> </xs:element>
+                    <xs:element name="FuncStr" type="FuncStrType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ConvertToString" type="Any.Convert.StrType"/>
+                    <xs:element name="FormatDateTime" type="DateTime.Format.StringType"/>
+                    <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.StrType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="StringFunction" type="String.Functions.StrType"/>
+                    <xs:element name="ListToString" type="List.Convert.StringType"/>
+                    <xs:element name="ListAggregateToString" type="List.Aggregate.StrType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Functions.StrType">
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="LiteralString" type="string_Stype"/>
+                    <xs:element name="Reference" type="RefStrType"> </xs:element>
+                    <xs:element name="CustomFunction" type="FuncStrType"/>
+                    <xs:element name="ListOperationToString111" type="InputList_ReturnStrType111"/>
+                    <xs:element name="List" type="SetAttrValueType"/>
+                    <xs:element name="ListIndexToString" type="List.GetItemAtIndex.StrType"/>
+                    <xs:element name="ListToString" type="List.Convert.StringType"/>
+                    <xs:element name="StringToLower" type="String.ToLower.StrType"/>
+                    <xs:element name="StringToUpper" type="String.ToUpper.StrType"/>
+                    <xs:element name="Trim" type="String.Trim.StrType"/>
+                    <xs:element name="Substring" type="String.Substring.StrType"/>
+                    <xs:element name="ReplaceByPattern" type="String.ReplacePattern.StrType"/>
+                    <xs:element minOccurs="1" name="ReplaceAtIndex"
+                        type="String.ReplaceAtIndex.StrType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.DateTimeType">
+        <xs:annotation>
+            <xs:documentation/>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="ConvertToDateTime" type="String.Convert.DateTimeType"/>
+                    <xs:element name="DateTimeFunction" type="FuncDateTimeType000"/>
+                    <xs:element name="GetListItem.DateTime" type="List.GetItemAtIndex.DateTimeType"/>
+                    <xs:element name="AddFunctions" type="DateTime.AddFunctions.DateTimeType"/>
+                    <xs:element name="DiffFunctions" type="DateTime.DiffFunctions.DateTimeType"/>
+                    <xs:element name="MonadicFunctions"
+                        type="DateTime.MonadicFunctions.DateTimeType"/>
+                    <xs:element name="NiladicFunctions" type="NiladicFunctions.DateTimeType"/>
+                    <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.DateTimeType"/>
+                    <xs:element name="StrToDateTime" type="String.Convert.DateTimeType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.NumType">
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="Constant" type="NumericConstantsType111"/>
+                    <xs:element name="Ref" type="RefNumType"/>
+                    <xs:element name="GetAttrValue" type="GetNumAttrValueType">
+                        <xs:annotation>
+                            <xs:documentation>Identifies, by reference, a named expression at another location in the SDCFormDesign template, using the @name attribute.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element ref="___StrToNumOrNumList___"/>
+                    <xs:element name="MathFunction" type="Num.NumFunction.NumType"/>
+                    <xs:element name="FuncNum" type="FuncNumType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="FuncInt" type="FuncIntegerType000">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="GetListItem.Num" type="List.GetItemAtIndex.NumType"/>
+                    <xs:element name="ConvertToNum" type="Any.Convert.NumType"/>
+                    <xs:element name="IntegerFunction111" type="Integer.Function.Integer111"/>
+                    <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.NumType">
+                        <xs:annotation>
+                            <xs:documentation/>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="ListMath" type="ListAggregate.NumType"/>
+                    <xs:element name="Trig111" type="Num.Trig.NumType111"/>
+                    <xs:element name="DateTimeComparison" type="DateTime.Compare.IntegerType111">
+                        <xs:annotation>
+                            <xs:documentation>Return 0 if equal, 1 if DT1 GT DT2, and 2if DT1 LT DT2</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Group" type="Any.Functions.NumType"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.NumListOrNumType111">
+        <xs:annotation>
+            <xs:documentation>A block of scripting or programming code, provide either directly (ScriptCode), via WebService, or via a Reference to a named Expression elsewhere in the active template.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="Any.Functions.NumType">
+                <xs:choice minOccurs="0">
+                    <xs:element name="SetFunctions.ReturnNumList" type="SetFunction.NumListType"/>
+                    <xs:element name="FuncNumList" type="FuncNumListType000"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="String.Functions.BoolType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element maxOccurs="unbounded" name="StartsWith"
+                        type="String.StartsWith.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="EndsWith"
+                        type="String.EndsWith.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="Contains"
+                        type="String.Contains.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="Like" type="String.Like.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="IsEmpty" type="String.IsEmpty.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="IsNull" type="String.IsNull.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="IsNullOrEmpty"
+                        type="String.IsNullOrEmpty.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="StringPredicate"
+                        type="String.Functions.BoolType"/>
+                    <xs:element maxOccurs="unbounded" name="FunctionBool" type="FuncBoolType"/>
+                </xs:choice>
+                <xs:attributeGroup ref="BoolAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.BoolType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:group maxOccurs="unbounded" ref="BoolFunctionsGroup"/>
+                <xs:attributeGroup ref="BoolAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.Functions.ListType">
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:group ref="ListFunctionsGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Any.ListSetFunctions.ListType111">
+        <xs:annotation>
+            <xs:documentation>Set functions that work on lists and retun lists.  Examples are union, intersection, etc.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:choice maxOccurs="unbounded" minOccurs="2">
+                    <xs:element name="X_ListLiteral" type="AnyListType"> </xs:element>
+                    <xs:element name="X_ListReference" type="RefListType"> </xs:element>
+                    <xs:element name="X_SetGroup" type="SetFunction.NumListType"/>
+                    <xs:element name="X_StringToList" type="String.Split.ListType"/>
+                    <xs:element form="qualified" name="StrLiteral" type="string_DEtype"/>
+                    <xs:element name="RefStr" type="RefStrType"> </xs:element>
+                    <xs:element name="AnyFunction" type="Any.Functions.AnyType"/>
+                    <xs:element name="ListFunctions" type="Any.Functions.ListType"> </xs:element>
+                    <xs:element name="NumericFunctions" type="Any.Functions.NumListOrNumType111"/>
+                    <xs:element name="DateTimeFunctions" type="DateTimeFunctions.AnyType"/>
+                    <xs:element name="BooleanFunctions" type="Any.Functions.BoolType"/>
+                    <xs:element name="ListToNum" type="ListAggregate.NumType"/>
+                    <xs:element name="ListToStr" type="List.Convert.StringType"/>
+                    <xs:element name="IndexedListItemToStr" type="List.GetItemAtIndex.StrType"/>
+                    <xs:element name="ListToIndex" type="StrList.IndexOf.IntegerType"/>
+                    <xs:element name="Group" type="Any.ListSetFunctions.ListType111"/>
+                </xs:choice>
+                <xs:attribute name="opListSet">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="union"/>
+                            <xs:enumeration value="intersection"/>
+                            <xs:enumeration value="difference">
+                                <xs:annotation>
+                                    <xs:documentation>The difference is the first list minus the second list (or group).  All other lists (or groups) are ignored.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="symmetricDifference">
+                                <xs:annotation>
+                                    <xs:documentation>The union of the first list (or group) and the second list (or group), minus the intersection of the 2 lists.  All other lists are ignored.  In other words, this function returns the list itmes that are not in common between the lists.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___PredicateFunctions___"/>
+    <xs:complexType name="ExistsType">
+        <xs:annotation>
+            <xs:documentation>If the named item does not exist, false is returned.  If the named item exists, the function returns true.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="ItemNameGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="HasValueType">
+        <xs:annotation>
+            <xs:documentation>Determine if a value exists for the named item.  Returns false if @val has no value or is not present on the element.  If the named item does not exist, an error is returned.  If the item exists, but its type does not include @val, an error is returned.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="ItemNameGroup"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:group name="BoolFunctionsGroup">
+        <xs:choice>
+            <xs:element maxOccurs="unbounded" name="ItemAttributeValues"
+                type="GetItemAttribValuesBoolType"> </xs:element>
+            <xs:element maxOccurs="unbounded" name="MultiSelections"
+                type="RuleMultiSelectionSetBoolType"/>
+            <xs:element maxOccurs="unbounded" name="SingleSelectionSets"
+                type="RuleSingleSelectionSetsBoolType"/>
+            <xs:element maxOccurs="unbounded" name="MinMaxSelectionSets"
+                type="RuleSelectionSetsBoolType"/>
+            <xs:element maxOccurs="unbounded" name="SelectionTest" type="RuleSelectionTestBoolType"/>
+            <xs:element maxOccurs="unbounded" name="RuleReferenceBool" type="RefRuleBoolType000">
+                <xs:annotation>
+                    <xs:documentation>Link to a named rule defined in this template.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" name="HasValue" type="HasValueType"/>
+            <xs:element maxOccurs="unbounded" name="Exists" type="ExistsType"> </xs:element>
+            <xs:element maxOccurs="unbounded" name="Between" type="BetweenType"/>
+            <xs:element maxOccurs="unbounded" name="InList" type="InListType"/>
+            <xs:element maxOccurs="unbounded" name="Compare" type="CompareType"/>
+            <xs:element maxOccurs="unbounded" name="FuncBool" type="FuncBoolType">
+                <xs:annotation>
+                    <xs:documentation/>
+                </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" name="GetListItem.Bool"
+                type="List.GetItemAtIndex.BoolType"/>
+            <xs:element maxOccurs="unbounded" name="Script" type="ScriptCode.BoolType"/>
+            <xs:element maxOccurs="unbounded" name="NumFunction111" type="Num.Function.BoolType111"/>
+            <xs:element maxOccurs="unbounded" name="StringPredicateFunction"
+                type="String.Functions.BoolType"/>
+            <xs:element maxOccurs="unbounded" name="ListFunction111"
+                type="List.MonadicFunctions.BoolType111"/>
+            <xs:element maxOccurs="unbounded" name="ConvertToBool" type="Any.Convert.BoolType"/>
+        </xs:choice>
+    </xs:group>
+    <xs:complexType name="PredicateType">
+        <xs:annotation>
+            <xs:documentation>A Predicate is a Boolean expression, and should be treated af if were surrounded by parentheses, e.g., (A AND B).  A Predicate may contain one ore more simple boolean expressions or other Predicates, all joined by Boolean operators.
+
+The Predicate allows allows compositions of values from multiple Boolean objects (BoolExpressions and/or other Predicates) to be joined by a Boolean operator (@boolOp, such as AND) and return a Boolean value (@returnValBool, such as true).
+
+After evaluation of a Predicate, the resultant Boolean value may be stored in Return.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:choice maxOccurs="unbounded">
+                    <xs:group maxOccurs="unbounded" ref="BoolFunctionsGroup"/>
+                    <xs:element maxOccurs="unbounded" name="Predicate" type="PredicateType">
+                    </xs:element>
+                </xs:choice>
+                <xs:attributeGroup ref="BoolAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" block="#all" final="#all" name="___AttributeOperations__"/>
+    <xs:element abstract="true" name="_______SetAttrValue___"/>
+    <xs:complexType name="SetAttrValueType">
+        <xs:annotation>
+            <xs:documentation>TODO: Do we need strongly-typed Set statements?  This could help prevent type conversion errors when assigning values to SDC attributes.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="Any.Functions.AtomicType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SetListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>List types for setting atttribute values.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="Any.Functions.ListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetQmQsAttribValuesBoolType">
+        <xs:annotation>
+            <xs:documentation>In the PropertyValues condition, the contained Boolean attributed values are ANDed together (by default) to return a derived Boolean value.  Omitted (null) values are ignored and not used for null propagation.
+
+For QM/QS only (multiple and single-select Questions)</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isActive" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If visible and enabled are both true, then isActive is true.  Otherwise, it is false.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsGTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals or exceeds the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsLTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items is less than or equal to the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsExact" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasResponse" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to items that have Response Fields (Questions and ListItems).  If the ListItem or Question has a Response Field, and that field has a value in it, this property returns true.  If it does not have a value, it returns false.  If no Response Field is present, it retuns null and is not used for Boolean comparisons. </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isVisible" type="xs:boolean"/>
+                <xs:attribute name="isEnabled" type="xs:boolean"/>
+                <xs:attribute name="isRequired" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If the minCard value is greater than 0, then isRequired = "true"  
+If the minCard = "0" then isRequired = "false"</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isReadOnly" type="xs:boolean"/>
+                <xs:attribute name="hasType" type="xs:NMTOKENS"/>
+                <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" name="_______GetAggregateAttrBoolValue___"/>
+    <xs:complexType name="GetItemAttribValuesBoolType">
+        <xs:annotation>
+            <xs:documentation>In the PropertyValues condition, the contained Boolean attributed values are ANDed together (by default) to return a derived Boolean value.  Omitted (null) values are ignored and not used for null propagation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isSelected" type="xs:boolean"/>
+                <xs:attribute name="hasSelectionsGTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals or exceeds the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsLTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items is less than or equal to the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsExact" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isActive" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If visible and enabled are both true, then isActive is true.  Otherwise, it is false.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasResponse" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to items that have Response Fields (Questions and ListItems).  If the ListItem or Question has a Response Field, and that field has a value in it, this property returns true.  If it does not have a value, it returns false.  If no Response Field is present, it retuns null and is not used for Boolean comparisons. </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isVisible" type="xs:boolean"/>
+                <xs:attribute name="isEnabled" type="xs:boolean"/>
+                <xs:attribute name="isRequired" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If the minCard value is greater than 0, then isRequired = "true"  
+If the minCard = "0" then isRequired = "false"</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isReadOnly" type="xs:boolean"/>
+                <xs:attribute name="hasType" type="xs:NMTOKENS"/>
+                <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" name="_______GetAtomicAttrValue___"/>
+    <xs:complexType name="GetAttrValueType">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetStrAttrValueType">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetNumAttrValueType">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetBoolAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetDateTiimeAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:attributeGroup name="GetSetPropertyValue0000">
+        <xs:attribute name="propertyName" type="xs:NCName" use="required">
+            <xs:annotation>
+                <xs:documentation>The @name attribute of the referenced element.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute ref="dataTypeListAll"/>
+    </xs:attributeGroup>
+    <xs:element abstract="true" name="_______GetListAttrValue___"/>
+    <xs:complexType name="GetListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetStrListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnStrListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetNumListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnNumListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetBoolListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnBoolListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="GetDateTimeListAttrValueType000">
+        <xs:annotation>
+            <xs:documentation>Set or get the value of a specific attribute on a named element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnDateTimeListType">
+                <xs:sequence>
+                    <xs:element name="Target" type="ItemNameAttributeType"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element abstract="true" name="__FormFunctions000__">
+        <xs:annotation>
+            <xs:documentation>Functions like:
+CountOf, ListOf
+Number of questions
+Unanswered required active questions
+Unanswered optional active questions
+
+All replicates of a section, question
+List of names/pointers of questions (active, inactive, all), ListItems
+</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element abstract="true" name="______GetItemLists000__">
+        <xs:annotation>
+            <xs:documentation>Functions like:
+CountOf, ListOf
+Number of questions
+Unanswered required active questions
+Unanswered optional active questions
+
+All replicates of a section, question
+List of names/pointers of questions (active, inactive, all), ListItems
+</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:complexType name="GetChildrenList000"/>
+    <xs:complexType name="GetQuestionList000">
+        <xs:annotation>
+            <xs:documentation>Answered, unanswered, valid, invalid...
+QS, QM, QR</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetListItemList000">
+        <xs:annotation>
+            <xs:documentation>selected, unselected, w/wo Response</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetSectionList000"/>
+    <xs:complexType name="GetDisplayedItemList000"/>
+    <xs:complexType name="GetPropertyChildrenList000">
+        <xs:annotation>
+            <xs:documentation>Get a list of Property elements (by name) directly under the specified element.  These are first-level child Properties, not all nested Property descendants.  To get nested Properties, call this function on an upper-level Property to retrieve the child Properties.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetLinkList000"/>
+    <xs:complexType name="GetBlobList000"/>
+    <xs:complexType name="GetButtonList000"/>
+    <xs:complexType name="GetInjectList000"/>
+    <xs:complexType name="GetPropertyList000"/>
+    <xs:complexType name="GetCommentList000">
+        <xs:annotation>
+            <xs:documentation>Get a list of Comments (by name) under the specified element</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetExtensionList000">
+        <xs:annotation>
+            <xs:documentation>Get a list of Extensions (by name) under the specified element</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetRepetitionNameList000">
+        <xs:annotation>
+            <xs:documentation>Get the list of iso-level repetitions (by name) for the specified element.
+
+
+Example for top-level and nested repeated items.
+
+R0__0	(top-level)
+ R1__0 	(nested)
+ 
+R0__1	(top-level repeat)
+ R1__1 	(nested repeat)
+ 
+ R0_0, R0_1 is one set of isolevel reps
+ R1_0, R1_1 is another set of isolevel reps
+ In other works, the replicated items differ only in the repetirion suffice, such as __0 and __1
+ 
+(R1__0 is the same as R1)
+</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="GetRepetitionValueList000"/>
+    <xs:complexType name="GetRepetitionCount000">
+        <xs:annotation>
+            <xs:documentation>Get the integer count of sibling repetitions for the specified element. 0 = no repetitions.</xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:attributeGroup name="AttributeFilters000">
+        <xs:attributeGroup ref="BoolAttributes"/>
+        <xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
+            <xs:annotation>
+                <xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isSelected" type="xs:boolean"/>
+        <xs:attribute name="hasSelectionsGTE" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals or exceeds the entered value.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasSelectionsLTE" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items is less than or equal to the entered value.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasSelectionsExact" type="xs:nonNegativeInteger">
+            <xs:annotation>
+                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals the entered value.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isActive" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If visible and enabled are both true, then isActive is true.  Otherwise, it is false.</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="hasResponse" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>Applies only to items that have Response Fields (Questions and ListItems).  If the ListItem or Question has a Response Field, and that field has a value in it, this property returns true.  If it does not have a value, it returns false.  If no Response Field is present, it retuns null and is not used for Boolean comparisons. </xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isVisible" type="xs:boolean"/>
+        <xs:attribute name="isEnabled" type="xs:boolean"/>
+        <xs:attribute name="isRequired" type="xs:boolean">
+            <xs:annotation>
+                <xs:documentation>If the minCard value is greater than 0, then isRequired = "true"  
+If the minCard = "0" then isRequired = "false"</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isReadOnly" type="xs:boolean"/>
+        <xs:attribute name="hasType" type="xs:NMTOKENS"/>
+        <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+    </xs:attributeGroup>
+    <xs:complexType name="NamedItems">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence/>
+                <xs:attribute name="nameTarget"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="XFC">
+        <xs:choice>
+            <xs:element name="XFC"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="IQueryable">
+        <xs:sequence>
+            <xs:element name="Numeric">
+                <xs:complexType>
+                    <xs:sequence/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="String"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ResponseFilter"/>
+    <xs:complexType name="ObjectListFilter000">
+        <xs:annotation>
+            <xs:documentation>In the PropertyValues condition, the contained Boolean attributed values are ANDed together (by default) to return a derived Boolean value.  Omitted (null) values are ignored and not used for null propagation.
+
+This type returns a List (of references) of all SDC objects (elements) that match the criteria in the attributes and child elements. </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="ReturnObjectListType000">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="WHERE">
+                        <xs:complexType>
+                            <xs:sequence maxOccurs="unbounded">
+                                <xs:element minOccurs="0" name="WhereDI" type="WhereDIType"> </xs:element>
+                                <xs:element minOccurs="0" name="WhereQM" type="WhereQMType"> </xs:element>
+                                <xs:element minOccurs="0" name="WhereQS" type="WhereQSType"> </xs:element>
+                                <xs:element name="WhereLI" minOccurs="0" type="WhereLIType">
+                                    <xs:annotation>
+                                        <xs:documentation>Specify ListItems individually in @itemNames. Or Specify a parent Q in @parentQuestion</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="WhereResponse" minOccurs="0"
+                                    type="WhereResponseType"> </xs:element>
+                                <xs:element minOccurs="0" name="WhereAttributeValue"
+                                    type="WhereAttributeType"/>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="Filter"
+                                    type="ObjectListFilter000"/>
+                                <xs:element minOccurs="0" name="X_WhereRepeating" type="WhereDIType"/>
+                                <xs:element minOccurs="0" name="X_WhereAttributes">
+                                    <xs:complexType>
+                                        <xs:attributeGroup ref="BoolAttributes"/>
+                                        <xs:attribute name="hasSelections" type="xs:boolean"/>
+                                        <xs:attribute name="hasSelectionsGTE"
+                                            type="xs:nonNegativeInteger">
+                                            <xs:annotation>
+                                                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals or exceeds the entered value.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="hasSelectionsLTE"
+                                            type="xs:nonNegativeInteger">
+                                            <xs:annotation>
+                                                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items is less than or equal to the entered value.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="hasSelectionsExact"
+                                            type="xs:nonNegativeInteger">
+                                            <xs:annotation>
+                                                <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals the entered value.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="hasResponse" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation>Applies only to items that have Response Fields (Questions and ListItems).  If the ListItem or Question has a Response Field, and that field has a value in it, this property returns true.  If it does not have a value, it returns false.  If no Response Field is present, it retuns null and is not used for Boolean comparisons. </xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="isActive" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation>If visible and enabled are both true, then isActive is true.  Otherwise, it is false.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="isVisible" type="xs:boolean"/>
+                                        <xs:attribute name="isEnabled" type="xs:boolean"/>
+                                        <xs:attribute name="isRequired" type="xs:boolean">
+                                            <xs:annotation>
+                                                <xs:documentation>If the minCard value is greater than 0, then isRequired = "true"  
+If the minCard = "0" then isRequired = "false"</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:attribute>
+                                        <xs:attribute name="isReadOnly" type="xs:boolean"/>
+                                        <xs:attribute name="hasType" type="xs:NMTOKENS"/>
+                                        <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+                                    </xs:complexType>
+                                </xs:element>
+                                <xs:element minOccurs="0" name="X_WhereBase" type="WhereBaseType">
+                                </xs:element>
+                            </xs:sequence>
+                            <xs:attributeGroup ref="BoolAttributes"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element minOccurs="0" name="OrderBy"/>
+                    <xs:element name="Take" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="X" type="Any.Functions.NumType"/>
+                            </xs:sequence>
+                            <xs:attribute name="topX"/>
+                            <xs:attribute name="bottomX"/>
+                            <xs:attribute name="middleX"/>
+                            <xs:attribute name="largestX"/>
+                            <xs:attribute name="smallestX"/>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="InList" minOccurs="0">
+                        <xs:complexType>
+                            <xs:complexContent>
+                                <xs:extension base="Any.Functions.ListType">
+                                    <xs:attributeGroup ref="Negation"/>
+                                </xs:extension>
+                            </xs:complexContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Select"/>
+                </xs:sequence>
+                <xs:attribute name="objectType" use="optional">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Base"/>
+                            <xs:enumeration value="ExtensionBase"/>
+                            <xs:enumeration value="IdentifiedItem"/>
+                            <xs:enumeration value="DI"/>
+                            <xs:enumeration value="S"/>
+                            <xs:enumeration value="Q"/>
+                            <xs:enumeration value="QM"/>
+                            <xs:enumeration value="QS"/>
+                            <xs:enumeration value="QR"/>
+                            <xs:enumeration value="Property"/>
+                            <xs:enumeration value="Comment"/>
+                            <xs:enumeration value="QResponse"/>
+                            <xs:enumeration value="LIResponse"/>
+                            <xs:enumeration value="InjectedItem"/>
+                            <xs:enumeration value="Button"/>
+                            <xs:enumeration value="Link"/>
+                            <xs:enumeration value="Blob"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.  Use "__" suffix (2 underscores to include all repeats of that item, if applicable.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute default="0" name="includeDescendentsLevel" type="xs:short">
+                    <xs:annotation>
+                        <xs:documentation>0 = Do not include descendents.
+-1 = Include all descendents
+any other positive number indicated the number of element descendants to include.  The following elements are considered descendents for numbering purposes: S, Q, LI, Injected Item</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute default="false" name="includeSiblings" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereBaseType">
+        <xs:complexContent>
+            <xs:extension base="ReturnBaseType">
+                <xs:sequence>
+                    <xs:element name="Return" type="boolean_DEtype"/>
+                </xs:sequence>
+                <xs:attribute name="namePatternMatch" type="xs:string"/>
+                <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+                <xs:attribute name="hasType" type="xs:NMTOKENS"/>
+                <xs:attribute name="containsStyleClass" type="xs:NMTOKENS"/>
+                <xs:attribute name="containsType" type="xs:NMTOKENS"/>
+                <xs:attributeGroup ref="BoolAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereAttributeType">
+        <xs:complexContent>
+            <xs:extension base="WhereBaseType">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="newElement"/>
+                        <xs:element name="BoolAttrbute">
+                            <xs:complexType>
+                                <xs:attribute name="boolName">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="mustImplement"/>
+                                            <xs:enumeration value="visible"/>
+                                            <xs:enumeration value="enabled"/>
+                                            <xs:enumeration value="ordered"/>
+                                            <xs:enumeration value="selected"/>
+                                            <xs:enumeration value="selectionDisablesChildren"/>
+                                            <xs:enumeration value="omitWhenSelected"/>
+                                            <xs:enumeration value="selectionDeselectsSiblings"/>
+                                            <xs:enumeration value="readOnly"/>
+                                            <xs:enumeration value="showInReport"/>
+                                            <xs:enumeration value="onlyIf"/>
+                                            <xs:enumeration value="responseRequired"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="StringAttrbute">
+                            <xs:complexType>
+                                <xs:attribute name="strName">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="name"/>
+                                            <xs:enumeration value="styleClass"/>
+                                            <xs:enumeration value="order"/>
+                                            <xs:enumeration value="type"/>
+                                            <xs:enumeration value="val"/>
+                                            <xs:enumeration value="title"/>
+                                            <xs:enumeration value="baseURI"/>
+                                            <xs:enumeration value="mimeType"/>
+                                            <xs:enumeration value="fileExtension"/>
+                                            <xs:enumeration value="hashAlgorithm"/>
+                                            <xs:enumeration value="colTextDelimiter"/>
+                                            <xs:enumeration value=""/>
+                                            <xs:enumeration value=""/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="IntAttrbute">
+                            <xs:complexType>
+                                <xs:attribute name="intName">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="minCard"/>
+                                            <xs:enumeration value="maxCard"/>
+                                            <xs:enumeration value="repeat"/>
+                                            <xs:enumeration value="length"/>
+                                            <xs:enumeration value="numCols"/>
+                                            <xs:enumeration value="storedCol"/>
+                                            <xs:enumeration value="minSelections"/>
+                                            <xs:enumeration value="maxSelections"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:group ref="ValueComparisonsGroup"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereDIType">
+        <xs:complexContent>
+            <xs:extension base="WhereBaseType">
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="isActive" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>If visible and enabled are both true, then isActive is true.  Otherwise, it is false.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="isVisible" type="xs:boolean"/>
+                <xs:attribute name="isEnabled" type="xs:boolean"/>
+                <xs:attribute name="hasComment" type="xs:boolean"/>
+                <xs:attribute name="hasExtension" type="xs:boolean"/>
+                <xs:attribute name="hasCode" type="xs:boolean"/>
+                <xs:attribute name="mustImplement" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereResponseType">
+        <xs:complexContent>
+            <xs:extension base="WhereDIType">
+                <xs:group ref="ValueComparisonsGroup"/>
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="hasResponse" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to items that have Response Fields (Questions and ListItems).  If the ListItem or Question has a Response Field, and that field has a value in it, this property returns true.  If it does not have a value, it returns false.  If no Response Field is present, it retuns null and is not used for Boolean comparisons. </xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasTextAfter" type="xs:boolean"/>
+                <xs:attribute name="IsRequired" type="xs:boolean">
+                    <xs:annotation>
+                        <xs:documentation>For a ListItemResponseField, contains the value of @responseRequired.  For a QR Response element, returns "true" if the QR's @minCard is > 0.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasUnits" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereLIType">
+        <xs:complexContent>
+            <xs:extension base="WhereDIType">
+                <xs:attribute name="parentQuestion" type="xs:NMTOKENS" use="required">
+                    <xs:annotation>
+                        <xs:documentation>Required name(s) of the Question(s) that contain(s) the ListItem properties used in the other attributes.  Use "__" suffix (2 underscores to include all repeats of that item, if applicable.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasResponseField" type="xs:boolean"/>
+                <xs:attribute name="isSelected" type="xs:boolean"/>
+                <xs:attributeGroup ref="BoolAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereQSType">
+        <xs:complexContent>
+            <xs:extension base="WhereDIType">
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="hasSelections" type="xs:boolean"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="WhereQMType">
+        <xs:complexContent>
+            <xs:extension base="WhereDIType">
+                <xs:attributeGroup ref="BoolAttributes"/>
+                <xs:attribute name="hasSelectionsExact" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsLTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items is less than or equal to the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+                <xs:attribute name="hasSelectionsGTE" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Applies only to Questions that have selection lists (ListItems or LookupField).  Evaluates to true if the number of selected items equals or exceeds the entered value.</xs:documentation>
+                    </xs:annotation>
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:group name="ValueComparisonsGroup">
+        <xs:sequence>
+            <xs:element name="IsBetween" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="IsBetweenType">
+                            <xs:attributeGroup ref="Negation"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="InList" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Any.Functions.ListType">
+                            <xs:attributeGroup ref="BoolAttributes"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="CompareTo" minOccurs="0">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="Any.Functions.AnyType">
+                            <xs:attribute ref="CompareOpEnum"/>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+</xs:schema>

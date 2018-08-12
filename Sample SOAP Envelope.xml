@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FormDesign ID="">
+    <Question ID="" title="">
+        <ListItem title=""/>
+        <ListItem title="" selected="true"/>
+    </Question>
+    <Question  ID="" title="">
+        <ListItem  ID="" title="">
+            <LIR>
+                <string val="ffdgfg" maxLength="4000"/>
+            </LIR>
+        </ListItem>
+        <DisplayedItem/>
+        <ListItem  ID="" title=""/>
+    </Question>
+    <Section ID=""/>
+    <DisplayedItem/>
+    <Question>
+        <Response>
+            <int val=""/>
+        </Response>
+    </Question>
+
+    <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:urn="urn:ihe:iti:rfd:2007" 
+        xmlns:wsa="http://www.w3.org/2005/08/addressing" >             
+        
+        <soap:Header>                        
+            <wsa:To>
+                https://...cap.org/.../formreceiver.asmx
+            </wsa:To>                        
+            <wsa:MessageID>urn:uuid:6a4bd265...</wsa:MessageID>                        
+            <wsa:Action
+                soap:mustUnderstand="1">
+                urn:ihe:iti:rfd:2007:RetrieveFormRequest
+            </wsa:Action>
+            </soap:Header>
+        <soap:Body>
+            <urn:RetrieveFormRequest >
+                <urn:workflowData>
+        <urn:formID>
+            https://www.cap.org/eCC/SDC.3.1/Pkg/UrethraBx.Pkg204.1.005.002.UNK 
+        </urn:formID>
+        </urn:workflowData/>            
+        </urn:RetrieveFormRequest >                    
+        </soap:Body>        
+    </soap:Envelope>
+        
+            
+
+
+</FormDesign>

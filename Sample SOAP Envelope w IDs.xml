@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:urn="urn:ihe:iti:rfd:2007"
+    xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <soap:Header>
+        <wsa:To> https://...cap.org/.../formreceiver.asmx </wsa:To>
+        <wsa:MessageID>urn:uuid:6a4bd265...</wsa:MessageID>
+        <wsa:Action soap:mustUnderstand="1"> urn:ihe:iti:rfd:2007:RetrieveFormRequest </wsa:Action>
+    </soap:Header>
+    <soap:Body>
+        <urn:RetrieveFormRequest>
+            <urn:workflowData>
+                <urn:formID> https://www.cap.org/eCC/SDC.3.1/Pkg/UrethraBx.Pkg204.1.005.002.UNK
+                </urn:formID>
+            </urn:workflowData>
+        </urn:RetrieveFormRequest>
+    </soap:Body>
+    
+    <FormDesign xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        order="0" 
+        xmlns="urn:ihe:qrph:sdc:2016"
+        
+        
+        
+        
+        baseURI="https://www.cap.org/eCC/SDC.3.1/FDF/" 
+        lineage="UrethraBx.204" 
+        version="1.005.002.UNK" 
+        ID="UrethraBx.204.1.005.002.UNK" 
+        fullURI="https://www.cap.org/eCC/SDC.3.1/FDF/UrethraBx.204.1.005.002.UNK" 
+        filename="SDC.3.1_FDF_UrethraBx.204.1.005.002.UNK"    
+        fullURI="https://www.cap.org/eCC/SDC.3.1/FDF/UrethraBx.204.1.005.002.UNK/16491.100004300"
+        
+        />
+<!--        fullURI= baseURI/FormID/ID-->    
+</soap:Envelope>
+<!--<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:urn="urn:ihe:iti:rfd:2007 xmlns:wsa="http://www.w3.org/2005/08/addressing" >
+</soap:Envelope>-->

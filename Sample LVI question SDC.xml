@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
+
+<FormDesign  
+    xmlns="urn:ihe:qrph:sdc:2016"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Schemas%20Phase%202%202016-17/SDCFormDesign.xsd" 
+    ID="MyForm1">
+    
+    <Header ID="H1"/> 
+    
+    <Body ID="B1">
+        <ChildItems>
+            <Question ID="49496.1000043" title="Lymphovascular Invasion">
+                <Comment val="My custom text"/>
+                <ListField>
+                    <List>
+                        <ListItem ID="341" title='ListItem-1' selected="true">
+                            <ListItemResponseField responseRequired="true">
+                                <Response>
+                                    <string val="My string response" maxLength="40" />
+                                </Response>
+                            </ListItemResponseField>
+                        </ListItem>
+                        <ListItem ID="253" title="ListItem-2"/>
+                        <ListItem ID="254" title="ListItem-3"/>    
+                        <ListItem ID="255" title="ListItem-4"/>
+                    </List>
+                </ListField> 
+            </Question>
+            
+            <Question ID="q2" title="My Question">
+                <ResponseField>
+                    <Response>
+                        <string val="My string value"/>
+                    </Response>
+                </ResponseField>
+            </Question>
+        </ChildItems>
+    </Body>
+    
+    <Footer ID="F1"/> 
+    
+</FormDesign>
+
