@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
    <xs:include schemaLocation="SDCTemplateAdmin.xsd"/>
 
-   <xs:include schemaLocation="SDCFormDesign.xsd"/>
+   <xs:include schemaLocation="SDCFormDesign - Simplified.xsd"/>
    <xs:include schemaLocation="SDCMapping.xsd"/>
-   <xs:include schemaLocation="SDCOverrides.xsd"/>
+
    <xs:complexType name="BasePackageType">
       <xs:annotation>
          <xs:documentation/>
@@ -25,6 +26,68 @@
                   <xs:documentation>NEW</xs:documentation>
                </xs:annotation>
             </xs:attribute>
+            <xs:attribute name="baseURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>If the ID does not use the default base URI (namespace), then the local baseURI goes here. Note that all IDs must be unique within a form, even if they do not have the same baseURI. 
+
+Ideally, the baseURI + ID should combine to form a *globally* unique identifier, that uniquely identifies an item in a particular form.  The same baseURI and ID may be reused in derived or versioned forms, as long as the context stays the same, and any affected data elements remain unchanged in context and semantics.  Following this approach is likely to simplify analytics based on form content.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="filename" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>NEW: filename to use when the current FormDesign instance is saved as a file.  
+                     For forms containing responses, the filename may include the formInstanceVersionURI, 
+                     but the naming convention may be use-case-specific.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="basedOnURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>NEW: URI used to identify the form that that this FormDesign is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current FormDesign.   
+                     
+The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.
+                     
+5/11/17:  Relying on data element mapping may be a better and more flexible approach than @basedOnURI. In this way, forms could compare data elements to determine if they contain semantic matches, and this is supported better with a more robust code map section.
+                  </xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="lineage" type="xs:string" use="required">
+               <xs:annotation>
+                  <xs:documentation>NEW: A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  
+
+When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="version" type="xs:string" use="required">
+               <xs:annotation>
+                  <xs:documentation>NEW: @version contains the version text for the current form.  It is designed to be used in conjuction with @baseURI and @lineage.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="fullURI" type="URI_Atype" use="required">
+               <xs:annotation>
+                  <xs:documentation>NEW: The full URI that uniquely identifies the current form.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="prevVersionURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>NEW: The full URI used to identify the form that is the immediate previous version of the current FormDesign</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="formInstanceURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>NEW: Unique URI used to identify a unique instance of a form.  Used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI does not change for each edit session of a form instance.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="formInstanceVersionURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>NEW: Unique URI used to identify a unique instance of a form's saved responses.  It is used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a form instance.  It may be e.g., a new GUID, or a repeat of the formInstanceID followed by a version number.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="formPreviousInstanceVersionURI" type="URI_Atype">
+               <xs:annotation>
+                  <xs:documentation>NEW: Unique URI used to identify the immediate previous instance of a form containing responses.  This is the @formInstanceVersionURI that represents the instance of the form that the user opened up before beginning a new cycle of edit/save.  This attribute is used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a form instance.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attributeGroup ref="ResponseAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -36,12 +99,14 @@
       <xs:complexContent>
          <xs:extension base="BasePackageType">
             <xs:sequence>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule"
+                  type="SubmissionRuleType">
                   <xs:annotation>
                      <xs:documentation/>
                   </xs:annotation>
                </xs:element>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule"
+                  type="ComplianceRuleType">
                   <xs:annotation>
                      <xs:documentation/>
                   </xs:annotation>
@@ -53,13 +118,16 @@
                         <xs:sequence>
                            <xs:element minOccurs="0" name="DemogFormDesign" type="FormDesignType"/>
                            <xs:element minOccurs="0" name="FormDesign" type="FormDesignType"/>
-                           <xs:element maxOccurs="unbounded" name="MapTemplate" type="MappingType" minOccurs="0">
+                           <xs:element maxOccurs="unbounded" minOccurs="0" name="DataElement"
+                              type="DataElementType"/>
+                           <xs:element maxOccurs="unbounded" name="MapTemplate" type="MappingType"
+                              minOccurs="0">
                               <xs:annotation>
                                  <xs:documentation>Describes mappings between FormDesignTemplate items and data elements, terminologies, databases, XML files, local values, etc.</xs:documentation>
                               </xs:annotation>
                            </xs:element>
-                           <xs:element maxOccurs="unbounded" name="FormOverridesTemplate" type="OverrideTemplateType" minOccurs="0"/>
-                           <xs:element maxOccurs="unbounded" name="ReportDesignTemplate" minOccurs="0">
+                           <xs:element maxOccurs="unbounded" name="ReportDesignTemplate"
+                              minOccurs="0">
                               <xs:annotation>
                                  <xs:documentation>ReportDesignTemplate describes the information content of a report (e.g., sections, questions etc).  This enables control of the presentation view of the user responses derived from a designated FormDesignTemplate.  It allows the report presentation to look substantially different from the data-entry form view defined by the FormDesignTemplate.</xs:documentation>
                               </xs:annotation>
