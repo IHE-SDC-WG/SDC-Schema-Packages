@@ -78,26 +78,9 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
                   </xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="lineage" type="xs:string" use="required">
-               <xs:annotation>
-                  <xs:documentation>NEW: A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  
-
-When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="version" type="xs:string" use="required">
-               <xs:annotation>
-                  <xs:documentation>NEW: @version contains the version text for the current form.  It is designed to be used in conjuction with @baseURI and @lineage.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="fullURI" type="URI_Atype" use="required">
-               <xs:annotation>
-                  <xs:documentation>NEW: The full URI that uniquely identifies the current form.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
             <xs:attribute name="prevVersionURI" type="URI_Atype">
                <xs:annotation>
-                  <xs:documentation>NEW: THe full URI used to identify the form that is the immediate previous version of the current FormDesign</xs:documentation>
+                  <xs:documentation>NEW: URI used to identify the form that is the immediate previous version of the current FormDesign</xs:documentation>
                </xs:annotation>
             </xs:attribute>
             <xs:attribute name="formInstanceURI" type="URI_Atype">
@@ -208,7 +191,7 @@ QF is identified by the presence of a ResponseField child,  which describes how 
          <xs:documentation>CHANGED:
 This type represents a form or portion of a form that is imported into the current form at a specific location.  It allows the composition of forms from other forms or parts of other forms.
 
-In practice, using an injected section will require some or all of the injected FormDesignXML to be injected under this the InjectForm element.  For that reason, the schema supports those elements to appear inline.  However, in a "raw" form (not yet filled out), the FormDesign element would generally be empty; only the top-level InjectFormType attributes would be used to point to the parts to be later injected.
+In practice, using an injected section will requiresome or all of the injected FormDesignXML to be injected under this the InjectForm element.  For that reason, the schema supports those elements to appear inline.  However, in a "raw" form (not yet filled out), the FormDesign element would generally be empty; only the top-level InjectFormType attributes would be used to point to the parts to be later injected.
 
 Form parts to be injected are specified by packageID, not FormID.  This allows an injected form to be assocaited with helper files, or to return previosuly completed form parts containing responses.
 </xs:documentation>
@@ -303,10 +286,10 @@ If items are disabled, then any data stored in the disabled questions should be 
                   <xs:documentation>NEW
 Selecting the current ListItem will enable the named items in this attribute's content.
 
-Prefixing any named with a hyphen (-) will reverse the above behaviour (i.e., the named items will be disabled).
+Prefixing any named with a hyphen (-) will invert the above behaviour (i.e., the named items will be disabled).
 
 Unselecting the ListItem will reverse this behaviour.
-Prefixing the name with a tilde (~) will supress this reversal behavior.
+Prefixing the name with a tilde (~) will suppress this reversal behavior.
 </xs:documentation>
                </xs:annotation>
             </xs:attribute>
@@ -318,7 +301,7 @@ Selecting the current ListItem will select the named ListItems in this attribute
 Prefixing any named with a hyphen (-) will reverse the above behaviour.
 
 Unselecting the ListItem will reverse this behaviour.
-Prefixing the name with a tilde (~) will suppress this reversal behavior.
+Prefixing the name with a tilde (~) will supress this reversal behavior.
 </xs:documentation>
                </xs:annotation>
             </xs:attribute>
@@ -404,14 +387,10 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
                      </xs:annotation>
                   </xs:element>
                </xs:choice>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="SelectionTest"
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
                   type="RuleSelectionTestBoolType"/>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="SingleSelectionSet"
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalCoSelectedListItems"
                   type="RuleSingleSelectionSetsBoolType"/>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
-                  type="RuleAutoSelectType"/>
-               <xs:element minOccurs="0" name="MinMaxSelectionSet" type="RuleSelectionSetsBoolType"
-                  maxOccurs="unbounded"/>
                <xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded" type="EventType">
                   <xs:annotation>
                      <xs:documentation>Event that occurs after List Field selections are changed.</xs:documentation>
@@ -821,9 +800,9 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
    </xs:complexType>
    <xs:complexType name="RuleAutoSelectType">
       <xs:annotation>
-         <xs:documentation>This declarative rule determines when target ListItems should be selected or unselected.  The rule may optionally select/unselect multiple target ListItems with a single rule. The target ListItem(s) to select/unselect are listed in targetNameSelectList.
+         <xs:documentation>This declarative rule determines (guards) when target ListItems should be selected or unselected.  The guard rule may optionally select/unselect multiple target ListItems with a single rule. The target ListItem(s) to select/unselect are listed in targetNameSelectList.
 
-In the simplest case, this rule operates as follows:  A list of ListItems is provided (selectedItemWatchList).  If all the items in the list are selected (or unselected - see below) as specified in the selectedItemWatchList list, then the rule evaluates to true, and the targetNameSelectList items are selected.
+In the simplest case, this rule operates as follows:  A list of ListItems is provided (selectedItemWatchList).  If all the items in the list are selected (or unselected - see below) as specified in the selectedItemWatchList list, then the guard evaluates to true, and the targetNameSelectList items are selected.
 
 In some cases, we may wish to watch unselected items in the selectedItemWatchList.  This is indicated by prefixing the name of the watched item with a minus sign/dash ("-").
 
@@ -872,8 +851,6 @@ Some rules (e.g., IllegalSelectionTest, IllegalSelectionSets) do not run an expl
                      <xs:documentation/>
                   </xs:annotation>
                </xs:element>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="MultipleSelectionSets"
-                  type="RuleMultiSelectionSetBoolType"/>
                <xs:element maxOccurs="unbounded" minOccurs="0" name="SingleSelectionSets"
                   type="RuleSingleSelectionSetsBoolType"/>
             </xs:choice>
