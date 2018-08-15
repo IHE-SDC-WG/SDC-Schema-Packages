@@ -61,7 +61,7 @@ Parameters using this construct are derived from other locations in the XML inst
       </xs:annotation>
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
-            <xs:attribute default="true" name="allowNull"/>
+            <xs:attribute default="true" name="allowNull" type="xs:boolean"/>
             <xs:attribute name="validationMessage" type="xs:string">
                <xs:annotation>
                   <xs:documentation>Optional message that appears when the rule evaluates to true</xs:documentation>
@@ -165,6 +165,15 @@ The function must understand the parameters and return an appropriate response o
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
+   <xs:attribute name="toggleType">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="true"/>
+            <xs:enumeration value="false"/>
+            <xs:enumeration value="toggle"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:attribute>
    <xs:attributeGroup name="FunctionReturnType">
       <xs:attribute ref="dataTypeListAll"/>
       <xs:attribute default="false" name="returnList" type="xs:boolean">

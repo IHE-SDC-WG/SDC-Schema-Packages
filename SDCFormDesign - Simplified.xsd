@@ -1235,17 +1235,17 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 </xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute default="false" name="toggleVisibility" type="xs:boolean">
+            <xs:attribute default="true" name="setVisibility" type="toggleType">
                <xs:annotation>
                   <xs:documentation>Make target items visible when activated and vice versa.  Default = false.  All descendants are affected in the same way.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute default="true" name="toggleEnabled" type="xs:boolean">
+            <xs:attribute default="true" name="setEnabled" type="toggleType">
                <xs:annotation>
                   <xs:documentation>Make target items enabled when activated and vice versa.  Default = true.  All descendants are affected in the same way.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute default="false" name="toggleExpanded" type="xs:boolean">
+            <xs:attribute default="true" name="setExpanded" type="toggleType">
                <xs:annotation>
                   <xs:documentation>Expand target items when activated and collapse item when deactivated.  Default = false.  All descendants are affected in the same way.</xs:documentation>
                </xs:annotation>
@@ -1380,13 +1380,10 @@ Renamed from: IllegalSelectionSets</xs:documentation>
                      </xs:complexContent>
                   </xs:complexType>
                </xs:element>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest">
-                  <xs:annotation>
-                     <xs:documentation/>
-                  </xs:annotation>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections">
                   <xs:complexType>
                      <xs:complexContent>
-                        <xs:extension base="RuleSelectionTestType">
+                        <xs:extension base="MultiSelectionSetBoolType">
                            <xs:sequence minOccurs="0">
                               <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
                            </xs:sequence>
@@ -1398,6 +1395,20 @@ Renamed from: IllegalSelectionSets</xs:documentation>
                   <xs:complexType>
                      <xs:complexContent>
                         <xs:extension base="RuleSingleSelectionSetsType">
+                           <xs:sequence minOccurs="0">
+                              <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+                           </xs:sequence>
+                        </xs:extension>
+                     </xs:complexContent>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest">
+                  <xs:annotation>
+                     <xs:documentation/>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:complexContent>
+                        <xs:extension base="RuleSelectionTestType">
                            <xs:sequence minOccurs="0">
                               <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
                            </xs:sequence>
@@ -1472,6 +1483,8 @@ If there is a maximum number of Questions to answer, the value is contained in @
             <xs:sequence>
                <xs:element name="AttributeCondition" maxOccurs="unbounded" minOccurs="0"
                   type="GetItemAttribValuesType"> </xs:element>
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections"
+                  type="MultiSelectionSetBoolType"/>
                <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
                   type="RuleSelectionTestType">
                   <xs:annotation>
@@ -1568,6 +1581,12 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
             <xs:attribute name="isReadOnly" type="xs:boolean"/>
             <xs:attribute name="hasType" type="xs:NMTOKENS"/>
             <xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+            <xs:attribute name="hasValueEQ" type="xs:decimal"/>
+            <xs:attribute name="hasValueLT" type="xs:decimal"/>
+            <xs:attribute name="hasValueLTE" type="xs:decimal"/>
+            <xs:attribute name="hasValueGT" type="xs:decimal"/>
+            <xs:attribute name="hasValueGTE" type="xs:decimal"/>
+            <xs:attribute name="supportdatesandIntervals"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
