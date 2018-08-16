@@ -165,15 +165,6 @@ The function must understand the parameters and return an appropriate response o
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:attribute name="toggleType">
-      <xs:simpleType>
-         <xs:restriction base="xs:string">
-            <xs:enumeration value="true"/>
-            <xs:enumeration value="false"/>
-            <xs:enumeration value="toggle"/>
-         </xs:restriction>
-      </xs:simpleType>
-   </xs:attribute>
    <xs:attributeGroup name="FunctionReturnType">
       <xs:attribute ref="dataTypeListAll"/>
       <xs:attribute default="false" name="returnList" type="xs:boolean">
@@ -192,4 +183,11 @@ The function must understand the parameters and return an appropriate response o
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
+   <xs:simpleType name="toggleType">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="true"/>
+         <xs:enumeration value="false"/>
+         <xs:enumeration value="toggle"/>
+      </xs:restriction>
+   </xs:simpleType>
 </xs:schema>

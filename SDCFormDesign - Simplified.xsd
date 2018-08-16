@@ -334,6 +334,23 @@ If @omitWhenSelected is set to true, then the question and its response(s) shoul
                </xs:annotation>
             </xs:attribute>
             <xs:attributeGroup ref="ResponseReportingAttributes"/>
+            <xs:attribute name="AssociatedValue" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>A typed value (e.g., an integer) that is uniquely associated with a ListItem.  An example is the integer 10 for a ListItem with title that reads "10 o'clock".  Typically these values are set to be used in calculations or other algorithms.  In general, they can be treated something like a user-entered response on a the ListItemResponseField of a selected ListItem.
+
+This field should not be used for terminologies or local codes.  The CodedValue type should be used for these kinds of metadata.  This field should also not be used other properties such as translations, usage, etc.
+
+The data type shoudl be specified in @AssociatedValueType
+
+
+</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute default="string" name="AssociatedValueType" type="DataTypeAll_StypeEnum">
+               <xs:annotation>
+                  <xs:documentation>The data type of @AssociatedValue.  Default is string.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -365,12 +382,6 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
                <xs:element minOccurs="0" name="ListHeaderText" type="RichTextType">
                   <xs:annotation>
                      <xs:documentation>The header row for a set of list items.  If the list has more than one column, the column text is separated by the colTextDelimiter.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
-               <xs:element maxOccurs="1" minOccurs="0" name="DefaultListItemDataType"
-                  type="DataTypes_DEType">
-                  <xs:annotation>
-                     <xs:documentation>Data type enumeration derived from W3C XML Schema.  This element is used only if the ListItems are all associated with coded values from a single coding system.</xs:documentation>
                   </xs:annotation>
                </xs:element>
                <xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem"
@@ -448,6 +459,11 @@ A value of 1 (the default) indicates that the question list is single-select.  (
             <xs:attribute default="true" name="ordered" type="xs:boolean">
                <xs:annotation>
                   <xs:documentation>If false, then the form implementation may change the order of items in the list.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="DefaultListItemDataType" type="DataTypeAll_StypeEnum">
+               <xs:annotation>
+                  <xs:documentation>Data type enumeration derived from W3C XML Schema.  This element is used only if the ListItems are all associated with coded values from a single coding system.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
          </xs:extension>
@@ -884,6 +900,11 @@ The default value is "false" indicating that the the rule runs when the "If" con
             <xs:attribute name="actSetVal" type="xs:string">
                <xs:annotation>
                   <xs:documentation>Set a @val attribute.  The correct data type must be used if applicable.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="actSetAssociatedValue" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Set @AssociatedValue attribute of a ListItem.  The correct data type must be used if applicable.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
          </xs:extension>
@@ -1586,6 +1607,16 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
             <xs:attribute name="hasValueLTE" type="xs:decimal"/>
             <xs:attribute name="hasValueGT" type="xs:decimal"/>
             <xs:attribute name="hasValueGTE" type="xs:decimal"/>
+            <xs:attribute name="hasAssociatedValue" type="xs:boolean">
+               <xs:annotation>
+                  <xs:documentation>Applies only to ListItems. If the attribute has a value in it, this property returns true.  If it does not have a value, it returns false.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="hasAssociatedValueEQ" type="xs:decimal"/>
+            <xs:attribute name="hasAssociatedValueLT" type="xs:decimal"/>
+            <xs:attribute name="hasAssociatedValueLTE" type="xs:decimal"/>
+            <xs:attribute name="hasAssociatedValueGT" type="xs:decimal"/>
+            <xs:attribute name="hasAssociatedValueGTE" type="xs:decimal"/>
             <xs:attribute name="supportdatesandIntervals"/>
          </xs:extension>
       </xs:complexContent>
@@ -1643,5 +1674,15 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
             <xs:attribute default="0" name="maxAnswered" type="xs:int"/>
          </xs:extension>
       </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="GetQuestionAssociatedValue">
+      <xs:annotation>
+         <xs:documentation>For single-select questions, returns the @AssociatedValue of the selected ListItem.</xs:documentation>
+      </xs:annotation>
+   </xs:complexType>
+   <xs:complexType name="GetListItemAssociatedValue">
+      <xs:annotation>
+         <xs:documentation>Get @AssociatedValue of a ListItem.</xs:documentation>
+      </xs:annotation>
    </xs:complexType>
 </xs:schema>
