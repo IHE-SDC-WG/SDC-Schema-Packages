@@ -165,7 +165,6 @@ The function must understand the parameters and return an appropriate response o
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:attribute name="toggleType">
    <xs:attributeGroup name="FunctionReturnType">
       <xs:attribute ref="dataTypeListAll"/>
       <xs:attribute default="false" name="returnList" type="xs:boolean">
