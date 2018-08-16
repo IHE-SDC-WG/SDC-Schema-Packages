@@ -334,7 +334,7 @@ If @omitWhenSelected is set to true, then the question and its response(s) shoul
                </xs:annotation>
             </xs:attribute>
             <xs:attributeGroup ref="ResponseReportingAttributes"/>
-            <xs:attribute name="AssociatedValue" type="xs:string">
+            <xs:attribute name="associatedValue" type="xs:string">
                <xs:annotation>
                   <xs:documentation>A typed value (e.g., an integer) that is uniquely associated with a ListItem.  An example is the integer 10 for a ListItem with title that reads "10 o'clock".  Typically these values are set to be used in calculations or other algorithms.  In general, they can be treated something like a user-entered response on a the ListItemResponseField of a selected ListItem.
 
@@ -904,7 +904,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
             </xs:attribute>
             <xs:attribute name="actSetAssociatedValue" type="xs:string">
                <xs:annotation>
-                  <xs:documentation>Set @AssociatedValue attribute of a ListItem.  The correct data type must be used if applicable.</xs:documentation>
+                  <xs:documentation>Set @associatedValue attribute of a ListItem.  The correct data type must be used if applicable.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
          </xs:extension>
