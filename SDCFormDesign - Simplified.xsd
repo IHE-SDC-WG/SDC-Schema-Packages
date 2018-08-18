@@ -274,6 +274,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
       <xs:complexContent>
          <xs:extension base="DisplayedType">
             <xs:sequence>
+               <xs:element minOccurs="0" name="AssociatedValue" type="DataTypes_SType"/>
                <xs:element name="ListItemResponseField" minOccurs="0" maxOccurs="1"
                   type="ListItemResponseFieldType">
                   <xs:annotation>
@@ -1127,40 +1128,6 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:group name="X_ActionTypesGroup">
-      <xs:choice>
-         <xs:annotation>
-            <xs:documentation>Then action choices and nested If-Then statements</xs:documentation>
-         </xs:annotation>
-         <xs:element name="Action" type="ActActionType">
-            <xs:annotation>
-               <xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
-            </xs:annotation>
-         </xs:element>
-         <xs:element name="SetProperty" type="ActSetItemAttributeType"/>
-         <xs:element name="AddCode" type="ActAddCodeType"/>
-         <xs:element name="Inject" type="ActInjectType"/>
-         <xs:element name="ShowURL" type="CallFuncType"/>
-         <xs:element name="Save" type="ActSaveResponsesType"/>
-         <xs:element name="SendReport" type="ActSendReportType"/>
-         <xs:element name="SendMessage111" type="ActSendMessageType"/>
-         <xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
-         <xs:element name="SetAttributeValue" type="ActSetAttrValueType"/>
-         <xs:element name="SetBoolValue" type="ActSetValueBoolType"/>
-         <xs:element name="ShowForm" type="ActShowFormType"/>
-         <xs:element name="ShowMessage" type="ActShowMessageType"/>
-         <xs:element name="ShowReport" type="ActShowReportType"/>
-         <xs:element name="PreviewReport" type="ActPreviewReportType"/>
-         <xs:element name="ValidateForm" type="ActValidateFormType"/>
-         <xs:element name="RunCode" type="ScriptCodeAnyType"/>
-         <xs:element name="CallCode" type="CallFuncType">
-            <xs:annotation>
-               <xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
-            </xs:annotation>
-         </xs:element>
-         <xs:element name="ConditionalAction" type="ConditionalActionType"/>
-      </xs:choice>
-   </xs:group>
    <xs:complexType name="ActionsType">
       <xs:choice maxOccurs="unbounded">
          <xs:annotation>
@@ -1437,7 +1404,7 @@ Renamed from: IllegalSelectionSets</xs:documentation>
                      </xs:complexContent>
                   </xs:complexType>
                </xs:element>
-               <xs:element name="QuestionAlternatives" maxOccurs="unbounded" minOccurs="0">
+               <xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0">
                   <xs:annotation>
                      <xs:documentation>This declarative validation rule ensures that one (or more) questions in a list of questions has received a user's response (an answer).  This allows a user to answer only one of several "required" questions (the @questionNames list), and still save a successfully-validated form.  The minCard value on each of the Questions should be set to "0" (i.e., optional) to avoid validation conflicts when minCard > 0.
 
@@ -1447,35 +1414,7 @@ If there is a maximum number of Questions to answer, the value is contained in @
                   </xs:annotation>
                   <xs:complexType>
                      <xs:complexContent>
-                        <xs:extension base="QuestionAlternativesType">
-                           <xs:sequence minOccurs="0">
-                              <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
-                           </xs:sequence>
-                        </xs:extension>
-                     </xs:complexContent>
-                  </xs:complexType>
-               </xs:element>
-               <xs:element name="SectionAlternatives" maxOccurs="unbounded" minOccurs="0">
-                  <xs:annotation>
-                     <xs:documentation/>
-                  </xs:annotation>
-                  <xs:complexType>
-                     <xs:complexContent>
-                        <xs:extension base="SectionAlternativesType">
-                           <xs:sequence minOccurs="0">
-                              <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
-                           </xs:sequence>
-                        </xs:extension>
-                     </xs:complexContent>
-                  </xs:complexType>
-               </xs:element>
-               <xs:element name="ListItemAlternatives" maxOccurs="unbounded" minOccurs="0">
-                  <xs:annotation>
-                     <xs:documentation/>
-                  </xs:annotation>
-                  <xs:complexType>
-                     <xs:complexContent>
-                        <xs:extension base="ListItemAlternativesType">
+                        <xs:extension base="AlternativesType">
                            <xs:sequence minOccurs="0">
                               <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
                            </xs:sequence>
@@ -1514,33 +1453,17 @@ If there is a maximum number of Questions to answer, the value is contained in @
                </xs:element>
                <xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
                   type="RuleSingleSelectionSetsType"> </xs:element>
-               <xs:element name="QuestionAlternatives" maxOccurs="unbounded" minOccurs="0"
-                  type="QuestionAlternativesType">
-                  <xs:annotation>
-                     <xs:documentation>This declarative validation rule ensures that one (or more) questions in a list of questions has received a user's response (an answer).  This allows a user to answer only one of several "required" questions (the @questionNames list), and still save a successfully-validated form.  The minCard value on each of the Questions should be set to "0" (i.e., optional) to avoid validation conflicts when minCard > 0.
-
-The list of Question @name values is contained in @questionNames.  The list must contain at least 2 @name values. 
-The minimum number of Questions to answer is contained in @minAnswered (default value =1).  
-If there is a maximum number of Questions to answer, the value is contained in @maxAnswered (default value = "0" meaning unlimited).</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
-               <xs:element name="SectionAlternatives" maxOccurs="unbounded" minOccurs="0"
-                  type="SectionAlternativesType">
+               <xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
+                  type="AlternativesType">
                   <xs:annotation>
                      <xs:documentation/>
                   </xs:annotation>
                </xs:element>
-               <xs:element name="ListItemAlternatives" maxOccurs="unbounded" minOccurs="0"
-                  type="ListItemAlternativesType">
-                  <xs:annotation>
-                     <xs:documentation/>
-                  </xs:annotation>
-               </xs:element>
-               <xs:element name="Group" type="ConditionalType" minOccurs="0" maxOccurs="unbounded"/>
                <xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0"
                   type="ScriptCodeBoolType"> </xs:element>
                <xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolCondition"
                   type="CallBoolFuncType"/>
+               <xs:element name="Group" type="ConditionalType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
             <xs:attributeGroup ref="BoolAttributes"/>
          </xs:extension>
@@ -1621,68 +1544,45 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType name="QuestionAlternativesType">
-      <xs:complexContent>
-         <xs:extension base="FuncBoolBaseType">
-            <xs:attribute default="false" ref="not">
-               <xs:annotation>
-                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="questionNames" type="xs:NMTOKENS" use="required">
-               <xs:annotation>
-                  <xs:documentation>Set of @name references for a set of Questions, delimited by spaces.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute default="1" name="minAnswered" type="xs:int"/>
-            <xs:attribute default="0" name="maxAnswered" type="xs:int"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="SectionAlternativesType">
-      <xs:complexContent>
-         <xs:extension base="FuncBoolBaseType">
-            <xs:attribute default="false" ref="not">
-               <xs:annotation>
-                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="sectionNames" type="xs:NMTOKENS" use="required">
-               <xs:annotation>
-                  <xs:documentation>Set of @name references for a set of Questions, delimited by spaces.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute default="1" name="minAnswered" type="xs:int"/>
-            <xs:attribute default="0" name="maxAnswered" type="xs:int"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="ListItemAlternativesType">
-      <xs:complexContent>
-         <xs:extension base="FuncBoolBaseType">
-            <xs:attribute default="false" ref="not">
-               <xs:annotation>
-                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="listItemNames" type="xs:NMTOKENS" use="required">
-               <xs:annotation>
-                  <xs:documentation>Set of @name references for a set of Questions, delimited by spaces.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute default="1" name="minAnswered" type="xs:int"/>
-            <xs:attribute default="0" name="maxAnswered" type="xs:int"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="GetQuestionAssociatedValue">
+   <xs:complexType name="AlternativesType">
       <xs:annotation>
-         <xs:documentation>For single-select questions, returns the @AssociatedValue of the selected ListItem.</xs:documentation>
+         <xs:documentation>This declarative validation rule ensures that one (or more) items in a list of items has received a user's response (an answer).  This allows a user to answer only one of several  questions (the @itemNames list), and still save a successfully-validated form.  The minCard value on each of the items should be set to "0" (i.e., optional) to avoid validation conflicts when minCard greater than 0.
+
+The list of Item @name values is contained in @itemNames.  The list must contain at least 2 @name values. 
+The minimum number of items to answer is contained in @minAnswered (default value = 1).  
+
+If there is a maximum number of items to answer, the value is contained in @maxAnswered (default value = 0 meaning unlimited).</xs:documentation>
       </xs:annotation>
-   </xs:complexType>
-   <xs:complexType name="GetListItemAssociatedValue">
-      <xs:annotation>
-         <xs:documentation>Get @AssociatedValue of a ListItem.</xs:documentation>
-      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="FuncBoolBaseType">
+            <xs:attribute default="false" ref="not">
+               <xs:annotation>
+                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute default="1" name="minAnswered" type="xs:int" use="optional"/>
+            <xs:attribute default="0" name="maxAnswered" type="xs:int">
+               <xs:annotation>
+                  <xs:documentation>@maxAnswered must be 0 or greater than or equal to @minAnswered.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="itemNames" type="xs:NMTOKENS">
+               <xs:annotation>
+                  <xs:documentation>List of names of Sections, Questions, ListItems and/or InjectedItems.  Each of the named items will evaluate to true or false, based on the following validation rules:
+
+If the name points to a Section, then the Section evaluates to true (valid) if all of its descendant items are answered correctly, according to their metadata.
+
+If the name points to a Question then the Question evaluates to true (valid) if it is correctly answered according to its metadata, and also, all descendant items are answered correctly, according to their metadata.
+
+If the name points to a ListItem then the ListItem evaluates to true (valid) if it is selected, and also, all descendant items are answered correctly according to their metadata.
+
+If the name points to an InjectedItem then the InjectedItem evaluates to true (valid) if all descendant items are answered correctly, according to their metadata.
+
+The number of true responses are added together.  If they satisfy the minAnswered and maxAnswered attribute values, then this type returns true.  Otherwise it returns false.
+</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
    </xs:complexType>
 </xs:schema>

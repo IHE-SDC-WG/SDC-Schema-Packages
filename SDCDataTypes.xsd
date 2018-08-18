@@ -7,18 +7,6 @@
       <xs:attribute name="mask" type="xs:string"/>
    </xs:attributeGroup>
    <xs:attributeGroup name="QuantAttributes">
-      <xs:attribute default="EQ" name="quantEnum">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="EQ"/>
-               <xs:enumeration value="GT"/>
-               <xs:enumeration value="GTE"/>
-               <xs:enumeration value="LT"/>
-               <xs:enumeration value="LTE"/>
-               <xs:enumeration value="APPROX"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
       <xs:attribute default="false" name="allowGT" type="xs:boolean"/>
       <xs:attribute default="false" name="allowGTE" type="xs:boolean"/>
       <xs:attribute default="false" name="allowLT" type="xs:boolean"/>
@@ -91,6 +79,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -102,6 +91,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:date"/>
             <xs:attribute name="maxExclusive" type="xs:date"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -114,6 +104,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:dateTime"/>
             <xs:attribute name="pattern" type="xs:string"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -136,6 +127,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxInclusive" type="xs:duration"/>
             <xs:attribute name="minInclusive" type="xs:duration"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -149,6 +141,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -161,6 +154,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:double"/>
             <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -172,6 +166,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:duration"/>
             <xs:attribute name="maxExclusive" type="xs:duration"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -185,6 +180,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -196,6 +192,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:gDay"/>
             <xs:attribute name="maxExclusive" type="xs:gDay"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -207,6 +204,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:gMonth"/>
             <xs:attribute name="maxExclusive" type="xs:gMonth"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -218,6 +216,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:gMonthDay"/>
             <xs:attribute name="maxExclusive" type="xs:gMonthDay"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -229,6 +228,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:gYear"/>
             <xs:attribute name="maxExclusive" type="xs:gYear"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -240,6 +240,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:gYearMonth"/>
             <xs:attribute name="maxExclusive" type="xs:gYearMonth"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -275,6 +276,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -287,6 +289,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minInclusive" type="xs:integer"/>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -305,6 +308,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -317,6 +321,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:negativeInteger"/>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -329,6 +334,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:nonNegativeInteger"/>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -341,6 +347,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:nonPositiveInteger"/>
             <xs:attribute form="unqualified" name="totalDigits" type="xs:unsignedByte"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -353,6 +360,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="maxExclusive" type="xs:positiveInteger"/>
             <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -371,6 +379,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -392,6 +401,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:time"/>
             <xs:attribute name="maxExclusive" type="xs:time"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -410,6 +420,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -428,6 +439,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -446,6 +458,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -464,6 +477,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                </xs:simpleType>
             </xs:attribute>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -483,6 +497,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
             <xs:attribute name="minExclusive" type="xs:duration"/>
             <xs:attribute name="maxExclusive" type="xs:duration"/>
             <xs:attributeGroup ref="MaskAttributes"/>
+            <xs:attributeGroup ref="QuantAttributes"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -501,7 +516,6 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                   <xs:documentation>TBD: Must be a valid MIME type</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="length" type="xs:long"/>
             <xs:attribute name="val" type="xs:base64Binary"/>
          </xs:extension>
       </xs:complexContent>
@@ -517,6 +531,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:byte"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -524,7 +539,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:date"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -532,7 +547,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:dateTime"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -547,7 +562,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -555,7 +570,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:decimal"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -564,7 +579,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:double"/>
             <xs:attributeGroup ref="MaskAttributes"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -572,7 +587,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -580,7 +595,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:float"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -588,7 +603,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:gDay"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -596,7 +611,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:gMonth"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -604,7 +619,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:gMonthDay"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -612,7 +627,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:gYear"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -620,7 +635,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:gYearMonth"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -633,7 +648,6 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
                     enumeration</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute name="length" type="xs:long"/>
             <xs:attribute name="val" type="xs:hexBinary"/>
          </xs:extension>
       </xs:complexContent>
@@ -658,7 +672,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:int"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -666,7 +680,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:integer"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -674,7 +688,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:long"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -682,7 +696,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:negativeInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -690,7 +704,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:nonNegativeInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -698,7 +712,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:nonPositiveInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -706,7 +720,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:positiveInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -714,7 +728,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:short"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -729,7 +743,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:time"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -737,7 +751,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -745,7 +759,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:unsignedInt"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -753,7 +767,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:unsignedLong"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -761,7 +775,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:unsignedShort"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -780,7 +794,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
       <xs:complexContent>
          <xs:extension base="BaseType">
             <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
+            <xs:attribute ref="quantEnum"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -1352,4 +1366,16 @@ For typed items included by reference to an external (reference or variable) val
          </xs:simpleType>
       </xs:attribute>
    </xs:complexType>
+   <xs:attribute default="EQ" name="quantEnum">
+      <xs:simpleType>
+         <xs:restriction base="xs:string">
+            <xs:enumeration value="EQ"/>
+            <xs:enumeration value="GT"/>
+            <xs:enumeration value="GTE"/>
+            <xs:enumeration value="LT"/>
+            <xs:enumeration value="LTE"/>
+            <xs:enumeration value="APPROX"/>
+         </xs:restriction>
+      </xs:simpleType>
+   </xs:attribute>
 </xs:schema>
