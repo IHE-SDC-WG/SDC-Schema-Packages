@@ -115,7 +115,7 @@ enumeration
 											<xs:enumeration value="XML"/>
 											<xs:enumeration value="JSON"/>
 											<xs:enumeration value="HTML"/>
-											<xs:enumeration value="URL"/>
+											<xs:enumeration value="URI"/>
 										</xs:restriction>
 									</xs:simpleType>
 								</xs:attribute>
