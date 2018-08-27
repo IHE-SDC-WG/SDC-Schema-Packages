@@ -549,6 +549,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:enumeration value="addition"/>
 					<xs:enumeration value="deletion"/>
 					<xs:enumeration value="multiple_changes"/>
+
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -563,6 +564,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:enumeration value="preliminary"/>
 					<xs:enumeration value="final"/>
 					<xs:enumeration value="retracted"/>
+
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
@@ -1118,38 +1120,42 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ActionsType">
-		<xs:choice maxOccurs="unbounded">
-			<xs:annotation>
-				<xs:documentation>Then action choices and nested conditional statements</xs:documentation>
-			</xs:annotation>
-			<xs:element name="Action" type="ActActionType">
-				<xs:annotation>
-					<xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="SetProperty" type="ActSetItemAttributeType"/>
-			<xs:element name="AddCode" type="ActAddCodeType"/>
-			<xs:element name="Inject" type="ActInjectType"/>
-			<xs:element name="ShowURL" type="CallFuncType"/>
-			<xs:element name="Save" type="ActSaveResponsesType"/>
-			<xs:element name="SendReport" type="ActSendReportType"/>
-			<xs:element name="SendMessage111" type="ActSendMessageType"/>
-			<xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
-			<xs:element name="SetAttributeValue" type="ActSetAttrValueType"/>
-			<xs:element name="SetBoolValue" type="ActSetValueBoolType"/>
-			<xs:element name="ShowForm" type="ActShowFormType"/>
-			<xs:element name="ShowMessage" type="ActShowMessageType"/>
-			<xs:element name="ShowReport" type="ActShowReportType"/>
-			<xs:element name="PreviewReport" type="ActPreviewReportType"/>
-			<xs:element name="ValidateForm" type="ActValidateFormType"/>
-			<xs:element name="RunCode" type="ScriptCodeAnyType"/>
-			<xs:element name="CallCode" type="CallFuncType">
-				<xs:annotation>
-					<xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
-				</xs:annotation>
-			</xs:element>
-			<xs:element name="ConditionalGroupAction" type="ConditionalGroupActionType"/>
-		</xs:choice>
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Then action choices and nested conditional statements</xs:documentation>
+					</xs:annotation>
+					<xs:element name="Action" type="ActActionType">
+						<xs:annotation>
+							<xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SetProperty" type="ActSetItemAttributeType"/>
+					<xs:element name="AddCode" type="ActAddCodeType"/>
+					<xs:element name="Inject" type="ActInjectType"/>
+					<xs:element name="ShowURL" type="CallFuncType"/>
+					<xs:element name="Save" type="ActSaveResponsesType"/>
+					<xs:element name="SendReport" type="ActSendReportType"/>
+					<xs:element name="SendMessage111" type="ActSendMessageType"/>
+					<xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
+					<xs:element name="SetAttributeValue" type="ActSetAttrValueType"/>
+					<xs:element name="SetBoolValue" type="ActSetValueBoolType"/>
+					<xs:element name="ShowForm" type="ActShowFormType"/>
+					<xs:element name="ShowMessage" type="ActShowMessageType"/>
+					<xs:element name="ShowReport" type="ActShowReportType"/>
+					<xs:element name="PreviewReport" type="ActPreviewReportType"/>
+					<xs:element name="ValidateForm" type="ActValidateFormType"/>
+					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
+					<xs:element name="CallCode" type="CallFuncType">
+						<xs:annotation>
+							<xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ConditionalGroupAction" type="ConditionalGroupActionType"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 	<xs:attributeGroup name="SelectionDependencyAttributes">
 		<xs:attributeGroup ref="BoolAttributes"/>

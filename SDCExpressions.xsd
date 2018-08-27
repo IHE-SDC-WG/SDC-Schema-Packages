@@ -5,7 +5,7 @@
    <!--rlm:7/17/2017 Changes to support SDC rules-->
 
    <xs:include schemaLocation="SDCResources.xsd"/>
-   <xs:complexType name="ParameterItemType" abstract="true">
+   <xs:complexType name="ParameterItemType" abstract="false">
       <xs:annotation>
          <xs:documentation>Parameters are named, uniquely identifiable, instances of form properties (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
 
@@ -32,7 +32,7 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType name="ParameterValueType" abstract="true">
+   <xs:complexType name="ParameterValueType" abstract="false">
       <xs:annotation>
          <xs:documentation>This type describes strongly-typed parameters used in functions and web services.  Values are hard-coded as constants in the XML instance document.  They are not user-entered values.</xs:documentation>
       </xs:annotation>

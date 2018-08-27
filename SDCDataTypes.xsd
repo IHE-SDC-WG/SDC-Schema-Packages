@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:ihe:qrph:sdc:2016"
-	xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:7/16/2017  Includes changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
 	<xs:include schemaLocation="SDCBase.xsd"/>
 	<xs:attributeGroup name="MaskAttributes">
@@ -13,11 +13,24 @@
 		<xs:attribute default="false" name="allowLTE" type="xs:boolean"/>
 		<xs:attribute default="false" name="allowAPPROX" type="xs:boolean"/>
 	</xs:attributeGroup>
+	<xs:attribute default="EQ" name="quantEnum">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="EQ"/>
+				<xs:enumeration value="GT"/>
+				<xs:enumeration value="GTE"/>
+				<xs:enumeration value="LT"/>
+				<xs:enumeration value="LTE"/>
+				<xs:enumeration value="APPROX"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
 	<xs:element name="dt">
 		<xs:annotation>
 			<xs:documentation>A dummy "data type" (dt) element to compensate for a code generator bug.  Do not use this type for anything.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
+			<xs:attribute ref="quantEnum"/>
 			<xs:attributeGroup ref="QuantAttributes"/>
 		</xs:complexType>
 	</xs:element>
@@ -656,7 +669,8 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:sequence>
-					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="strict"/>
+					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+						processContents="strict"/>
 				</xs:sequence>
 				<xs:anyAttribute namespace="##other" processContents="strict">
 					<xs:annotation>
@@ -782,7 +796,8 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:sequence>
-					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="strict"/>
+					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+						processContents="strict"/>
 				</xs:sequence>
 				<xs:attribute name="schema" type="xs:string"/>
 			</xs:extension>
@@ -1321,7 +1336,9 @@ For typed items included by reference to an external (reference or variable) val
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="DataTypeAll_StypeEnum">
-		<xs:union memberTypes="DataTypeString_StypeEnum DataTypeNumeric_StypeEnum DataTypeDateTime_StypeEnum DataTypeCustomClass_StypeEnum"/>
+		<xs:union
+			memberTypes="DataTypeString_StypeEnum DataTypeNumeric_StypeEnum DataTypeDateTime_StypeEnum DataTypeCustomClass_StypeEnum"
+		/>
 	</xs:simpleType>
 	<xs:attributeGroup name="BoolAttributes">
 		<xs:attribute ref="not"/>
@@ -1362,16 +1379,4 @@ For typed items included by reference to an external (reference or variable) val
 			</xs:simpleType>
 		</xs:attribute>
 	</xs:complexType>
-	<xs:attribute default="EQ" name="quantEnum">
-		<xs:simpleType>
-			<xs:restriction base="xs:string">
-				<xs:enumeration value="EQ"/>
-				<xs:enumeration value="GT"/>
-				<xs:enumeration value="GTE"/>
-				<xs:enumeration value="LT"/>
-				<xs:enumeration value="LTE"/>
-				<xs:enumeration value="APPROX"/>
-			</xs:restriction>
-		</xs:simpleType>
-	</xs:attribute>
 </xs:schema>
