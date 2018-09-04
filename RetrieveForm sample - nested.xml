@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SDCPackage xmlns="urn:ihe:qrph:sdc:2016" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/dev/SDCRetrieveForm.xsd"
+    packageID="http://www.oxygenxml.com/" lineage="lineage1" version="version1"
+    fullURI="http://www.oxygenxml.com/">
+    <Admin>
+        <PackageDescription val=""></PackageDescription>
+        <TemplateFile>
+            <FileURI/>
+            <DisplayName/>
+        </TemplateFile>
+    </Admin>
+    <SubmissionRule ruleID="http://www.oxygenxml.com/">
+        <Destination>
+            <Endpoint/>
+            <EndpointDescription/>
+            <SubmissionTechnology/>
+            <Organization>
+                <OrgName/>
+                <Department/>
+                <StreetAddress>
+                    <AddressType/>
+                    <InternalAddress/>
+                    <AddressLine/>
+                    <City/>
+                    <Jurisdiction/>
+                    <State/>
+                    <PostalCode/>
+                    <Country/>
+                    <Usage/>
+                </StreetAddress>
+                <Email>
+                    <EmailAddress val="+@-.-"> </EmailAddress>
+                    <EmailClass/>
+                    <Usage/>
+                </Email>
+                <Phone>
+                    <PhoneType/>
+                    <CountryCode val="50"/>
+                    <AreaCode/>
+                    <PhoneNumber val="00   "> </PhoneNumber>
+                    <PhoneExtension/>
+                    <Usage/>
+                </Phone>
+                <WebURL/>
+                <Role/>
+                <ContactPerson>
+                    <PersonName>
+                        <FirstName/>
+                        <LastName/>
+                    </PersonName>
+                    <AliasName>
+                        <FirstName/>
+                        <LastName/>
+                    </AliasName>
+                    <Job> </Job>
+                    <StreetAddress> </StreetAddress>
+                    <Email>
+                        <EmailAddress val="+@-.-"> </EmailAddress>
+                    </Email>
+                    <Phone>
+                        <PhoneNumber val="00   "> </PhoneNumber>
+                    </Phone>
+                    <WebURL/>
+                    <Role/>
+                    <Identifier val="val839"> </Identifier>
+                    <Usage/>
+                </ContactPerson>
+                <Identifier val="val843">
+                </Identifier>
+                <Usage/>
+            </Organization>
+        </Destination>
+        <RuleDescription/>
+    </SubmissionRule>
+    <ComplianceRule ruleID="http://www.oxygenxml.com/">
+        <Description/>
+        <ComplianceOrganization>
+            <OrgName/>
+            <Department/>
+            <StreetAddress>
+                <AddressType/>
+                <InternalAddress/>
+                <AddressLine/>
+                <City/>
+                <Jurisdiction/>
+                <State/>
+                <PostalCode/>
+                <Country/>
+                <Usage/>
+            </StreetAddress>
+            <Email>
+                <EmailAddress val="+@-.-">
+                </EmailAddress>
+                <EmailClass/>
+                <Usage/>
+            </Email>
+            <Phone>
+                <PhoneType/>
+                <CountryCode val="50"/>
+                <AreaCode/>
+                <PhoneNumber val="00   ">
+                </PhoneNumber>
+                <PhoneExtension/>
+                <Usage/>
+            </Phone>
+            <WebURL/>
+            <Role/>
+            <ContactPerson>
+                <PersonName>
+                    <NamePrefix/>
+                    <FirstName/>
+                    <MiddleName/>
+                    <LastName/>
+                    <NameSuffix/>
+                    <DegreeCert/>
+                    <Title/>
+                </PersonName>
+                <AliasName>
+                    <NamePrefix/>
+                    <FirstName/>
+                    <MiddleName/>
+                    <LastName/>
+                    <NameSuffix/>
+                    <DegreeCert/>
+                    <Title/>
+                </AliasName>
+                <Job>
+                    <JobTitle/>
+                    <Organization>
+                        <OrgName/>
+                    </Organization>
+                    <StartDate/>
+                    <StopDate/>
+                    <Description/>
+                </Job>
+                <StreetAddress>
+                    <AddressType/>
+                    <InternalAddress/>
+                    <AddressLine/>
+                    <City/>
+                    <Jurisdiction/>
+                    <State/>
+                    <PostalCode/>
+                    <Country/>
+                    <Usage/>
+                </StreetAddress>
+                <Email>
+                    <EmailAddress val="+@-.-"> </EmailAddress>
+                    <EmailClass/>
+                    <Usage/>
+                </Email>
+                <Phone>
+                    <PhoneType/>
+                    <CountryCode val="50"/>
+                    <AreaCode/>
+                    <PhoneNumber val="00   "> </PhoneNumber>
+                    <PhoneExtension/>
+                    <Usage/>
+                </Phone>
+                <WebURL/>
+                <Role/>
+                <Identifier val="val1079">
+                </Identifier>
+                <Usage/>
+            </ContactPerson>
+            <Identifier val="val1087"/>            
+            <Usage/>
+        </ComplianceOrganization>
+    </ComplianceRule>
+    <HTMLPackage>
+        <HTMLbase64 val="ZGVmYXVsdA=="/>
+    </HTMLPackage>
+    <SDCPackage packageID="http://www.oxygenxml.com/" lineage="lineage5" version="version5"
+        fullURI="http://www.oxygenxml.com/">
+        <Admin>
+            <PackageDescription val="val1155"> </PackageDescription>
+            <RegistryData>
+                <OriginalRegistry>
+                    <Manual>
+                        <FileURI/>
+                        <DisplayName/>
+                    </Manual>
+                </OriginalRegistry>
+                <CurrentRegistry>
+                    <Manual>
+                        <FileURI/>
+                        <DisplayName/>
+                    </Manual>
+                </CurrentRegistry>
+                <RegistrationStatus>
+                    <RegisteredItemDescription val="val1189">
+                        <RichText> </RichText>
+                    </RegisteredItemDescription>
+                    <State>
+                        <Acceptability val="preferred"/>
+                        <RegistrationStatus/>
+                    </State>
+                    <Contact> </Contact>
+                    <ReferenceDocument>
+                        <FileURI/>
+                        <DisplayName/>
+                    </ReferenceDocument>
+                </RegistrationStatus>
+            </RegistryData>
+            <TemplateFile>
+                <FileID/>
+                <FileURI/>
+                <DisplayName/>
+                <Title/>
+                <Version fullVersion="fullVersion13" versionRegExPattern="versionRegExPattern13">
+                    <VersioningReference>
+                        <FileURI/>
+                        <DisplayName/>
+                    </VersioningReference>
+                    <VersionComments val="val1217">
+                        <RichText> </RichText>
+                    </VersionComments>
+                    <Changes>
+                        <Change>
+                            <ChangedField>
+                                <TargetItemXPath/>
+                            </ChangedField>
+                            <ChangedTo>
+                                <base64Binary/>
+                            </ChangedTo>
+                            <ChangedFrom>
+                                <time/>
+                            </ChangedFrom>
+                            <ChangeType/>
+                            <ChangeDate/>
+                        </Change>
+                    </Changes>
+                </Version>
+                <FileName/>
+                <FileExtension/>
+                <FileClass/>
+                <FileSizeKB/>
+                <Description/>
+                <Copyright/>
+                <TermsofUse/>
+                <Usage>
+                    <Included>
+                        <Code/>
+                    </Included>
+                    <Excluded>
+                        <Code/>
+                    </Excluded>
+                    <Description/>
+                </Usage>
+                <Dates>
+                    <FileDate/>
+                    <PreviousRevisionDate/>
+                    <ReleaseDate/>
+                    <EffectiveDate/>
+                    <FirstReleaseDate/>
+                    <UsageStartDate/>
+                    <RetirementDate/>
+                    <OtherDate/>
+                </Dates>
+                <Contacts>
+                    <Contact> </Contact>
+                </Contacts>
+                <Approval>
+                    <ApprovalContact> </ApprovalContact>
+                    <Description/>
+                </Approval>
+                <FileHash/>
+                <Language>
+                    <Language/>
+                    <LanguageCode.ISO.639.3 val="eng"/>
+                </Language>
+                <AssociatedFiles>
+                    <File>
+                        <FileURI/>
+                        <DisplayName/>
+                    </File>
+                </AssociatedFiles>
+                <Provenance>
+                    <ReplacedFile>
+                        <FileURI/>
+                        <DisplayName/>
+                    </ReplacedFile>
+                </Provenance>
+                <DefaultSubmissionRule ruleID="http://www.oxygenxml.com/">
+                    <Destination>
+                        <Endpoint/>
+                        <EndpointDescription/>
+                    </Destination>
+                    <RuleDescription/>
+                </DefaultSubmissionRule>
+                <DefaultComplianceRule ruleID="http://www.oxygenxml.com/">
+                    <Description/>
+                    <ComplianceOrganization>
+                        <OrgName/>
+                    </ComplianceOrganization>
+                </DefaultComplianceRule>
+            </TemplateFile>
+            <DigitalSignature>
+                <PackageSignature/>
+                <SignatureProperties>
+                    <Signer> </Signer>
+                    <SignerPublicKeyCertificate/>
+                    <SignatureReason/>
+                    <SignatureDateTimeStamp/>
+                    <X_CertificateAuthority/>
+                    <X_SignerPublicKey/>
+                    <X_SignatureAlgorithm/>
+                    <Image/>
+                </SignatureProperties>
+            </DigitalSignature>
+        </Admin>
+        <SubmissionRule ruleID="http://www.oxygenxml.com/">
+            <Destination>
+                <Endpoint/>
+                <EndpointDescription/>
+                <SubmissionTechnology/>
+                <Organization>
+                    <OrgName/>
+                    <Department/>
+                    <StreetAddress> </StreetAddress>
+                    <Email>
+                        <EmailAddress val="+@-.-"> </EmailAddress>
+                    </Email>
+                    <Phone>
+                        <PhoneNumber val="00   "> </PhoneNumber>
+                    </Phone>
+                    <WebURL/>
+                    <Role/>
+                    <ContactPerson>
+                        <PersonName>
+                            <FirstName/>
+                            <LastName/>
+                        </PersonName>
+                    </ContactPerson>
+                    <Identifier val="val1367"> </Identifier>
+                    <Usage/>
+                </Organization>
+            </Destination>
+            <RuleDescription/>
+        </SubmissionRule>
+        <ComplianceRule ruleID="http://www.oxygenxml.com/">
+            <Description/>
+            <ComplianceOrganization>
+                <OrgName/>
+                <Department/>
+                <StreetAddress>
+                    <AddressType/>
+                    <InternalAddress/>
+                    <AddressLine/>
+                    <City/>
+                    <Jurisdiction/>
+                    <State/>
+                    <PostalCode/>
+                    <Country/>
+                    <Usage/>
+                </StreetAddress>
+                <Email>
+                    <EmailAddress val="+@-.-"> </EmailAddress>
+                    <EmailClass/>
+                    <Usage/>
+                </Email>
+                <Phone>
+                    <PhoneType/>
+                    <CountryCode val="50"/>
+                    <AreaCode/>
+                    <PhoneNumber val="00   "> </PhoneNumber>
+                    <PhoneExtension/>
+                    <Usage/>
+                </Phone>
+                <WebURL/>
+                <Role/>
+                <ContactPerson>
+                    <PersonName>
+                        <FirstName/>
+                        <LastName/>
+                    </PersonName>
+                    <AliasName>
+                        <FirstName/>
+                        <LastName/>
+                    </AliasName>
+                    <Job> </Job>
+                    <StreetAddress> </StreetAddress>
+                    <Email>
+                        <EmailAddress val="+@-.-"> </EmailAddress>
+                    </Email>
+                    <Phone>
+                        <PhoneNumber val="00   "> </PhoneNumber>
+                    </Phone>
+                    <WebURL/>
+                    <Role/>
+                    <Identifier val="val1469"> </Identifier>
+                    <Usage/>
+                </ContactPerson>
+                <Identifier val="val1473">
+                </Identifier>
+                <Usage/>
+            </ComplianceOrganization>
+        </ComplianceRule>
+        <HTMLPackage>
+            <HTMLbase64 val="ZGVmYXVsdA=="/>
+        </HTMLPackage>
+        <SDCPackage packageID="http://www.oxygenxml.com/" lineage="lineage9" version="version9"
+            fullURI="http://www.oxygenxml.com/">
+            <Admin>
+                <PackageDescription val="val1507">
+                </PackageDescription>
+                <RegistryData>
+                    <OriginalRegistry> </OriginalRegistry>
+                    <CurrentRegistry> </CurrentRegistry>
+                    <RegistrationStatus> </RegistrationStatus>
+                </RegistryData>
+                <TemplateFile>
+                    <FileID/>
+                    <FileURI/>
+                    <DisplayName/>
+                    <Title/>
+                    <Version fullVersion="fullVersion15" versionRegExPattern="versionRegExPattern15"> </Version>
+                    <FileName/>
+                    <FileExtension/>
+                    <FileClass/>
+                    <FileSizeKB/>
+                    <Description/>
+                    <Copyright/>
+                    <TermsofUse/>
+                    <Usage> </Usage>
+                    <Dates> </Dates>
+                    <Contacts>
+                        <Contact> </Contact>
+                    </Contacts>
+                    <Approval> </Approval>
+                    <FileHash/>
+                    <Language>
+                        <LanguageCode.ISO.639.3 val="eng"/>
+                    </Language>
+                    <AssociatedFiles>
+                        <File>
+                            <FileURI/>
+                            <DisplayName/>
+                        </File>
+                    </AssociatedFiles>
+                    <Provenance>
+                        <ReplacedFile>
+                            <FileURI/>
+                            <DisplayName/>
+                        </ReplacedFile>
+                    </Provenance>
+                    <DefaultSubmissionRule ruleID="http://www.oxygenxml.com/">
+                        <Destination>
+                            <Endpoint/>
+                            <EndpointDescription/>
+                        </Destination>
+                    </DefaultSubmissionRule>
+                    <DefaultComplianceRule ruleID="http://www.oxygenxml.com/">
+                        <Description/>
+                    </DefaultComplianceRule>
+                </TemplateFile>
+                <DigitalSignature>
+                    <PackageSignature/>
+                    <SignatureProperties>
+                        <Signer> </Signer>
+                        <SignerPublicKeyCertificate/>
+                        <SignatureReason/>
+                        <SignatureDateTimeStamp/>
+                    </SignatureProperties>
+                </DigitalSignature>
+            </Admin>
+            <SubmissionRule ruleID="http://www.oxygenxml.com/">
+                <Destination>
+                    <Endpoint/>
+                    <EndpointDescription/>
+                    <SubmissionTechnology/>
+                    <Organization>
+                        <OrgName/>
+                    </Organization>
+                </Destination>
+                <RuleDescription/>
+            </SubmissionRule>
+            <ComplianceRule ruleID="http://www.oxygenxml.com/">
+                <Description/>
+                <ComplianceOrganization>
+                    <OrgName/>
+                    <Department/>
+                    <StreetAddress> </StreetAddress>
+                    <Email>
+                        <EmailAddress val="+@-.-"> </EmailAddress>
+                    </Email>
+                    <Phone>
+                        <PhoneNumber val="00   "> </PhoneNumber>
+                    </Phone>
+                    <WebURL/>
+                    <Role/>
+                    <ContactPerson>
+                        <PersonName>
+                            <FirstName/>
+                            <LastName/>
+                        </PersonName>
+                    </ContactPerson>
+                    <Identifier val="val1607"> </Identifier>
+                    <Usage/>
+                </ComplianceOrganization>
+            </ComplianceRule>
+            <XMLPackage>
+                <DemogFormDesign lineage="" version="" fullURI="DFD" ID="DFD1"/>
+                <FormDesign lineage="" version="" fullURI=" a" ID="FD1"/>
+            </XMLPackage>
+            <SDCPackage packageID="pid1" lineage="" version="" fullURI="pid1">
+                <FormURL>
+                    <LinkURI/>
+                </FormURL>
+                <SDCPackage packageID="pid2" lineage="" version="" fullURI="pid2">
+                    <XMLPackage>
+                        <FormDesign lineage="" version="" fullURI="FD2" ID="FD2"></FormDesign>
+                    </XMLPackage>
+                </SDCPackage>
+            </SDCPackage>
+        </SDCPackage>
+    </SDCPackage>
+    
+    <SDCPackage packageID="http://www.oxygenxml.com/" lineage="lineage9" version="version9"
+        fullURI="http://www.oxygenxml.com/">
+        
+        <Admin>
+            <PackageDescription val="val1507">
+            </PackageDescription>
+            <RegistryData>
+                <OriginalRegistry> </OriginalRegistry>
+                <CurrentRegistry> </CurrentRegistry>
+                <RegistrationStatus> </RegistrationStatus>
+            </RegistryData>
+            <TemplateFile>
+                <FileID/>
+                <FileURI/>
+                <DisplayName/>
+                <Title/>
+                <Version fullVersion="fullVersion15" versionRegExPattern="versionRegExPattern15"> </Version>
+                <FileName/>
+                <FileExtension/>
+                <FileClass/>
+                <FileSizeKB/>
+                <Description/>
+                <Copyright/>
+                <TermsofUse/>
+                <Usage> </Usage>
+                <Dates> </Dates>
+                <Contacts>
+                    <Contact> </Contact>
+                </Contacts>
+                <Approval> </Approval>
+                <FileHash/>
+                <Language>
+                    <LanguageCode.ISO.639.3 val="eng"/>
+                </Language>
+                <AssociatedFiles>
+                    <File>
+                        <FileURI/>
+                        <DisplayName/>
+                    </File>
+                </AssociatedFiles>
+                <Provenance>
+                    <ReplacedFile>
+                        <FileURI/>
+                        <DisplayName/>
+                    </ReplacedFile>
+                </Provenance>
+                <DefaultSubmissionRule ruleID="http://www.oxygenxml.com/">
+                    <Destination>
+                        <Endpoint/>
+                        <EndpointDescription/>
+                    </Destination>
+                </DefaultSubmissionRule>
+                <DefaultComplianceRule ruleID="http://www.oxygenxml.com/">
+                    <Description/>
+                </DefaultComplianceRule>
+            </TemplateFile>
+            <DigitalSignature>
+                <PackageSignature/>
+                <SignatureProperties>
+                    <Signer> </Signer>
+                    <SignerPublicKeyCertificate/>
+                    <SignatureReason/>
+                    <SignatureDateTimeStamp/>
+                </SignatureProperties>
+            </DigitalSignature>
+        </Admin>
+        
+        <SubmissionRule ruleID="http://www.oxygenxml.com/">
+            <Destination>
+                <Endpoint/>
+                <EndpointDescription/>
+                <SubmissionTechnology/>
+                <Organization>
+                    <OrgName/>
+                </Organization>
+            </Destination>
+            <RuleDescription/>
+        </SubmissionRule>
+        
+        <ComplianceRule ruleID="http://www.oxygenxml.com/">
+            <Description/>
+            <ComplianceOrganization>
+                <OrgName/>
+                <Department/>
+                <StreetAddress> </StreetAddress>
+                <Email>
+                    <EmailAddress val="+@-.-"> </EmailAddress>
+                </Email>
+                <Phone>
+                    <PhoneNumber val="00   "> </PhoneNumber>
+                </Phone>
+                <WebURL/>
+                <Role/>
+                <ContactPerson>
+                    <PersonName>
+                        <FirstName/>
+                        <LastName/>
+                    </PersonName>
+                </ContactPerson>
+                <Identifier val="val1607"> </Identifier>
+                <Usage/>
+            </ComplianceOrganization>
+        </ComplianceRule>
+        
+        <XMLPackage>
+            <DemogFormDesign lineage="" version="" fullURI="DFD" ID="DFD1"/>
+            <FormDesign lineage="" version="" fullURI=" a" ID="FD1"/>
+        </XMLPackage>
+        
+        <SDCPackage packageID="pid1" lineage="" version="" fullURI="pid1">
+            <FormURL>
+                <LinkURI/>
+            </FormURL>
+            <SDCPackage packageID="pid2" lineage="" version="" fullURI="pid2">
+                <XMLPackage>
+                    <FormDesign lineage="" version="" fullURI="FD2" ID="FD2"></FormDesign>
+                </XMLPackage>
+            </SDCPackage>
+        </SDCPackage>
+    </SDCPackage>
+</SDCPackage>
