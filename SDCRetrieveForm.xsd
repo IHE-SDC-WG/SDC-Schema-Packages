@@ -267,6 +267,7 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="HTMLPackageType">
+
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:choice>

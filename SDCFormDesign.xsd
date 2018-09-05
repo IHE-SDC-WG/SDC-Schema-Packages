@@ -4,7 +4,7 @@
 	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:8/23/2017 Changes to support SDC rules -->
 	<xs:include schemaLocation="SDCExpressions.xsd"/>
-	
+
 	<xs:element name="FormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema</xs:documentation>
@@ -75,7 +75,7 @@ QF is identified by the presence of a ResponseField child,  which describes how 
 				<xs:attribute name="basedOnURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: URI used to identify the DE that that this DE is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current DE.   
-                     
+                   
 The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
@@ -289,6 +289,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 				<xs:attribute name="pkgManagerURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>The server from which the injected package will be retrieved.
+
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
@@ -833,6 +834,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				<xs:attribute default="True" name="showInReport">
 					<xs:annotation>
 						<xs:documentation>CHANGED to T/F/Optional
+
 
 If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem (and all sub-items) should be omitted from the report.
 
