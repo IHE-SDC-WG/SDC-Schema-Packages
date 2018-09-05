@@ -4,10 +4,15 @@
 	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:8/23/2017 Changes to support SDC rules -->
 	<xs:include schemaLocation="SDCExpressions.xsd"/>
+
 	<xs:element name="FormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema</xs:documentation>
 		</xs:annotation>
+		<xs:unique name="uniqueID" xmlns="urn:ihe:qrph:sdc:2016">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@ID"/>
+		</xs:unique>
 	</xs:element>
 	<xs:element name="DataElement" type="DataElementType"/>
 	<xs:group name="ChildElementsGroup">
@@ -55,32 +60,63 @@ QF is identified by the presence of a ResponseField child,  which describes how 
 		<xs:complexContent>
 			<xs:extension base="IdentifiedExtensionType">
 				<xs:group maxOccurs="unbounded" ref="ChildElementsGroup"/>
-				<xs:attribute name="prevVersionURI" type="URI_Atype">
+				<xs:attribute name="title" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>NEW: URI used to identify the form that is the immediate previous version of the current FormDesign</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="basedOnURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>URI used to identify the original DE that that this DE is based upon.
-                     
-The current DE may reuse the original @IDs whenever the question/answer/semantic context is identical to the original.  However, a clear policy for DE @ID reuse must be extablished.
-                     
-Relying on a CodedValue, mapping file or table may be a better and more flexible approach than @basedOnURI. In this way, users could compare data elements to determine if they contain semantic matches, and this is supported better with a more robust code map section.
-                  </xs:documentation>
+						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="filename" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Filename to use when the current DE XML is saved as a file.  
-</xs:documentation>
+						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
+                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
+                     but the naming convention may be use-case-specific.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="title" type="xs:string">
+				<xs:attribute name="basedOnURI" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>Human readable title for display when choosing DEs</xs:documentation>
+						<xs:documentation>NEW: URI used to identify the DE that that this DE is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current DE.   
+                   
+The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="lineage" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>NEW: A text identifier that is used to group multiple versions of a single DE.  The lineage is constant for all versions of a single kind of DE.  
+
+When appended to @baseURI, it can be used to retrieve all versions of one particular DE.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="version" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>NEW: @version contains the version text for the current DE.  It is designed to be used in conjuction with @baseURI and @lineage.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="fullURI" type="URI_Atype" use="required">
+					<xs:annotation>
+						<xs:documentation>NEW: The full URI that uniquely identifies the current DE.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="prevVersionURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: The full URI used to identify the DE that is the immediate previous version of the current DE</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="instanceURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: Unique URI used to identify a unique instance of a DE.  Used for tracking DE responses across time and across multiple episodes of editing by end-users.  This URI does not change for each edit session of a DE instance.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="instanceVersionURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: Unique URI used to identify a unique instance of a DE's saved responses.  It is used for tracking DE responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a DE instance.  It may be e.g., a new GUID, or a repeat of the deInstanceID followed by a version number.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="previousInstanceVersionURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: Unique URI used to identify the immediate previous instance of a de containing responses.  This is the @deInstanceVersionURI that represents the instance of the form that the user opened up before beginning a new cycle of edit/save.  This attribute is used for tracking de responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a de instance.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -225,14 +261,35 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 					<xs:element name="Question" type="QuestionItemType"/>
 					<xs:element name="FormDesign" type="FormDesignType"/>
 				</xs:choice>
-				<xs:attribute name="packageID" type="URI_Atype">
+				<xs:attribute name="pkgID" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>This ID represents the Package that contains the form to be injected.</xs:documentation>
+						<xs:documentation>This ID represents the Package that contains the form to be injected.  The package may contain an empty form or a form containing responses. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="packageBaseURI" type="URI_Atype">
+				<xs:attribute name="pkgInstanceURI" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>If the ID does not use the default base URI (namespace), then the local baseURI goes here. Note that all IDs must be unique within a form, even if they do not have the same baseURI.   Ideally, the baseURI + ID should combine to form a *globally* unique identifier, that uniquely identifies an item in a particular form.  The same baseURI and ID may be reused in derived or versioned forms, as long as the context stays the same, and any affected data elements remain unchanged in context and semantics.  Following this approach is likely to simplify analytics based on form content.
+						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package.  Used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI does not change for each edit session of a package instance.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="pkgInstanceVersionURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package's saved responses.  It is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a package instance.  It may be e.g., a new GUID, or a repeat of the pkgInstanceID followed by a version number.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="pkgBaseURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>DRAFT: The baseURI of the package, whihc indicates the home source of the package.  The formManagerURP + pkgBaseURI + pkgID are concatenated to retrieve an empty form.  formManagerURP + pkgBaseURI + pkgInstanceVersionURI are concatenated to retrieve a specific version of a populated form.  formManagerURP + pkgBaseURI + pkgInstanceURI are concatenated to retrieve the latest instance of a populated form.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="pkgFullURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>DRAFT: The injected package is retrieved form formManagerURI + "/" + pkgFullURI</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="pkgManagerURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>The server from which the injected package will be retrieved.
+
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
@@ -242,7 +299,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="injectionID" type="xs:string">
+				<xs:attribute name="X_injectionID" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Unique ID (GUID) to distinguish multiple instances of the same injected node.</xs:documentation>
 					</xs:annotation>
@@ -777,6 +834,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				<xs:attribute default="True" name="showInReport">
 					<xs:annotation>
 						<xs:documentation>CHANGED to T/F/Optional
+
 
 If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem (and all sub-items) should be omitted from the report.
 
