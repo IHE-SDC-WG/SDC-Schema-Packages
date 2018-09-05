@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
 <FormDesign xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" order="0"
 	ID="VenValTemp.349_999.000.001.UNK_sdcFDF" baseURI="cap.org"
 	fullURI="_baseURI=cap.org&amp;_lineage=VenValTemp.349&amp;_version=999.000.001.UNK&amp;_docType=sdcFDF"

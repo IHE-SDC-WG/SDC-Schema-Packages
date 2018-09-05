@@ -4,10 +4,15 @@
 	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:8/23/2017 Changes to support SDC rules -->
 	<xs:include schemaLocation="SDCExpressions.xsd"/>
+	
 	<xs:element name="FormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema</xs:documentation>
 		</xs:annotation>
+		<xs:unique name="uniqueID" xmlns="urn:ihe:qrph:sdc:2016">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@ID"/>
+		</xs:unique>
 	</xs:element>
 	<xs:element name="DataElement" type="DataElementType"/>
 	<xs:group name="ChildElementsGroup">
