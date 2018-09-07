@@ -4,7 +4,7 @@
 	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:8/23/2017 Changes to support SDC rules -->
 	<xs:include schemaLocation="SDCExpressions.xsd"/>
-	
+
 	<xs:element name="FormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema</xs:documentation>
@@ -194,9 +194,7 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 				</xs:attribute>
 				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
-						<xs:documentation>NEW: A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  
-
-When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
+						<xs:documentation>A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="version" type="xs:string" use="required">
@@ -206,7 +204,7 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 				</xs:attribute>
 				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
-						<xs:documentation>NEW: The full URI that uniquely identifies the current form.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+						<xs:documentation>NEW: The full URI that uniquely identifies the current form.   It is created by concatenating @baseURI + lineage + version.  Each of the components is separated by a single forward slash.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="prevVersionURI" type="URI_Atype">
@@ -256,7 +254,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="IdentifiedExtensionType">
-				<xs:choice minOccurs="0">
+				<xs:choice>
 					<xs:element name="Section" type="SectionItemType"/>
 					<xs:element name="Question" type="QuestionItemType"/>
 					<xs:element name="FormDesign" type="FormDesignType"/>
@@ -399,7 +397,7 @@ Prefixing the name with a tilde (~) will suppress this reversal behavior.
 				</xs:attribute>
 				<xs:attribute default="false" name="omitWhenSelected" type="xs:boolean">
 					<xs:annotation>
-						<xs:documentation>NEW: 
+						<xs:documentation>DEPRECATED 
 
 If @omitWhenSelected is set to true, then the question and its response(s) should not be present in a typical  report derived from this template.  This attribute is usually set to true when the answer choice is used to control form behavior (e.g., skip logic), or when the question provides unhelpful "negative" information about actions that did not occur or were not performed, or things that were not observed or could not be assessed.  If @omitWhenSelectedset is false (default) then the question and its response(s) should appear in the report.  Added 11/29/15 to replace @reportAction</xs:documentation>
 					</xs:annotation>
@@ -1295,7 +1293,7 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 						<xs:documentation>Expand target items when activated and collapse item when deactivated.  Default = false.  All descendants are affected in the same way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute default="false" name="removeResponsesWhenDeactivated"
+				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated"
 					type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete all user selections, responses and comments when the item is deactivated.  Applies to all descendant items as well.  User should be warned before deleting anything, with an option to preserve the responses in the disabled items.  Disabled item responses should not be saved with the form data.</xs:documentation>

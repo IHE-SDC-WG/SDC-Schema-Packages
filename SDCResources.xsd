@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:ihe:qrph:sdc:2016"
-	xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:7/9/2017 Changes to support SDC rules -->
 
 	<xs:include schemaLocation="SDCDataTypes.xsd"/>
@@ -13,7 +13,8 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Description" type="RichTextType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Description"
+						type="RichTextType"/>
 					<xs:element name="Hash" minOccurs="0" type="HashType">
 						<xs:annotation>
 							<xs:documentation>Binary hash of the blob data</xs:documentation>
@@ -111,7 +112,8 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="1" minOccurs="1" name="CodeSystemName" type="string_Stype">
+					<xs:element maxOccurs="1" minOccurs="1" name="CodeSystemName"
+						type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>The name of the coding system, as recommended by the
  coding system curators, or as recommended by the agency that creates
@@ -151,7 +153,8 @@
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:element maxOccurs="1" minOccurs="0" name="Person" type="PersonType"/>
-					<xs:element maxOccurs="1" minOccurs="0" name="Organization" type="OrganizationType"/>
+					<xs:element maxOccurs="1" minOccurs="0" name="Organization"
+						type="OrganizationType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -164,18 +167,22 @@
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:element maxOccurs="1" minOccurs="1" name="PersonName" type="NameType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="AliasName" type="NameType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="AliasName" type="NameType"
+						> </xs:element>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Job" type="JobType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="StreetAddress" type="AddressType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="StreetAddress"
+						type="AddressType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Email" type="EmailType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Phone" type="PhoneType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="WebURL" type="anyURI_Stype"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="WebURL"
+						type="anyURI_Stype"> </xs:element>
 					<xs:element maxOccurs="1" minOccurs="0" name="Role" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Role of the person, e.g., creator, copyright holder, accreditor, certifier, curator, etc.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="Identifier" type="IdentifierType" maxOccurs="unbounded" minOccurs="0"/>
+					<xs:element name="Identifier" type="IdentifierType" maxOccurs="unbounded"
+						minOccurs="0"/>
 					<xs:element maxOccurs="1" minOccurs="0" name="Usage" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>When this person should be contacted.</xs:documentation>
@@ -189,8 +196,10 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="JobTitle" type="string_Stype"/>
-					<xs:element maxOccurs="1" minOccurs="0" name="Organization" type="OrganizationType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="JobTitle"
+						type="string_Stype"/>
+					<xs:element maxOccurs="1" minOccurs="0" name="Organization"
+						type="OrganizationType"/>
 					<xs:element minOccurs="0" name="StartDate" type="date_Stype"/>
 					<xs:element minOccurs="0" name="StopDate" type="date_Stype"/>
 					<xs:element maxOccurs="1" minOccurs="0" name="Description" type="string_Stype">
@@ -209,20 +218,25 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="1" minOccurs="1" name="OrgName" type="string_Stype" nillable="true"/>
+					<xs:element maxOccurs="1" minOccurs="1" name="OrgName" type="string_Stype"
+						nillable="true"/>
 					<xs:element maxOccurs="1" minOccurs="0" name="Department" type="string_Stype"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="StreetAddress" type="AddressType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="StreetAddress"
+						type="AddressType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Email" type="EmailType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Phone" type="PhoneType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="WebURL" type="anyURI_Stype"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="WebURL"
+						type="anyURI_Stype"> </xs:element>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="Role" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Role of the organization, e.g., creator, copyright
  holder, accreditor, certifier, curator, etc.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ContactPerson" type="PersonType"/>
-					<xs:element name="Identifier" type="IdentifierType" maxOccurs="unbounded" minOccurs="0"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ContactPerson"
+						type="PersonType"/>
+					<xs:element name="Identifier" type="IdentifierType" maxOccurs="unbounded"
+						minOccurs="0"/>
 					<xs:element maxOccurs="1" minOccurs="0" name="Usage" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>When this organization should be
@@ -245,7 +259,8 @@
 							<xs:documentation>Type of address, e.g., home, office, etc</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="10" minOccurs="0" name="InternalAddress" type="string_Stype">
+					<xs:element maxOccurs="10" minOccurs="0" name="InternalAddress"
+						type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Address instructions for directing mail within an organizations buildings or corporate
  infrastructure.</xs:documentation>
@@ -298,10 +313,12 @@
 							<xs:documentation>Usage type of phone number, e.g., home, office, etc</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="1" minOccurs="0" name="CountryCode" type="CountryCodeType"> </xs:element>
+					<xs:element maxOccurs="1" minOccurs="0" name="CountryCode"
+						type="CountryCodeType"> </xs:element>
 					<xs:element maxOccurs="1" minOccurs="0" name="AreaCode" type="AreaCodeType"> </xs:element>
 					<xs:element name="PhoneNumber" type="PhoneNumberType"> </xs:element>
-					<xs:element maxOccurs="1" minOccurs="0" name="PhoneExtension" type="string_Stype"/>
+					<xs:element maxOccurs="1" minOccurs="0" name="PhoneExtension"
+						type="string_Stype"/>
 					<xs:element maxOccurs="1" minOccurs="0" name="Usage" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>When this phone number should be used</xs:documentation>
@@ -318,7 +335,8 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="1" minOccurs="1" name="EmailAddress" type="EmailAddressType"> </xs:element>
+					<xs:element maxOccurs="1" minOccurs="1" name="EmailAddress"
+						type="EmailAddressType"> </xs:element>
 					<xs:element maxOccurs="1" minOccurs="0" name="EmailClass" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Type of email, e.g., home, office, etc</xs:documentation>
@@ -388,7 +406,8 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:element minOccurs="0" name="FileSizeKB" type="positiveInteger_Stype"> </xs:element>
-					<xs:element maxOccurs="unbounded" name="Description" nillable="false" minOccurs="0" type="string_Stype">
+					<xs:element maxOccurs="unbounded" name="Description" nillable="false"
+						minOccurs="0" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Any additional information about the template or file. The type of information should be specified in the @type
  attribute.</xs:documentation>
@@ -413,21 +432,25 @@
  @type include Curator, Author, and Authority.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element minOccurs="0" name="Approval" maxOccurs="unbounded" type="ApprovalType">
+					<xs:element minOccurs="0" name="Approval" maxOccurs="unbounded"
+						type="ApprovalType">
 						<xs:annotation>
 							<xs:documentation>Documentation of review and acceptance of the file for production usage.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element minOccurs="0" name="FileHash" type="FileHashType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Language" type="LanguageType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Language"
+						type="LanguageType"/>
 					<xs:element minOccurs="0" name="AssociatedFiles" type="AssociatedFilesType">
 						<xs:annotation>
 							<xs:documentation>Link to any associated files, such as schemas, reference documents, manuals, etc.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element minOccurs="0" name="Provenance" type="ProvenanceType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="DefaultSubmissionRule" type="SubmissionRuleType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="DefaultComplianceRule" type="ComplianceRuleType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="DefaultSubmissionRule"
+						type="SubmissionRuleType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="DefaultComplianceRule"
+						type="ComplianceRuleType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -447,7 +470,8 @@
 							<xs:documentation>The language used for text in SDC templates. </xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="LanguageCode.ISO.639.3" type="LanguageCode.ISO.639.3_Type"> </xs:element>
+					<xs:element name="LanguageCode.ISO.639.3" type="LanguageCode.ISO.639.3_Type">
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -497,7 +521,8 @@
 							<xs:complexContent>
 								<xs:extension base="ExtensionBaseType">
 									<xs:sequence>
-										<xs:element name="Change" type="ChangeLogType" maxOccurs="unbounded"/>
+										<xs:element name="Change" type="ChangeLogType"
+											maxOccurs="unbounded"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -551,7 +576,8 @@
 					<xs:element name="ChangeDate" type="dateTime_Stype"> </xs:element>
 					<xs:element name="ChangeDescription" type="string_Stype" minOccurs="0"/>
 					<xs:element name="Editors" minOccurs="0" type="ContactsType"> </xs:element>
-					<xs:element minOccurs="0" name="ChangeTracking" type="ChangeTrackingType"> </xs:element>
+					<xs:element minOccurs="0" name="ChangeTracking" type="ChangeTrackingType">
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -603,13 +629,15 @@
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:element minOccurs="0" name="FileDate" type="dateTime_Stype"> </xs:element>
-					<xs:element minOccurs="0" name="PreviousRevisionDate" maxOccurs="unbounded" type="dateTime_Stype"> </xs:element>
+					<xs:element minOccurs="0" name="PreviousRevisionDate" maxOccurs="unbounded"
+						type="dateTime_Stype"> </xs:element>
 					<xs:element minOccurs="0" name="ReleaseDate" type="dateTime_Stype"> </xs:element>
 					<xs:element minOccurs="0" name="EffectiveDate" type="dateTime_Stype"> </xs:element>
 					<xs:element minOccurs="0" name="FirstReleaseDate" type="dateTime_Stype"> </xs:element>
 					<xs:element minOccurs="0" name="UsageStartDate" type="dateTime_Stype"> </xs:element>
 					<xs:element minOccurs="0" name="RetirementDate" type="dateTime_Stype"> </xs:element>
-					<xs:element minOccurs="0" name="OtherDate" maxOccurs="unbounded" type="dateTime_Stype"> </xs:element>
+					<xs:element minOccurs="0" name="OtherDate" maxOccurs="unbounded"
+						type="dateTime_Stype"> </xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -665,7 +693,8 @@
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="unbounded" minOccurs="1" name="Destination" type="DestinationType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="1" name="Destination"
+						type="DestinationType"> </xs:element>
 					<xs:element minOccurs="0" name="RuleDescription" type="string_Stype"/>
 				</xs:sequence>
 				<xs:attribute name="formID" type="URI_Atype"/>
@@ -681,7 +710,8 @@
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:element maxOccurs="1" minOccurs="1" name="Description" type="string_Stype"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceOrganization" type="OrganizationType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceOrganization"
+						type="OrganizationType"/>
 				</xs:sequence>
 				<xs:attribute name="ruleID" type="URI_Atype" use="required"/>
 				<xs:attribute name="formID" type="URI_Atype"/>
@@ -770,7 +800,8 @@
 	<xs:complexType name="LanguageCode.ISO.639.3_Type">
 		<xs:complexContent>
 			<xs:restriction base="string_Stype">
-				<xs:attribute name="val" use="required" type="LanguageCode.ISO.639.3_StypeEnum"> </xs:attribute>
+				<xs:attribute name="val" use="required" type="LanguageCode.ISO.639.3_StypeEnum">
+				</xs:attribute>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -797,7 +828,8 @@
 					<xs:element name="MiddleName" type="string_Stype" minOccurs="0"/>
 					<xs:element name="LastName" type="string_Stype" nillable="true"/>
 					<xs:element name="NameSuffix" type="string_Stype" minOccurs="0"/>
-					<xs:element name="DegreeCert" type="string_Stype" maxOccurs="unbounded" minOccurs="0">
+					<xs:element name="DegreeCert" type="string_Stype" maxOccurs="unbounded"
+						minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Acronyms for degrees and certifications, e.g., MD, PhD, FACP (repeat element for each acronym)</xs:documentation>
 						</xs:annotation>
@@ -831,15 +863,12 @@
 	<xs:attributeGroup name="IDAttributes">
 		<xs:attribute name="ID" type="URI_Atype" use="required">
 			<xs:annotation>
-				<xs:documentation>A unique identifier for critical types in FormDesign.
-TODO: Needs Schematron to calidate uniqueness in each form.</xs:documentation>
+				<xs:documentation>@ID is a unique identifier for XFC types in FormDesign, and for FormDesign itself.  It is required every place it appears.  Uniqueness is enforced by the SDC Schema.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="baseURI" type="URI_Atype">
 			<xs:annotation>
-				<xs:documentation>If the ID does not use the default base URI (namespace), then the local baseURI goes here. Note that all IDs must be unique within a form, even if they do not have the same baseURI. 
-
-Ideally, the baseURI + ID should combine to form a *globally* unique identifier, that uniquely identifies an item in a particular form.  The same baseURI and ID may be reused in derived or versioned forms, as long as the context stays the same, and any affected data elements remain unchanged in context and semantics.  Following this approach is likely to simplify analytics based on form content.</xs:documentation>
+				<xs:documentation>@baseURI is required in the FormDesign element but is optional elsewhere.  It identifies the organization that is responsible for designing and maintaining the FDF or XFC.  If @ID does not use the default base URI (namespace) which is defined in the FormDesign element, then a new value for the @baseURI goes here, which overrides any @baseURI defined higher in the FDF. Note that all IDs must be unique within a form, even if they do not have the same baseURI. @baseURI is inherited by all descendant XFCs.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
@@ -883,7 +912,8 @@ Ideally, the baseURI + ID should combine to form a *globally* unique identifier,
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="1" minOccurs="0" name="CodingMatchComment" type="string_Stype">
+					<xs:element maxOccurs="1" minOccurs="0" name="CodingMatchComment"
+						type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Comment about the degree of match between the mapped item and the assigned
  code.</xs:documentation>
@@ -917,9 +947,12 @@ Ideally, the baseURI + ID should combine to form a *globally* unique identifier,
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence maxOccurs="1">
 					<xs:element maxOccurs="1" minOccurs="1" name="Endpoint" type="anyURI_Stype"/>
-					<xs:element maxOccurs="1" minOccurs="1" name="EndpointDescription" type="string_Stype"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionTechnology" type="string_Stype"/>
-					<xs:element maxOccurs="1" minOccurs="0" name="Organization" type="OrganizationType"/>
+					<xs:element maxOccurs="1" minOccurs="1" name="EndpointDescription"
+						type="string_Stype"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionTechnology"
+						type="string_Stype"/>
+					<xs:element maxOccurs="1" minOccurs="0" name="Organization"
+						type="OrganizationType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -928,17 +961,20 @@ Ideally, the baseURI + ID should combine to form a *globally* unique identifier,
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence minOccurs="0">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Included" type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Included"
+						type="CodingType">
 						<xs:annotation>
 							<xs:documentation>Reasons to use the file</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Excluded" type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Excluded"
+						type="CodingType">
 						<xs:annotation>
 							<xs:documentation>Reasons to not use the file</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" name="Description" nillable="false" minOccurs="0" type="string_Stype">
+					<xs:element maxOccurs="unbounded" name="Description" nillable="false"
+						minOccurs="0" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Non-coded text describing usage criteria.</xs:documentation>
 						</xs:annotation>
@@ -960,8 +996,10 @@ Ideally, the baseURI + ID should combine to form a *globally* unique identifier,
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence minOccurs="0">
-					<xs:element maxOccurs="unbounded" name="ApprovalContact" type="ContactType" minOccurs="0"/>
-					<xs:element maxOccurs="unbounded" name="Description" nillable="false" minOccurs="0" type="string_Stype">
+					<xs:element maxOccurs="unbounded" name="ApprovalContact" type="ContactType"
+						minOccurs="0"/>
+					<xs:element maxOccurs="unbounded" name="Description" nillable="false"
+						minOccurs="0" type="string_Stype">
 						<xs:annotation>
 							<xs:documentation>Non-structured text describing file approval.</xs:documentation>
 						</xs:annotation>
@@ -1103,9 +1141,12 @@ RENAMED:  'OtherText' to 'Property' 9/14/2016</xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Comment" type="CommentType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Extension" type="ExtensionType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Property" type="PropertyType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Comment"
+						type="CommentType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Extension"
+						type="ExtensionType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Property"
+						type="PropertyType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -1197,8 +1238,10 @@ Time Zones
 					<xs:element name="integer" nillable="true" type="integer_DEtype"> </xs:element>
 					<xs:element name="long" nillable="true" type="long_DEtype"> </xs:element>
 					<xs:element name="negativeInteger" nillable="true" type="negativeInteger_DEtype"/>
-					<xs:element name="nonNegativeInteger" nillable="true" type="nonNegativeInteger_DEtype"/>
-					<xs:element name="nonPositiveInteger" nillable="true" type="nonPositiveInteger_DEtype"/>
+					<xs:element name="nonNegativeInteger" nillable="true"
+						type="nonNegativeInteger_DEtype"/>
+					<xs:element name="nonPositiveInteger" nillable="true"
+						type="nonPositiveInteger_DEtype"/>
 					<xs:element name="positiveInteger" nillable="true" type="positiveInteger_DEtype"/>
 					<xs:element name="short" nillable="true" type="short_DEtype"/>
 					<xs:element name="string" nillable="true" type="string_DEtype"/>
@@ -1212,7 +1255,8 @@ Time Zones
 					<xs:element name="unsignedLong" nillable="true" type="unsignedLong_DEtype"/>
 					<xs:element name="unsignedShort" nillable="true" type="unsignedShort_DEtype"/>
 					<xs:element name="XML" nillable="true" type="XML_DEtype"/>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_DEtype"> </xs:element>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_DEtype"> </xs:element>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
@@ -1235,8 +1279,10 @@ SDC datatypes for Data Entry (DE), based mostly on W3C specifications. Uses base
 					<xs:element name="integer" nillable="true" type="integer_DEtype"> </xs:element>
 					<xs:element name="long" nillable="true" type="long_DEtype"> </xs:element>
 					<xs:element name="negativeInteger" nillable="true" type="negativeInteger_DEtype"/>
-					<xs:element name="nonNegativeInteger" nillable="true" type="nonNegativeInteger_DEtype"/>
-					<xs:element name="nonPositiveInteger" nillable="true" type="nonPositiveInteger_DEtype"/>
+					<xs:element name="nonNegativeInteger" nillable="true"
+						type="nonNegativeInteger_DEtype"/>
+					<xs:element name="nonPositiveInteger" nillable="true"
+						type="nonPositiveInteger_DEtype"/>
 					<xs:element name="positiveInteger" nillable="true" type="positiveInteger_DEtype"/>
 					<xs:element name="short" nillable="true" type="short_DEtype"/>
 					<xs:element name="time" nillable="true" type="time_DEtype">
@@ -1248,7 +1294,8 @@ SDC datatypes for Data Entry (DE), based mostly on W3C specifications. Uses base
 					<xs:element name="unsignedInt" nillable="true" type="unsignedInt_DEtype"/>
 					<xs:element name="unsignedLong" nillable="true" type="unsignedLong_DEtype"/>
 					<xs:element name="unsignedShort" nillable="true" type="unsignedShort_DEtype"/>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_DEtype"> </xs:element>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_DEtype"> </xs:element>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
@@ -1273,15 +1320,18 @@ SDC datatypes in Simple (S) format, based mostly on W3C specifications.  Uses ba
 					<xs:element name="integer" nillable="true" type="integer_Stype"> </xs:element>
 					<xs:element name="long" nillable="true" type="long_Stype"/>
 					<xs:element name="negativeInteger" nillable="true" type="negativeInteger_Stype"/>
-					<xs:element name="nonNegativeInteger" nillable="true" type="nonNegativeInteger_Stype"/>
-					<xs:element name="nonPositiveInteger" nillable="true" type="nonPositiveInteger_Stype"/>
+					<xs:element name="nonNegativeInteger" nillable="true"
+						type="nonNegativeInteger_Stype"/>
+					<xs:element name="nonPositiveInteger" nillable="true"
+						type="nonPositiveInteger_Stype"/>
 					<xs:element name="positiveInteger" nillable="true" type="positiveInteger_Stype"/>
 					<xs:element name="short" nillable="true" type="short_Stype"/>
 					<xs:element name="unsignedByte" nillable="true" type="unsignedByte_Stype"/>
 					<xs:element name="unsignedInt" nillable="true" type="unsignedInt_Stype"/>
 					<xs:element name="unsignedLong" nillable="true" type="unsignedLong_Stype"/>
 					<xs:element name="unsignedShort" nillable="true" type="unsignedShort_Stype"/>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_Stype"/>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_Stype"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
@@ -1351,7 +1401,8 @@ Or it might look like this: PT15H.
 							<xs:documentation>**possibly "HH:MM:SS:ms am/pm 12/24"</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_DEtype"> </xs:element>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_DEtype"> </xs:element>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
@@ -1428,7 +1479,8 @@ Or it might look like this: PT15H.
 							<xs:documentation>**possibly "HH:MM:SS:ms am/pm 12/24"</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_Stype"/>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_Stype"/>
 					<xs:element name="List000"/>
 				</xs:choice>
 			</xs:extension>
@@ -1527,8 +1579,10 @@ Or it might look like this: PT15H.
 					<xs:element name="integer" nillable="true" type="integer_Stype"> </xs:element>
 					<xs:element name="long" nillable="true" type="long_Stype"/>
 					<xs:element name="negativeInteger" nillable="true" type="negativeInteger_Stype"/>
-					<xs:element name="nonNegativeInteger" nillable="true" type="nonNegativeInteger_Stype"/>
-					<xs:element name="nonPositiveInteger" nillable="true" type="nonPositiveInteger_Stype"/>
+					<xs:element name="nonNegativeInteger" nillable="true"
+						type="nonNegativeInteger_Stype"/>
+					<xs:element name="nonPositiveInteger" nillable="true"
+						type="nonPositiveInteger_Stype"/>
 					<xs:element name="positiveInteger" nillable="true" type="positiveInteger_Stype"/>
 					<xs:element name="short" nillable="true" type="short_Stype"/>
 					<xs:element name="string" nillable="true" type="string_Stype"/>
@@ -1542,7 +1596,8 @@ Or it might look like this: PT15H.
 					<xs:element name="unsignedLong" nillable="true" type="unsignedLong_Stype"/>
 					<xs:element name="unsignedShort" nillable="true" type="unsignedShort_Stype"/>
 					<xs:element name="XML" nillable="true" type="XML_Stype"/>
-					<xs:element name="yearMonthDuration" nillable="true" type="yearMonthDuration_Stype"/>
+					<xs:element name="yearMonthDuration" nillable="true"
+						type="yearMonthDuration_Stype"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
