@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
 <FormDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" order="0"
-    ID="SDC.Samples.0_000_sdcFDF" baseURI="cap.org"
-    fullURI="_baseURI=cap.org&amp;_lineage=SDC.Samples.0&amp;_version=000&amp;_docType=sdcFDF"
-    filename="SDC.Samples.0_000_000_sdcFDF.xml" lineage="SDC.Samples.0"
-    formTitle="SDC Sample Blocks" version="000" xmlns="urn:ihe:qrph:sdc:2016"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    order="0"    
+    baseURI="cap.org"
+    lineage="Samples.Samp1"
+    version="v001"
+    ID="Samples.Samp1_v001_sdcFDF"
+    fullURI="_baseURI=cap.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"    
+    filename="Samples.Samp1_v001_sdcFDF.xml" 
+
+    formTitle="Sample Blocks" 
+
+    xmlns="urn:ihe:qrph:sdc:2016"
     xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/SDCRetrieveForm.xsd">
+    <Header ID="H1" title="This is a Header"/>
+    
     <Body ID="B1">
         <ChildItems>
             <DisplayedItem name="DI_29723" order="16" ID="29723.100004300"
@@ -96,7 +105,7 @@
                         <ListItem ID="LI2a" title="ListItem.title.2"/>
                         <ListItem ID="LI3a" title="ListItem.title.3"/>
                         <ListItem ID="LI4a" title="ListItem.title.4"/>
-                        <ListItem ID="LI5a" title="ListItem.title.5">
+                        <ListItem ID="LI5a" title="No good answer here (explain)" selected="true">
                             <Property propName="reportText" val="{no text}"/>
                             <ListItemResponseField responseRequired="true">
                                 <Response>
@@ -130,6 +139,7 @@
         </ChildItems>
 
     </Body>
-    <Footer ID="F1"/>
+
+    <Footer ID="F1" title="This is a Footer"/>
     <Rules/>
 </FormDesign>

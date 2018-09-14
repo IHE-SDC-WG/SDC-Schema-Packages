@@ -84,6 +84,27 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 						<xs:documentation>NEW: Unique URI used to identify the immediate previous instance of a package containing responses.  This is the @pkgnstanceVersionURI that represents the instance of the package that the user opened up before beginning a new cycle of edit/save.  This attribute is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a package instance.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+				<xs:attribute name="approvalStatus">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="inProcess"/>
+							<xs:enumeration value="preliminary"/>
+							<xs:enumeration value="approved"/>
+							<xs:enumeration value="retracted"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="completionStatus">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="pending"/>
+							<xs:enumeration value="incomplete"/>
+							<xs:enumeration value="complete"/>
+							<xs:enumeration value="cancelled"/>
+							<xs:enumeration value="retracted"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
 				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>

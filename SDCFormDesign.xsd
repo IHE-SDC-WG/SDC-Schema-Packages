@@ -18,7 +18,7 @@
 	<xs:group name="ChildElementsGroup">
 		<xs:choice>
 			<xs:annotation>
-				<xs:documentation>DisplayedType choices</xs:documentation>
+				<xs:documentation>IdentifiedExtensionType choices</xs:documentation>
 			</xs:annotation>
 			<xs:element minOccurs="0" name="Section" type="SectionItemType">
 				<xs:annotation>
@@ -60,25 +60,6 @@ QF is identified by the presence of a ResponseField child,  which describes how 
 		<xs:complexContent>
 			<xs:extension base="IdentifiedExtensionType">
 				<xs:group maxOccurs="unbounded" ref="ChildElementsGroup"/>
-				<xs:attribute name="title" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="filename" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
-                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
-                     but the naming convention may be use-case-specific.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="basedOnURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: URI used to identify the DE that that this DE is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current DE.   
-                     
-The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: A text identifier that is used to group multiple versions of a single DE.  The lineage is constant for all versions of a single kind of DE.  
@@ -94,6 +75,25 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: The full URI that uniquely identifies the current DE.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="filename" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
+                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
+                     but the naming convention may be use-case-specific.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="title" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="basedOnURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: URI used to identify the DE that that this DE is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current DE.   
+                     
+The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="prevVersionURI" type="URI_Atype">
@@ -170,28 +170,6 @@ This event is fired after the page is loaded is memory, after the data is loaded
 					</xs:element>
 					<xs:element minOccurs="0" name="Rules" type="RulesType"> </xs:element>
 				</xs:sequence>
-				<xs:attribute name="formTitle" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="filename" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: filename to use when the current FormDesign instance is saved as a file.  
-                     For forms containing responses, the filename may include the formInstanceVersionURI, 
-                     but the naming convention may be use-case-specific.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="basedOnURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: URI used to identify the form that that this FormDesign is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current FormDesign.   
-                     
-The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.
-                     
-5/11/17:  Relying on data element mapping may be a better and more flexible approach than @basedOnURI. In this way, forms could compare data elements to determine if they contain semantic matches, and this is supported better with a more robust code map section.
-                  </xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
@@ -205,6 +183,28 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: The full URI that uniquely identifies the current form.   It is created by concatenating @baseURI + lineage + version.  Each of the components is separated by a single forward slash.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="filename" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>NEW: filename to use when the current FormDesign instance is saved as a file.  
+                     For forms containing responses, the filename may include the formInstanceVersionURI, 
+                     but the naming convention may be use-case-specific.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="formTitle" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="basedOnURI" type="URI_Atype">
+					<xs:annotation>
+						<xs:documentation>NEW: URI used to identify the form that that this FormDesign is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current FormDesign.   
+                     
+The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.
+                     
+5/11/17:  Relying on data element mapping may be a better and more flexible approach than @basedOnURI. In this way, forms could compare data elements to determine if they contain semantic matches, and this is supported better with a more robust code map section.
+                  </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="prevVersionURI" type="URI_Atype">
@@ -226,6 +226,27 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 					<xs:annotation>
 						<xs:documentation>NEW: Unique URI used to identify the immediate previous instance of a form containing responses.  This is the @formInstanceVersionURI that represents the instance of the form that the user opened up before beginning a new cycle of edit/save.  This attribute is used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a form instance.</xs:documentation>
 					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="approvalStatus">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="inProcess"/>
+							<xs:enumeration value="preliminary"/>
+							<xs:enumeration value="approved"/>
+							<xs:enumeration value="retracted"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="completionStatus">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="pending"/>
+							<xs:enumeration value="incomplete"/>
+							<xs:enumeration value="complete"/>
+							<xs:enumeration value="cancelled"/>
+							<xs:enumeration value="retracted"/>
+						</xs:restriction>
+					</xs:simpleType>
 				</xs:attribute>
 				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
@@ -397,9 +418,7 @@ Prefixing the name with a tilde (~) will suppress this reversal behavior.
 				</xs:attribute>
 				<xs:attribute default="false" name="omitWhenSelected" type="xs:boolean">
 					<xs:annotation>
-						<xs:documentation>DEPRECATED 
-
-If @omitWhenSelected is set to true, then the question and its response(s) should not be present in a typical  report derived from this template.  This attribute is usually set to true when the answer choice is used to control form behavior (e.g., skip logic), or when the question provides unhelpful "negative" information about actions that did not occur or were not performed, or things that were not observed or could not be assessed.  If @omitWhenSelectedset is false (default) then the question and its response(s) should appear in the report.  Added 11/29/15 to replace @reportAction</xs:documentation>
+						<xs:documentation>If @omitWhenSelected is set to true, then the question and its response(s) should not be present in a typical  report derived from this template.  This attribute is usually set to true when the answer choice is used to control form behavior (e.g., skip logic), or when the question provides unhelpful "negative" information about actions that did not occur or were not performed, or things that were not observed or could not be assessed.  If @omitWhenSelectedset is false (default) then the question and its response(s) should appear in the report.  Added 11/29/15 to replace @reportAction</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attributeGroup ref="ResponseReportingAttributes"/>
@@ -591,7 +610,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:attributeGroup name="ResponseAttributes">
-		<xs:attribute name="responseTypeEnum">
+		<xs:attribute name="X_responseTypeEnum">
 			<xs:annotation>
 				<xs:documentation>Allows the form filler to specify whether the current response is the initial response, or records the type of change made since the initial response was reported.</xs:documentation>
 			</xs:annotation>
@@ -603,11 +622,12 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:enumeration value="addition"/>
 					<xs:enumeration value="deletion"/>
 					<xs:enumeration value="multiple_changes"/>
-
+					<xs:enumeration value="selectionChanges"/>
+					<xs:enumeration value="responseChanges"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<xs:attribute name="responseStatusEnum">
+		<xs:attribute name="X_responseStatusEnum">
 			<xs:annotation>
 				<xs:documentation>Expresses the finality of the response, e.g., draft, pending, tentative, final and retracted.</xs:documentation>
 			</xs:annotation>
@@ -619,9 +639,12 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:enumeration value="final"/>
 					<xs:enumeration value="retracted"/>
 
+					<xs:enumeration value="cancelled"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute default="false" name="newData" type="xs:boolean"/>
+		<xs:attribute default="false" name="changedData" type="xs:boolean"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ResponseReportingAttributes">
 		<xs:annotation>
