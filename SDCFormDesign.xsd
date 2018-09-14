@@ -65,6 +65,26 @@ QF is identified by the presence of a ResponseField child,  which describes how 
 						<xs:documentation>NEW: A text identifier that is used to group multiple versions of a single DE.  The lineage is constant for all versions of a single kind of DE.  
 
 When appended to @baseURI, it can be used to retrieve all versions of one particular DE.</xs:documentation>
+
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="version" type="xs:string" use="required">
+					<xs:annotation>
+
+						<xs:documentation>NEW: @version contains the version text for the current DE.  It is designed to be used in conjuction with @baseURI and @lineage.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="fullURI" type="URI_Atype" use="required">
+					<xs:annotation>
+						<xs:documentation>NEW: The full URI that uniquely identifies the current DE.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="lineage" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
+                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
+                     but the naming convention may be use-case-specific.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="version" type="xs:string" use="required">
@@ -77,14 +97,7 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 						<xs:documentation>NEW: The full URI that uniquely identifies the current DE.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="filename" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
-                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
-                     but the naming convention may be use-case-specific.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="title" type="xs:string">
+				<xs:attribute name="prevVersionURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
 					</xs:annotation>
@@ -292,6 +305,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 				</xs:attribute>
 				<xs:attribute name="pkgInstanceVersionURI" type="URI_Atype">
 					<xs:annotation>
+
 						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package's saved responses.  It is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a package instance.  It may be e.g., a new GUID, or a repeat of the pkgInstanceID followed by a version number.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
@@ -854,6 +868,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				<xs:attribute default="True" name="showInReport">
 					<xs:annotation>
 						<xs:documentation>CHANGED to T/F/Optional
+
 
 If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem (and all sub-items) should be omitted from the report.
 

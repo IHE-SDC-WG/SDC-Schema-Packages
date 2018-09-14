@@ -15,7 +15,7 @@
     xmlns="urn:ihe:qrph:sdc:2016"
     xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/SDCRetrieveForm.xsd">
     <Header ID="H1" title="This is a Header"/>
-    
+
     <Body ID="B1">
         <ChildItems>
             <DisplayedItem name="DI_29723" order="16" ID="29723.100004300"
@@ -139,7 +139,6 @@
         </ChildItems>
 
     </Body>
-
     <Footer ID="F1" title="This is a Footer"/>
     <Rules/>
 </FormDesign>
