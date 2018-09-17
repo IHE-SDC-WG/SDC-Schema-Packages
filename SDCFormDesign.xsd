@@ -650,9 +650,9 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 		<xs:annotation>
 			<xs:documentation>Used to extend identified items (Section, Question, ListItem) for nested/repeating responses in reports and data transmissions.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute default="1" name="repeat" type="xs:positiveInteger">
+		<xs:attribute default="0" name="repeat" type="xs:nonNegativeInteger">
 			<xs:annotation>
-				<xs:documentation>For repeating questions and sections, @repeat represents the repeat ordinality, starting with 1.</xs:documentation>
+				<xs:documentation>For repeating questions and sections, @repeat represents the repeat ordinality, starting with 0. 0 indicates the original Question or Section, not a repeated one.  </xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="instanceGUID" type="xs:string">
