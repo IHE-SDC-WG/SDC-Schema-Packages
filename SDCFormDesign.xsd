@@ -251,6 +251,9 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 					</xs:simpleType>
 				</xs:attribute>
 				<xs:attribute name="completionStatus">
+					<xs:annotation>
+						<xs:documentation>**AG: Can we fold some of these enumerations into approval status for simplicity, and use this as a property? </xs:documentation>
+					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="pending"/>
@@ -1090,7 +1093,7 @@ reportInstanceVersionGUID: retrieve a single version of a report representing th
 			<xs:extension base="ExtensionBaseType">
 				<xs:attribute name="reportID" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>This ID represents the report to be displayed.</xs:documentation>
+						<xs:documentation>This ID represents the report to be displayed.**AG Can we use @packageInstanceID? Or is this a stored instance of an SDC Form? Is this different from @packageInstanceID</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="packageID" type="URI_Atype">
