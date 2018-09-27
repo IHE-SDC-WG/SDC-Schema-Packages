@@ -198,7 +198,6 @@
         </ChildItems>
 
     </Body>
-
     <Footer ID="F1" title="This is a Footer"/>
     <Rules/>
 </FormDesign>

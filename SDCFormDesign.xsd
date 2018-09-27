@@ -65,26 +65,22 @@ QF is identified by the presence of a ResponseField child,  which describes how 
 						<xs:documentation>NEW: A text identifier that is used to group multiple versions of a single DE.  The lineage is constant for all versions of a single kind of DE.  
 
 When appended to @baseURI, it can be used to retrieve all versions of one particular DE.</xs:documentation>
+
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="version" type="xs:string" use="required">
 					<xs:annotation>
+
 						<xs:documentation>NEW: @version contains the version text for the current DE.  It is designed to be used in conjuction with @baseURI and @lineage.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: The full URI that uniquely identifies the current DE.   It is created by concatenating @baseURI + lineage + version.  Each of the componenets is separated by a single forward slash.</xs:documentation>
+
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="filename" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>NEW: filename to use when the current DE instance is saved as a file.  
-                     For DEs containing responses, the filename may include the deInstanceVersionURI, 
-                     but the naming convention may be use-case-specific.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="title" type="xs:string">
+        <xs:attribute name="prevVersionURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
 					</xs:annotation>
@@ -94,11 +90,6 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 						<xs:documentation>NEW: URI used to identify the DE that that this DE is based upon.  In most cases, this should be a standard form that is modified and/or extended by the current DE.   
                      
 The current template reuses the basedOn IDs whenever the question/answer/semantic context is identical to the original.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="prevVersionURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: The full URI used to identify the DE that is the immediate previous version of the current DE</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="instanceURI" type="URI_Atype">
@@ -147,8 +138,7 @@ This event is fired after the page is loaded is memory, after the data is loaded
 					</xs:element>
 					<xs:element minOccurs="0" name="BeforeDataSubmit" type="EventType"/>
 					<xs:element minOccurs="0" name="BeforeCloseForm" type="EventType"/>
-					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded"
-						type="OnEventType">
+          <xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be specified.</xs:documentation>
 						</xs:annotation>
@@ -229,23 +219,37 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="approvalStatus">
+          <xs:annotation>
+            <xs:documentation>Describes report fitness for clinical or other action
+inProcess: currently being edited, users should not rely on results
+preliminary: report is awaiting final review and approval 
+approved: report is fit for clinical or other action; often synonymous with final
+cancelled: report/procedure has been aborted before issued  
+retracted: report has been deemed unfit for clinical or other action
+ </xs:documentation>
+          </xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="inProcess"/>
 							<xs:enumeration value="preliminary"/>
 							<xs:enumeration value="approved"/>
+              <xs:enumeration value="cancelled"/>
 							<xs:enumeration value="retracted"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
 				<xs:attribute name="completionStatus">
+          <xs:annotation>
+            <xs:documentation>The extent to which a report contains all of the requested information 
+pending: no information is yet available
+incomplete: some requested information is not yet available
+complete: all information is available in the requested report</xs:documentation>
+          </xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="pending"/>
 							<xs:enumeration value="incomplete"/>
 							<xs:enumeration value="complete"/>
-							<xs:enumeration value="cancelled"/>
-							<xs:enumeration value="retracted"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
@@ -293,6 +297,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 				</xs:attribute>
 				<xs:attribute name="pkgInstanceVersionURI" type="URI_Atype">
 					<xs:annotation>
+
 						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package's saved responses.  It is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a package instance.  It may be e.g., a new GUID, or a repeat of the pkgInstanceID followed by a version number.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
@@ -333,8 +338,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 		<xs:complexContent>
 			<xs:extension base="CallFuncType">
 				<xs:sequence maxOccurs="1">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue"
-						type="CodingType">
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue" type="CodingType">
 						<xs:annotation>
 							<xs:documentation>The user's response to the lookup list.  The response is recorded as a coding, terminology, classification, keyword, or local value.  Multiple selections from the lookup list may be allowed.</xs:documentation>
 						</xs:annotation>
@@ -369,10 +373,8 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 							<xs:documentation>A place to enter values (of any data type) that are directly associated with, and attached to, a selected answer choice.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"
-						> </xs:element>
-					<xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0"
-						type="EventType"> </xs:element>
+          <xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
+          <xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
 					<xs:element name="SelectIf" minOccurs="0" type="GuardType"> </xs:element>
 					<xs:element name="DeselectIf" minOccurs="0" type="GuardType"> </xs:element>
 				</xs:sequence>
@@ -473,8 +475,7 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 							<xs:documentation>The header row for a set of list items.  If the list has more than one column, the column text is separated by the colTextDelimiter.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem"
-						type="CodeSystemType">
+          <xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
 						<xs:annotation>
 							<xs:documentation>If coded values are used for items in a List (including ListItem and LookupEndPoint lists), then the default coding system should be specified here.  For ListItem nodes, any exceptions to the coding system may be specified on the individual ListItem nodes.  For LookupEndPoints, the endpoint data can optionally specify any exceptions in a dedicated CodeSystem column in the returned list data.</xs:documentation>
 						</xs:annotation>
@@ -485,8 +486,7 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 								<xs:documentation>List refers to a set of possible answer choices for the user to select.  Child DisplayedItems may be interspersed with Child ListItems.  At least one ListItem must be present for a multi-select question, and at least two ListItems must pre present for single-select questions.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1"
-							type="LookupEndPointType">
+            <xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1" type="LookupEndPointType">
 							<xs:annotation>
 								<xs:documentation>LookupEndPoint is used when the list items are derived from a web service call of some type, instead of an explicit set of ListItem nodes specified in the FormDesign XML. The endpoint must return a list separated into individual list items by the @colTextDelimiter value specified in the parent ListFieldType.</xs:documentation>
 							</xs:annotation>
@@ -494,16 +494,14 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 					</xs:choice>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
 						type="RuleSelectionTestType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0"
-						name="IllegalCoSelectedListItems" type="RuleSingleSelectionSetsType"/>
-					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded"
-						type="EventType">
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalCoSelectedListItems"
+            type="RuleSingleSelectionSetsType"/>
+          <xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded" type="EventType">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after List Field selections are changed.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
-						type="OnEventType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
 				<xs:attribute default="|" name="colTextDelimiter">
 					<xs:annotation>
@@ -568,8 +566,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:sequence>
-						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1"
-							maxOccurs="1">
+            <xs:element name="Response" type="DataTypes_DEType" minOccurs="1" maxOccurs="1">
 							<xs:annotation>
 								<xs:documentation>W3C Schema data type details</xs:documentation>
 							</xs:annotation>
@@ -587,8 +584,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							</xs:element>
 						</xs:choice>
 					</xs:sequence>
-					<xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0"
-						maxOccurs="1">
+          <xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>TextAfterResponse is fixed text that appears after (to the right of) the user's response on the data entry form.  This may be text for units such as "mm", "cm", etc.</xs:documentation>
 						</xs:annotation>
@@ -598,14 +594,12 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" name="AfterChange" type="EventType"
-						minOccurs="0">
+          <xs:element maxOccurs="unbounded" name="AfterChange" type="EventType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after the Response value is changed, usually fired after a user leaves the Response field.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
-						type="OnEventType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -644,8 +638,16 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-		<xs:attribute default="false" name="newData" type="xs:boolean"/>
-		<xs:attribute default="false" name="changedData" type="xs:boolean"/>
+    <xs:attribute default="false" name="newData" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>Identifies existence of data that is new to the current instance of package, form, section, or question compared to the previous instance of the package, form, section, or question</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute default="false" name="changedData" type="xs:boolean">
+      <xs:annotation>
+        <xs:documentation>Identifies existence of data that has been changed in the current instance of package/form/section/question compared to the previous instance of the package/form/section/question</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ResponseReportingAttributes">
 		<xs:annotation>
@@ -749,8 +751,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:annotation>
 						<xs:documentation>Choice (ResponseField, ListField)</xs:documentation>
 					</xs:annotation>
-					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1"
-						maxOccurs="1"/>
+          <xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1" maxOccurs="1"/>
 					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType">
 					</xs:element>
 				</xs:choice>
@@ -795,28 +796,24 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							<xs:documentation>Link to external information.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="BlobContent" type="BlobType" minOccurs="0"
-						maxOccurs="unbounded">
+          <xs:element name="BlobContent" type="BlobType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Blob information associated with the current DisplayedType.  The blob may contain any type of special media, but must be base 64 encoded.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" name="Contact" type="ContactType"
-						minOccurs="0">
+          <xs:element maxOccurs="unbounded" name="Contact" type="ContactType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Any desired contact information regarding, e.g., the form item, authoring process, certifications, code or coding processs.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue"
-						type="CodingType">
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue" type="CodingType">
 						<xs:annotation>
 							<xs:documentation>Coding, terminology, classification, keyword, or local values</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element minOccurs="0" name="OnEnter" type="EventType" maxOccurs="unbounded"/>
 					<xs:element minOccurs="0" name="OnExit" type="EventType" maxOccurs="unbounded"/>
-					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded"
-						type="OnEventType">
+          <xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be specified.</xs:documentation>
 						</xs:annotation>
@@ -1018,8 +1015,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType">
-					</xs:element>
+          <xs:element maxOccurs="unbounded" name="Message" type="RichTextType"> </xs:element>
 				</xs:sequence>
 				<xs:attribute name="alertLevel" type="xs:string"/>
 				<xs:attribute name="alertType" type="xs:string"/>
@@ -1188,8 +1184,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:choice maxOccurs="unbounded" minOccurs="0">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
-						type="ParameterItemType"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter" type="ParameterItemType"/>
 					<xs:element minOccurs="0" name="ParameterValue" type="ParameterValueType"
 						maxOccurs="unbounded"/>
 				</xs:choice>
@@ -1317,8 +1312,7 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 						<xs:documentation>Expand target items when activated and collapse item when deactivated.  Default = false.  All descendants are affected in the same way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated"
-					type="xs:boolean">
+        <xs:attribute default="false" name="X_removeResponsesWhenDeactivated" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete all user selections, responses and comments when the item is deactivated.  Applies to all descendant items as well.  User should be warned before deleting anything, with an option to preserve the responses in the disabled items.  Disabled item responses should not be saved with the form data.</xs:documentation>
 					</xs:annotation>
@@ -1543,8 +1537,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="GetItemAttribValuesType">
 									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
+                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1555,8 +1548,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="MultiSelectionSetBoolType">
 									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
+                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1567,8 +1559,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="RuleSingleSelectionSetsType">
 									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
+                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1582,8 +1573,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="RuleSelectionTestType">
 									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
+                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1594,8 +1584,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="ScriptCodeBoolType">
 									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
+                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1649,17 +1638,16 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							<xs:complexContent>
 								<xs:extension base="ExtensionBaseType">
 									<xs:choice maxOccurs="unbounded">
-										<xs:element maxOccurs="unbounded" minOccurs="0"
-											name="IllegalSelectionTest" type="RuleSelectionTestType">
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
+                      type="RuleSelectionTestType">
 											<xs:annotation>
 												<xs:documentation/>
 											</xs:annotation>
 										</xs:element>
-										<xs:element name="IllegalSelectionSets"
-											maxOccurs="unbounded" minOccurs="0"
+                    <xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
 											type="RuleSingleSelectionSetsType"> </xs:element>
-										<xs:element name="ItemAlternatives" maxOccurs="unbounded"
-											minOccurs="0" type="AlternativesType">
+                    <xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
+                      type="AlternativesType">
 											<xs:annotation>
 												<xs:documentation/>
 											</xs:annotation>
@@ -1669,8 +1657,8 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-					<xs:element name="AutoActivation" type="RuleAutoActivationType"
-						maxOccurs="unbounded" minOccurs="0"/>
+          <xs:element name="AutoActivation" type="RuleAutoActivationType" maxOccurs="unbounded"
+            minOccurs="0"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
 						type="RuleAutoSelectType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalGroupActions"
@@ -1681,8 +1669,7 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule"
-						type="CallFuncType">
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule" type="CallFuncType">
 						<xs:annotation>
 							<xs:documentation>Rules that are called (by referencing the rule's @name attribute) from another place in the form.</xs:documentation>
 						</xs:annotation>
