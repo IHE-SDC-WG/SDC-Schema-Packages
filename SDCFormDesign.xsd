@@ -170,6 +170,7 @@ This event is fired after the page is loaded is memory, after the data is loaded
 					</xs:element>
 					<xs:element minOccurs="0" name="Rules" type="RulesType"> </xs:element>
 				</xs:sequence>
+				<xs:attributeGroup ref="BoolAttributes"/>
 				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>A text identifier that is used to group multiple versions of a single form.  The lineage is constant for all versions of a single kind of form.  When appended to @baseURI, it can be used to retrieve all versions of one particular form.</xs:documentation>
@@ -838,12 +839,12 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				</xs:attribute>
 				<xs:attribute default="true" name="enabled" type="xs:boolean">
 					<xs:annotation>
-						<xs:documentation>Determines whether the user can interact with the displayed item when the form is first displayed.</xs:documentation>
+						<xs:documentation>Determines whether the user can interact with the displayed item when the form is first displayed.  All disabled items are treated as read-only: they are visible but may not be edited.  The attribute value is inherited by descendants.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute default="true" name="visible" type="xs:boolean">
 					<xs:annotation>
-						<xs:documentation>Determines whether the item should be visible on a computer screen when the form is first displayed.</xs:documentation>
+						<xs:documentation>Determines whether the item should be visible on a computer screen when the form is first displayed.  The attribute value is inherited by descendants.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute default="true" name="mustImplement" type="xs:boolean">
@@ -855,7 +856,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:annotation>
 						<xs:documentation>CHANGED to T/F/Optional
 
-If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem (and all sub-items) should be omitted from the report.
+If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem should be omitted from the report.
 
 This attribute is usually set to false when a Question is used to control form behavior (e.g., skip logic), or when the Question provides unhelpful "negative" information about actions that did not occur or were not performed, or things that were not observed.</xs:documentation>
 					</xs:annotation>
@@ -1368,11 +1369,7 @@ Renamed from: IllegalSelectionSets</xs:documentation>
 						<xs:documentation>Set of @name references for a set ListItems, delimited by spaces.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute default="false" ref="not">
-					<xs:annotation>
-						<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
+				<xs:attributeGroup ref="NotAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1479,11 +1476,7 @@ If there is a maximum number of items to answer, the value is contained in @maxA
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="FuncBoolBaseType">
-				<xs:attribute default="false" ref="not">
-					<xs:annotation>
-						<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
+				<xs:attributeGroup ref="NotAttribute"/>
 				<xs:attribute default="1" name="minAnswered" type="xs:int" use="optional"/>
 				<xs:attribute default="0" name="maxAnswered" type="xs:int">
 					<xs:annotation>

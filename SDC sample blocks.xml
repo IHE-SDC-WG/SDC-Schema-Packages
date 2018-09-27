@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
-<FormDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:h="http://www.w3.org/1999/xhtml" order="0"
+<FormDesign 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    xmlns:h="http://www.w3.org/1999/xhtml" 
+    order="0"
+    
     baseURI="cap.org" lineage="Samples.Samp1" version="v001" ID="Samples.Samp1_v001_sdcFDF"
     fullURI="_baseURI=cap.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"
-    filename="Samples.Samp1_v001_sdcFDF.xml" formTitle="Sample Blocks" xmlns="urn:ihe:qrph:sdc:2016"
+    filename="Samples.Samp1_v001_sdcFDF.xml" 
+    formTitle="Sample Blocks" 
+    xmlns="urn:ihe:qrph:sdc:2016"
     xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:SDCRetrieveForm.xsd">
     <Header ID="H1" title="This is a Header"/>
 

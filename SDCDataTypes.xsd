@@ -13,7 +13,21 @@
 		<xs:attribute default="false" name="allowLTE" type="xs:boolean"/>
 		<xs:attribute default="false" name="allowAPPROX" type="xs:boolean"/>
 	</xs:attributeGroup>
-	<xs:attribute default="EQ" name="quantEnum">
+	<xs:attributeGroup name="QuantEnumAttribute">
+		<xs:attribute default="EQ" name="quantEnum">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="EQ"/>
+					<xs:enumeration value="GT"/>
+					<xs:enumeration value="GTE"/>
+					<xs:enumeration value="LT"/>
+					<xs:enumeration value="LTE"/>
+					<xs:enumeration value="APPROX"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attribute default="EQ" name="X_quantEnum">
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
 				<xs:enumeration value="EQ"/>
@@ -30,7 +44,7 @@
 			<xs:documentation>A dummy "data type" (dt) element to compensate for a code generator bug.  Do not use this type for anything.</xs:documentation>
 		</xs:annotation>
 		<xs:complexType>
-			<xs:attribute ref="quantEnum"/>
+			<xs:attributeGroup ref="QuantEnumAttribute"/>
 			<xs:attributeGroup ref="QuantAttributes"/>
 		</xs:complexType>
 	</xs:element>
@@ -544,7 +558,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:byte"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -552,7 +566,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:date"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -560,7 +574,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:dateTime"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -575,7 +589,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -583,7 +597,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:decimal"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -592,7 +606,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:double"/>
 				<xs:attributeGroup ref="MaskAttributes"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -600,7 +614,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -608,7 +622,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:float"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -616,7 +630,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gDay"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -624,7 +638,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gMonth"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -632,7 +646,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gMonthDay"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -640,7 +654,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gYear"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -648,7 +662,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gYearMonth"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -685,7 +699,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:int"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -693,7 +707,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:integer"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -701,7 +715,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:long"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -709,7 +723,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:negativeInteger"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -717,7 +731,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:nonNegativeInteger"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -725,7 +739,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:nonPositiveInteger"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -733,7 +747,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:positiveInteger"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -741,7 +755,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:short"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -756,7 +770,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:time"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -764,7 +778,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedByte"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -772,7 +786,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedInt"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -780,7 +794,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedLong"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -788,7 +802,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedShort"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -807,7 +821,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
-				<xs:attribute ref="quantEnum"/>
+				<xs:attributeGroup ref="QuantEnumAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1047,7 +1061,11 @@ Or it might look like this: PT15H.
 		<xs:annotation>
 			<xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is long, then all min/max attributes should be validated as long by the implementing system.  Since these attributes are Schema typed as double, they will be validated by an XML Schema validater as double, but more precise validation is up to the implementing system.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute ref="dataTypeNumeric"/>
+		<xs:attribute name="dataTypeNumeric" type="DataTypeInteger_StypeEnum">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
 		<xs:attribute name="fractionDigits" type="xs:unsignedByte">
 			<xs:annotation>
@@ -1080,7 +1098,13 @@ Or it might look like this: PT15H.
 		<xs:annotation>
 			<xs:documentation/>
 		</xs:annotation>
-		<xs:attribute ref="dataTypeInteger"/>
+		<xs:attribute default="integer" name="dataTypeInteger" type="DataTypeInteger_StypeEnum">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for whole number list items in a string list.  For items included by reference to an external (reference or variable) value, use short name strings preceded by "$".
+
+The precise type of whole number (e.g, byte, integer, long) may be selected in the enumerated list, but the default is Long.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
 		<xs:attribute name="maxExclusive" type="xs:long"/>
 		<xs:attribute name="minExclusive" type="xs:long"/>
@@ -1108,7 +1132,11 @@ Or it might look like this: PT15H.
 		<xs:annotation>
 			<xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is gDay, then all min/max attributes must be validated as gDay by the implementing system.  They will not be validated by an XML Schema validater.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute ref="dataTypeDateTime"/>
+		<xs:attribute name="dataTypeDateTime" type="DataTypeDateTime_StypeEnum">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="maxExclusive">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
@@ -1141,135 +1169,55 @@ Or it might look like this: PT15H.
 		<xs:attributeGroup ref="QuantAttributes"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="StringAttributes">
-		<xs:attribute fixed="string" ref="dataTypeString"/>
+		<xs:attribute fixed="string" name="dataTypeString" type="DataTypeString_StypeEnum">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for items in a string value, value list, or referenced itemName. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 		<xs:attribute name="minLength" type="xs:long"/>
 		<xs:attribute name="maxLength" type="xs:long"/>
 		<xs:attributeGroup ref="MaskAttributes"/>
 	</xs:attributeGroup>
-	<xs:attributeGroup name="ListAttributes">
-		<xs:attribute name="val" use="required">
+	<xs:attributeGroup name="DataTypeListAllAttribute">
+		<xs:attribute name="dataTypeListAll" default="string">
 			<xs:annotation>
-				<xs:documentation>List of that holds multiple string items, with each item separated by a space.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$"</xs:documentation>
-			</xs:annotation>
-			<xs:simpleType>
-				<xs:list itemType="xs:string"/>
-			</xs:simpleType>
-		</xs:attribute>
-		<xs:attribute default="true" name="resolveReferences" type="xs:boolean">
-			<xs:annotation>
-				<xs:documentation>If true, then all references in the returned list will be resolved to numbers.  If false, references will remain in the returned list.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute default="false" name="uniqueItems" type="xs:boolean">
-			<xs:annotation>
-				<xs:documentation>Is the list limited to unique items?   (i.e., no duplicates allowed among the list elements)</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute default="false" name="sorted" type="xs:boolean">
-			<xs:annotation>
-				<xs:documentation>Specify if the result should be automatically sorted</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute default="Asc" name="sortDirection">
-			<xs:annotation>
-				<xs:documentation>If @sorted is true, this @sortDirection determines the sort direction.  asc= low to high, and desc = high to low.</xs:documentation>
-			</xs:annotation>
-			<xs:simpleType>
-				<xs:restriction base="xs:string">
-					<xs:enumeration value="Asc"/>
-					<xs:enumeration value="Desc"/>
-				</xs:restriction>
-			</xs:simpleType>
-		</xs:attribute>
-		<xs:attribute default="false" name="allowNulls" type="xs:boolean">
-			<xs:annotation>
-				<xs:documentation>Allow the list to contain null or empty values ($null) and references to null/empty values.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="maxCount" type="xs:long">
-			<xs:annotation>
-				<xs:documentation>Maximum number of list items</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="minCount" type="xs:long">
-			<xs:annotation>
-				<xs:documentation>Minimum number of list items</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute default="false" name="allowReferencess" type="xs:boolean">
-			<xs:annotation>
-				<xs:documentation>Allow references to named items that occur in the current form.  All references must resolve to the specified data type, as specified in the other attributes.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-	</xs:attributeGroup>
-	<xs:attribute name="dataTypeNumeric" type="DataTypeInteger_StypeEnum">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute default="integer" name="dataTypeInteger" type="DataTypeInteger_StypeEnum">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for whole number list items in a string list.  For items included by reference to an external (reference or variable) value, use short name strings preceded by "$".
-
-The precise type of whole number (e.g, byte, integer, long) may be selected in the enumerated list, but the default is Long.</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute name="dataTypeDateTime" type="DataTypeDateTime_StypeEnum">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute fixed="boolean" name="dataTypeBoolean" type="DataTypeBoolean_StypeEnum">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute fixed="string" name="dataTypeString" type="DataTypeString_StypeEnum">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for items in a string value, value list, or referenced itemName. </xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute name="dataTypeClassName" type="xs:NMTOKEN">
-		<xs:annotation>
-			<xs:documentation>The name of a custom class used as a data type</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute name="dataTypeListAll">
-		<xs:annotation>
-			<xs:documentation>Defines the data type held by a string value.
+				<xs:documentation>Defines the data type held by a string value.
 
 Also defines the dataType for list items in a list, which uses the generic string type, since string can represent any XML data type.  List items of any data type should be validated by the implementation software, since all data types are written into an XML list of type string.
 
 For typed items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:list itemType="DataTypeAll_StypeEnum"/>
-		</xs:simpleType>
-	</xs:attribute>
-	<xs:attribute name="dataTypeListDateTime">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for dateTime list items in a string list.  For non-dateTime items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:list itemType="DataTypeDateTime_StypeEnum"/>
-		</xs:simpleType>
-	</xs:attribute>
-	<xs:attribute name="dataTypeListNumeric">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:list itemType="DataTypeNumeric_StypeEnum"/>
-		</xs:simpleType>
-	</xs:attribute>
-	<xs:attribute name="dataTypeListLong">
-		<xs:annotation>
-			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-		</xs:annotation>
-		<xs:simpleType>
-			<xs:list itemType="DataTypeInteger_StypeEnum"/>
-		</xs:simpleType>
-	</xs:attribute>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="DataTypeAll_StypeEnum"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="BoolAttributes">
+		<xs:attribute default="false" name="not" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="AND" name="boolOp" xmlns="">
+			<xs:annotation>
+				<xs:documentation>Boolean operator that joins together the truth values from each object in the Predicate.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AND"/>
+					<xs:enumeration value="OR"/>
+					<xs:enumeration value="XOR"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="NotAttribute">
+		<xs:attribute default="false" name="not" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
 	<xs:simpleType name="DataTypeNumeric_StypeEnum">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="byte"/>
@@ -1333,6 +1281,7 @@ For typed items included by reference to an external (reference or variable) val
 	<xs:simpleType name="DataTypeCustomClass_StypeEnum">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="customClassName"/>
+			<xs:pattern value="\c+"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="DataTypeAll_StypeEnum">
@@ -1340,32 +1289,116 @@ For typed items included by reference to an external (reference or variable) val
 			memberTypes="DataTypeString_StypeEnum DataTypeNumeric_StypeEnum DataTypeDateTime_StypeEnum DataTypeCustomClass_StypeEnum"
 		/>
 	</xs:simpleType>
-	<xs:attributeGroup name="BoolAttributes">
-		<xs:attribute ref="not"/>
-		<xs:attribute default="AND" name="boolOp" xmlns="">
+	<xs:attributeGroup name="X_ListAttributes">
+		<xs:attribute name="val" use="required">
 			<xs:annotation>
-				<xs:documentation>Boolean operator that joins together the truth values from each object in the Predicate.</xs:documentation>
+				<xs:documentation>List of that holds multiple string items, with each item separated by a space.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$"</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="xs:string"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="true" name="resolveReferences" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If true, then all references in the returned list will be resolved to numbers.  If false, references will remain in the returned list.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="uniqueItems" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Is the list limited to unique items?   (i.e., no duplicates allowed among the list elements)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="sorted" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Specify if the result should be automatically sorted</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="Asc" name="sortDirection">
+			<xs:annotation>
+				<xs:documentation>If @sorted is true, this @sortDirection determines the sort direction.  asc= low to high, and desc = high to low.</xs:documentation>
 			</xs:annotation>
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
-					<xs:enumeration value="AND"/>
-					<xs:enumeration value="OR"/>
-					<xs:enumeration value="XOR"/>
+					<xs:enumeration value="Asc"/>
+					<xs:enumeration value="Desc"/>
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute default="false" name="allowNulls" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Allow the list to contain null or empty values ($null) and references to null/empty values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxCount" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>Maximum number of list items</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="minCount" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>Minimum number of list items</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="allowReferencess" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Allow references to named items that occur in the current form.  All references must resolve to the specified data type, as specified in the other attributes.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:attributeGroup>
-	<xs:attribute default="false" name="not" type="xs:boolean">
-		<xs:annotation>
-			<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-		</xs:annotation>
-	</xs:attribute>
-	<xs:attribute name="returnValBool" type="xs:boolean">
+	<xs:attributeGroup name="X_dataTypeNumericAttribute"> </xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeIntegerAttribute"> </xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeDateTimeAttribute"> </xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeStringAttribute"> </xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeBooleanAttribute">
+		<xs:attribute fixed="boolean" name="dataTypeBoolean" type="DataTypeBoolean_StypeEnum">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeClassNameAttribute">
+		<xs:attribute name="dataTypeClassName" type="xs:NMTOKEN">
+			<xs:annotation>
+				<xs:documentation>The name of a custom class used as a data type</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeListDateTimeAttribute">
+		<xs:attribute name="dataTypeListDateTime">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for dateTime list items in a string list.  For non-dateTime items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="DataTypeDateTime_StypeEnum"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeListNumericAttribute">
+		<xs:attribute name="dataTypeListNumeric">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="DataTypeNumeric_StypeEnum"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="X_dataTypeListLongAttribute">
+		<xs:attribute name="dataTypeListLong">
+			<xs:annotation>
+				<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="DataTypeInteger_StypeEnum"/>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attribute name="X_returnValBool" type="xs:boolean">
 		<xs:annotation>
 			<xs:documentation>Optional location to specify the returned Boolean value and store it as typed data.  This structure allows Schema validation of returned Boolean function values.</xs:documentation>
 		</xs:annotation>
 	</xs:attribute>
-	<xs:complexType name="NumericConstantsType111">
+	<xs:complexType name="X_NumericConstantsType111">
 		<xs:attribute name="constant">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">
