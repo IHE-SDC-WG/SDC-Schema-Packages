@@ -80,7 +80,7 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 
 					</xs:annotation>
 				</xs:attribute>
-        <xs:attribute name="prevVersionURI" type="URI_Atype">
+				<xs:attribute name="prevVersionURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: human readable title for display when choosing forms. Added 4/27/16</xs:documentation>
 					</xs:annotation>
@@ -138,7 +138,8 @@ This event is fired after the page is loaded is memory, after the data is loaded
 					</xs:element>
 					<xs:element minOccurs="0" name="BeforeDataSubmit" type="EventType"/>
 					<xs:element minOccurs="0" name="BeforeCloseForm" type="EventType"/>
-          <xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
+					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded"
+						type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be specified.</xs:documentation>
 						</xs:annotation>
@@ -219,32 +220,32 @@ The current template reuses the basedOn IDs whenever the question/answer/semanti
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="approvalStatus">
-          <xs:annotation>
-            <xs:documentation>Describes report fitness for clinical or other action
+					<xs:annotation>
+						<xs:documentation>Describes report fitness for clinical or other action
 inProcess: currently being edited, users should not rely on results
 preliminary: report is awaiting final review and approval 
 approved: report is fit for clinical or other action; often synonymous with final
 cancelled: report/procedure has been aborted before issued  
 retracted: report has been deemed unfit for clinical or other action
  </xs:documentation>
-          </xs:annotation>
+					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="inProcess"/>
 							<xs:enumeration value="preliminary"/>
 							<xs:enumeration value="approved"/>
-              <xs:enumeration value="cancelled"/>
+							<xs:enumeration value="cancelled"/>
 							<xs:enumeration value="retracted"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
 				<xs:attribute name="completionStatus">
-          <xs:annotation>
-            <xs:documentation>The extent to which a report contains all of the requested information 
+					<xs:annotation>
+						<xs:documentation>The extent to which a report contains all of the requested information 
 pending: no information is yet available
 incomplete: some requested information is not yet available
 complete: all information is available in the requested report</xs:documentation>
-          </xs:annotation>
+					</xs:annotation>
 					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="pending"/>
@@ -338,7 +339,8 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 		<xs:complexContent>
 			<xs:extension base="CallFuncType">
 				<xs:sequence maxOccurs="1">
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue" type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue"
+						type="CodingType">
 						<xs:annotation>
 							<xs:documentation>The user's response to the lookup list.  The response is recorded as a coding, terminology, classification, keyword, or local value.  Multiple selections from the lookup list may be allowed.</xs:documentation>
 						</xs:annotation>
@@ -373,8 +375,10 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 							<xs:documentation>A place to enter values (of any data type) that are directly associated with, and attached to, a selected answer choice.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
-          <xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
+					<xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"
+						> </xs:element>
+					<xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0"
+						type="EventType"> </xs:element>
 					<xs:element name="SelectIf" minOccurs="0" type="GuardType"> </xs:element>
 					<xs:element name="DeselectIf" minOccurs="0" type="GuardType"> </xs:element>
 				</xs:sequence>
@@ -475,7 +479,8 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 							<xs:documentation>The header row for a set of list items.  If the list has more than one column, the column text is separated by the colTextDelimiter.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
+					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem"
+						type="CodeSystemType">
 						<xs:annotation>
 							<xs:documentation>If coded values are used for items in a List (including ListItem and LookupEndPoint lists), then the default coding system should be specified here.  For ListItem nodes, any exceptions to the coding system may be specified on the individual ListItem nodes.  For LookupEndPoints, the endpoint data can optionally specify any exceptions in a dedicated CodeSystem column in the returned list data.</xs:documentation>
 						</xs:annotation>
@@ -486,7 +491,8 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 								<xs:documentation>List refers to a set of possible answer choices for the user to select.  Child DisplayedItems may be interspersed with Child ListItems.  At least one ListItem must be present for a multi-select question, and at least two ListItems must pre present for single-select questions.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-            <xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1" type="LookupEndPointType">
+						<xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1"
+							type="LookupEndPointType">
 							<xs:annotation>
 								<xs:documentation>LookupEndPoint is used when the list items are derived from a web service call of some type, instead of an explicit set of ListItem nodes specified in the FormDesign XML. The endpoint must return a list separated into individual list items by the @colTextDelimiter value specified in the parent ListFieldType.</xs:documentation>
 							</xs:annotation>
@@ -494,14 +500,16 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 					</xs:choice>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
 						type="RuleSelectionTestType"/>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalCoSelectedListItems"
-            type="RuleSingleSelectionSetsType"/>
-          <xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded" type="EventType">
+					<xs:element maxOccurs="unbounded" minOccurs="0"
+						name="IllegalCoSelectedListItems" type="RuleSingleSelectionSetsType"/>
+					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded"
+						type="EventType">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after List Field selections are changed.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
+						type="OnEventType"/>
 				</xs:sequence>
 				<xs:attribute default="|" name="colTextDelimiter">
 					<xs:annotation>
@@ -566,7 +574,8 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:sequence>
-            <xs:element name="Response" type="DataTypes_DEType" minOccurs="1" maxOccurs="1">
+						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1"
+							maxOccurs="1">
 							<xs:annotation>
 								<xs:documentation>W3C Schema data type details</xs:documentation>
 							</xs:annotation>
@@ -584,7 +593,8 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							</xs:element>
 						</xs:choice>
 					</xs:sequence>
-          <xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0" maxOccurs="1">
+					<xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0"
+						maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>TextAfterResponse is fixed text that appears after (to the right of) the user's response on the data entry form.  This may be text for units such as "mm", "cm", etc.</xs:documentation>
 						</xs:annotation>
@@ -594,12 +604,14 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" name="AfterChange" type="EventType" minOccurs="0">
+					<xs:element maxOccurs="unbounded" name="AfterChange" type="EventType"
+						minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after the Response value is changed, usually fired after a user leaves the Response field.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
+						type="OnEventType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -638,16 +650,16 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
-    <xs:attribute default="false" name="newData" type="xs:boolean">
-      <xs:annotation>
-        <xs:documentation>Identifies existence of data that is new to the current instance of package, form, section, or question compared to the previous instance of the package, form, section, or question</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
-    <xs:attribute default="false" name="changedData" type="xs:boolean">
-      <xs:annotation>
-        <xs:documentation>Identifies existence of data that has been changed in the current instance of package/form/section/question compared to the previous instance of the package/form/section/question</xs:documentation>
-      </xs:annotation>
-    </xs:attribute>
+		<xs:attribute default="false" name="newData" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Identifies existence of data that is new to the current instance of package, form, section, or question compared to the previous instance of the package, form, section, or question</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="changedData" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Identifies existence of data that has been changed in the current instance of package/form/section/question compared to the previous instance of the package/form/section/question</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="ResponseReportingAttributes">
 		<xs:annotation>
@@ -751,7 +763,8 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:annotation>
 						<xs:documentation>Choice (ResponseField, ListField)</xs:documentation>
 					</xs:annotation>
-          <xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1"
+						maxOccurs="1"/>
 					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType">
 					</xs:element>
 				</xs:choice>
@@ -796,24 +809,28 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							<xs:documentation>Link to external information.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element name="BlobContent" type="BlobType" minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="BlobContent" type="BlobType" minOccurs="0"
+						maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Blob information associated with the current DisplayedType.  The blob may contain any type of special media, but must be base 64 encoded.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" name="Contact" type="ContactType" minOccurs="0">
+					<xs:element maxOccurs="unbounded" name="Contact" type="ContactType"
+						minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Any desired contact information regarding, e.g., the form item, authoring process, certifications, code or coding processs.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue" type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue"
+						type="CodingType">
 						<xs:annotation>
 							<xs:documentation>Coding, terminology, classification, keyword, or local values</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element minOccurs="0" name="OnEnter" type="EventType" maxOccurs="unbounded"/>
 					<xs:element minOccurs="0" name="OnExit" type="EventType" maxOccurs="unbounded"/>
-          <xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
+					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded"
+						type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be specified.</xs:documentation>
 						</xs:annotation>
@@ -965,18 +982,28 @@ The default value is "false" indicating that the the rule runs when the "If" con
 				<xs:attribute name="actSetCodeSystem" type="xs:string"/>
 				<xs:attribute name="actSetVal" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Set a @val attribute.  The correct data type must be used if applicable.</xs:documentation>
+						<xs:documentation>Set a @val attribute with a supplied value.  The correct data type must be used if applicable.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="actSetAssociatedValue" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Set @associatedValue attribute of a ListItem.  The correct data type must be used if applicable.</xs:documentation>
+						<xs:documentation>Set @associatedValue attribute of a ListItem with a supplied value.  The correct data type must be used if applicable.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="actSetValFromRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Set a @val attribute.  The correct data type must be used if applicable.  Supply the @name of an element that has a non-null @val value of the correct datatype.  Null values are ignored.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="actSetAssociatedValueFromRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Set @associatedValue attribute of a ListItem.  The correct data type must be used if applicable.  Supply the @name of an element that has a non-null @val value of the correct datatype.  Null values are ignored.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSetAttrValueType">
+	<xs:complexType name="ActSetAttrValueCodeType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item properties.  If an "act" property (a property with the "act" prefix) has no value assigned, it is ignored. If it has a value, then that property on the target item(s) assume(s) that stated value when an attached Boolean condition evaluates to true.  The attached condition may be an "If" statement or any expression that evaluates to a Boolean value.</xs:documentation>
 		</xs:annotation>
@@ -988,7 +1015,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSetValueBoolType">
+	<xs:complexType name="ActSetBoolAttributeValueCode">
 		<xs:annotation>
 			<xs:documentation>Sets the value of any named attribute.  However, it is primarily designed for Response element(s) on a Question or ListItem.  The value may be determined by a literal value with a defined data type, the value at another named Response item, an expression written in a specified scripting or programming language, or the value of a named code listed in the same template.</xs:documentation>
 		</xs:annotation>
@@ -1015,7 +1042,8 @@ The default value is "false" indicating that the the rule runs when the "If" con
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-          <xs:element maxOccurs="unbounded" name="Message" type="RichTextType"> </xs:element>
+					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType">
+					</xs:element>
 				</xs:sequence>
 				<xs:attribute name="alertLevel" type="xs:string"/>
 				<xs:attribute name="alertType" type="xs:string"/>
@@ -1184,7 +1212,8 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:choice maxOccurs="unbounded" minOccurs="0">
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter" type="ParameterItemType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
+						type="ParameterItemType"/>
 					<xs:element minOccurs="0" name="ParameterValue" type="ParameterValueType"
 						maxOccurs="unbounded"/>
 				</xs:choice>
@@ -1204,6 +1233,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 							<xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="SelectMatchedListItem" type="ActSelectMatchedListItemType"> </xs:element>
 					<xs:element name="SetProperty" type="ActSetItemAttributeType"/>
 					<xs:element name="AddCode" type="ActAddCodeType"/>
 					<xs:element name="Inject" type="ActInjectType"/>
@@ -1212,15 +1242,15 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 					<xs:element name="SendReport" type="ActSendReportType"/>
 					<xs:element name="SendMessage111" type="ActSendMessageType"/>
 					<xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
-					<xs:element name="SetAttributeValue" type="ActSetAttrValueType"/>
-					<xs:element name="SetBoolValue" type="ActSetValueBoolType"/>
+					<xs:element name="SetAttributeValueCode" type="ActSetAttrValueCodeType"/>
+					<xs:element name="SetBoolAttributeValueCode" type="ActSetBoolAttributeValueCode"/>
 					<xs:element name="ShowForm" type="ActShowFormType"/>
 					<xs:element name="ShowMessage" type="ActShowMessageType"/>
 					<xs:element name="ShowReport" type="ActShowReportType"/>
 					<xs:element name="PreviewReport" type="ActPreviewReportType"/>
 					<xs:element name="ValidateForm" type="ActValidateFormType"/>
 					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
-					<xs:element name="CallCode" type="CallFuncType">
+					<xs:element name="CallFunction" type="CallFuncType">
 						<xs:annotation>
 							<xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
 						</xs:annotation>
@@ -1312,7 +1342,8 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 						<xs:documentation>Expand target items when activated and collapse item when deactivated.  Default = false.  All descendants are affected in the same way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-        <xs:attribute default="false" name="X_removeResponsesWhenDeactivated" type="xs:boolean">
+				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated"
+					type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete all user selections, responses and comments when the item is deactivated.  Applies to all descendant items as well.  User should be warned before deleting anything, with an option to preserve the responses in the disabled items.  Disabled item responses should not be saved with the form data.</xs:documentation>
 					</xs:annotation>
@@ -1386,17 +1417,12 @@ In the PropertyValues condition, the contained Boolean attributed values are AND
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="FuncBoolBaseType">
-				<xs:sequence>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptBoolFunc"
-						type="ScriptCodeBoolType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolFunc"
-						type="CallBoolFuncType"/>
-					<xs:element maxOccurs="unbounded" name="Group" type="GetItemAttribValuesType"/>
-				</xs:sequence>
 				<xs:attributeGroup ref="BoolAttributes"/>
 				<xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
 					<xs:annotation>
-						<xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.</xs:documentation>
+						<xs:documentation>Required. This attribute holds the @name attributes of the item(s) (Section, Question, List Item) to interrogate.  These named items will be searched for attribute values specified in this Type.  
+
+If a named item does not have a particualr attribute, then the attribute condition is ignored for that named item.  It does not generate an error or a null propagation response.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="isSelected" type="xs:boolean"/>
@@ -1436,22 +1462,23 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
 				<xs:attribute name="isReadOnly" type="xs:boolean"/>
 				<xs:attribute name="hasType" type="xs:NMTOKENS"/>
 				<xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
-				<xs:attribute name="hasValueEQ" type="xs:decimal"/>
-				<xs:attribute name="hasValueLT" type="xs:decimal"/>
-				<xs:attribute name="hasValueLTE" type="xs:decimal"/>
-				<xs:attribute name="hasValueGT" type="xs:decimal"/>
-				<xs:attribute name="hasValueGTE" type="xs:decimal"/>
-				<xs:attribute name="hasAssociatedValue" type="xs:boolean">
+				<xs:attribute name="hasValue" type="xs:boolean"/>
+				<xs:attribute name="supportDatesAndIntervals..."/>
+				<xs:attribute name="hasPattern" type="xs:string"/>
+				<xs:attribute name="hasValueEQ" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Applies only to ListItems. If the attribute has a value in it, this property returns true.  If it does not have a value, it returns false.</xs:documentation>
+						<xs:documentation>If the value is peceded by a colon (:) sign, then it is a reference to the @val attribute of another element.  References can refer to any element with an @val attribute or @propVal on a Property.  The datatype must be cast to the appropriate target datatype.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="hasAssociatedValueEQ" type="xs:decimal"/>
-				<xs:attribute name="hasAssociatedValueLT" type="xs:decimal"/>
-				<xs:attribute name="hasAssociatedValueLTE" type="xs:decimal"/>
-				<xs:attribute name="hasAssociatedValueGT" type="xs:decimal"/>
-				<xs:attribute name="hasAssociatedValueGTE" type="xs:decimal"/>
-				<xs:attribute name="supportdatesandIntervals"/>
+				<xs:attribute name="hasValueLT" type="xs:string"/>
+				<xs:attribute name="hasValueLTE" type="xs:string"/>
+				<xs:attribute name="hasValueGT" type="xs:string"/>
+				<xs:attribute name="hasValueGTE" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueEQ" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueLT" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueLTE" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueGT" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueGTE" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1532,23 +1559,53 @@ The number of true responses are added together.  If they satisfy the minAnswere
 		<xs:complexContent>
 			<xs:extension base="FuncBoolBaseType">
 				<xs:sequence>
-					<xs:element name="AttributeCondition" maxOccurs="unbounded" minOccurs="0">
+					<xs:element maxOccurs="unbounded" name="AttributeValues" minOccurs="0">
 						<xs:complexType>
 							<xs:complexContent>
 								<xs:extension base="GetItemAttribValuesType">
-									<xs:sequence minOccurs="0">
-                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+									<xs:sequence>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptBoolFunc">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ScriptCodeBoolType">
+									<xs:sequence>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolFunc">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="CallBoolFuncType">
+									<xs:sequence>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectMatchingListItems"
+						type="ActSelectMatchedListItemType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallFunction"
+						type="CallFuncType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections">
 						<xs:complexType>
 							<xs:complexContent>
 								<xs:extension base="MultiSelectionSetBoolType">
 									<xs:sequence minOccurs="0">
-                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1559,7 +1616,8 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="RuleSingleSelectionSetsType">
 									<xs:sequence minOccurs="0">
-                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1573,7 +1631,8 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="RuleSelectionTestType">
 									<xs:sequence minOccurs="0">
-                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1584,7 +1643,8 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="ScriptCodeBoolType">
 									<xs:sequence minOccurs="0">
-                    <xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
 									</xs:sequence>
 								</xs:extension>
 							</xs:complexContent>
@@ -1638,16 +1698,17 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							<xs:complexContent>
 								<xs:extension base="ExtensionBaseType">
 									<xs:choice maxOccurs="unbounded">
-                    <xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
-                      type="RuleSelectionTestType">
+										<xs:element maxOccurs="unbounded" minOccurs="0"
+											name="IllegalSelectionTest" type="RuleSelectionTestType">
 											<xs:annotation>
 												<xs:documentation/>
 											</xs:annotation>
 										</xs:element>
-                    <xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
+										<xs:element name="IllegalSelectionSets"
+											maxOccurs="unbounded" minOccurs="0"
 											type="RuleSingleSelectionSetsType"> </xs:element>
-                    <xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
-                      type="AlternativesType">
+										<xs:element name="ItemAlternatives" maxOccurs="unbounded"
+											minOccurs="0" type="AlternativesType">
 											<xs:annotation>
 												<xs:documentation/>
 											</xs:annotation>
@@ -1657,8 +1718,8 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-          <xs:element name="AutoActivation" type="RuleAutoActivationType" maxOccurs="unbounded"
-            minOccurs="0"/>
+					<xs:element name="AutoActivation" type="RuleAutoActivationType"
+						maxOccurs="unbounded" minOccurs="0"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
 						type="RuleAutoSelectType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalGroupActions"
@@ -1669,7 +1730,8 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-          <xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule" type="CallFuncType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule"
+						type="CallFuncType">
 						<xs:annotation>
 							<xs:documentation>Rules that are called (by referencing the rule's @name attribute) from another place in the form.</xs:documentation>
 						</xs:annotation>
@@ -1677,5 +1739,118 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CallFuncType">
+		<xs:annotation>
+			<xs:documentation>Function or web service that returns a string value.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence>
+					<xs:annotation>
+						<xs:documentation/>
+					</xs:annotation>
+					<xs:element name="Function" type="anyURI_Stype">
+						<xs:annotation>
+							<xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
+
+The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element minOccurs="0" name="Security" type="RichTextType">
+						<xs:annotation>
+							<xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
+					<xs:element name="ConditionalActions" type="ConditionsSubActionsType"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Actions to take, usually based on the return @val value of the function.  Condiitons may be specified for each action.  Conditions may be combined by Boolean operators and nested to any level.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="FunctionReturnAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ActSelectMatchedListItemType">
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence>
+					<xs:element name="MatchSource" type="ItemNameAttributeType"/>
+					<xs:element name="ListItemMatchTargets" type="ListItemMatchTargetsType">
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListItemMatchTargetsType">
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="MatchListItems" type="xs:NMTOKENS">
+					<xs:annotation>
+						<xs:documentation>Takes the @name of one or more target ListItem elements.  If the source value matches the match supplied attribute criteria, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
+
+Read-only ListItems can be selected in the same manner.
+Multiple ListItem names may be specified, separated by spaces.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="MatchQuestions" type="xs:NMTOKENS">
+					<xs:annotation>
+						<xs:documentation>Takes the @name of a Question element with ListItems.  If the source value matches the @associatedValue (or other @attributeToMatch) of one or more ListItems, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
+
+Read-only Questions/ListItems can be selected in the same manner.
+Multiple Queston names may be specified, separated by spaces.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute default="associatedValue" name="attributeToMatch">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="associatedValue"/>
+							<xs:enumeration value="Code"/>
+							<xs:enumeration value="TypeValue"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="X_ConditionalReturnActionsType">
+		<xs:complexContent>
+			<xs:extension base="ActionsType">
+				<xs:attributeGroup ref="BoolAttributes"/>
+				<xs:attribute name="hasValue" type="xs:boolean" default="true"/>
+				<xs:attribute name="matchesPattern" type="xs:string"/>
+				<xs:attribute name="hasValueEQ" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Returns "true" if the parent function has been evaluated and has returned a valid value.
+
+If this attribute's contnet is preceded by a colon (:) sign, then it is a reference to the @val of another element.  References can refer to any element with an @val attribute.  The datatype must be cast to the appropriate target datatype.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="hasValueLT" type="xs:string"/>
+				<xs:attribute name="hasValueLTE" type="xs:string"/>
+				<xs:attribute name="hasValueGT" type="xs:string"/>
+				<xs:attribute name="hasValueGTE" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="X_ReturnPredicateType">
+		<xs:choice maxOccurs="unbounded" minOccurs="0">
+			<xs:element name="Actions" type="ActionsType"/>
+		</xs:choice>
+		<xs:attributeGroup ref="BoolAttributes"/>
+		<xs:attribute name="hasValue" type="xs:boolean" default="true"/>
+		<xs:attribute name="matchesPattern" type="xs:string"/>
+		<xs:attribute name="hasValueEQ" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>must support reference (by name) as well as supplied values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="hasValueLT" type="xs:string"/>
+		<xs:attribute name="hasValueLTE" type="xs:string"/>
+		<xs:attribute name="hasValueGT" type="xs:string"/>
+		<xs:attribute name="hasValueGTE" type="xs:string"/>
 	</xs:complexType>
 </xs:schema>

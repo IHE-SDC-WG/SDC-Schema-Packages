@@ -81,7 +81,7 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:element>
          <xs:element name="ListItemParameterRef" type="ListItemParameterType">
             <xs:annotation>
-               <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
+               <xs:documentation>Retrieve attribute values from selected ListItems.  The named Question is interogated for selected ListItems, and the value of the chosen ListItem attribute is retrieved.  If multiple ListItems are selected a list of the attribute values is returned.</xs:documentation>
             </xs:annotation>
          </xs:element>
          <xs:element name="ParameterValue" type="ParameterValueType"/>
@@ -121,12 +121,7 @@ Parameters using this construct are derived from other locations in the XML inst
       <xs:complexContent>
          <xs:extension base="FuncBoolBaseType">
             <xs:sequence minOccurs="0">
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
-                  type="ParameterItemType">
-                  <xs:annotation>
-                     <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
             </xs:sequence>
             <xs:attribute name="language" type="xs:string">
                <xs:annotation>
@@ -148,14 +143,9 @@ Parameters using this construct are derived from other locations in the XML inst
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:sequence minOccurs="0">
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
-                  type="ParameterItemType">
-                  <xs:annotation>
-                     <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
             </xs:sequence>
-            <xs:attributeGroup ref="FunctionReturnType"/>
+            <xs:attributeGroup ref="FunctionReturnAttributes"/>
             <xs:attribute name="language" type="xs:string">
                <xs:annotation>
                   <xs:documentation>Programming language.</xs:documentation>
@@ -169,40 +159,22 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType name="CallFuncType">
-      <xs:annotation>
-         <xs:documentation>Function or web service that returns a string value.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension base="ExtensionBaseType">
-            <xs:sequence>
-               <xs:annotation>
-                  <xs:documentation/>
-               </xs:annotation>
-               <xs:element name="Function" type="anyURI_Stype">
-                  <xs:annotation>
-                     <xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
-
-The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
-               <xs:element minOccurs="0" name="Security" type="RichTextType">
-                  <xs:annotation>
-                     <xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
-               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
-            </xs:sequence>
-            <xs:attributeGroup ref="FunctionReturnType"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:attributeGroup name="FunctionReturnType">
+   <xs:attributeGroup name="FunctionReturnAttributes">
       <xs:attributeGroup ref="DataTypeListAllAttribute"/>
       <xs:attribute default="false" name="returnList" type="xs:boolean">
          <xs:annotation>
             <xs:documentation>True if the return type is a kind of list.</xs:documentation>
          </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="|" name="listDelimiter">
+         <xs:annotation>
+            <xs:documentation>Character in the DisplayText that separates the columns and rows in a single or multi-column list.</xs:documentation>
+         </xs:annotation>
+         <xs:simpleType>
+            <xs:restriction base="xs:string">
+               <xs:length value="1"/>
+            </xs:restriction>
+         </xs:simpleType>
       </xs:attribute>
       <xs:attribute name="objectTypeName" type="xs:string">
          <xs:annotation>
@@ -212,6 +184,11 @@ The function must understand the parameters and return an appropriate response o
       <xs:attribute name="objectFormat" type="xs:string">
          <xs:annotation>
             <xs:documentation>The serialization format of the returned data, e.g., XML, JSON, binary, etc., or a more specific type.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="val" type="xs:string">
+         <xs:annotation>
+            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
