@@ -189,7 +189,12 @@ Body{
    margin-left: auto;
    margin-right: auto;
 }
-
+.nameValue{
+   display: inline;
+   font-style: normal;
+   margin-left: 5px;
+   font-weight:normal;
+}
 li{
    padding: 1px;
    color: blue;
@@ -233,7 +238,7 @@ p
    display: inline;
     font-style: normal;
     font-weight:bold;
-     margin-left: 5px;
+    /*  margin-left: 5px;*/ 
    background-color: #00bfff; /*deepSkyBlue*/
    color: black;
 }
@@ -241,11 +246,30 @@ p
 .reportText{
    display: inline;
    font-style: normal;
-    font-weight:bold;
      margin-left: 5px;
    background-color: orange; /*coral*/
    color: black;
    font-weight:bold
+}
+.reportTextValue
+{
+display: inline;
+ margin-left: 5px;
+    color: black; 
+     font-style: normal;
+}
+.reportTextValueSection
+{
+display: inline;
+ margin-left: 5px;
+    color: white; 
+     font-style: normal;
+}
+.nameDiv{
+   display: inline-block;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
 }
 .name{
    display: inline;
@@ -352,15 +376,6 @@ p
    cursor:pointer;
 }
 
-.QuestionReset{
-   float: right;
-   padding-left: 2px;
-   font-size: 10px;
-   text-decoration: none;
-   font-style: normal;
-   color: Blue;
-}
-
 .MetadataDisplay
 {
    display: inline;
@@ -381,7 +396,7 @@ p
 
 .form-version
 {
-	font-name:courier;
+	font:courier;
 	font-size:9px;
 	float:right;
 }
@@ -397,7 +412,6 @@ p
 	padding: 2px;
 }
 
-
 .QuestionReset
 {
 	float: right;
@@ -407,7 +421,6 @@ p
 	font-style: normal;
 	color: Blue;
 }
-
 
 .QuestionInSection
 {
@@ -427,8 +440,6 @@ p
 	padding: 2px;
 	padding-left: 20px;
 }
-
-
 
 .QuestionTitle
 {
@@ -628,7 +639,6 @@ p
    margin-left: 5px;
 }
 
-
 /*Question and Section Attributes*/
 .deprecatedItem{
    display: inline;
@@ -780,9 +790,7 @@ p
 	color: #000080;
 	padding: 8px;
 	vertical-align: bottom;
-
 }
-
 
 #S1
 {
@@ -803,7 +811,6 @@ p
 	text-align: left;
 	font-size: 18px;
 	font-weight: bold;
-	
 }
 /*
 .left
@@ -820,7 +827,6 @@ p
 .section_wthin_list
 {
 	margin-left:20px;
-	
 }
 
 .error
@@ -890,5 +896,23 @@ p
     width: 20%;
 	padding:4px;
     /*border: solid 1px #000;*/
-    height: 200px;
+    /*  height: 200px;*/
+}
+.maxSelections
+{
+ display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+     margin-right:5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight:bold   
+}
+.nameDiv{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+     font-weight:bold
 }
