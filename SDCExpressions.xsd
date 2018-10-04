@@ -1,46 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema
-   elementFormDefault="qualified"
-   xmlns:xs="http://www.w3.org/2001/XMLSchema"
-   targetNamespace="urn:ihe:qrph:sdc:2016"
-   xmlns="urn:ihe:qrph:sdc:2016"
-   version="3.0">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
    <!--rlm:7/17/2017 Changes to support SDC rules-->
 
-   <xs:include
-      schemaLocation="SDCResources.xsd"/>
-   <xs:complexType
-      name="ParameterItemType">
+   <xs:include schemaLocation="SDCResources.xsd"/>
+   <xs:complexType name="ParameterItemType" abstract="false">
       <xs:annotation>
-         <xs:documentation>Parameters are named, uniquely identifiable, instances of form attributes (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
+         <xs:documentation>Parameters are named, uniquely identifiable, instances of form properties (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
 
 Parameters using this construct are derived from other locations in the XML instance document, including user-entered Response values.</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
-         <xs:extension
-            base="ExtensionBaseType">
-            <xs:attributeGroup
-               ref="DataTypeListAllAttribute"/>
-            <xs:attribute
-               name="paramName"
-               type="xs:NCName">
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="DataTypeListAllAttribute"/>
+            <xs:attribute name="paramName" type="xs:NCName">
                <xs:annotation>
                   <xs:documentation>A locally useful name that describes the parameter</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               name="sourceItemName"
-               type="xs:NCName"
-               use="required">
+            <xs:attribute name="sourceItemName" type="xs:NCName" use="required">
                <xs:annotation>
                   <xs:documentation>The @name of an item in the current form that holds the @itemAttribute value that will become the parameter value.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               default="val"
-               name="sourceItemAttribute"
-               type="xs:NCName">
+            <xs:attribute default="val" name="sourceItemAttribute" type="xs:NCName">
                <xs:annotation>
                   <xs:documentation>The name of any XML attribute on a named element.  The property value is the parameter's value.</xs:documentation>
                </xs:annotation>
@@ -48,37 +32,26 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType
-      name="ListItemParameterType">
+   <xs:complexType name="ListItemParameterType" abstract="false">
       <xs:annotation>
-         <xs:documentation>Parameters are named, uniquely identifiable, instances of form attributes (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
+         <xs:documentation>Parameters are named, uniquely identifiable, instances of form properties (e.g., @selected).  They are fed into expressions, which are then used as part of a rule within the form.  Parameters can also be fed into URI expressions used inside a Lookup Endpoint, i.e., URIs that call web services to supply list items (e.g., a list of SNOMED-coded items) to a question.
 
 Parameters using this construct are derived from other locations in the XML instance document, including user-entered Response values.</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
-         <xs:extension
-            base="ExtensionBaseType">
-            <xs:attributeGroup
-               ref="DataTypeListAllAttribute"/>
-            <xs:attribute
-               name="paramName"
-               type="xs:NCName">
+         <xs:extension base="ExtensionBaseType">
+            <xs:attributeGroup ref="DataTypeListAllAttribute"/>
+            <xs:attribute name="paramName" type="xs:NCName">
                <xs:annotation>
                   <xs:documentation>A locally useful name that describes the parameter</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               name="sourceQuestionName"
-               type="xs:NCName"
-               use="required">
+            <xs:attribute name="sourceQuestionName" type="xs:NCName" use="required">
                <xs:annotation>
                   <xs:documentation>The @name of a Question in the current form.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               default="associatedValue"
-               name="listItemAttribute"
-               type="xs:NCName">
+            <xs:attribute default="associatedValue" name="ListItemAttribute" type="xs:NCName">
                <xs:annotation>
                   <xs:documentation>The name of any XML attribute on a ListItem.  The property value is the parameter's value.  If the Question is multi-select, a list of attribute values is returned.</xs:documentation>
                </xs:annotation>
@@ -86,67 +59,76 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType
-      name="ParameterValueType">
+   <xs:complexType name="ParameterValueType" abstract="false">
       <xs:annotation>
          <xs:documentation>This type describes strongly-typed parameters used in functions and web services.  Values are hard-coded as constants in the XML instance document.  They are not user-entered values.</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
-         <xs:extension
-            base="DataTypes_SType">
-            <xs:attribute
-               name="paramName"
-               type="xs:NCName"
-               use="required"/>
+         <xs:extension base="DataTypes_SType">
+            <xs:attribute name="paramName" type="xs:NCName" use="required"/>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:group
-      name="ParameterGroup">
+   <xs:group name="ParameterGroup">
       <xs:choice>
          <xs:annotation>
             <xs:documentation>Ordered list of parameters</xs:documentation>
          </xs:annotation>
-         <xs:element
-            name="ParameterRef"
-            type="ParameterItemType">
+         <xs:element name="ParameterRef" type="ParameterItemType">
             <xs:annotation>
                <xs:documentation>Parameters are named FormDesign items which have property values that need to be supplied to a scripted function or a web service URI.</xs:documentation>
             </xs:annotation>
          </xs:element>
-         <xs:element
-            name="ListItemParameterRef"
-            type="ListItemParameterType">
+         <xs:element name="ListItemParameterRef" type="ListItemParameterType">
             <xs:annotation>
                <xs:documentation>Retrieve attribute values from selected ListItems.  The named Question is interogated for selected ListItems, and the value of the chosen ListItem attribute is retrieved.  If multiple ListItems are selected a list of the attribute values is returned.</xs:documentation>
             </xs:annotation>
          </xs:element>
-         <xs:element
-            name="ParameterValue"
-            type="ParameterValueType"/>
+         <xs:element name="ParameterValue" type="ParameterValueType"/>
       </xs:choice>
    </xs:group>
-   <xs:complexType
-      name="ScriptCodeBaseType"
-      abstract="true">
+   <xs:complexType name="FuncBoolBaseType" abstract="true">
       <xs:annotation>
-         <xs:documentation>Programming code or pseudocode that describes a calculation.  THe code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+         <xs:documentation>Function or web service that returns a Boolean value.  Items that inherit from this class must test the result for being a Boolean true/false value or null.</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
-         <xs:extension
-            base="ExtensionBaseType">
-            <xs:attributeGroup
-               ref="FunctionReturnAttributes"/>
-            <xs:attribute
-               name="language"
-               type="xs:string">
+         <xs:extension base="ExtensionBaseType">
+            <xs:attribute default="true" name="allowNull" type="xs:boolean"/>
+            <xs:attribute name="validationMessage" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>Optional message that appears when the rule evaluates to true</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="val" type="xs:boolean"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="CallBoolFuncType">
+      <xs:complexContent>
+         <xs:extension base="FuncBoolBaseType">
+            <xs:attribute name="refName">
+               <xs:annotation>
+                  <xs:documentation>@name of the called function.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="ScriptCodeBoolType">
+      <xs:annotation>
+         <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="FuncBoolBaseType">
+            <xs:sequence minOccurs="0">
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
+            </xs:sequence>
+            <xs:attribute name="language" type="xs:string">
                <xs:annotation>
                   <xs:documentation>Programming language.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               name="code"
-               type="xs:string">
+            <xs:attribute name="code" type="xs:string">
                <xs:annotation>
                   <xs:documentation>Script contents.</xs:documentation>
                </xs:annotation>
@@ -154,238 +136,67 @@ Parameters using this construct are derived from other locations in the XML inst
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType
-      name="ScriptCodeBoolType">
-      <xs:annotation>
-         <xs:documentation>Programming code or pseudocode that describes a calculation.  The code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension
-            base="ScriptCodeBaseType">
-            <xs:attribute
-               default="false"
-               name="not"
-               type="xs:boolean">
-               <xs:annotation>
-                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute
-               name="validationMessage"
-               type="xs:string">
-               <xs:annotation>
-                  <xs:documentation>Optional message that appears when the rule evaluates to true</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType
-      name="ScriptCodeAnyType">
+   <xs:complexType name="ScriptCodeAnyType">
       <xs:annotation>
          <xs:documentation>Programming code or pseudocode that describes a calculation.  THe code returns a value of the data type required by the parent Response field.  To assist with enabling the code in the form, the referenced form items and properties should be referenced by @name under the parameters elemeent.  It is possible to add mulitple calculation expressions to produce equivalent results using different programming languages and URIs.  The @ type attribute may be used to distinguish between them.  An Extension may be used instead of or along with an Expression and Parameters list.  Expressions may populate Responses that are set to @readOnly = "true" to ensure that all responses are calculated and not latered by the user.  Alternatively, the user may change a value created by (or instead of) the Expression.</xs:documentation>
       </xs:annotation>
       <xs:complexContent>
-         <xs:extension
-            base="ScriptCodeBaseType">
-            <xs:attributeGroup
-               ref="DataTypeListAllAttribute"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:simpleType
-      name="toggleType">
-      <xs:restriction
-         base="xs:string">
-         <xs:enumeration
-            value="true"/>
-         <xs:enumeration
-            value="false"/>
-         <xs:enumeration
-            value="toggle"/>
-         <xs:enumeration
-            value="ignore"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:complexType
-      name="CallFuncBaseType"
-      abstract="true">
-      <xs:annotation>
-         <xs:documentation>Function or web service that returns a string value.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension
-            base="ExtensionBaseType">
-            <xs:sequence>
-               <xs:annotation>
-                  <xs:documentation/>
-               </xs:annotation>
-               <xs:choice>
-                  <xs:element
-                     name="FunctionURI"
-                     type="anyURI_Stype">
-                     <xs:annotation>
-                        <xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
-
-The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
-                     </xs:annotation>
-                  </xs:element>
-                  <xs:element
-                     name="LocalFunctionName"
-                     type="anyURI_Stype">
-                     <xs:annotation>
-                        <xs:documentation>The @name of the called function shoudl be placed in @val</xs:documentation>
-                     </xs:annotation>
-                  </xs:element>
-               </xs:choice>
-               <xs:element
-                  minOccurs="0"
-                  name="Security"
-                  type="RichTextType">
-                  <xs:annotation>
-                     <xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
-                  </xs:annotation>
-               </xs:element>
-               <xs:group
-                  maxOccurs="unbounded"
-                  minOccurs="0"
-                  ref="ParameterGroup"/>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence minOccurs="0">
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
             </xs:sequence>
-            <xs:attributeGroup
-               ref="FunctionReturnAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType
-      name="CallFuncType"
-      abstract="true">
-      <xs:annotation>
-         <xs:documentation>Function or web service that returns a string value.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension
-            base="CallFuncBaseType">
-            <xs:attributeGroup
-               ref="DataTypeListAllAttribute"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType
-      name="CallFuncBoolType">
-      <xs:annotation>
-         <xs:documentation>Function or web service that returns a string value.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension
-            base="CallFuncBaseType">
-            <xs:attribute
-               default="false"
-               name="not"
-               type="xs:boolean">
+            <xs:attributeGroup ref="FunctionReturnAttributes"/>
+            <xs:attribute name="language" type="xs:string">
                <xs:annotation>
-                  <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
+                  <xs:documentation>Programming language.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute
-               name="validationMessage"
-               type="xs:string">
+            <xs:attribute name="code" type="xs:string">
                <xs:annotation>
-                  <xs:documentation>Optional message that appears when the rule evaluates to true</xs:documentation>
+                  <xs:documentation>Script contents.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
-   <xs:complexType
-      name="FuncBoolBaseType"
-      abstract="true">
-      <xs:annotation>
-         <xs:documentation>Function or web service that returns a Boolean value.  Items that inherit from this class must test the result for being a Boolean true/false value or null.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension
-            base="ExtensionBaseType">
-            <xs:attribute
-               default="true"
-               name="allowNull"
-               type="xs:boolean">
-               <xs:annotation>
-                  <xs:documentation>True means that null values are allowed in @returnVal.  This corresponds to an empty string in @val or a missing @returnVal attribute. </xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute
-               name="validationMessage"
-               type="xs:string">
-               <xs:annotation>
-                  <xs:documentation>Optional message that appears when the rule evaluates to true</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute
-               name="returnVal"
-               type="xs:boolean">
-               <xs:annotation>
-                  <xs:documentation/>
-               </xs:annotation>
-            </xs:attribute>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:attributeGroup
-      name="FunctionReturnAttributes">
-      <xs:attribute
-         default="false"
-         name="returnList"
-         type="xs:boolean">
+   <xs:attributeGroup name="FunctionReturnAttributes">
+      <xs:attributeGroup ref="DataTypeListAllAttribute"/>
+      <xs:attribute default="false" name="returnList" type="xs:boolean">
          <xs:annotation>
             <xs:documentation>True if the return type is a kind of list.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
-      <xs:attribute
-         default="|"
-         name="listDelimiter">
+      <xs:attribute default="|" name="listDelimiter">
          <xs:annotation>
             <xs:documentation>Character in the DisplayText that separates the columns and rows in a single or multi-column list.</xs:documentation>
          </xs:annotation>
          <xs:simpleType>
-            <xs:restriction
-               base="xs:string">
-               <xs:length
-                  value="1"/>
+            <xs:restriction base="xs:string">
+               <xs:length value="1"/>
             </xs:restriction>
          </xs:simpleType>
       </xs:attribute>
-      <xs:attribute
-         name="objectTypeName"
-         type="xs:string">
+      <xs:attribute name="objectTypeName" type="xs:string">
          <xs:annotation>
             <xs:documentation>If the function returns a custom object, even if serialized e.g., as XML of JSON, provide the object type name here.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
-      <xs:attribute
-         name="objectFormat"
-         type="xs:string">
+      <xs:attribute name="objectFormat" type="xs:string">
          <xs:annotation>
             <xs:documentation>The serialization format of the returned data, e.g., XML, JSON, binary, etc., or a more specific type.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
-      <xs:attribute
-         default="true"
-         name="allowNull"
-         type="xs:boolean">
+      <xs:attribute name="val" type="xs:string">
          <xs:annotation>
-            <xs:documentation>True means that null values are allowed in @returnVal.  This corresponds to an empty string in @val or a missing @returnVal attribute. </xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute
-         name="returnVal"
-         type="xs:string">
-         <xs:annotation>
-            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.
-
-If the datatype is Boolean, then ")" is evaluated as false" and all other non-null values are evaluated as "true".
-
-@val may hold a default value.</xs:documentation>
+            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
+   <xs:simpleType name="toggleType">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="true"/>
+         <xs:enumeration value="false"/>
+         <xs:enumeration value="toggle"/>
+      </xs:restriction>
+   </xs:simpleType>
 </xs:schema>
