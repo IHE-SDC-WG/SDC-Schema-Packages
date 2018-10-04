@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
    <xs:include schemaLocation="SDCTemplateAdmin.xsd"/>
 
    <xs:include schemaLocation="SDCFormDesign.xsd"/>
@@ -209,12 +210,14 @@ It also allows for any number of nested child Packages.</xs:documentation>
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:sequence>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule"
+                  type="SubmissionRuleType">
                   <xs:annotation>
                      <xs:documentation>A SubmissionRule contains information about where and how to submit a completed form.</xs:documentation>
                   </xs:annotation>
                </xs:element>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+               <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule"
+                  type="ComplianceRuleType">
                   <xs:annotation>
                      <xs:documentation>A ComplianceRule contains general information about how information in a particular form package must be handled.  This may include, e.g., security, completeness, transmission, and validation criteria.</xs:documentation>
                   </xs:annotation>
@@ -242,7 +245,8 @@ The MainFormPackage does not contain any other FormPackageType objects (i.e., th
                   <xs:element name="MainFormPkgLink" type="LinkType"/>
                </xs:choice>
                <xs:choice maxOccurs="unbounded" minOccurs="0">
-                  <xs:element maxOccurs="unbounded" minOccurs="0" name="InjectedFormPackage" type="FormPackageType">
+                  <xs:element maxOccurs="unbounded" minOccurs="0" name="InjectedFormPackage"
+                     type="FormPackageType">
                      <xs:annotation>
                         <xs:documentation>The InjectedFormPackage contains optional packages of form templates that are provided for "injection" into specified locations in the FormDesignTemplate contained in the MainFormPackage.
 
@@ -267,12 +271,14 @@ Retrieval of an entire package of related forms, each contained in its own sub-P
    </xs:complexType>
    <xs:complexType name="FormGroupType">
       <xs:sequence>
-         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule"
+            type="SubmissionRuleType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
          </xs:element>
-         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule"
+            type="ComplianceRuleType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
@@ -282,11 +288,14 @@ Retrieval of an entire package of related forms, each contained in its own sub-P
                <xs:documentation/>
             </xs:annotation>
          </xs:element>
-         <xs:element name="FormRulesPkg" minOccurs="0" maxOccurs="unbounded" type="FormRulesPkgType"> </xs:element>
+         <xs:element name="FormRulesPkg" minOccurs="0" maxOccurs="unbounded" type="FormRulesPkgType"
+            > </xs:element>
          <xs:element name="MapPkg" minOccurs="0" maxOccurs="unbounded" type="MapPkgType"> </xs:element>
          <xs:element name="FormOverridesPkg" minOccurs="0" type="FormOverridesPkgType"> </xs:element>
-         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"> </xs:element>
-         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0" type="HelperFilePkgType">
+         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"
+            > </xs:element>
+         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0"
+            type="HelperFilePkgType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
@@ -295,12 +304,14 @@ Retrieval of an entire package of related forms, each contained in its own sub-P
    </xs:complexType>
    <xs:complexType name="FormPackageGroupType">
       <xs:sequence>
-         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule" type="SubmissionRuleType">
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="SubmissionRule"
+            type="SubmissionRuleType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
          </xs:element>
-         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule" type="ComplianceRuleType">
+         <xs:element maxOccurs="unbounded" minOccurs="0" name="ComplianceRule"
+            type="ComplianceRuleType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
@@ -311,14 +322,17 @@ Retrieval of an entire package of related forms, each contained in its own sub-P
             </xs:annotation>
          </xs:element>
          <xs:element name="MapPkg" minOccurs="0" maxOccurs="unbounded" type="MapPkgType"> </xs:element>
-         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"> </xs:element>
-         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0" type="HelperFilePkgType">
+         <xs:element name="ReportingPkg" minOccurs="0" type="ReportingPkgType" maxOccurs="unbounded"
+            > </xs:element>
+         <xs:element maxOccurs="unbounded" name="HelperFilePkg" minOccurs="0"
+            type="HelperFilePkgType">
             <xs:annotation>
                <xs:documentation/>
             </xs:annotation>
          </xs:element>
          <xs:element name="X_FormOverridesPkg" minOccurs="0" type="FormOverridesPkgType"> </xs:element>
-         <xs:element name="X_FormRulesPkg" minOccurs="0" maxOccurs="unbounded" type="FormRulesPkgType"> </xs:element>
+         <xs:element name="X_FormRulesPkg" minOccurs="0" maxOccurs="unbounded"
+            type="FormRulesPkgType"> </xs:element>
       </xs:sequence>
    </xs:complexType>
 </xs:schema>

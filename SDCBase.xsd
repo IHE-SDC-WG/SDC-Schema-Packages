@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
-   <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
-   <xs:complexType abstract="true" name="X_ExtensionBaseType">
-      <xs:annotation>
-         <xs:documentation>MOVED to SDCResources</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:sequence>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="Comment" type="CommentType"> </xs:element>
-               <xs:element maxOccurs="unbounded" minOccurs="0" name="Extension" type="ExtensionType"> </xs:element>
-            </xs:sequence>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+   <!-- rlm:3/8/2017 Includes changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
    <xs:complexType name="ExtensionType">
 
       <xs:annotation>
@@ -46,46 +34,23 @@
       </xs:annotation>
       <xs:attribute name="name" type="xs:ID">
          <xs:annotation>
-            <xs:documentation>Developer assigned identifier, similar to a unique control/object
-                    name, used to provide the ability for programmatic manipulation of an
-                    element.</xs:documentation>
+            <xs:documentation>@name is a developer assigned unique identifier, similar to a unique control/object/variable name, used to provide the ability for programmatic manipulation of an element.  The value of name must be unique within an FDF and FDF-R, even when FDF sections are repeated in the XML.  @name values may begin with a letter or an underscore and may only contain characters that are legal for variable names.  These generally include letters, numbers and underscore.  The use of other characters may result in errors, depending on the programming language employed.  Since XML is case-sensitive, names should not be made unique solely on the basis of alphabetic case, since many programming languages are case insensitive and cannot distinguish names based only on case differences.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="type" type="xs:NMTOKENS">
          <xs:annotation>
-            <xs:documentation>The @type attribute can contain custom metadata "tokens" for the
-                    element, chosen from a standardized list of terms. Tokens are short alphanumeric
-                    text strings, defined by the W3C Schema NMTOKEN specification, that are defined
-                    in an Implementation Guide. The type xsd:NMTOKEN represents a single string
-                    token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -
-                    ), underscores ( _ ), and colons ( : ). They may start with any of these
-                    characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be
-                    specific for one or more kinds of SDC elements. Multiple tokens in the type
-                    attribute should be separated by whitespace. Type tokens may be used to specify
-                    special handling by an application, and are usually used to define form display
-                    constraints, but may include other custom metadata as well. Style metadata
-                    should generally be handled with @styleClass rather than @type. @type token
-                    examples include: tooltip, statusLineText, alignTopLeft, align:bottom,
-                    _pageBreak-after, etc. @type metadata should generally not affect the
-                    information content of a form.</xs:documentation>
+            <xs:documentation>The @type attribute can contain custom metadata "tokens" for the element, chosen from a standardized list of terms. Tokens are short alphanumeric text strings, defined by the W3C Schema NMTOKEN specification, that are defined in an Implementation Guide. The type xsd:NMTOKEN represents a single string token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( - ), underscores ( _ ), and colons ( : ). They may start with any of these characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be specific for one or more kinds of SDC elements. Multiple tokens in the type attribute should be separated by whitespace. Type tokens may be used to specify special handling by an application, and are usually used to define form display constraints, but may include other custom metadata as well. Style metadata should generally be handled with @styleClass rather than @type. @type token examples include: tooltip, statusLineText, alignTopLeft, align:bottom, _pageBreak-after, etc. @type metadata should generally not affect the information content of a form.  
+</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="styleClass" type="xs:NMTOKENS">
          <xs:annotation>
-            <xs:documentation>Developer assigned class name for display styling, generally for
-                    use with an external style sheet.</xs:documentation>
+            <xs:documentation>@styleClass is a developer assigned class name for display styling, generally for use with an external style sheet..</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute name="order">
          <xs:annotation>
-            <xs:documentation>@order allows the form template developer to define a sequential
-                    order for elements in a template. This serves the purpose of providing a
-                    definitive/original order to sections, questions, answer choices, etc., when
-                    required for display purposes. This is important when the original XML ordering
-                    may become disrupted due to the use of an implementation technology that does
-                    not natively support ordering (e.g., object collections), and it can also
-                    provide a check on the proper importing of the XML tree during
-                    implementation.</xs:documentation>
+            <xs:documentation>@order is a decimal attribute that allows the form template developer to define a sequential order for elements in a template. This serves the purpose of providing a definitive/original order to sections, questions, answer choices, etc., when required for display purposes. This is important when the original XML ordering may become disrupted due to the use of an implementation technology that does not natively support ordering (e.g., object collections), and it can also provide a check on the proper importing of the XML tree during implementation.</xs:documentation>
          </xs:annotation>
          <xs:simpleType>
             <xs:restriction base="xs:decimal">
