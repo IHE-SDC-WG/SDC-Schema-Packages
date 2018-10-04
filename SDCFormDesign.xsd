@@ -1816,41 +1816,4 @@ Multiple Queston names may be specified, separated by spaces.</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="X_ConditionalReturnActionsType">
-		<xs:complexContent>
-			<xs:extension base="ActionsType">
-				<xs:attributeGroup ref="BoolAttributes"/>
-				<xs:attribute name="hasValue" type="xs:boolean" default="true"/>
-				<xs:attribute name="matchesPattern" type="xs:string"/>
-				<xs:attribute name="hasValueEQ" type="xs:string">
-					<xs:annotation>
-						<xs:documentation>Returns "true" if the parent function has been evaluated and has returned a valid value.
-
-If this attribute's contnet is preceded by a colon (:) sign, then it is a reference to the @val of another element.  References can refer to any element with an @val attribute.  The datatype must be cast to the appropriate target datatype.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="hasValueLT" type="xs:string"/>
-				<xs:attribute name="hasValueLTE" type="xs:string"/>
-				<xs:attribute name="hasValueGT" type="xs:string"/>
-				<xs:attribute name="hasValueGTE" type="xs:string"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="X_ReturnPredicateType">
-		<xs:choice maxOccurs="unbounded" minOccurs="0">
-			<xs:element name="Actions" type="ActionsType"/>
-		</xs:choice>
-		<xs:attributeGroup ref="BoolAttributes"/>
-		<xs:attribute name="hasValue" type="xs:boolean" default="true"/>
-		<xs:attribute name="matchesPattern" type="xs:string"/>
-		<xs:attribute name="hasValueEQ" type="xs:string">
-			<xs:annotation>
-				<xs:documentation>must support reference (by name) as well as supplied values.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="hasValueLT" type="xs:string"/>
-		<xs:attribute name="hasValueLTE" type="xs:string"/>
-		<xs:attribute name="hasValueGT" type="xs:string"/>
-		<xs:attribute name="hasValueGTE" type="xs:string"/>
-	</xs:complexType>
 </xs:schema>
