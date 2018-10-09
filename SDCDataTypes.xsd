@@ -1179,7 +1179,7 @@ The precise type of whole number (e.g, byte, integer, long) may be selected in t
 		<xs:attributeGroup ref="MaskAttributes"/>
 	</xs:attributeGroup>
 	<xs:attributeGroup name="DataTypeListAllAttribute">
-		<xs:attribute name="dataTypeListAll" default="string">
+		<xs:attribute name="dataType" default="string">
 			<xs:annotation>
 				<xs:documentation>Defines the data type held by a string value.
 

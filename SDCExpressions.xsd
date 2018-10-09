@@ -51,7 +51,7 @@ Parameters using this construct are derived from other locations in the XML inst
                   <xs:documentation>The @name of a Question in the current form.</xs:documentation>
                </xs:annotation>
             </xs:attribute>
-            <xs:attribute default="associatedValue" name="ListItemAttribute" type="xs:NCName">
+            <xs:attribute default="associatedValue" name="listItemAttribute" type="xs:NCName">
                <xs:annotation>
                   <xs:documentation>The name of any XML attribute on a ListItem.  The property value is the parameter's value.  If the Question is multi-select, a list of attribute values is returned.</xs:documentation>
                </xs:annotation>
@@ -100,17 +100,6 @@ Parameters using this construct are derived from other locations in the XML inst
                </xs:annotation>
             </xs:attribute>
             <xs:attribute name="val" type="xs:boolean"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="CallBoolFuncType">
-      <xs:complexContent>
-         <xs:extension base="FuncBoolBaseType">
-            <xs:attribute name="refName">
-               <xs:annotation>
-                  <xs:documentation>@name of the called function.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
          </xs:extension>
       </xs:complexContent>
    </xs:complexType>
@@ -188,7 +177,16 @@ Parameters using this construct are derived from other locations in the XML inst
       </xs:attribute>
       <xs:attribute name="val" type="xs:string">
          <xs:annotation>
-            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.</xs:documentation>
+            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.
+
+If the datatype is Boolean, then ")" is evaluated as false" and all other non-null values are evaluated as "true".
+
+@val may hold a default value.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute default="true" name="allowNull" type="xs:boolean">
+         <xs:annotation>
+            <xs:documentation>True means that null values are allowed in @val.  This corresponds to an empty string in @val or a missing @val attribute. </xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>
@@ -199,4 +197,50 @@ Parameters using this construct are derived from other locations in the XML inst
          <xs:enumeration value="toggle"/>
       </xs:restriction>
    </xs:simpleType>
+   <xs:complexType name="CallFuncType">
+      <xs:annotation>
+         <xs:documentation>Function or web service that returns a string value.</xs:documentation>
+      </xs:annotation>
+      <xs:complexContent>
+         <xs:extension base="ExtensionBaseType">
+            <xs:sequence>
+               <xs:annotation>
+                  <xs:documentation/>
+               </xs:annotation>
+               <xs:choice>
+                  <xs:element name="FunctionURI" type="anyURI_Stype">
+                     <xs:annotation>
+                        <xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
+
+The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="LocalFunctionName" type="anyURI_Stype">
+                     <xs:annotation>
+                        <xs:documentation>The @name of the called function shoudl be placed in @val</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:choice>
+               <xs:element minOccurs="0" name="Security" type="RichTextType">
+                  <xs:annotation>
+                     <xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="FunctionReturnAttributes"/>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+   <xs:complexType name="X_CallBoolFuncType">
+      <xs:complexContent>
+         <xs:extension base="FuncBoolBaseType">
+            <xs:attribute name="refName">
+               <xs:annotation>
+                  <xs:documentation>@name of the called function.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
 </xs:schema>

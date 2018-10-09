@@ -337,7 +337,7 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 			<xs:documentation>LookupEndPointType represents list items that are derived from a web service call of some type, instead of an explicit set of ListItem nodes specified in the FormDesign XML. The endpoint must return a list separated into individual list items by the @colTextDelimiter value specified in the parent ListFieldType.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="CallFuncType">
+			<xs:extension base="CallFuncActionType">
 				<xs:sequence maxOccurs="1">
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue"
 						type="CodingType">
@@ -379,8 +379,8 @@ Form parts to be injected are specified by packageID, not FormID.  This allows a
 						> </xs:element>
 					<xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0"
 						type="EventType"> </xs:element>
-					<xs:element name="SelectIf" minOccurs="0" type="GuardType"> </xs:element>
-					<xs:element name="DeselectIf" minOccurs="0" type="GuardType"> </xs:element>
+					<xs:element name="SelectIf" minOccurs="0" type="PredGuardType"> </xs:element>
+					<xs:element name="DeselectIf" minOccurs="0" type="PredGuardType"> </xs:element>
 				</xs:sequence>
 				<xs:attribute default="false" name="selected" type="xs:boolean">
 					<xs:annotation>
@@ -499,9 +499,9 @@ A Schematron (or similar validation tool) will be required to ensure that at lea
 						</xs:element>
 					</xs:choice>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
-						type="RuleSelectionTestType"/>
+						type="PredSelectionTestType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0"
-						name="IllegalCoSelectedListItems" type="RuleSingleSelectionSetsType"/>
+						name="IllegalCoSelectedListItems" type="PredSingleSelectionSetsType"/>
 					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded"
 						type="EventType">
 						<xs:annotation>
@@ -581,7 +581,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							</xs:annotation>
 						</xs:element>
 						<xs:choice minOccurs="0">
-							<xs:element name="CallSetValue" type="CallFuncType">
+							<xs:element name="CallSetValue" type="CallFuncActionType">
 								<xs:annotation>
 									<xs:documentation>NEW</xs:documentation>
 								</xs:annotation>
@@ -835,12 +835,12 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 							<xs:documentation>Generic event handler - eventName must be specified.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element minOccurs="0" name="ActivateIf" type="GuardType">
+					<xs:element minOccurs="0" name="ActivateIf" type="PredGuardType">
 						<xs:annotation>
 							<xs:documentation>Activate the DisplayedType item if the guard conditions are met.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element minOccurs="0" name="DeActivateIf" type="GuardType">
+					<xs:element minOccurs="0" name="DeActivateIf" type="PredGuardType">
 						<xs:annotation>
 							<xs:documentation>DeActivate the DisplayedType item if the guard conditions are met.</xs:documentation>
 						</xs:annotation>
@@ -902,7 +902,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
 	</xs:attributeGroup>
 	<xs:complexType name="EventType">
 		<xs:complexContent>
-			<xs:extension base="ConditionalGroupActionType"> </xs:extension>
+			<xs:extension base="PredActionType"> </xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="OnEventType">
@@ -915,7 +915,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSetItemAttributeType">
+	<xs:complexType name="ActSetAttributeType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item attributes.  If an "act" attribute (a type with the "act" prefix) has no value assigned, it is ignored. If it has a value, then that attribute on the target item(s) assume(s) that stated value when an attached Boolean condition evaluates to true.  The attached condition may be an "If" statement or any expression that evaluates to a Boolean value.</xs:documentation>
 		</xs:annotation>
@@ -1003,7 +1003,7 @@ The default value is "false" indicating that the the rule runs when the "If" con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSetAttrValueCodeType">
+	<xs:complexType name="ActSetAttrValueScriptType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item properties.  If an "act" property (a property with the "act" prefix) has no value assigned, it is ignored. If it has a value, then that property on the target item(s) assume(s) that stated value when an attached Boolean condition evaluates to true.  The attached condition may be an "If" statement or any expression that evaluates to a Boolean value.</xs:documentation>
 		</xs:annotation>
@@ -1140,7 +1140,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 				<xs:choice maxOccurs="unbounded">
 					<xs:element name="Email" type="EmailAddressType"/>
 					<xs:element name="Fax" type="PhoneNumberType"/>
-					<xs:element name="WebService" type="CallFuncType"/>
+					<xs:element name="WebService" type="CallFuncActionType"/>
 				</xs:choice>
 				<xs:attribute name="reportID" type="URI_Atype"/>
 				<xs:attribute name="reportInstanceGuid" type="xs:string"/>
@@ -1157,7 +1157,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 				<xs:choice>
 					<xs:element name="Email" type="EmailAddressType" maxOccurs="unbounded"/>
 					<xs:element name="Fax" type="PhoneNumberType" maxOccurs="unbounded"/>
-					<xs:element name="WebService" type="CallFuncType" maxOccurs="unbounded"/>
+					<xs:element name="WebService" type="CallFuncActionType" maxOccurs="unbounded"/>
 				</xs:choice>
 				<xs:attribute name="messageType" type="xs:string"/>
 			</xs:extension>
@@ -1170,7 +1170,8 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence minOccurs="0">
-					<xs:element minOccurs="0" name="ValidationWebService" type="CallFuncType"/>
+					<xs:element minOccurs="0" name="ValidationWebService" type="CallFuncActionType"
+					/>
 				</xs:sequence>
 				<xs:attribute default="false" name="validateDataTypes" type="xs:boolean"/>
 				<xs:attribute default="false" name="validateRules" type="xs:boolean"/>
@@ -1211,12 +1212,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
-				<xs:choice maxOccurs="unbounded" minOccurs="0">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
-						type="ParameterItemType"/>
-					<xs:element minOccurs="0" name="ParameterValue" type="ParameterValueType"
-						maxOccurs="unbounded"/>
-				</xs:choice>
+				<xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
 				<xs:attribute name="action" type="xs:string" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -1233,16 +1229,16 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 							<xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="SelectMatchedListItem" type="ActSelectMatchedListItemType"> </xs:element>
-					<xs:element name="SetProperty" type="ActSetItemAttributeType"/>
+					<xs:element name="SelectMatchingListItems"
+						type="RuleSelectMatchingListItemsType"> </xs:element>
 					<xs:element name="AddCode" type="ActAddCodeType"/>
 					<xs:element name="Inject" type="ActInjectType"/>
-					<xs:element name="ShowURL" type="CallFuncType"/>
+					<xs:element name="ShowURL" type="CallFuncActionType"/>
 					<xs:element name="Save" type="ActSaveResponsesType"/>
 					<xs:element name="SendReport" type="ActSendReportType"/>
 					<xs:element name="SendMessage111" type="ActSendMessageType"/>
-					<xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
-					<xs:element name="SetAttributeValueCode" type="ActSetAttrValueCodeType"/>
+					<xs:element name="SetAttributeValue" type="ActSetAttributeType"/>
+					<xs:element name="SetAttributeValueScript" type="ActSetAttrValueScriptType"/>
 					<xs:element name="SetBoolAttributeValueCode" type="ActSetBoolAttributeValueCode"/>
 					<xs:element name="ShowForm" type="ActShowFormType"/>
 					<xs:element name="ShowMessage" type="ActShowMessageType"/>
@@ -1250,12 +1246,12 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 					<xs:element name="PreviewReport" type="ActPreviewReportType"/>
 					<xs:element name="ValidateForm" type="ActValidateFormType"/>
 					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
-					<xs:element name="CallFunction" type="CallFuncType">
+					<xs:element name="CallFunction" type="CallFuncActionType">
 						<xs:annotation>
 							<xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="ConditionalGroupAction" type="ConditionalGroupActionType"/>
+					<xs:element name="ConditionalGroupAction" type="PredActionType"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
@@ -1272,6 +1268,17 @@ Renamed from: ListItemSelections</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
+	<xs:complexType name="RuleSelectMatchingListItemsType">
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence>
+					<xs:element name="MatchSource" type="ItemNameAttributeType"/>
+					<xs:element name="ListItemMatchTargets" type="RuleListItemMatchTargetsType">
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="RuleAutoSelectType">
 		<xs:annotation>
 			<xs:documentation>This Rule selects/unselects ListItems based on the selected status of other ListItems.
@@ -1300,7 +1307,7 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="RuleAutoActivationType">
+	<xs:complexType name="RuleAutoActivateType">
 		<xs:annotation>
 			<xs:documentation>This Rule sets the activation status of Items based on the selection status of other ListItems.
 
@@ -1351,7 +1358,38 @@ If @onlyIf is true, then the above rule is reversed when @selectedItemSet evalua
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="RuleSelectionTestType">
+	<xs:complexType name="RuleListItemMatchTargetsType">
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="MatchListItems" type="xs:NMTOKENS">
+					<xs:annotation>
+						<xs:documentation>Takes the @name of one or more target ListItem elements.  If the source value matches the match supplied attribute criteria, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
+
+Read-only ListItems can be selected in the same manner.
+Multiple ListItem names may be specified, separated by spaces.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="MatchQuestions" type="xs:NMTOKENS">
+					<xs:annotation>
+						<xs:documentation>Takes the @name of a Question element with ListItems.  If the source value matches the @associatedValue (or other @attributeToMatch) of one or more ListItems, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
+
+Read-only Questions/ListItems can be selected in the same manner.
+Multiple Queston names may be specified, separated by spaces.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute default="associatedValue" name="attributeToMatch">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="associatedValue"/>
+							<xs:enumeration value="Code"/>
+							<xs:enumeration value="TypeValue"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PredSelectionTestType">
 		<xs:annotation>
 			<xs:documentation>This Rule specifies a set of ListItems that cannot be selected (@listItemNames) when a test ListItem (@testItemName) is selected. 
 
@@ -1366,7 +1404,7 @@ These values can be reversed if @not is set to true
 Renamed from: IllegalSelectionTest</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="RuleSingleSelectionSetsType">
+			<xs:extension base="PredSingleSelectionSetsType">
 				<xs:attribute name="testItemName" type="xs:NMTOKEN" use="required">
 					<xs:annotation>
 						<xs:documentation>The ListItem that is being evaluated for the presence of disallowed selections (in @listItemNames).  This attributes contains the @name of one ListItem.</xs:documentation>
@@ -1375,7 +1413,7 @@ Renamed from: IllegalSelectionTest</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="RuleSingleSelectionSetsType">
+	<xs:complexType name="PredSingleSelectionSetsType">
 		<xs:annotation>
 			<xs:documentation>This Rule restricts combinations of co-selected ListItems (answers).  In other words, only zero or one item in the @listItemNames list may be selected at a time.  
 
@@ -1398,7 +1436,7 @@ Renamed from: IllegalSelectionSets</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="MultiSelectionSetBoolType">
+	<xs:complexType name="PredMultiSelectionSetBoolType">
 		<xs:annotation>
 			<xs:documentation>This Rule component evaluates the @selected status of any set of ListItems at runtime, and returns a true or false value based on the @selected status of each ListItem.
 </xs:documentation>
@@ -1409,7 +1447,7 @@ Renamed from: IllegalSelectionSets</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="GetItemAttribValuesType">
+	<xs:complexType name="PredEvalAttribValuesType">
 		<xs:annotation>
 			<xs:documentation>This Rule evaluates an arbitrary set of attribute values from any item and returns a Boolean summary value.
 
@@ -1482,7 +1520,7 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="AlternativesType">
+	<xs:complexType name="PredAlternativesType">
 		<xs:annotation>
 			<xs:documentation>This Rule tests if one (or more) items in a list of items has received a a valid user response (answer).  
 
@@ -1523,152 +1561,55 @@ The number of true responses are added together.  If they satisfy the minAnswere
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="GuardType">
+	<xs:complexType name="PredGuardType">
 		<xs:complexContent>
 			<xs:extension base="FuncBoolBaseType">
-				<xs:sequence>
-					<xs:element name="AttributeCondition" maxOccurs="unbounded" minOccurs="0"
-						type="GetItemAttribValuesType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections"
-						type="MultiSelectionSetBoolType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
-						type="RuleSelectionTestType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="AttributeEval" type="PredEvalAttribValuesType"> </xs:element>
+					<xs:element name="ScriptBoolFunc" type="ScriptCodeBoolType"> </xs:element>
+					<xs:element name="CallBoolFunc" type="CallBoolFuncActionType"/>
+					<xs:element name="MultiSelections" type="PredMultiSelectionSetBoolType"/>
+					<xs:element name="IllegalSelectionTest" type="PredSelectionTestType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
-						type="RuleSingleSelectionSetsType"> </xs:element>
-					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
-						type="AlternativesType">
+					<xs:element name="IllegalSelectionSets" type="PredSingleSelectionSetsType"> </xs:element>
+					<xs:element name="ItemAlternatives" type="PredAlternativesType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0"
-						type="ScriptCodeBoolType"> </xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolCondition"
-						type="CallBoolFuncType"/>
-					<xs:element name="Group" type="GuardType" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-				<xs:attributeGroup ref="BoolAttributes"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="ConditionsSubActionsType">
-		<xs:complexContent>
-			<xs:extension base="FuncBoolBaseType">
-				<xs:sequence>
-					<xs:element maxOccurs="unbounded" name="AttributeValues" minOccurs="0">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="GetItemAttribValuesType">
-									<xs:sequence>
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptBoolFunc">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="ScriptCodeBoolType">
-									<xs:sequence>
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolFunc">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="CallBoolFuncType">
-									<xs:sequence>
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectMatchingListItems"
-						type="ActSelectMatchedListItemType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallFunction"
-						type="CallFuncType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="MultiSelectionSetBoolType">
-									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="RuleSingleSelectionSetsType">
-									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest">
-						<xs:annotation>
-							<xs:documentation/>
-						</xs:annotation>
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="RuleSelectionTestType">
-									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="ScriptCodeBoolType">
-									<xs:sequence minOccurs="0">
-										<xs:element name="Actions" minOccurs="0" type="ActionsType"
-										/>
-									</xs:sequence>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="Group" type="ConditionalGroupActionType" minOccurs="0"
-						maxOccurs="unbounded"/>
-				</xs:sequence>
-				<xs:attributeGroup ref="BoolAttributes"/>
-			</xs:extension>
-		</xs:complexContent>
-	</xs:complexType>
-	<xs:complexType name="ConditionalGroupActionType">
-		<xs:annotation>
-			<xs:documentation>Execute an Action based when the Boolean condition returns true.
-
-Boolean sub-Conditions and sub-Actions may be nested to any level.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:extension base="FuncBoolBaseType">
-				<xs:choice>
-					<xs:element name="Conditions" minOccurs="0" type="ConditionsSubActionsType"> </xs:element>
-					<xs:element name="Actions" minOccurs="0" type="ActionsType"> </xs:element>
+					<xs:element name="Group" type="PredGuardType"/>
 				</xs:choice>
+				<xs:attributeGroup ref="BoolAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PredActionType">
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:sequence>
+					<xs:choice maxOccurs="unbounded" minOccurs="0">
+						<xs:element name="AttributeEval" type="AttributeEvalActionType"> </xs:element>
+						<xs:element name="ScriptBoolFunc" type="ScriptBoolFuncActionType"> </xs:element>
+						<xs:element name="CallBoolFunction" type="CallBoolFuncActionType"/>
+						<xs:element name="MultiSelections" type="MultiSelectionsActionType"> </xs:element>
+						<xs:element name="IllegalSelectionSets"
+							type="IllegalSelectionSetsActionType"> </xs:element>
+						<xs:element name="IllegalSelectionTest"
+							type="IllegalSelectionTestActionType">
+							<xs:annotation>
+								<xs:documentation/>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Group" type="PredActionType"/>
+						<xs:element name="SelectMatchingListItems"
+							type="RuleSelectMatchingListItemsType"/>
+					</xs:choice>
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"> </xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="BoolAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1692,38 +1633,16 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
-				<xs:sequence>
-					<xs:element minOccurs="0" name="Validation">
-						<xs:complexType>
-							<xs:complexContent>
-								<xs:extension base="ExtensionBaseType">
-									<xs:choice maxOccurs="unbounded">
-										<xs:element maxOccurs="unbounded" minOccurs="0"
-											name="IllegalSelectionTest" type="RuleSelectionTestType">
-											<xs:annotation>
-												<xs:documentation/>
-											</xs:annotation>
-										</xs:element>
-										<xs:element name="IllegalSelectionSets"
-											maxOccurs="unbounded" minOccurs="0"
-											type="RuleSingleSelectionSetsType"> </xs:element>
-										<xs:element name="ItemAlternatives" maxOccurs="unbounded"
-											minOccurs="0" type="AlternativesType">
-											<xs:annotation>
-												<xs:documentation/>
-											</xs:annotation>
-										</xs:element>
-									</xs:choice>
-								</xs:extension>
-							</xs:complexContent>
-						</xs:complexType>
-					</xs:element>
-					<xs:element name="AutoActivation" type="RuleAutoActivationType"
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element minOccurs="0" name="Validation" type="ValidationType"> </xs:element>
+					<xs:element name="AutoActivation" type="RuleAutoActivateType"
 						maxOccurs="unbounded" minOccurs="0"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
 						type="RuleAutoSelectType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalGroupActions"
-						type="ConditionalGroupActionType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectMatchingListItems"
+						type="RuleSelectMatchingListItemsType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalActions"
+						type="PredActionType"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptedRule"
 						type="ScriptCodeAnyType">
 						<xs:annotation>
@@ -1731,7 +1650,7 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 						</xs:annotation>
 					</xs:element>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule"
-						type="CallFuncType">
+						type="CallFuncActionType">
 						<xs:annotation>
 							<xs:documentation>Rules that are called (by referencing the rule's @name attribute) from another place in the form.</xs:documentation>
 						</xs:annotation>
@@ -1740,79 +1659,215 @@ IllegalSelection Set restricts combinations of co-selected ListItems (answers). 
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="CallFuncType">
+	<xs:complexType name="CallFuncActionType">
 		<xs:annotation>
 			<xs:documentation>Function or web service that returns a string value.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="ExtensionBaseType">
+			<xs:extension base="CallFuncType">
 				<xs:sequence>
 					<xs:annotation>
 						<xs:documentation/>
 					</xs:annotation>
-					<xs:element name="Function" type="anyURI_Stype">
-						<xs:annotation>
-							<xs:documentation>Name of the function or URI of the web service. The Function may use the parameter list and transmit the item name, property and value for each parameter. 
-
-The function must understand the parameters and return an appropriate response of the correct data type.  Guidelines for URI construction syntax will be defined external to this Schema, and may be use-case and implementation-specific.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element minOccurs="0" name="Security" type="RichTextType">
-						<xs:annotation>
-							<xs:documentation>Information about securly accessing the web service.  More detailed service patterns may be required.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
-					<xs:element name="ConditionalActions" type="ConditionsSubActionsType"
-						minOccurs="0">
+					<xs:element name="ConditionalActions" type="PredActionType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Actions to take, usually based on the return @val value of the function.  Condiitons may be specified for each action.  Conditions may be combined by Boolean operators and nested to any level.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attributeGroup ref="FunctionReturnAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSelectMatchedListItemType">
+	<xs:complexType name="CallBoolFuncActionType">
+		<xs:annotation>
+			<xs:documentation>Function or web service that returns a string value.</xs:documentation>
+		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="ExtensionBaseType">
+			<xs:extension base="FuncBoolBaseType">
 				<xs:sequence>
-					<xs:element name="MatchSource" type="ItemNameAttributeType"/>
-					<xs:element name="ListItemMatchTargets" type="ListItemMatchTargetsType">
-					</xs:element>
+					<xs:element name="Function" type="CallFuncActionType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ListItemMatchTargetsType">
+	<xs:complexType name="AttributeEvalActionType">
+		<xs:complexContent>
+			<xs:extension base="PredEvalAttribValuesType">
+				<xs:sequence>
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ScriptBoolFuncActionType">
+		<xs:complexContent>
+			<xs:extension base="ScriptCodeBoolType">
+				<xs:sequence>
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MultiSelectionsActionType">
+		<xs:complexContent>
+			<xs:extension base="PredMultiSelectionSetBoolType">
+				<xs:sequence minOccurs="0">
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IllegalSelectionSetsActionType">
+		<xs:complexContent>
+			<xs:extension base="PredSingleSelectionSetsType">
+				<xs:sequence minOccurs="0">
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IllegalSelectionTestActionType">
+		<xs:complexContent>
+			<xs:extension base="PredSelectionTestType">
+				<xs:sequence minOccurs="0">
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ValidationType">
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
-				<xs:attribute name="MatchListItems" type="xs:NMTOKENS">
-					<xs:annotation>
-						<xs:documentation>Takes the @name of one or more target ListItem elements.  If the source value matches the match supplied attribute criteria, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
+				<xs:choice maxOccurs="unbounded">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
+						type="PredSelectionTestType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
+						type="PredSingleSelectionSetsType"> </xs:element>
+					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
+						type="PredAlternativesType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="X_ScriptBoolFunctionActionType">
+		<xs:complexContent>
+			<xs:extension base="ScriptCodeBoolType">
+				<xs:sequence minOccurs="0">
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="X_PredConditionalGroupActionType">
+		<xs:annotation>
+			<xs:documentation>Execute an Action based when the Boolean condition returns true.
 
-Read-only ListItems can be selected in the same manner.
-Multiple ListItem names may be specified, separated by spaces.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="MatchQuestions" type="xs:NMTOKENS">
-					<xs:annotation>
-						<xs:documentation>Takes the @name of a Question element with ListItems.  If the source value matches the @associatedValue (or other @attributeToMatch) of one or more ListItems, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
-
-Read-only Questions/ListItems can be selected in the same manner.
-Multiple Queston names may be specified, separated by spaces.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute default="associatedValue" name="attributeToMatch">
-					<xs:simpleType>
-						<xs:restriction base="xs:string">
-							<xs:enumeration value="associatedValue"/>
-							<xs:enumeration value="Code"/>
-							<xs:enumeration value="TypeValue"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
+Boolean sub-Conditions and sub-Actions may be nested to any level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:choice>
+					<xs:element name="Conditions" minOccurs="0" type="PredActionType"> </xs:element>
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"> </xs:element>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="X_RulePredConditionsSubActionsType">
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" name="AttributeValues" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredEvalAttribValuesType">
+									<xs:sequence>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptBoolFunc">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ScriptCodeBoolType">
+									<xs:sequence>
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectMatchingListItems"
+						type="RuleSelectMatchingListItemsType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallFunction"
+						type="CallFuncActionType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredMultiSelectionSetBoolType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredSingleSelectionSetsType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredSelectionTestType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ScriptCodeBoolType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Group" type="PredActionType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="BoolAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
