@@ -152,7 +152,12 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 					<xs:element minOccurs="0" name="FormDesign" type="FormDesignType"
 						maxOccurs="unbounded"/>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="FormDesignPkgLink"
-						type="LinkType"/>
+						type="LinkType">
+						<xs:annotation>
+							<xs:documentation>Retrieve raw FormDesign XML from link
+(Previously, retrieve a Pkg that wraps FormDesign XML)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="DataElement"
 						type="DataElementType"/>
 					<xs:element maxOccurs="unbounded" name="MapTemplate" type="MappingType"
