@@ -1,790 +1,817 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-   targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016">
-   <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
-   <xs:include schemaLocation="SDCBase.xsd"/>
-   <xs:attributeGroup name="MaskAttributes">
-      <xs:attribute name="mask" type="xs:string"/>
-   </xs:attributeGroup>
-   <xs:attributeGroup name="QuantAttributes">
-      <xs:attribute default="EQ" name="quantEnum">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="EQ"/>
-               <xs:enumeration value="GT"/>
-               <xs:enumeration value="GTE"/>
-               <xs:enumeration value="LT"/>
-               <xs:enumeration value="LTE"/>
-               <xs:enumeration value="APPROX"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute default="false" name="allowGT" type="xs:boolean"/>
-      <xs:attribute default="false" name="allowGTE" type="xs:boolean"/>
-      <xs:attribute default="false" name="allowLT" type="xs:boolean"/>
-      <xs:attribute default="false" name="allowLTE" type="xs:boolean"/>
-      <xs:attribute default="false" name="allowAPPROX" type="xs:boolean"/>
-   </xs:attributeGroup>
-   <xs:element name="dt">
-      <xs:annotation>
-         <xs:documentation>A dummy "data type" (dt) element to compensate for a code generator bug.  Do not use this type for anything.</xs:documentation>
-      </xs:annotation>
-      <xs:complexType>
-         <xs:attributeGroup ref="QuantAttributes"/>
-      </xs:complexType>
-   </xs:element>
-   <xs:complexType name="anyType_DEtype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:sequence>
-               <xs:any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
-            </xs:sequence>
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-            <xs:attribute name="schema" type="xs:string"/>
-            <xs:attribute name="namespace" type="xs:string">
-               <xs:annotation>
-                  <xs:documentation>Namespace used in an XML Schema file, if any, used to constrain and validate the the content of this field.  This is similar to the use of namespaces with the xs:any element in XML Schemas.
+	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
+	<!-- rlm:7/16/2017  Includes changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+	<xs:include schemaLocation="SDCBase.xsd"/>
+	<xs:attributeGroup name="MaskAttributes">
+		<xs:attribute name="mask" type="xs:string"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="QuantAttributes">
+		<xs:attribute default="false" name="allowGT" type="xs:boolean"/>
+		<xs:attribute default="false" name="allowGTE" type="xs:boolean"/>
+		<xs:attribute default="false" name="allowLT" type="xs:boolean"/>
+		<xs:attribute default="false" name="allowLTE" type="xs:boolean"/>
+		<xs:attribute default="false" name="allowAPPROX" type="xs:boolean"/>
+	</xs:attributeGroup>
+	<xs:attribute default="EQ" name="quantEnum">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="EQ"/>
+				<xs:enumeration value="GT"/>
+				<xs:enumeration value="GTE"/>
+				<xs:enumeration value="LT"/>
+				<xs:enumeration value="LTE"/>
+				<xs:enumeration value="APPROX"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:element name="dt">
+		<xs:annotation>
+			<xs:documentation>A dummy "data type" (dt) element to compensate for a code generator bug.  Do not use this type for anything.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute ref="quantEnum"/>
+			<xs:attributeGroup ref="QuantAttributes"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="anyType_DEtype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:sequence>
+					<xs:any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+				</xs:sequence>
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+				<xs:attribute name="schema" type="xs:string"/>
+				<xs:attribute name="namespace" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Namespace used in an XML Schema file, if any, used to constrain and validate the the content of this field.  This is similar to the use of namespaces with the xs:any element in XML Schemas.
 
 See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:anyAttribute processContents="lax"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="anyURI_DEtype">
-      <xs:complexContent>
-         <xs:extension base="anyURI_Stype">
-            <xs:attribute name="length" type="xs:long"/>
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-            <xs:attribute name="pattern" type="xs:string"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="base64Binary_DEtype">
-      <xs:complexContent>
-         <xs:extension base="base64Binary_Stype">
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="boolean_DEtype">
-      <xs:complexContent>
-         <xs:extension base="boolean_Stype"> </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="byte_DEtype">
-      <xs:complexContent>
-         <xs:extension base="byte_Stype">
-            <xs:attribute name="minInclusive" type="xs:byte"/>
-            <xs:attribute name="maxInclusive" type="xs:byte"/>
-            <xs:attribute name="minExclusive" type="xs:byte"/>
-            <xs:attribute name="maxExclusive" type="xs:byte"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="3"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="date_DEtype">
-      <xs:complexContent>
-         <xs:extension base="date_Stype">
-            <xs:attribute name="minInclusive" type="xs:date"/>
-            <xs:attribute name="maxInclusive" type="xs:date"/>
-            <xs:attribute name="minExclusive" type="xs:date"/>
-            <xs:attribute name="maxExclusive" type="xs:date"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dateTime_DEtype">
-      <xs:complexContent>
-         <xs:extension base="dateTime_Stype">
-            <xs:attribute name="minInclusive" type="xs:dateTime"/>
-            <xs:attribute name="maxInclusive" type="xs:dateTime"/>
-            <xs:attribute name="minExclusive" type="xs:dateTime"/>
-            <xs:attribute name="maxExclusive" type="xs:dateTime"/>
-            <xs:attribute name="pattern" type="xs:string"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dateTimeStamp_DEtype">
-      <xs:complexContent>
-         <xs:extension base="dateTimeStamp_Stype">
-            <xs:attribute name="maxExclusive" type="xs:dateTime"/>
-            <xs:attribute name="minExclusive" type="xs:dateTime"/>
-            <xs:attribute name="maxInclusive" type="xs:dateTime"/>
-            <xs:attribute name="minInclusive" type="xs:dateTime"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dayTimeDuration_DEtype">
-      <xs:complexContent>
-         <xs:extension base="dayTimeDuration_Stype">
-            <xs:attribute name="maxExclusive" type="xs:duration"/>
-            <xs:attribute name="minExclusive" type="xs:duration"/>
-            <xs:attribute name="maxInclusive" type="xs:duration"/>
-            <xs:attribute name="minInclusive" type="xs:duration"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="decimal_DEtype">
-      <xs:complexContent>
-         <xs:extension base="decimal_Stype">
-            <xs:attribute name="minInclusive" type="xs:decimal"/>
-            <xs:attribute name="maxInclusive" type="xs:decimal"/>
-            <xs:attribute name="minExclusive" type="xs:decimal"/>
-            <xs:attribute name="maxExclusive" type="xs:decimal"/>
-            <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="double_DEtype">
-      <xs:complexContent>
-         <xs:extension base="double_Stype">
-            <xs:attribute name="minInclusive" type="xs:double"/>
-            <xs:attribute name="maxInclusive" type="xs:double"/>
-            <xs:attribute name="minExclusive" type="xs:double"/>
-            <xs:attribute name="maxExclusive" type="xs:double"/>
-            <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="duration_DEtype">
-      <xs:complexContent>
-         <xs:extension base="duration_Stype">
-            <xs:attribute name="minInclusive" type="xs:duration"/>
-            <xs:attribute name="maxInclusive" type="xs:duration"/>
-            <xs:attribute name="minExclusive" type="xs:duration"/>
-            <xs:attribute name="maxExclusive" type="xs:duration"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="float_DEtype">
-      <xs:complexContent>
-         <xs:extension base="float_Stype">
-            <xs:attribute name="minInclusive" type="xs:float"/>
-            <xs:attribute name="maxInclusive" type="xs:float"/>
-            <xs:attribute name="minExclusive" type="xs:float"/>
-            <xs:attribute name="maxExclusive" type="xs:float"/>
-            <xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gDay_DEtype">
-      <xs:complexContent>
-         <xs:extension base="gDay_Stype">
-            <xs:attribute name="minInclusive" type="xs:gDay"/>
-            <xs:attribute name="maxInclusive" type="xs:gDay"/>
-            <xs:attribute name="minExclusive" type="xs:gDay"/>
-            <xs:attribute name="maxExclusive" type="xs:gDay"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gMonth_DEtype">
-      <xs:complexContent>
-         <xs:extension base="gMonth_Stype">
-            <xs:attribute name="minInclusive" type="xs:gMonth"/>
-            <xs:attribute name="maxInclusive" type="xs:gMonth"/>
-            <xs:attribute name="minExclusive" type="xs:gMonth"/>
-            <xs:attribute name="maxExclusive" type="xs:gMonth"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gMonthDay_DEtype">
-      <xs:complexContent>
-         <xs:extension base="gMonthDay_Stype">
-            <xs:attribute name="minInclusive" type="xs:gMonthDay"/>
-            <xs:attribute name="maxInclusive" type="xs:gMonthDay"/>
-            <xs:attribute name="minExclusive" type="xs:gMonthDay"/>
-            <xs:attribute name="maxExclusive" type="xs:gMonthDay"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gYear_DEtype">
-      <xs:complexContent>
-         <xs:extension base="gYear_Stype">
-            <xs:attribute name="minInclusive" type="xs:gYear"/>
-            <xs:attribute name="maxInclusive" type="xs:gYear"/>
-            <xs:attribute name="minExclusive" type="xs:gYear"/>
-            <xs:attribute name="maxExclusive" type="xs:gYear"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gYearMonth_DEtype">
-      <xs:complexContent>
-         <xs:extension base="gYearMonth_Stype">
-            <xs:attribute name="minInclusive" type="xs:gYearMonth"/>
-            <xs:attribute name="maxInclusive" type="xs:gYearMonth"/>
-            <xs:attribute name="minExclusive" type="xs:gYearMonth"/>
-            <xs:attribute name="maxExclusive" type="xs:gYearMonth"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="hexBinary_DEtype">
-      <xs:complexContent>
-         <xs:extension base="hexBinary_Stype">
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="HTML_DEtype">
-      <xs:complexContent>
-         <xs:extension base="HTML_Stype">
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="int_DEtype">
-      <xs:complexContent>
-         <xs:extension base="int_Stype">
-            <xs:attribute name="minInclusive" type="xs:int"/>
-            <xs:attribute name="maxInclusive" type="xs:int"/>
-            <xs:attribute name="minExclusive" type="xs:int"/>
-            <xs:attribute name="maxExclusive" type="xs:int"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="10"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="integer_DEtype">
-      <xs:complexContent>
-         <xs:extension base="integer_Stype">
-            <xs:attribute name="maxExclusive" type="xs:integer"/>
-            <xs:attribute name="minExclusive" type="xs:integer"/>
-            <xs:attribute name="maxInclusive" type="xs:integer"/>
-            <xs:attribute name="minInclusive" type="xs:integer"/>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="long_DEtype">
-      <xs:complexContent>
-         <xs:extension base="long_Stype">
-            <xs:attribute name="minInclusive" type="xs:long"> </xs:attribute>
-            <xs:attribute name="maxInclusive" type="xs:long"/>
-            <xs:attribute name="minExclusive" type="xs:long"/>
-            <xs:attribute name="maxExclusive" type="xs:long"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="19"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="negativeInteger_DEtype">
-      <xs:complexContent>
-         <xs:extension base="negativeInteger_Stype">
-            <xs:attribute name="minInclusive" type="xs:negativeInteger"/>
-            <xs:attribute name="maxInclusive" type="xs:negativeInteger"/>
-            <xs:attribute name="minExclusive" type="xs:negativeInteger"/>
-            <xs:attribute name="maxExclusive" type="xs:negativeInteger"/>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="nonNegativeInteger_DEtype">
-      <xs:complexContent>
-         <xs:extension base="nonNegativeInteger_Stype">
-            <xs:attribute name="minInclusive" type="xs:nonNegativeInteger"/>
-            <xs:attribute name="maxInclusive" type="xs:nonNegativeInteger"/>
-            <xs:attribute name="minExclusive" type="xs:nonNegativeInteger"/>
-            <xs:attribute name="maxExclusive" type="xs:nonNegativeInteger"/>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="nonPositiveInteger_DEtype">
-      <xs:complexContent>
-         <xs:extension base="nonPositiveInteger_Stype">
-            <xs:attribute name="minInclusive" type="xs:nonPositiveInteger"/>
-            <xs:attribute name="maxInclusive" type="xs:nonPositiveInteger"/>
-            <xs:attribute name="minExclusive" type="xs:nonPositiveInteger"/>
-            <xs:attribute name="maxExclusive" type="xs:nonPositiveInteger"/>
-            <xs:attribute form="unqualified" name="totalDigits" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="positiveInteger_DEtype">
-      <xs:complexContent>
-         <xs:extension base="positiveInteger_Stype">
-            <xs:attribute name="minInclusive" type="xs:positiveInteger"/>
-            <xs:attribute name="maxInclusive" type="xs:positiveInteger"/>
-            <xs:attribute name="minExclusive" type="xs:positiveInteger"/>
-            <xs:attribute name="maxExclusive" type="xs:positiveInteger"/>
-            <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="short_DEtype">
-      <xs:complexContent>
-         <xs:extension base="short_Stype">
-            <xs:attribute name="minInclusive" type="xs:short"/>
-            <xs:attribute name="maxInclusive" type="xs:short"/>
-            <xs:attribute name="minExclusive" type="xs:short"/>
-            <xs:attribute name="maxExclusive" type="xs:short"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="5"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="string_DEtype">
-      <xs:complexContent>
-         <xs:extension base="string_Stype">
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-            <xs:attribute name="pattern" type="xs:string"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="time_DEtype">
-      <xs:complexContent>
-         <xs:extension base="time_Stype">
-            <xs:attribute name="minInclusive" type="xs:time"/>
-            <xs:attribute name="maxInclusive" type="xs:time"/>
-            <xs:attribute name="minExclusive" type="xs:time"/>
-            <xs:attribute name="maxExclusive" type="xs:time"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedByte_DEtype">
-      <xs:complexContent>
-         <xs:extension base="unsignedByte_Stype">
-            <xs:attribute name="minInclusive" type="xs:unsignedByte"/>
-            <xs:attribute name="maxInclusive" type="xs:unsignedByte"/>
-            <xs:attribute name="minExclusive" type="xs:unsignedByte"/>
-            <xs:attribute name="maxExclusive" type="xs:unsignedByte"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="3"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedInt_DEtype">
-      <xs:complexContent>
-         <xs:extension base="unsignedInt_Stype">
-            <xs:attribute name="minInclusive" type="xs:unsignedInt"/>
-            <xs:attribute name="maxInclusive" type="xs:unsignedInt"/>
-            <xs:attribute name="minExclusive" type="xs:unsignedInt"/>
-            <xs:attribute name="maxExclusive" type="xs:unsignedInt"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="10"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedLong_DEtype">
-      <xs:complexContent>
-         <xs:extension base="unsignedLong_Stype">
-            <xs:attribute name="minInclusive" type="xs:unsignedLong"/>
-            <xs:attribute name="maxInclusive" type="xs:unsignedLong"/>
-            <xs:attribute name="minExclusive" type="xs:unsignedLong"/>
-            <xs:attribute name="maxExclusive" type="xs:unsignedLong"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="20"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedShort_DEtype">
-      <xs:complexContent>
-         <xs:extension base="unsignedShort_Stype">
-            <xs:attribute name="minInclusive" type="xs:unsignedShort"/>
-            <xs:attribute name="maxInclusive" type="xs:unsignedShort"/>
-            <xs:attribute name="minExclusive" type="xs:unsignedShort"/>
-            <xs:attribute name="maxExclusive" type="xs:unsignedShort"/>
-            <xs:attribute name="totalDigits">
-               <xs:simpleType>
-                  <xs:restriction base="xs:unsignedByte">
-                     <xs:maxInclusive value="5"/>
-                  </xs:restriction>
-               </xs:simpleType>
-            </xs:attribute>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="XML_DEtype">
-      <xs:complexContent>
-         <xs:extension base="XML_Stype">
-            <xs:attribute name="minLength" type="xs:long"/>
-            <xs:attribute name="maxLength" type="xs:long"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="yearMonthDuration_DEtype">
-      <xs:complexContent>
-         <xs:extension base="yearMonthDuration_Stype">
-            <xs:attribute name="minInclusive" type="xs:duration"/>
-            <xs:attribute name="maxInclusive" type="xs:duration"/>
-            <xs:attribute name="minExclusive" type="xs:duration"/>
-            <xs:attribute name="maxExclusive" type="xs:duration"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="anyURI_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:anyURI"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="base64Binary_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute form="unqualified" name="mimeType" type="xs:string" use="optional">
-               <xs:annotation>
-                  <xs:documentation>TBD: Must be a valid MIME type</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="length" type="xs:long"/>
-            <xs:attribute name="val" type="xs:base64Binary"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="boolean_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:boolean"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="byte_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:byte"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="date_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:date"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dateTime_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:dateTime"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dateTimeStamp_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:dateTime"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="dayTimeDuration_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="decimal_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:decimal"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="double_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:double"/>
-            <xs:attributeGroup ref="MaskAttributes"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="duration_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="float_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:float"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gDay_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:gDay"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gMonth_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:gMonth"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gMonthDay_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:gMonthDay"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gYear_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:gYear"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="gYearMonth_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:gYearMonth"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="hexBinary_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute form="unqualified" name="mimeType" type="xs:string" use="optional">
-               <xs:annotation>
-                  <xs:documentation>TBD: Must be a valid MIME type - needs
+					</xs:annotation>
+				</xs:attribute>
+				<xs:anyAttribute processContents="lax"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="anyURI_DEtype">
+		<xs:complexContent>
+			<xs:extension base="anyURI_Stype">
+				<xs:attribute name="length" type="xs:long"/>
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+				<xs:attribute name="pattern" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="base64Binary_DEtype">
+		<xs:complexContent>
+			<xs:extension base="base64Binary_Stype">
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boolean_DEtype">
+		<xs:complexContent>
+			<xs:extension base="boolean_Stype"> </xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="byte_DEtype">
+		<xs:complexContent>
+			<xs:extension base="byte_Stype">
+				<xs:attribute name="minInclusive" type="xs:byte"/>
+				<xs:attribute name="maxInclusive" type="xs:byte"/>
+				<xs:attribute name="minExclusive" type="xs:byte"/>
+				<xs:attribute name="maxExclusive" type="xs:byte"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="date_DEtype">
+		<xs:complexContent>
+			<xs:extension base="date_Stype">
+				<xs:attribute name="minInclusive" type="xs:date"/>
+				<xs:attribute name="maxInclusive" type="xs:date"/>
+				<xs:attribute name="minExclusive" type="xs:date"/>
+				<xs:attribute name="maxExclusive" type="xs:date"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dateTime_DEtype">
+		<xs:complexContent>
+			<xs:extension base="dateTime_Stype">
+				<xs:attribute name="minInclusive" type="xs:dateTime"/>
+				<xs:attribute name="maxInclusive" type="xs:dateTime"/>
+				<xs:attribute name="minExclusive" type="xs:dateTime"/>
+				<xs:attribute name="maxExclusive" type="xs:dateTime"/>
+				<xs:attribute name="pattern" type="xs:string"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dateTimeStamp_DEtype">
+		<xs:complexContent>
+			<xs:extension base="dateTimeStamp_Stype">
+				<xs:attribute name="maxExclusive" type="xs:dateTime"/>
+				<xs:attribute name="minExclusive" type="xs:dateTime"/>
+				<xs:attribute name="maxInclusive" type="xs:dateTime"/>
+				<xs:attribute name="minInclusive" type="xs:dateTime"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dayTimeDuration_DEtype">
+		<xs:complexContent>
+			<xs:extension base="dayTimeDuration_Stype">
+				<xs:attribute name="maxExclusive" type="xs:duration"/>
+				<xs:attribute name="minExclusive" type="xs:duration"/>
+				<xs:attribute name="maxInclusive" type="xs:duration"/>
+				<xs:attribute name="minInclusive" type="xs:duration"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="decimal_DEtype">
+		<xs:complexContent>
+			<xs:extension base="decimal_Stype">
+				<xs:attribute name="minInclusive" type="xs:decimal"/>
+				<xs:attribute name="maxInclusive" type="xs:decimal"/>
+				<xs:attribute name="minExclusive" type="xs:decimal"/>
+				<xs:attribute name="maxExclusive" type="xs:decimal"/>
+				<xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="double_DEtype">
+		<xs:complexContent>
+			<xs:extension base="double_Stype">
+				<xs:attribute name="minInclusive" type="xs:double"/>
+				<xs:attribute name="maxInclusive" type="xs:double"/>
+				<xs:attribute name="minExclusive" type="xs:double"/>
+				<xs:attribute name="maxExclusive" type="xs:double"/>
+				<xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="duration_DEtype">
+		<xs:complexContent>
+			<xs:extension base="duration_Stype">
+				<xs:attribute name="minInclusive" type="xs:duration"/>
+				<xs:attribute name="maxInclusive" type="xs:duration"/>
+				<xs:attribute name="minExclusive" type="xs:duration"/>
+				<xs:attribute name="maxExclusive" type="xs:duration"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="float_DEtype">
+		<xs:complexContent>
+			<xs:extension base="float_Stype">
+				<xs:attribute name="minInclusive" type="xs:float"/>
+				<xs:attribute name="maxInclusive" type="xs:float"/>
+				<xs:attribute name="minExclusive" type="xs:float"/>
+				<xs:attribute name="maxExclusive" type="xs:float"/>
+				<xs:attribute name="fractionDigits" type="xs:unsignedByte"> </xs:attribute>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gDay_DEtype">
+		<xs:complexContent>
+			<xs:extension base="gDay_Stype">
+				<xs:attribute name="minInclusive" type="xs:gDay"/>
+				<xs:attribute name="maxInclusive" type="xs:gDay"/>
+				<xs:attribute name="minExclusive" type="xs:gDay"/>
+				<xs:attribute name="maxExclusive" type="xs:gDay"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gMonth_DEtype">
+		<xs:complexContent>
+			<xs:extension base="gMonth_Stype">
+				<xs:attribute name="minInclusive" type="xs:gMonth"/>
+				<xs:attribute name="maxInclusive" type="xs:gMonth"/>
+				<xs:attribute name="minExclusive" type="xs:gMonth"/>
+				<xs:attribute name="maxExclusive" type="xs:gMonth"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gMonthDay_DEtype">
+		<xs:complexContent>
+			<xs:extension base="gMonthDay_Stype">
+				<xs:attribute name="minInclusive" type="xs:gMonthDay"/>
+				<xs:attribute name="maxInclusive" type="xs:gMonthDay"/>
+				<xs:attribute name="minExclusive" type="xs:gMonthDay"/>
+				<xs:attribute name="maxExclusive" type="xs:gMonthDay"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gYear_DEtype">
+		<xs:complexContent>
+			<xs:extension base="gYear_Stype">
+				<xs:attribute name="minInclusive" type="xs:gYear"/>
+				<xs:attribute name="maxInclusive" type="xs:gYear"/>
+				<xs:attribute name="minExclusive" type="xs:gYear"/>
+				<xs:attribute name="maxExclusive" type="xs:gYear"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gYearMonth_DEtype">
+		<xs:complexContent>
+			<xs:extension base="gYearMonth_Stype">
+				<xs:attribute name="minInclusive" type="xs:gYearMonth"/>
+				<xs:attribute name="maxInclusive" type="xs:gYearMonth"/>
+				<xs:attribute name="minExclusive" type="xs:gYearMonth"/>
+				<xs:attribute name="maxExclusive" type="xs:gYearMonth"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="hexBinary_DEtype">
+		<xs:complexContent>
+			<xs:extension base="hexBinary_Stype">
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HTML_DEtype">
+		<xs:complexContent>
+			<xs:extension base="HTML_Stype">
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="int_DEtype">
+		<xs:complexContent>
+			<xs:extension base="int_Stype">
+				<xs:attribute name="minInclusive" type="xs:int"/>
+				<xs:attribute name="maxInclusive" type="xs:int"/>
+				<xs:attribute name="minExclusive" type="xs:int"/>
+				<xs:attribute name="maxExclusive" type="xs:int"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="integer_DEtype">
+		<xs:complexContent>
+			<xs:extension base="integer_Stype">
+				<xs:attribute name="maxExclusive" type="xs:integer"/>
+				<xs:attribute name="minExclusive" type="xs:integer"/>
+				<xs:attribute name="maxInclusive" type="xs:integer"/>
+				<xs:attribute name="minInclusive" type="xs:integer"/>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="long_DEtype">
+		<xs:complexContent>
+			<xs:extension base="long_Stype">
+				<xs:attribute name="minInclusive" type="xs:long"> </xs:attribute>
+				<xs:attribute name="maxInclusive" type="xs:long"/>
+				<xs:attribute name="minExclusive" type="xs:long"/>
+				<xs:attribute name="maxExclusive" type="xs:long"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="19"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="negativeInteger_DEtype">
+		<xs:complexContent>
+			<xs:extension base="negativeInteger_Stype">
+				<xs:attribute name="minInclusive" type="xs:negativeInteger"/>
+				<xs:attribute name="maxInclusive" type="xs:negativeInteger"/>
+				<xs:attribute name="minExclusive" type="xs:negativeInteger"/>
+				<xs:attribute name="maxExclusive" type="xs:negativeInteger"/>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nonNegativeInteger_DEtype">
+		<xs:complexContent>
+			<xs:extension base="nonNegativeInteger_Stype">
+				<xs:attribute name="minInclusive" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="maxInclusive" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="minExclusive" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="maxExclusive" type="xs:nonNegativeInteger"/>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"> </xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nonPositiveInteger_DEtype">
+		<xs:complexContent>
+			<xs:extension base="nonPositiveInteger_Stype">
+				<xs:attribute name="minInclusive" type="xs:nonPositiveInteger"/>
+				<xs:attribute name="maxInclusive" type="xs:nonPositiveInteger"/>
+				<xs:attribute name="minExclusive" type="xs:nonPositiveInteger"/>
+				<xs:attribute name="maxExclusive" type="xs:nonPositiveInteger"/>
+				<xs:attribute form="unqualified" name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="positiveInteger_DEtype">
+		<xs:complexContent>
+			<xs:extension base="positiveInteger_Stype">
+				<xs:attribute name="minInclusive" type="xs:positiveInteger"/>
+				<xs:attribute name="maxInclusive" type="xs:positiveInteger"/>
+				<xs:attribute name="minExclusive" type="xs:positiveInteger"/>
+				<xs:attribute name="maxExclusive" type="xs:positiveInteger"/>
+				<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="short_DEtype">
+		<xs:complexContent>
+			<xs:extension base="short_Stype">
+				<xs:attribute name="minInclusive" type="xs:short"/>
+				<xs:attribute name="maxInclusive" type="xs:short"/>
+				<xs:attribute name="minExclusive" type="xs:short"/>
+				<xs:attribute name="maxExclusive" type="xs:short"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="string_DEtype">
+		<xs:complexContent>
+			<xs:extension base="string_Stype">
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+				<xs:attribute name="pattern" type="xs:string"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="time_DEtype">
+		<xs:complexContent>
+			<xs:extension base="time_Stype">
+				<xs:attribute name="minInclusive" type="xs:time"/>
+				<xs:attribute name="maxInclusive" type="xs:time"/>
+				<xs:attribute name="minExclusive" type="xs:time"/>
+				<xs:attribute name="maxExclusive" type="xs:time"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedByte_DEtype">
+		<xs:complexContent>
+			<xs:extension base="unsignedByte_Stype">
+				<xs:attribute name="minInclusive" type="xs:unsignedByte"/>
+				<xs:attribute name="maxInclusive" type="xs:unsignedByte"/>
+				<xs:attribute name="minExclusive" type="xs:unsignedByte"/>
+				<xs:attribute name="maxExclusive" type="xs:unsignedByte"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="3"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedInt_DEtype">
+		<xs:complexContent>
+			<xs:extension base="unsignedInt_Stype">
+				<xs:attribute name="minInclusive" type="xs:unsignedInt"/>
+				<xs:attribute name="maxInclusive" type="xs:unsignedInt"/>
+				<xs:attribute name="minExclusive" type="xs:unsignedInt"/>
+				<xs:attribute name="maxExclusive" type="xs:unsignedInt"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="10"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedLong_DEtype">
+		<xs:complexContent>
+			<xs:extension base="unsignedLong_Stype">
+				<xs:attribute name="minInclusive" type="xs:unsignedLong"/>
+				<xs:attribute name="maxInclusive" type="xs:unsignedLong"/>
+				<xs:attribute name="minExclusive" type="xs:unsignedLong"/>
+				<xs:attribute name="maxExclusive" type="xs:unsignedLong"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="20"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedShort_DEtype">
+		<xs:complexContent>
+			<xs:extension base="unsignedShort_Stype">
+				<xs:attribute name="minInclusive" type="xs:unsignedShort"/>
+				<xs:attribute name="maxInclusive" type="xs:unsignedShort"/>
+				<xs:attribute name="minExclusive" type="xs:unsignedShort"/>
+				<xs:attribute name="maxExclusive" type="xs:unsignedShort"/>
+				<xs:attribute name="totalDigits">
+					<xs:simpleType>
+						<xs:restriction base="xs:unsignedByte">
+							<xs:maxInclusive value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="XML_DEtype">
+		<xs:complexContent>
+			<xs:extension base="XML_Stype">
+				<xs:attribute name="minLength" type="xs:long"/>
+				<xs:attribute name="maxLength" type="xs:long"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="yearMonthDuration_DEtype">
+		<xs:complexContent>
+			<xs:extension base="yearMonthDuration_Stype">
+				<xs:attribute name="minInclusive" type="xs:duration"/>
+				<xs:attribute name="maxInclusive" type="xs:duration"/>
+				<xs:attribute name="minExclusive" type="xs:duration"/>
+				<xs:attribute name="maxExclusive" type="xs:duration"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attributeGroup ref="QuantAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="anyURI_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:anyURI"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="base64Binary_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute form="unqualified" name="mimeType" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>TBD: Must be a valid MIME type</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="val" type="xs:base64Binary"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="boolean_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:boolean"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="byte_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:byte"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="date_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:date"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dateTime_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:dateTime"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dateTimeStamp_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:dateTime"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dayTimeDuration_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:duration"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="decimal_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:decimal"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="double_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:double"/>
+				<xs:attributeGroup ref="MaskAttributes"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="duration_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:duration"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="float_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:float"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gDay_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:gDay"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gMonth_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:gMonth"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gMonthDay_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:gMonthDay"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gYear_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:gYear"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="gYearMonth_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:gYearMonth"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="hexBinary_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute form="unqualified" name="mimeType" type="xs:string" use="optional">
+					<xs:annotation>
+						<xs:documentation>TBD: Must be a valid MIME type - needs
                     enumeration</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-            <xs:attribute name="length" type="xs:long"/>
-            <xs:attribute name="val" type="xs:hexBinary"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="HTML_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:sequence>
-               <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
-                  processContents="strict"/>
-            </xs:sequence>
-            <xs:anyAttribute namespace="##other" processContents="strict">
-               <xs:annotation>
-                  <xs:documentation>Developer must supply a namespace and a Schema to validate
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="val" type="xs:hexBinary"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="HTML_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:sequence>
+					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+						processContents="strict"/>
+				</xs:sequence>
+				<xs:anyAttribute namespace="##other" processContents="strict">
+					<xs:annotation>
+						<xs:documentation>Developer must supply a namespace and a Schema to validate
                             the html . Cannot reuse any SDC attributes.</xs:documentation>
-               </xs:annotation>
-            </xs:anyAttribute>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="int_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:int"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="integer_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:integer"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="long_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:long"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="negativeInteger_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:negativeInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="nonNegativeInteger_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:nonNegativeInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="nonPositiveInteger_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:nonPositiveInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="positiveInteger_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:positiveInteger"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="short_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:short"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="string_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:string"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="time_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:time"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedByte_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:unsignedByte"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedInt_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:unsignedInt"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedLong_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:unsignedLong"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="unsignedShort_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:unsignedShort"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="XML_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:sequence>
-               <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
-                  processContents="strict"/>
-            </xs:sequence>
-            <xs:attribute name="schema" type="xs:string"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="yearMonthDuration_Stype">
-      <xs:complexContent>
-         <xs:extension base="BaseType">
-            <xs:attribute name="val" type="xs:duration"/>
-            <xs:attributeGroup ref="QuantAttributes"/>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <!--  
+					</xs:annotation>
+				</xs:anyAttribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="int_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:int"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="integer_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:integer"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="long_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:long"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="negativeInteger_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:negativeInteger"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nonNegativeInteger_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:nonNegativeInteger"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="nonPositiveInteger_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:nonPositiveInteger"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="positiveInteger_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:positiveInteger"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="short_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:short"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="string_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="time_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:time"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedByte_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:unsignedByte"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedInt_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:unsignedInt"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedLong_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:unsignedLong"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="unsignedShort_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:unsignedShort"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="XML_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:sequence>
+					<xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other"
+						processContents="strict"/>
+				</xs:sequence>
+				<xs:attribute name="schema" type="xs:string"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="yearMonthDuration_Stype">
+		<xs:complexContent>
+			<xs:extension base="BaseType">
+				<xs:attribute name="val" type="xs:duration"/>
+				<xs:attribute ref="quantEnum"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--  
    <xs:complexType name="DataTypes_DEType">
       <xs:annotation>
          <xs:documentation>SDC datatypes for Data Entry (DE), based mostly on W3C specifications. Uses baseAttributes  and Extension capability to enhance the list of Data Types. Includes additonal metadata to specify data input restrictions for data entry forms, and to aid in validation of IHE RFD SubmitForm responses in XML instance documents.
@@ -1006,350 +1033,350 @@ Or it might look like this: PT15H.
       </xs:complexContent>
    </xs:complexType>
   -->
-   <xs:simpleType final="" name="URI_Atype">
-      <xs:restriction base="xs:anyURI">
-         <xs:minLength value="1"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType final="" name="URL_Atype">
-      <xs:restriction base="xs:anyURI">
-         <xs:minLength value="1"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:attributeGroup name="NumericAttributes">
-      <xs:annotation>
-         <xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is long, then all min/max attributes should be validated as long by the implementing system.  Since these attributes are Schema typed as double, they will be validated by an XML Schema validater as double, but more precise validation is up to the implementing system.</xs:documentation>
-      </xs:annotation>
-      <xs:attribute ref="dataTypeNumeric"/>
-      <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-      <xs:attribute name="fractionDigits" type="xs:unsignedByte">
-         <xs:annotation>
-            <xs:documentation>Number of decimal digits allowed.  Used only for decimal and float types.</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute name="maxExclusive" type="xs:double"/>
-      <xs:attribute name="minExclusive" type="xs:double"/>
-      <xs:attribute name="maxInclusive" type="xs:double"/>
-      <xs:attribute name="minInclusive" type="xs:double"/>
-      <xs:attribute name="pattern" type="xs:string">
-         <xs:annotation>
-            <xs:documentation>Pattern for each list item</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="EQ" name="quantEnum">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="EQ"/>
-               <xs:enumeration value="GT"/>
-               <xs:enumeration value="GTE"/>
-               <xs:enumeration value="LT"/>
-               <xs:enumeration value="LTE"/>
-               <xs:enumeration value="APPROX"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-   </xs:attributeGroup>
-   <xs:attributeGroup name="IntegerAttributes">
-      <xs:annotation>
-         <xs:documentation/>
-      </xs:annotation>
-      <xs:attribute ref="dataTypeInteger"/>
-      <xs:attribute name="totalDigits" type="xs:unsignedByte"/>
-      <xs:attribute name="maxExclusive" type="xs:long"/>
-      <xs:attribute name="minExclusive" type="xs:long"/>
-      <xs:attribute name="maxInclusive" type="xs:long"/>
-      <xs:attribute name="minInclusive" type="xs:long"/>
-      <xs:attribute name="pattern" type="xs:string">
-         <xs:annotation>
-            <xs:documentation>Pattern for each list item</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="EQ" name="quantEnum">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="EQ"/>
-               <xs:enumeration value="GT"/>
-               <xs:enumeration value="GTE"/>
-               <xs:enumeration value="LT"/>
-               <xs:enumeration value="LTE"/>
-               <xs:enumeration value="APPROX"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-   </xs:attributeGroup>
-   <xs:attributeGroup name="DateTimeAttributes">
-      <xs:annotation>
-         <xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is gDay, then all min/max attributes must be validated as gDay by the implementing system.  They will not be validated by an XML Schema validater.</xs:documentation>
-      </xs:annotation>
-      <xs:attribute ref="dataTypeDateTime"/>
-      <xs:attribute name="maxExclusive">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:maxLength value="26"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="minExclusive">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:maxLength value="26"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="maxInclusive">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:maxLength value="26"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute name="minInclusive">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:maxLength value="26"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attributeGroup ref="MaskAttributes"/>
-      <xs:attributeGroup ref="QuantAttributes"/>
-   </xs:attributeGroup>
-   <xs:attributeGroup name="StringAttributes">
-      <xs:attribute fixed="string" ref="dataTypeString"/>
-      <xs:attribute name="minLength" type="xs:long"/>
-      <xs:attribute name="maxLength" type="xs:long"/>
-      <xs:attributeGroup ref="MaskAttributes"/>
-   </xs:attributeGroup>
-   <xs:attributeGroup name="ListAttributes">
-      <xs:attribute name="val" use="required">
-         <xs:annotation>
-            <xs:documentation>List of that holds multiple string items, with each item separated by a space.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$"</xs:documentation>
-         </xs:annotation>
-         <xs:simpleType>
-            <xs:list itemType="xs:string"/>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute default="true" name="resolveReferences" type="xs:boolean">
-         <xs:annotation>
-            <xs:documentation>If true, then all references in the returned list will be resolved to numbers.  If false, references will remain in the returned list.</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="false" name="uniqueItems" type="xs:boolean">
-         <xs:annotation>
-            <xs:documentation>Is the list limited to unique items?   (i.e., no duplicates allowed among the list elements)</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="false" name="sorted" type="xs:boolean">
-         <xs:annotation>
-            <xs:documentation>Specify if the result should be automatically sorted</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="Asc" name="sortDirection">
-         <xs:annotation>
-            <xs:documentation>If @sorted is true, this @sortDirection determines the sort direction.  asc= low to high, and desc = high to low.</xs:documentation>
-         </xs:annotation>
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="Asc"/>
-               <xs:enumeration value="Desc"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-      <xs:attribute default="false" name="allowNulls" type="xs:boolean">
-         <xs:annotation>
-            <xs:documentation>Allow the list to contain null or empty values ($null) and references to null/empty values.</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute name="maxCount" type="xs:long">
-         <xs:annotation>
-            <xs:documentation>Maximum number of list items</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute name="minCount" type="xs:long">
-         <xs:annotation>
-            <xs:documentation>Minimum number of list items</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-      <xs:attribute default="false" name="allowReferencess" type="xs:boolean">
-         <xs:annotation>
-            <xs:documentation>Allow references to named items that occur in the current form.  All references must resolve to the specified data type, as specified in the other attributes.</xs:documentation>
-         </xs:annotation>
-      </xs:attribute>
-   </xs:attributeGroup>
-   <xs:attribute name="dataTypeNumeric" type="DataTypeInteger_StypeEnum">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute default="integer" name="dataTypeInteger" type="DataTypeInteger_StypeEnum">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for whole number list items in a string list.  For items included by reference to an external (reference or variable) value, use short name strings preceded by "$".
+	<xs:simpleType final="" name="URI_Atype">
+		<xs:restriction base="xs:anyURI">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType final="" name="URL_Atype">
+		<xs:restriction base="xs:anyURI">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attributeGroup name="NumericAttributes">
+		<xs:annotation>
+			<xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is long, then all min/max attributes should be validated as long by the implementing system.  Since these attributes are Schema typed as double, they will be validated by an XML Schema validater as double, but more precise validation is up to the implementing system.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="dataTypeNumeric"/>
+		<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+		<xs:attribute name="fractionDigits" type="xs:unsignedByte">
+			<xs:annotation>
+				<xs:documentation>Number of decimal digits allowed.  Used only for decimal and float types.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxExclusive" type="xs:double"/>
+		<xs:attribute name="minExclusive" type="xs:double"/>
+		<xs:attribute name="maxInclusive" type="xs:double"/>
+		<xs:attribute name="minInclusive" type="xs:double"/>
+		<xs:attribute name="pattern" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Pattern for each list item</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="EQ" name="quantEnum">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="EQ"/>
+					<xs:enumeration value="GT"/>
+					<xs:enumeration value="GTE"/>
+					<xs:enumeration value="LT"/>
+					<xs:enumeration value="LTE"/>
+					<xs:enumeration value="APPROX"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="IntegerAttributes">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:attribute ref="dataTypeInteger"/>
+		<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
+		<xs:attribute name="maxExclusive" type="xs:long"/>
+		<xs:attribute name="minExclusive" type="xs:long"/>
+		<xs:attribute name="maxInclusive" type="xs:long"/>
+		<xs:attribute name="minInclusive" type="xs:long"/>
+		<xs:attribute name="pattern" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Pattern for each list item</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="EQ" name="quantEnum">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="EQ"/>
+					<xs:enumeration value="GT"/>
+					<xs:enumeration value="GTE"/>
+					<xs:enumeration value="LT"/>
+					<xs:enumeration value="LTE"/>
+					<xs:enumeration value="APPROX"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="DateTimeAttributes">
+		<xs:annotation>
+			<xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is gDay, then all min/max attributes must be validated as gDay by the implementing system.  They will not be validated by an XML Schema validater.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute ref="dataTypeDateTime"/>
+		<xs:attribute name="maxExclusive">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="26"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minExclusive">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="26"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxInclusive">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="26"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minInclusive">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="26"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attributeGroup ref="MaskAttributes"/>
+		<xs:attributeGroup ref="QuantAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="StringAttributes">
+		<xs:attribute fixed="string" ref="dataTypeString"/>
+		<xs:attribute name="minLength" type="xs:long"/>
+		<xs:attribute name="maxLength" type="xs:long"/>
+		<xs:attributeGroup ref="MaskAttributes"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="ListAttributes">
+		<xs:attribute name="val" use="required">
+			<xs:annotation>
+				<xs:documentation>List of that holds multiple string items, with each item separated by a space.  Precede named references with "$" to distinguish them from literal strings. Strings that actually start with "$" should be escaped with "\$"</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:list itemType="xs:string"/>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="true" name="resolveReferences" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>If true, then all references in the returned list will be resolved to numbers.  If false, references will remain in the returned list.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="uniqueItems" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Is the list limited to unique items?   (i.e., no duplicates allowed among the list elements)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="sorted" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Specify if the result should be automatically sorted</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="Asc" name="sortDirection">
+			<xs:annotation>
+				<xs:documentation>If @sorted is true, this @sortDirection determines the sort direction.  asc= low to high, and desc = high to low.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Asc"/>
+					<xs:enumeration value="Desc"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute default="false" name="allowNulls" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Allow the list to contain null or empty values ($null) and references to null/empty values.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxCount" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>Maximum number of list items</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="minCount" type="xs:long">
+			<xs:annotation>
+				<xs:documentation>Minimum number of list items</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute default="false" name="allowReferencess" type="xs:boolean">
+			<xs:annotation>
+				<xs:documentation>Allow references to named items that occur in the current form.  All references must resolve to the specified data type, as specified in the other attributes.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attribute name="dataTypeNumeric" type="DataTypeInteger_StypeEnum">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute default="integer" name="dataTypeInteger" type="DataTypeInteger_StypeEnum">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for whole number list items in a string list.  For items included by reference to an external (reference or variable) value, use short name strings preceded by "$".
 
 The precise type of whole number (e.g, byte, integer, long) may be selected in the enumerated list, but the default is Long.</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute name="dataTypeDateTime" type="DataTypeDateTime_StypeEnum">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute fixed="boolean" name="dataTypeBoolean" type="DataTypeBoolean_StypeEnum">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute fixed="string" name="dataTypeString" type="DataTypeString_StypeEnum">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for items in a string value, value list, or referenced itemName. </xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute name="dataTypeClassName" type="xs:NMTOKEN">
-      <xs:annotation>
-         <xs:documentation>The name of a custom class used as a data type</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute name="dataTypeListAll">
-      <xs:annotation>
-         <xs:documentation>Defines the data type held by a string value.
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="dataTypeDateTime" type="DataTypeDateTime_StypeEnum">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute fixed="boolean" name="dataTypeBoolean" type="DataTypeBoolean_StypeEnum">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute fixed="string" name="dataTypeString" type="DataTypeString_StypeEnum">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for items in a string value, value list, or referenced itemName. </xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="dataTypeClassName" type="xs:NMTOKEN">
+		<xs:annotation>
+			<xs:documentation>The name of a custom class used as a data type</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="dataTypeListAll">
+		<xs:annotation>
+			<xs:documentation>Defines the data type held by a string value.
 
 Also defines the dataType for list items in a list, which uses the generic string type, since string can represent any XML data type.  List items of any data type should be validated by the implementation software, since all data types are written into an XML list of type string.
 
 For typed items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-      <xs:simpleType>
-         <xs:list itemType="DataTypeAll_StypeEnum"/>
-      </xs:simpleType>
-   </xs:attribute>
-   <xs:attribute name="dataTypeListDateTime">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for dateTime list items in a string list.  For non-dateTime items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-      <xs:simpleType>
-         <xs:list itemType="DataTypeDateTime_StypeEnum"/>
-      </xs:simpleType>
-   </xs:attribute>
-   <xs:attribute name="dataTypeListNumeric">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-      <xs:simpleType>
-         <xs:list itemType="DataTypeNumeric_StypeEnum"/>
-      </xs:simpleType>
-   </xs:attribute>
-   <xs:attribute name="dataTypeListLong">
-      <xs:annotation>
-         <xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
-      </xs:annotation>
-      <xs:simpleType>
-         <xs:list itemType="DataTypeInteger_StypeEnum"/>
-      </xs:simpleType>
-   </xs:attribute>
-   <xs:simpleType name="DataTypeNumeric_StypeEnum">
-      <xs:restriction base="xs:string">
-         <xs:enumeration value="byte"/>
-         <xs:enumeration value="decimal"/>
-         <xs:enumeration value="double"/>
-         <xs:enumeration value="float"/>
-         <xs:enumeration value="hexbinary"/>
-         <xs:enumeration value="int"/>
-         <xs:enumeration value="integer"/>
-         <xs:enumeration value="long"/>
-         <xs:enumeration value="negativeInteger"/>
-         <xs:enumeration value="nonNegativeInteger"/>
-         <xs:enumeration value="nonPositiveInteger"/>
-         <xs:enumeration value="positiveInteger"/>
-         <xs:enumeration value="short"/>
-         <xs:enumeration value="unsignedByte"/>
-         <xs:enumeration value="unsignedInt"/>
-         <xs:enumeration value="unsignedLong"/>
-         <xs:enumeration value="unsignedShort"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeInteger_StypeEnum">
-      <xs:restriction base="xs:string">
-         <xs:enumeration value="byte"/>
-         <xs:enumeration value="int"/>
-         <xs:enumeration value="integer"/>
-         <xs:enumeration value="long"/>
-         <xs:enumeration value="negativeInteger"/>
-         <xs:enumeration value="nonNegativeInteger"/>
-         <xs:enumeration value="nonPositiveInteger"/>
-         <xs:enumeration value="positiveInteger"/>
-         <xs:enumeration value="short"/>
-         <xs:enumeration value="unsignedByte"/>
-         <xs:enumeration value="unsignedInt"/>
-         <xs:enumeration value="unsignedLong"/>
-         <xs:enumeration value="unsignedShort"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeDateTime_StypeEnum">
-      <xs:restriction base="xs:string">
-         <xs:enumeration value="dateTime"/>
-         <xs:enumeration value="duration"/>
-         <xs:enumeration value="gMonthDay"/>
-         <xs:enumeration value="gYear"/>
-         <xs:enumeration value="gYearMonth"/>
-         <xs:enumeration value="time"/>
-         <xs:enumeration value="yearMonthDuration"/>
-         <xs:enumeration value="unsignedShort"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeString_StypeEnum">
-      <xs:restriction base="xs:string">
-         <xs:enumeration value="string"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeBoolean_StypeEnum">
-      <xs:restriction base="xs:string">
-         <xs:enumeration value="boolean"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeCustomClass_StypeEnum">
-      <xs:restriction base="xs:NMTOKEN">
-         <xs:enumeration value="customClassName"/>
-      </xs:restriction>
-   </xs:simpleType>
-   <xs:simpleType name="DataTypeAll_StypeEnum">
-      <xs:union
-         memberTypes="DataTypeString_StypeEnum DataTypeNumeric_StypeEnum DataTypeDateTime_StypeEnum DataTypeCustomClass_StypeEnum"
-      />
-   </xs:simpleType>
-   <xs:attributeGroup name="BoolAttributes">
-      <xs:attribute ref="not"/>
-      <xs:attribute default="AND" name="boolOp" xmlns="">
-         <xs:annotation>
-            <xs:documentation>Boolean operator that joins together the truth values from each object in the Predicate.</xs:documentation>
-         </xs:annotation>
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="AND"/>
-               <xs:enumeration value="OR"/>
-               <xs:enumeration value="XOR"/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-   </xs:attributeGroup>
-   <xs:attribute default="false" name="not" type="xs:boolean">
-      <xs:annotation>
-         <xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:attribute name="returnValBool" type="xs:boolean">
-      <xs:annotation>
-         <xs:documentation>Optional location to specify the returned Boolean value and store it as typed data.  This structure allows Schema validation of returned Boolean function values.</xs:documentation>
-      </xs:annotation>
-   </xs:attribute>
-   <xs:complexType name="NumericConstantsType111">
-      <xs:attribute name="constant">
-         <xs:simpleType>
-            <xs:restriction base="xs:string">
-               <xs:enumeration value="null"/>
-               <xs:enumeration value="e"/>
-               <xs:enumeration value="pi"/>
-               <xs:enumeration value="tau"/>
-               <xs:enumeration value=""/>
-               <xs:enumeration value=""/>
-            </xs:restriction>
-         </xs:simpleType>
-      </xs:attribute>
-   </xs:complexType>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="DataTypeAll_StypeEnum"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="dataTypeListDateTime">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for dateTime list items in a string list.  For non-dateTime items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="DataTypeDateTime_StypeEnum"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="dataTypeListNumeric">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="DataTypeNumeric_StypeEnum"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:attribute name="dataTypeListLong">
+		<xs:annotation>
+			<xs:documentation>Defines the dataType for numeric list items in a string list.  For non-numeric items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
+		</xs:annotation>
+		<xs:simpleType>
+			<xs:list itemType="DataTypeInteger_StypeEnum"/>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:simpleType name="DataTypeNumeric_StypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="byte"/>
+			<xs:enumeration value="decimal"/>
+			<xs:enumeration value="double"/>
+			<xs:enumeration value="float"/>
+			<xs:enumeration value="hexbinary"/>
+			<xs:enumeration value="int"/>
+			<xs:enumeration value="integer"/>
+			<xs:enumeration value="long"/>
+			<xs:enumeration value="negativeInteger"/>
+			<xs:enumeration value="nonNegativeInteger"/>
+			<xs:enumeration value="nonPositiveInteger"/>
+			<xs:enumeration value="positiveInteger"/>
+			<xs:enumeration value="short"/>
+			<xs:enumeration value="unsignedByte"/>
+			<xs:enumeration value="unsignedInt"/>
+			<xs:enumeration value="unsignedLong"/>
+			<xs:enumeration value="unsignedShort"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeInteger_StypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="byte"/>
+			<xs:enumeration value="int"/>
+			<xs:enumeration value="integer"/>
+			<xs:enumeration value="long"/>
+			<xs:enumeration value="negativeInteger"/>
+			<xs:enumeration value="nonNegativeInteger"/>
+			<xs:enumeration value="nonPositiveInteger"/>
+			<xs:enumeration value="positiveInteger"/>
+			<xs:enumeration value="short"/>
+			<xs:enumeration value="unsignedByte"/>
+			<xs:enumeration value="unsignedInt"/>
+			<xs:enumeration value="unsignedLong"/>
+			<xs:enumeration value="unsignedShort"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeDateTime_StypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="dateTime"/>
+			<xs:enumeration value="duration"/>
+			<xs:enumeration value="gMonthDay"/>
+			<xs:enumeration value="gYear"/>
+			<xs:enumeration value="gYearMonth"/>
+			<xs:enumeration value="time"/>
+			<xs:enumeration value="yearMonthDuration"/>
+			<xs:enumeration value="unsignedShort"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeString_StypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="string"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeBoolean_StypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="boolean"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeCustomClass_StypeEnum">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="customClassName"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DataTypeAll_StypeEnum">
+		<xs:union
+			memberTypes="DataTypeString_StypeEnum DataTypeNumeric_StypeEnum DataTypeDateTime_StypeEnum DataTypeCustomClass_StypeEnum"
+		/>
+	</xs:simpleType>
+	<xs:attributeGroup name="BoolAttributes">
+		<xs:attribute ref="not"/>
+		<xs:attribute default="AND" name="boolOp" xmlns="">
+			<xs:annotation>
+				<xs:documentation>Boolean operator that joins together the truth values from each object in the Predicate.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AND"/>
+					<xs:enumeration value="OR"/>
+					<xs:enumeration value="XOR"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attribute default="false" name="not" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:attribute name="returnValBool" type="xs:boolean">
+		<xs:annotation>
+			<xs:documentation>Optional location to specify the returned Boolean value and store it as typed data.  This structure allows Schema validation of returned Boolean function values.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="NumericConstantsType111">
+		<xs:attribute name="constant">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="null"/>
+					<xs:enumeration value="e"/>
+					<xs:enumeration value="pi"/>
+					<xs:enumeration value="tau"/>
+					<xs:enumeration value=""/>
+					<xs:enumeration value=""/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
 </xs:schema>

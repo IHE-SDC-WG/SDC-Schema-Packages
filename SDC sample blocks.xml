@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
+<FormDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    order="0"    
+    baseURI="cap.org"
+    lineage="Samples.Samp1"
+    version="v001"
+    ID="Samples.Samp1_v001_sdcFDF"
+    fullURI="_baseURI=cap.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"    
+    filename="Samples.Samp1_v001_sdcFDF.xml" 
+
+    formTitle="Sample Blocks" 
+
+    xmlns="urn:ihe:qrph:sdc:2016"
+    xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/SDCRetrieveForm.xsd">
+    <Header ID="H1" title="This is a Header"/>
+
+    <Body ID="B1">
+        <ChildItems>
+            <DisplayedItem name="DI_29723" order="16" ID="29723.100004300"
+                title="Completion of the template is the responsibility of the laboratory performing the biomarker testing and / or providing the interpretation. When both testing and interpretation are performed elsewhere (e.g., a reference laboratory), synoptic reporting of the results by the laboratory submitting the tissue for testing is also encouraged to ensure that all information is included in the patient’s medical record and thus readily available to the treating clinical team.">
+                <Property propName="reportText" val="{no text}"/>
+            </DisplayedItem>
+
+            <Section name="S_S1" order="26" ID="S1"
+                title="This is a SECTION (Note A)" mustImplement="false" minCard="0">
+                <Property name="p_rptTxt_S1_1" order="27" propName="reportText" val="SPECIMEN"/>
+                
+                <ChildItems>                    
+                    
+                    <Question name="Q_QM1" order="100" ID="QM1" title="This is a QM question title" mustImplement="false"
+                        minCard="0">
+                        <ListField name="lf_Q_QM1_1" order="101" maxSelections="0">
+                            <List name="lst_Q_QM1_2" order="102">
+                                <ListItem name="LI_LI1" order="103" ID="LI1" title="ListItem.title.1"/>
+                                <ListItem name="LI_LI2" order="104" ID="LI2" title="ListItem.title.2"/>
+                                <ListItem name="LI_LI3" order="105" ID="LI3" title="ListItem.title.3"/>
+                                <ListItem name="LI_LI4" order="106" ID="LI4" title="ListItem.title.4"/>
+                                <ListItem name="LI_LI5" order="107" ID="LI5" title="ListItem.title.5">
+                                    <Property name="p_rptTxt_LI4_1" order="108" propName="reportText"
+                                        val="{no text}"/>
+                                    <ListItemResponseField name="lirf_LI4_2" order="109"
+                                        responseRequired="true">
+                                        <Response name="rsp_LI4_3" order="110">
+                                            <string name="str_LI4_4" order="111" maxLength="4000"/>
+                                        </Response>
+                                    </ListItemResponseField>
+                                </ListItem>
+                            </List>
+                        </ListField>
+                    </Question>
+                    
+                </ChildItems>
+
+            </Section>
+
+            <Question ID="QR1" title="?This is a QR question title" minCard="0">
+                <Property propName="reportText" val="This is a question title"/>
+                <ResponseField>
+                    <Response>
+                        <string maxLength="4000" minLength="0" mask="" pattern="" val=""/>
+                    </Response>
+                </ResponseField>
+            </Question>
+
+            <Question ID="QR2" title="This is a question title">
+                <ResponseField>
+                    <Response>
+                        <string maxLength="4000" minLength="0" mask="" pattern="" val=""/>
+                    </Response>
+                </ResponseField>
+            </Question>
+
+            <Question name="Q_QR3" order="350" ID="QR3"
+                title="Specify Percentage of QR quarks (see Note A)">
+                <Property name="p_rptTxt_QR3_1" order="351" propName="reportText"
+                    val="Specify Percentage of quarks"/>
+                <ResponseField name="rf_QR3_2" order="352">
+                    <Response name="rsp_QR3_3" order="353">
+                        <integer name="intr_QR3_4" order="354" maxInclusive="100" minInclusive="1"
+                        />
+                    </Response>
+                    <TextAfterResponse name="rtt_43290_5" order="355" val="%"/>
+                    <ResponseUnits name="un_43290_6" order="356" val="%" unitSystem="UCOM"/>
+                </ResponseField>
+            </Question>
+
+            <Question ID="QR4" title="This is a QR question title (see Note A)">
+                <Property propName="reportText" val="This is a QR question title"/>
+                <ResponseField>
+                    <Response>
+                        <integer maxInclusive="100" minInclusive="1"/>
+                    </Response>
+                    <TextAfterResponse val="%"/>
+                    <ResponseUnits val="%" unitSystem="UCOM"/>
+                </ResponseField>
+            </Question>
+
+
+            <Question ID="QM2" title="This is a QM question title">
+                <ListField maxSelections="0">
+                    <List>
+                        <ListItem ID="LI1a" title="ListItem.title.1"/>
+                        <ListItem ID="LI2a" title="ListItem.title.2"/>
+                        <ListItem ID="LI3a" title="ListItem.title.3"/>
+                        <ListItem ID="LI4a" title="ListItem.title.4"/>
+                        <ListItem ID="LI5a" title="No good answer here (explain)" selected="true">
+                            <Property propName="reportText" val="{no text}"/>
+                            <ListItemResponseField responseRequired="true">
+                                <Response>
+                                    <string maxLength="4000"/>
+                                </Response>
+                            </ListItemResponseField>
+                        </ListItem>
+                    </List>
+                </ListField>
+            </Question>
+            <Question ID="QM3" title="This is a QM question title">
+                <ListField maxSelections="0">
+                    <List>
+                        <ListItem ID="LI1b" title="ListItem.title.1"/>
+                        <ListItem ID="LI2b" title="ListItem.title.2"/>
+                        <ListItem ID="LI3b" title="ListItem.title.3"/>
+                    </List>
+                </ListField>
+            </Question>
+
+            <Question ID="QR0" title="This is a QR question title">
+                <ListField maxSelections="0">
+                    <List>
+                        <ListItem ID="LI1c" title="ListItem.title.1"/>
+                        <ListItem ID="LI2c." title="ListItem.title.2"/>
+                        <ListItem ID="LI3c" title="ListItem.title.3"/>
+                    </List>
+                </ListField>
+            </Question>
+
+        </ChildItems>
+
+    </Body>
+    <Footer ID="F1" title="This is a Footer"/>
+    <Rules/>
+</FormDesign>
