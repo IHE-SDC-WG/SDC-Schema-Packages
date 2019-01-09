@@ -382,6 +382,7 @@ function resetAnswer(questionId, event) {
 		/*will it work with repeated sections?*/
 	  
 	   var answers = document.getElementsByName(questionId);
+
 	   for (var i = 0; i < answers.length; i++) {
 			var selecttype = $(answers[i]).attr('type');
 			if(selecttype=="checkbox" || selecttype=="radio")
@@ -391,6 +392,7 @@ function resetAnswer(questionId, event) {
 				// fire onchange on this answer choice	
 				
 				answers[i].onchange();
+
 			}
 		}
 		
@@ -720,7 +722,7 @@ function addQuestion(obj) {
 		
 		
 		var clonedBlock = questionToRepeat.clone();
-		
+	
 		clonedBlock.attr("id", 'q' + currentQuestionId + '..' + repeatIndex);
 		
 		//alert(clonedBlock.html());
@@ -811,12 +813,7 @@ function addQuestion(obj) {
 		clonedBlock.find('.btnRemove').css('visibility', 'visible');  //show does not work
 		//clonedBlock.appendTo(questionToRepeat.after());   
 		questionToRepeat.after(	clonedBlock);	
-		
-		
-		
-		
-		
-		
+
 	}
 	catch (err) {
 		alert(err.message );
@@ -835,7 +832,7 @@ function removeQuestion(obj)
 		var questionToRemove = button.closest('.question');  //closest parent div with class='question'
 																				
 		var currentQuestionId = questionToRemove.attr('id').substring(1);
-		
+
 		//remove
 		questionToRemove.remove();
 		//alert('now removing ' + currentQuestionId);
@@ -844,6 +841,7 @@ function removeQuestion(obj)
 		{
 			alert("ID = " + currentQuestionId + " not found");
 		}
+
 		$xml.find("Question [ID='" + currentQuestionId + "']").remove();
 	}
 	
@@ -916,6 +914,7 @@ count question repeats
 function countQuestionRepeats(questionid) {
 	
 	questionid = questionid.split('..')[0];
+
 	//alert(questionid + ':' + $xml.find('Question[ID^="' + questionid + '"]').length);
 	return $xml.find('Question[ID^="' + questionid + '"]').length;
 	
@@ -2606,6 +2605,7 @@ function SelectUnselectParents(parentQuestion, element)
 				Toggle Questions
 			 </a>
 			
+
             </nav>
             	
             	<!--hidden textbox to store rawxml at run time-->
@@ -2808,6 +2808,7 @@ function SelectUnselectParents(parentQuestion, element)
 	
 	<!--sections within body and other sections directly inside sections-->
 	<xsl:template match="x:Section" mode="level1">
+
 		<xsl:param name="parentSectionId"/>	
 		<xsl:param name="defaultStyle"/>
 		<!--<xsl:if test="string-length(@title) &gt; 0">--> <!--do not show if there is no title-->
@@ -2834,6 +2835,7 @@ function SelectUnselectParents(parentQuestion, element)
 					   <xsl:attribute name="id">
 						<xsl:value-of select="$sectionId"/>
 					   </xsl:attribute>
+
 						<tr>
 							<td>								
 								<xsl:choose>
@@ -2846,6 +2848,7 @@ function SelectUnselectParents(parentQuestion, element)
 										<xsl:choose>
 											<xsl:when test="count(ancestor::x:Section)= 0">
 												<div class="{$defaultStyle} collapsable">
+
 													<!-- new code -->
 													<xsl:call-template name="ItemWithID">
 													   <xsl:with-param name="required" select="required"/>
@@ -2854,12 +2857,14 @@ function SelectUnselectParents(parentQuestion, element)
 													<xsl:value-of select="@title"/>	
 													<div style="display:inline" class="MetadataDisplay">
 														<!---metadata-->
+
 													</div>													
 												</div>
 												<div style='clear:both'/>
 											</xsl:when>
 											<xsl:when test="count(ancestor::x:Section)= 1">
 												<div class="{$defaultStyle}2 collapsable">
+
 													<!-- new code -->
 													<xsl:call-template name="ItemWithID">
 													   <xsl:with-param name="required" select="required"/>
@@ -2868,6 +2873,7 @@ function SelectUnselectParents(parentQuestion, element)
 													<xsl:value-of select="@title"/>	
 													<div style="display:inline" class="MetadataDisplay">
 														<!---metadata-->
+
 													</div>													
 												</div>
 												<div style='clear:both'/>
@@ -2882,6 +2888,7 @@ function SelectUnselectParents(parentQuestion, element)
 													<xsl:value-of select="@title"/>	
 													<div style="display:inline" class="MetadataDisplay">
 														<!---metadata-->
+
 													</div>
 												</div>
 											</xsl:when>
@@ -2895,6 +2902,7 @@ function SelectUnselectParents(parentQuestion, element)
 													<xsl:value-of select="@title"/>	
 													<div style="display:inline" class="MetadataDisplay">
 														<!---metadata-->
+
 													</div>
 												</div>
 											</xsl:otherwise>
@@ -2922,7 +2930,7 @@ function SelectUnselectParents(parentQuestion, element)
 									</xsl:otherwise>
 								</xsl:choose>
 								<div style="clear:both"/>
-								
+
 								<xsl:if test="@maxCard&gt;1">
 								
 									<input type="button" class="btnAdd" onclick="addSection(this)" value="+"/>
@@ -2936,6 +2944,7 @@ function SelectUnselectParents(parentQuestion, element)
 						</tr>
 					</table>
 				</div>
+
 			
 			</xsl:if>
 		<!--</xsl:if>-->
@@ -2983,6 +2992,7 @@ function SelectUnselectParents(parentQuestion, element)
 										<xsl:value-of select="@title"/>
 										<div style="display:inline" class="MetadataDisplay">
 											<!---metadata-->
+
 										</div>
 									</div>
 								</xsl:when>
@@ -2996,6 +3006,7 @@ function SelectUnselectParents(parentQuestion, element)
 										<xsl:value-of select="@title"/>
 										<div style="display:inline" class="MetadataDisplay">
 											<!---metadata-->
+
 										</div>
 									</div>
 								</xsl:otherwise>
@@ -3049,10 +3060,12 @@ function SelectUnselectParents(parentQuestion, element)
 					<xsl:attribute name="name">
 						<xsl:value-of select="$questionId"/>
 					</xsl:attribute>				
+
 					<xsl:attribute name="value">
 						<xsl:value-of select="@title"/>
 					</xsl:attribute>
 				</input>
+
 				<input id = "maxcardinality" type="hidden">
 					<xsl:attribute name="value">
 						<xsl:value-of select="@maxCard"/>
@@ -3071,12 +3084,12 @@ function SelectUnselectParents(parentQuestion, element)
 						
 						<xsl:value-of select="@title"/> 
 						<div style="display:inline" class="metadata">
+
 							<!---metadata-->
 						</div>
 						
 						<!-- new code placement -->
-						<xsl:call-template name="QuestionSectionAttributes"/>
-						
+						<xsl:call-template name="QuestionSectionAttributes"/>						
 						<xsl:if test="not(x:ResponseField) and not(@readOnly)">
 							 <a class="QuestionReset">
 							 <xsl:attribute name="href">
@@ -3099,16 +3112,12 @@ function SelectUnselectParents(parentQuestion, element)
 								</xsl:attribute>
 							</input>
 						</xsl:if>
-						
-						
-						
 						<!--show link here?-->
 						<xsl:for-each select="x:Link">					
 							<xsl:call-template name="handle_link"/>
 						</xsl:for-each>
 
 					</div>
-					
 					<div class='command'>
 						<xsl:if test="@maxCard&gt;1">				
 							<input type="button" class="btnAdd" onclick="addQuestion(this)" value="+"/>
@@ -3132,12 +3141,13 @@ function SelectUnselectParents(parentQuestion, element)
 					<!--11/13/2016: question within question-->
 					<div style="clear:both;"/>
 					<xsl:if test="x:ChildItems/x:Question">	
-					 
+
 						<xsl:apply-templates select="x:ChildItems/x:Question" mode="level3">
 							<xsl:with-param name="parentSectionId" select="$parentSectionId" />
 						</xsl:apply-templates>
 					</xsl:if>
 					
+
 				</div>
 		</div>
 		
@@ -3195,6 +3205,7 @@ function SelectUnselectParents(parentQuestion, element)
 								<xsl:text>(reset)</xsl:text>
 							</a>
 						</xsl:if>
+
 						<xsl:if test="x:ResponseField">
 							<input type="text" class="TextBox">
 								<xsl:attribute name="name">
@@ -3207,6 +3218,7 @@ function SelectUnselectParents(parentQuestion, element)
 						</xsl:if>
 					
 					</div>
+
 				</xsl:when>
 				<xsl:otherwise>
 					<div class="QuestionTitle collapsable_q">
@@ -3214,7 +3226,6 @@ function SelectUnselectParents(parentQuestion, element)
 						<xsl:call-template name="ItemWithID">
 						   <xsl:with-param name="required" select="required"/>
 						</xsl:call-template>
-						
 						<div style="display:inline" class="MetadataDisplay">
 							<!---metadata-->
 						</div>
@@ -3231,6 +3242,7 @@ function SelectUnselectParents(parentQuestion, element)
 						  <xsl:text>(reset)</xsl:text>
 						</a>
 					</xsl:if>
+
 					
 					<xsl:if test="x:ResponseField">
 						<input type="text" class="TextBox">
@@ -3312,6 +3324,7 @@ function SelectUnselectParents(parentQuestion, element)
 				<xsl:value-of select="@title"/>
 				<div style="display:inline" class="MetadataDisplay">
 					<!---metadata-->
+
 				</div>
 				
 				<!-- new code placement -->
@@ -3328,6 +3341,7 @@ function SelectUnselectParents(parentQuestion, element)
 					  <xsl:text>(reset)</xsl:text>
 					</a>
 				</xsl:if>				
+
 				<xsl:if test="x:ResponseField"> 
 					<input type="text" class="TextBox">
 						<xsl:attribute name="name">
@@ -3348,7 +3362,7 @@ function SelectUnselectParents(parentQuestion, element)
 				</xsl:for-each>
 
 			</div>
-			
+
 			<div style="clear:both;"/>
 			
 			<xsl:if test="x:ListField">
@@ -3437,6 +3451,7 @@ function SelectUnselectParents(parentQuestion, element)
 					  <xsl:text>(reset)</xsl:text>
 					</a>
 				</xsl:if>				
+
 				<xsl:if test="x:ResponseField"> 
 					<input type="text" class="TextBox">
 						<xsl:attribute name="name">
@@ -3456,7 +3471,7 @@ function SelectUnselectParents(parentQuestion, element)
 				</xsl:for-each>
 
 			</div>
-			
+
 			<div class='command'>
 				<xsl:if test="@maxCard&gt;1">				
 					<input type="button" class="btnAdd" onclick="addQuestion(this)" value="+"/>
@@ -3493,6 +3508,7 @@ function SelectUnselectParents(parentQuestion, element)
    <xsl:param name="questionId" />
    <xsl:param name="parentSectionId" />  
 	<xsl:choose>
+
 		<!--single select-->
 		<xsl:when test="@maxSelections='1' or not (@maxSelections)" >
 			<xsl:apply-templates select= "x:List/x:ListItem|x:List/x:DisplayedItem" mode="singleselect">
@@ -3539,6 +3555,7 @@ function SelectUnselectParents(parentQuestion, element)
 					</xsl:attribute>
 					
 				</input> 
+
 				<!-- new code -->
 				<xsl:call-template name="ItemWithID">
 				   <xsl:with-param name="required" select="required"/>
@@ -3558,6 +3575,7 @@ function SelectUnselectParents(parentQuestion, element)
 				
 				<div style="display:inline" class="MetadataDisplay">
 					<!---metadata-->
+
 				</div>
 				<!--answer fillin-->
 				<xsl:if test="x:ListItemResponseField">
@@ -3740,6 +3758,7 @@ function SelectUnselectParents(parentQuestion, element)
 					<xsl:value-of select="@title"/> 
 					<div style="display:inline" class="MetadataDisplay">
 						<!---metadata-->
+
 					</div>					
 				</div>			
 				<div style="clear:both;"/>			
@@ -3763,6 +3782,7 @@ function SelectUnselectParents(parentQuestion, element)
 				<xsl:value-of select="@title"/> 
 				<div style="display:inline" class="MetadataDisplay">
 					<!---metadata-->
+
 				</div>
 			</div>			
 			<div style="clear:both;"/>			
@@ -3779,6 +3799,7 @@ function SelectUnselectParents(parentQuestion, element)
 				<div class='mustImplement'></div>
 			</xsl:if>
 			<div class="ListNote">
+
 				<!-- new code -->
 				<xsl:call-template name="ItemWithID">
 				   <xsl:with-param name="required" select="required"/>
@@ -3787,6 +3808,7 @@ function SelectUnselectParents(parentQuestion, element)
 				<xsl:value-of select="@title"/> 
 				<div style="display:inline" class="MetadataDisplay">
 					<!---metadata-->
+
 				</div>
 			</div>			
 			<div style="clear:both;"/>			
@@ -3860,6 +3882,7 @@ function SelectUnselectParents(parentQuestion, element)
 	<xsl:template name="QuestionSectionAttributes">
       <xsl:if test="$metadata-display = 'true'">
          <div class="MetadataDisplay">
+
             <xsl:if test="string(@locked) = 'true'">
                &#160;<div class="locked">locked</div>
             </xsl:if>
@@ -3867,6 +3890,7 @@ function SelectUnselectParents(parentQuestion, element)
                &#160;<div class="minCard">min: </div>
                <xsl:value-of select="@minCard"/>
             </xsl:if>
+
             <xsl:if test="string(@maxCard) != ''">
                &#160;<div class="maxCard">max: </div>:
                <xsl:value-of select="@maxCard"/>
@@ -3983,6 +4007,7 @@ function SelectUnselectParents(parentQuestion, element)
             <xsl:if test="string(@locked) = 'true'">
                &#160;<div class="locked">locked</div>
             </xsl:if>
+
             <xsl:if test="@selectionDeselectsSiblings = 'true'">
                &#160;<div class="sds">sds </div>
             </xsl:if>
@@ -4086,6 +4111,7 @@ function SelectUnselectParents(parentQuestion, element)
       <xsl:param name="metadataClass" select="'MetadataDisplay'"/>
       <xsl:if test="$metadata-display = 'true'">
          <div class="{string($metadataClass)}">
+
 		    <!-- unnecessary logging -->
             <xsl:if test="string(@mustImplement) = 'false'">
                &#160;<div class="mustImplement">mI: </div>
@@ -4104,6 +4130,7 @@ function SelectUnselectParents(parentQuestion, element)
 			         	
          	<xsl:if test="string(x:Property/@propName) != '' and string(x:Property/@propName) != '{no text}'">
          		&#160;<div class="reportText">rpt: </div>
+
          		<xsl:value-of select="x:Property/@val"/>
          	</xsl:if>
          	
@@ -4115,6 +4142,7 @@ function SelectUnselectParents(parentQuestion, element)
                &#160;<div class="name">name: </div>
                <xsl:value-of select="@name"/>
             </xsl:if>
+
             <xsl:if test="string(@visible) = 'false'">
                &#160;<div class="visible">vis: </div>
                <xsl:value-of select="@visible"/>
@@ -4244,6 +4272,7 @@ function SelectUnselectParents(parentQuestion, element)
 
    </xsl:template>
    
+
    <!-- new code -->
    <xsl:template name="ItemWithID">
       <xsl:param name="required"/>
@@ -4260,6 +4289,7 @@ function SelectUnselectParents(parentQuestion, element)
 				<xsl:value-of select="substring-before(@ID, '.')"/>
 				-   
 			</a>
+
          </div>
       </xsl:if>
 

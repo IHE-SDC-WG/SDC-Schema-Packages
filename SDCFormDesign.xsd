@@ -645,7 +645,6 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 					<xs:enumeration value="preliminary"/>
 					<xs:enumeration value="final"/>
 					<xs:enumeration value="retracted"/>
-
 					<xs:enumeration value="cancelled"/>
 				</xs:restriction>
 			</xs:simpleType>
@@ -873,6 +872,7 @@ A value of 1 (the default) indicates that the question list is single-select.  (
 
 If @showInReport on a Question is false, then the Question and its ListItems (if any) should not be present in a typical report derived from this template.  If this attribute appears on a ListItem, then the entire question and all ListItems should be omitted from the report.  If this attribute appears on a Section, then the entire Section and all Section contents (descendents) should be omitted from the report.  If @showInReport appears on a DisplayedItem, then the DisplayedItem (and all sub-items) should be omitted from the report.
 
+
 This attribute is usually set to false when a Question is used to control form behavior (e.g., skip logic), or when the Question provides unhelpful "negative" information about actions that did not occur or were not performed, or things that were not observed.</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
@@ -984,17 +984,20 @@ The default value is "false" indicating that the the rule runs when the "If" con
 				<xs:attribute name="actSetVal" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set a @val attribute.  The correct data type must be used if applicable.</xs:documentation>
+
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="actSetAssociatedValue" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set @associatedValue attribute of a ListItem.  The correct data type must be used if applicable.</xs:documentation>
+
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ActSetAttrValueType">
+
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item properties.  If an "act" property (a property with the "act" prefix) has no value assigned, it is ignored. If it has a value, then that property on the target item(s) assume(s) that stated value when an attached Boolean condition evaluates to true.  The attached condition may be an "If" statement or any expression that evaluates to a Boolean value.</xs:documentation>
 		</xs:annotation>
@@ -1224,6 +1227,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 							<xs:documentation>A generic ExtensionBaseType for custom actions in a "Then" section.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+
 					<xs:element name="SetProperty" type="ActSetItemAttributeType"/>
 					<xs:element name="AddCode" type="ActAddCodeType"/>
 					<xs:element name="Inject" type="ActInjectType"/>
@@ -1234,6 +1238,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 					<xs:element name="SetItemAttributeValue" type="ActSetItemAttributeType"/>
 					<xs:element name="SetAttributeValue" type="ActSetAttrValueType"/>
 					<xs:element name="SetBoolValue" type="ActSetValueBoolType"/>
+
 					<xs:element name="ShowForm" type="ActShowFormType"/>
 					<xs:element name="ShowMessage" type="ActShowMessageType"/>
 					<xs:element name="ShowReport" type="ActShowReportType"/>
@@ -1241,6 +1246,7 @@ reportID:  points to a report definition in SDC format.</xs:documentation>
 					<xs:element name="ValidateForm" type="ActValidateFormType"/>
 					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
 					<xs:element name="CallCode" type="CallFuncType">
+
 						<xs:annotation>
 							<xs:documentation>Execute a local rule located elsewhere in the FormDesign template.  Use the @name value in @val property of Function</xs:documentation>
 						</xs:annotation>
@@ -1389,6 +1395,7 @@ Renamed from: IllegalSelectionSets</xs:documentation>
 						<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1422,6 +1429,7 @@ In the PropertyValues condition, the contained Boolean attributed values are AND
 				<xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
 					<xs:annotation>
 						<xs:documentation>Required name(s) of the item(s) (Section, Question, List Item) that contains the item properties used in the other attributes.</xs:documentation>
+
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="isSelected" type="xs:boolean"/>
@@ -1477,6 +1485,7 @@ If the minCard = "0" then isRequired = "false"</xs:documentation>
 				<xs:attribute name="hasAssociatedValueGT" type="xs:decimal"/>
 				<xs:attribute name="hasAssociatedValueGTE" type="xs:decimal"/>
 				<xs:attribute name="supportdatesandIntervals"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1500,6 +1509,7 @@ If there is a maximum number of items to answer, the value is contained in @maxA
 						<xs:documentation>If @not="true" then the logical value of the conditions of the parent element is negated; true becomes false and false becomes true.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+
 				<xs:attribute default="1" name="minAnswered" type="xs:int" use="optional"/>
 				<xs:attribute default="0" name="maxAnswered" type="xs:int">
 					<xs:annotation>
@@ -1566,6 +1576,7 @@ The number of true responses are added together.  If they satisfy the minAnswere
 							<xs:complexContent>
 								<xs:extension base="GetItemAttribValuesType">
 									<xs:sequence minOccurs="0">
+
 										<xs:element name="Actions" minOccurs="0" type="ActionsType"
 										/>
 									</xs:sequence>

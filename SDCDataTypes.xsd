@@ -14,6 +14,7 @@
 		<xs:attribute default="false" name="allowAPPROX" type="xs:boolean"/>
 	</xs:attributeGroup>
 	<xs:attribute default="EQ" name="quantEnum">
+
 		<xs:simpleType>
 			<xs:restriction base="xs:string">
 				<xs:enumeration value="EQ"/>
@@ -31,6 +32,7 @@
 		</xs:annotation>
 		<xs:complexType>
 			<xs:attribute ref="quantEnum"/>
+
 			<xs:attributeGroup ref="QuantAttributes"/>
 		</xs:complexType>
 	</xs:element>
@@ -545,6 +547,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:byte"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -553,6 +556,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:date"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -561,6 +565,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:dateTime"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -576,6 +581,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -584,6 +590,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:decimal"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -593,6 +600,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 				<xs:attribute name="val" type="xs:double"/>
 				<xs:attributeGroup ref="MaskAttributes"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -601,6 +609,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -609,6 +618,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:float"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -617,6 +627,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gDay"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -624,7 +635,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gMonth"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -632,7 +645,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gMonthDay"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -640,7 +655,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gYear"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -648,7 +665,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:gYearMonth"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -684,8 +703,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 	<xs:complexType name="int_Stype">
 		<xs:complexContent>
 			<xs:extension base="BaseType">
-				<xs:attribute name="val" type="xs:int"/>
+				<xs:attribute name="val" type="xs:int"/
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -694,6 +714,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:integer"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -702,6 +723,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:long"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -710,6 +732,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:negativeInteger"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -717,7 +740,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:nonNegativeInteger"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -725,7 +750,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:nonPositiveInteger"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -733,7 +760,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:positiveInteger"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -741,7 +770,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:short"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -756,7 +787,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:time"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -764,7 +797,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedByte"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -772,7 +807,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedInt"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -780,7 +817,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedLong"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -788,7 +827,9 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 		<xs:complexContent>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:unsignedShort"/>
+
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -808,6 +849,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 			<xs:extension base="BaseType">
 				<xs:attribute name="val" type="xs:duration"/>
 				<xs:attribute ref="quantEnum"/>
+
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1047,7 +1089,9 @@ Or it might look like this: PT15H.
 		<xs:annotation>
 			<xs:documentation>Each min/max attribute must be externally validated for the proper data type.  For example, if the data type is long, then all min/max attributes should be validated as long by the implementing system.  Since these attributes are Schema typed as double, they will be validated by an XML Schema validater as double, but more precise validation is up to the implementing system.</xs:documentation>
 		</xs:annotation>
+
 		<xs:attribute ref="dataTypeNumeric"/>
+
 		<xs:attribute name="totalDigits" type="xs:unsignedByte"/>
 		<xs:attribute name="fractionDigits" type="xs:unsignedByte">
 			<xs:annotation>
@@ -1238,6 +1282,7 @@ The precise type of whole number (e.g, byte, integer, long) may be selected in t
 		<xs:annotation>
 			<xs:documentation>Defines the data type held by a string value.
 
+
 Also defines the dataType for list items in a list, which uses the generic string type, since string can represent any XML data type.  List items of any data type should be validated by the implementation software, since all data types are written into an XML list of type string.
 
 For typed items included by reference to an external (reference or variable) value, use short name strings preceded by "$".</xs:documentation>
@@ -1270,6 +1315,7 @@ For typed items included by reference to an external (reference or variable) val
 			<xs:list itemType="DataTypeInteger_StypeEnum"/>
 		</xs:simpleType>
 	</xs:attribute>
+
 	<xs:simpleType name="DataTypeNumeric_StypeEnum">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="byte"/>
@@ -1333,6 +1379,7 @@ For typed items included by reference to an external (reference or variable) val
 	<xs:simpleType name="DataTypeCustomClass_StypeEnum">
 		<xs:restriction base="xs:NMTOKEN">
 			<xs:enumeration value="customClassName"/>
+
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="DataTypeAll_StypeEnum">
@@ -1361,11 +1408,13 @@ For typed items included by reference to an external (reference or variable) val
 		</xs:annotation>
 	</xs:attribute>
 	<xs:attribute name="returnValBool" type="xs:boolean">
+
 		<xs:annotation>
 			<xs:documentation>Optional location to specify the returned Boolean value and store it as typed data.  This structure allows Schema validation of returned Boolean function values.</xs:documentation>
 		</xs:annotation>
 	</xs:attribute>
 	<xs:complexType name="NumericConstantsType111">
+
 		<xs:attribute name="constant">
 			<xs:simpleType>
 				<xs:restriction base="xs:string">

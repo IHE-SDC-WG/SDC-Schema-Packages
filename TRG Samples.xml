@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wrapper>
+
+<Question ID="43290.100004300" title="Specify Percentage of Pattern 4">
+    <Property propName="reportText" val="Percentage of Pattern 4"/>
+    <ResponseField>
+        <Response>
+            <integer maxInclusive="100" minInclusive="1"/>
+        </Response>
+        <TextAfterResponse val="%"/>
+        <ResponseUnits val="%" unitSystem="UCOM"/>
+    </ResponseField>
+</Question>
+
+<Question ID="Q1" title="Question.title.1">
+    <ListField maxSelections="0">
+        <List>
+            <ListItem ID="LI1" title="ListItem.title.1"/>
+            <ListItem ID="LI2" title="ListItem.title.2"/>
+            <ListItem ID="LI3" title="ListItem.title.3"/>
+        </List>
+    </ListField>
+</Question>
+
+<Question ID="QM2" title="This is a QM question title">
+    <ListField maxSelections="0">
+        <List>
+            <ListItem ID="LI1a" title="ListItem.title.1"/>
+            <ListItem ID="LI2a" title="ListItem.title.2"/>
+            <ListItem ID="LI3a" title="ListItem.title.3"/>
+            <ListItem ID="LI4a" title="ListItem.title.4"/>
+            <ListItem ID="LI5a" title="ListItem.title.5">
+                <Property propName="reportText" val="{no text}"/>
+                <ListItemResponseField responseRequired="true" >
+                    <Response>
+                        <string maxLength="4000"/>
+                    </Response>
+                </ListItemResponseField>
+            </ListItem>
+        </List>
+    </ListField>
+</Question>
+<ElementTag val="ElementTag content goes here">
+    <!--This is an XML comment: SDC never allows content here, between the element tags
+    (except for HTML snippets in an SDC HTML element)
+    -->
+    <SubElementTag val="SubElementTag content goes here"/>
+    
+</ElementTag>
+
+<ElementTag val="ElementTag content goes here"/> <!--more concise XML-->
+    
+</wrapper>
