@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="sdctemplate.xslt" ?>
-<FormDesign 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<FormDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-    xmlns:h="http://www.w3.org/1999/xhtml" 
-    order="0"
-    
-    baseURI="cap.org" lineage="Samples.Samp1" version="v001" ID="Samples.Samp1_v001_sdcFDF"
-    fullURI="_baseURI=cap.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"
+    order="0"    
+    baseURI="cap.org"
+    lineage="Samples.Samp1"
+    version="v001"
+    ID="Samples.Samp1_v001_sdcFDF"
+    fullURI="_baseURI=cap.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"    
     filename="Samples.Samp1_v001_sdcFDF.xml" 
+
     formTitle="Sample Blocks" 
+
     xmlns="urn:ihe:qrph:sdc:2016"
-    xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:SDCRetrieveForm.xsd">
+    xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/SDCRetrieveForm.xsd">
     <Header ID="H1" title="This is a Header"/>
 
     <Body ID="B1">
@@ -20,29 +22,23 @@
                 title="Completion of the template is the responsibility of the laboratory performing the biomarker testing and / or providing the interpretation. When both testing and interpretation are performed elsewhere (e.g., a reference laboratory), synoptic reporting of the results by the laboratory submitting the tissue for testing is also encouraged to ensure that all information is included in the patient’s medical record and thus readily available to the treating clinical team.">
                 <Property propName="reportText" val="{no text}"/>
             </DisplayedItem>
-
-            <Section name="S_S1" order="26" ID="S1" title="This is a SECTION (Note A)"
-                mustImplement="false" minCard="0">
+            <Section name="S_S1" order="26" ID="S1"
+                title="This is a SECTION (Note A)" mustImplement="false" minCard="0">
                 <Property name="p_rptTxt_S1_1" order="27" propName="reportText" val="SPECIMEN"/>
-
-                <ChildItems>
-
-                    <Question name="Q_QM1" order="100" ID="QM1" title="This is a QM question title"
-                        mustImplement="false" minCard="0">
+                
+                <ChildItems>                    
+                    
+                    <Question name="Q_QM1" order="100" ID="QM1" title="This is a QM question title" mustImplement="false"
+                        minCard="0">
                         <ListField name="lf_Q_QM1_1" order="101" maxSelections="0">
                             <List name="lst_Q_QM1_2" order="102">
-                                <ListItem name="LI_LI1" order="103" ID="LI1"
-                                    title="ListItem.title.1"/>
-                                <ListItem name="LI_LI2" order="104" ID="LI2"
-                                    title="ListItem.title.2"/>
-                                <ListItem name="LI_LI3" order="105" ID="LI3"
-                                    title="ListItem.title.3"/>
-                                <ListItem name="LI_LI4" order="106" ID="LI4"
-                                    title="ListItem.title.4"/>
-                                <ListItem name="LI_LI5" order="107" ID="LI5"
-                                    title="ListItem.title.5">
-                                    <Property name="p_rptTxt_LI4_1" order="108"
-                                        propName="reportText" val="{no text}"/>
+                                <ListItem name="LI_LI1" order="103" ID="LI1" title="ListItem.title.1"/>
+                                <ListItem name="LI_LI2" order="104" ID="LI2" title="ListItem.title.2"/>
+                                <ListItem name="LI_LI3" order="105" ID="LI3" title="ListItem.title.3"/>
+                                <ListItem name="LI_LI4" order="106" ID="LI4" title="ListItem.title.4"/>
+                                <ListItem name="LI_LI5" order="107" ID="LI5" title="ListItem.title.5">
+                                    <Property name="p_rptTxt_LI4_1" order="108" propName="reportText"
+                                        val="{no text}"/>
                                     <ListItemResponseField name="lirf_LI4_2" order="109"
                                         responseRequired="true">
                                         <Response name="rsp_LI4_3" order="110">
@@ -53,7 +49,6 @@
                             </List>
                         </ListField>
                     </Question>
-
                 </ChildItems>
 
             </Section>
@@ -81,7 +76,9 @@
                     val="Specify Percentage of quarks"/>
                 <ResponseField name="rf_QR3_2" order="352">
                     <Response name="rsp_QR3_3" order="353">
-                        <integer name="intr_QR3_4" order="354" maxInclusive="100" minInclusive="1"/>
+                        <integer name="intr_QR3_4" order="354" maxInclusive="100" minInclusive="1"
+                        />
+
                     </Response>
                     <TextAfterResponse name="rtt_43290_5" order="355" val="%"/>
                     <ResponseUnits name="un_43290_6" order="356" val="%" unitSystem="UCOM"/>
@@ -138,63 +135,7 @@
                 </ListField>
             </Question>
 
-            <DisplayedItem ID="DI1" title="?This is a Note">
-                <Property propName="myPropName1" val="This is property value 1">
-                    <Property propName="myPropName1.1" val="This is property value 1.1">
-                        <Property propName="myPropName1.1.1" val="This is property value 1.1.1"/>
-                    </Property>
-                </Property>
-                <Property propName="myPropName2" val="This is property value 2">
-                    <Property propName="myPropName2.1" val="This is property value 2.1">
-                        <Property propName="myPropName2.1.1" val="This is property value 2.1.1"/>
-                    </Property>
-                </Property>
-                <Property propName="myHtmlProperty" val="This is plain text">
-                    <TypedValue>
-                        <HTML>
-                            <div xmlns="http://www.w3.org/1999/xhtml"
-                                xsi:schemaLocation="http://www.w3.org/1999/xhtml xhtml.xsd"> This is
-                                    the<b>XHTML</b> version of the property text. </div>
-                        </HTML>
-                    </TypedValue>
-                </Property>
-                <Property propName="myDateProperty">
-                    <TypedValue>
-                        <date val="2019-01-01"/>
-                    </TypedValue>
-                </Property>
-            </DisplayedItem>
-            
-            <DisplayedItem ID="DI2" title="">
-                <Property propName="reportText" val="Physician's Note: ..."/>
-            </DisplayedItem>
-            <!--omitted XML -->
-            <Question ID="Q6" title="Describe the Tumor's Gross Appearance">
-                <Property propName=" titleHTML">
-                    <TypedValue>
-                        <HTML>
-                            <div xmlns="http://www.w3.org/1999/xhtml"
-                                xsi:schemaLocation="http://www.w3.org/1999/xhtml xhtml.xsd">
-                                "Describe the Tumor's <b>Gross Appearance</b>" </div>
-                            <h:div/>
 
-                        </HTML>
-                    </TypedValue>
-                </Property>
-
-                <Property propName="reportText" val="Gross Appearance:"/>
-                <ResponseField>
-                    <Response>
-                        <HTML>
-                            <div xmlns="http://www.w3.org/1999/xhtml"
-                                xsi:schemaLocation="http://www.w3.org/1999/xhtml xhtml.xsd"> "<b>The
-                                    tumor was of ovoid shape, fully encapsulated</b>…" </div>
-                        </HTML>
-                        <!--<string val="The tumor was of ovoid shape, fully encapsulated..."/>-->
-                    </Response>
-                </ResponseField>
-            </Question>
-            
         </ChildItems>
 
     </Body>
