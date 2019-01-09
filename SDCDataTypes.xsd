@@ -703,7 +703,7 @@ See: http://www.w3.org/TR/xmlschema-0/#any </xs:documentation>
 	<xs:complexType name="int_Stype">
 		<xs:complexContent>
 			<xs:extension base="BaseType">
-				<xs:attribute name="val" type="xs:int"/
+				<xs:attribute name="val" type="xs:int"/>
 				<xs:attribute ref="quantEnum"/>
 
 			</xs:extension>
