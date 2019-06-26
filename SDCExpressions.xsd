@@ -178,19 +178,13 @@ Precede named references with "$" to distinguish them from literal strings. </xs
       </xs:complexContent>
    </xs:complexType>
    <xs:element name="___FunctionReturnTypes___" abstract="true" final="#all" block="#all"/>
-<<<<<<< HEAD
-   <xs:complexType name="SDCExceptionType">
-      <xs:complexContent>
-         <xs:extension base="ExtensionBaseType">
-            <xs:sequence minOccurs="0">
-               <xs:element name="InnerException" type="SDCExceptionType"/>
-=======
+
    <xs:complexType name="ExceptionType">
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:sequence minOccurs="0">
                <xs:element name="InnerException" type="ExceptionType"/>
->>>>>>> 4956936cc6ce935fe85c2051b39238b378621b8c
+
             </xs:sequence>
             <xs:attribute ref="not"/>
             <xs:attribute default="EmptyOrMissing" name="exceptionType">
@@ -231,11 +225,9 @@ Precede named references with "$" to distinguish them from literal strings. </xs
       <xs:complexContent>
          <xs:extension base="ExtensionBaseType">
             <xs:choice minOccurs="0">
-<<<<<<< HEAD
-               <xs:element name="Exception" type="SDCExceptionType"/>
-=======
+
                <xs:element name="Exception" type="ExceptionType"/>
->>>>>>> 4956936cc6ce935fe85c2051b39238b378621b8c
+
             </xs:choice>
          </xs:extension>
       </xs:complexContent>
