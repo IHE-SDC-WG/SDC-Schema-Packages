@@ -1,79 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xs:schema
-	elementFormDefault="qualified"
-	xmlns:xs="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="urn:ihe:qrph:sdc:2016"
-	xmlns="urn:ihe:qrph:sdc:2016"
-	version="3.0">
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016" version="3.0">
 	<!-- rlm:8/23/2017 Changes to support SDC rules -->
-	<xs:include
-		schemaLocation="SDCExpressions.xsd"/>
+	<xs:include schemaLocation="SDCExpressions.xsd"/>
 
-	<xs:element
-		name="FormDesign"
-		type="FormDesignType">
+	<xs:element name="FormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema</xs:documentation>
 		</xs:annotation>
-		<xs:unique
-			name="uniqueID"
-			xmlns="urn:ihe:qrph:sdc:2016">
-			<xs:selector
-				xpath=".//*"/>
-			<xs:field
-				xpath="@ID"/>
+		<xs:unique name="uniqueID" xmlns="urn:ihe:qrph:sdc:2016">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@ID"/>
 		</xs:unique>
 	</xs:element>
-	<xs:element
-		name="DemogFormDesign"
-		type="FormDesignType">
+	<xs:element name="DemogFormDesign" type="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema for a demographic form</xs:documentation>
 		</xs:annotation>
-		<xs:unique
-			name="uniqueID_Demog"
-			xmlns="urn:ihe:qrph:sdc:2016">
-			<xs:selector
-				xpath=".//*"/>
-			<xs:field
-				xpath="@ID"/>
+		<xs:unique name="uniqueID_Demog" xmlns="urn:ihe:qrph:sdc:2016">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@ID"/>
 		</xs:unique>
 	</xs:element>
-	<xs:element
-		name="DataElement"
-		type="DataElementType">
+	<xs:element name="DataElement" type="DataElementType">
 		<xs:annotation>
 			<xs:documentation>Root element of this Schema for a Data Element</xs:documentation>
 		</xs:annotation>
-		<xs:unique
-			name="uniqueID_DE"
-			xmlns="urn:ihe:qrph:sdc:2016">
-			<xs:selector
-				xpath=".//*"/>
-			<xs:field
-				xpath="@ID"/>
+		<xs:unique name="uniqueID_DE" xmlns="urn:ihe:qrph:sdc:2016">
+			<xs:selector xpath=".//*"/>
+			<xs:field xpath="@ID"/>
 		</xs:unique>
 	</xs:element>
-	<xs:group
-		name="ChildElementsGroup">
+	<xs:group name="ChildElementsGroup">
 		<xs:choice>
 			<xs:annotation>
 				<xs:documentation>IdentifiedExtensionType choices</xs:documentation>
 			</xs:annotation>
-			<xs:element
-				minOccurs="0"
-				name="Section"
-				type="SectionItemType">
+			<xs:element minOccurs="0" name="Section" type="SectionItemType">
 				<xs:annotation>
 					<xs:documentation>A Section is a grouper for other types of
 						objects.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element
-				minOccurs="0"
-				name="Question"
-				type="QuestionItemType">
+			<xs:element minOccurs="0" name="Question" type="QuestionItemType">
 				<xs:annotation>
 					<xs:documentation>A Question may take 3 basic forms: QS: single-select answer
 						response QM: multi-select - more than one answer may be selected QF: fill-in
@@ -86,10 +56,7 @@
 						the fill-in response should be recorded. </xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element
-				minOccurs="0"
-				name="DisplayedItem"
-				type="DisplayedType">
+			<xs:element minOccurs="0" name="DisplayedItem" type="DisplayedType">
 				<xs:annotation>
 					<xs:documentation>The DisplayedItem contains title, Blob (Binary Large Object),
 						and/or Link content, and may also include Contacts and CodedValues that
@@ -101,10 +68,7 @@
 						nodes.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element
-				minOccurs="0"
-				name="ButtonAction"
-				type="ButtonItemType">
+			<xs:element minOccurs="0" name="ButtonAction" type="ButtonItemType">
 				<xs:annotation>
 					<xs:documentation>A Button is a visible area that can be selected ("clicked") to
 						trigger event code to perform an action. It is ordinarily implemented with
@@ -112,10 +76,7 @@
 						like anything.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
-			<xs:element
-				minOccurs="0"
-				name="InjectForm"
-				type="InjectFormType">
+			<xs:element minOccurs="0" name="InjectForm" type="InjectFormType">
 				<xs:annotation>
 					<xs:documentation>InjectForm is a link to a form (or portion of a form) that is
 						imported into the current form at specific sites.</xs:documentation>
@@ -123,18 +84,11 @@
 			</xs:element>
 		</xs:choice>
 	</xs:group>
-	<xs:complexType
-		name="DataElementType">
+	<xs:complexType name="DataElementType">
 		<xs:complexContent>
-			<xs:extension
-				base="IdentifiedExtensionType">
-				<xs:group
-					maxOccurs="unbounded"
-					ref="ChildElementsGroup"/>
-				<xs:attribute
-					name="lineage"
-					type="xs:string"
-					use="required">
+			<xs:extension base="IdentifiedExtensionType">
+				<xs:group maxOccurs="unbounded" ref="ChildElementsGroup"/>
+				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: A text identifier that is used to group multiple
 							versions of a single DE. The lineage is constant for all versions of a
@@ -143,10 +97,7 @@
 
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="version"
-					type="xs:string"
-					use="required">
+				<xs:attribute name="version" type="xs:string" use="required">
 					<xs:annotation>
 
 						<xs:documentation>NEW: @version contains the version text for the current
@@ -154,10 +105,7 @@
 							@lineage.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="versionPrev"
-					type="xs:string"
-					use="required">
+				<xs:attribute name="versionPrev" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>NEW: Identify the immediate previous version of the
 							current DE. The format is the same as version. The primary role of this
@@ -166,19 +114,14 @@
 							deciding whether to adopt a newer version of a DE. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="fullURI"
-					type="URI_Atype"
-					use="required">
+				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
 
 						<xs:documentation>NEW: The full URI that uniquely identifies the current
 							DE.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="basedOnURI"
-					type="URI_Atype">
+				<xs:attribute name="basedOnURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: URI used to identify the DE that that this DE is
 							based upon. In most cases, this should be a standard form that is
@@ -187,9 +130,7 @@
 							identical to the original.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="filename"
-					type="xs:string">
+				<xs:attribute name="filename" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>NEW: filename to use when the current FormDesign instance
 							is saved as a file. For forms containing responses, the filename may
@@ -200,22 +141,16 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="FormDesignType">
+	<xs:complexType name="FormDesignType">
 		<xs:annotation>
 			<xs:documentation>Start here. This is the top level of the SDCFormDesign object model.
 				It represents the definition for the information content of a single data-entry
 				form. </xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="IdentifiedExtensionType">
-				<xs:sequence
-					minOccurs="0">
-					<xs:element
-						minOccurs="0"
-						name="BeforeLoadForm"
-						type="EventType">
+			<xs:extension base="IdentifiedExtensionType">
+				<xs:sequence minOccurs="0">
+					<xs:element minOccurs="0" name="BeforeLoadForm" type="EventType">
 						<xs:annotation>
 							<xs:documentation>NEW: This event is fired before the page is loaded
 								into memory, and before stored form data is loaded. It may be used,
@@ -224,10 +159,7 @@
 								preferences.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="BeforeLoadData"
-						type="EventType">
+					<xs:element minOccurs="0" name="BeforeLoadData" type="EventType">
 						<xs:annotation>
 							<xs:documentation>NEW: This event is fired after the page is loaded into
 								memory, before stored form data is loaded, and before the form is
@@ -235,10 +167,7 @@
 								loaded and to perform the data loading.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="BeforeShowForm"
-						type="EventType">
+					<xs:element minOccurs="0" name="BeforeShowForm" type="EventType">
 						<xs:annotation>
 							<xs:documentation>NEW: This event is fired after the page is loaded is
 								memory, after the data is loaded into the form, but before the form
@@ -246,61 +175,34 @@
 								controlled by the loaded data.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="BeforeDataSubmit"
-						type="EventType"/>
-					<xs:element
-						minOccurs="0"
-						name="BeforeCloseForm"
-						type="EventType"/>
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
-						type="OnEventType">
+					<xs:element minOccurs="0" name="BeforeDataSubmit" type="EventType"/>
+					<xs:element minOccurs="0" name="BeforeCloseForm" type="EventType"/>
+					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be
 								specified.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="Header"
-						type="SectionItemType"
-						minOccurs="0"
-						maxOccurs="1">
+					<xs:element name="Header" type="SectionItemType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Optional Section that stays at the top of a
 								form.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="Body"
-						type="SectionItemType"
-						maxOccurs="1">
+					<xs:element name="Body" type="SectionItemType" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Main Section of form</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="Footer"
-						type="SectionItemType"
-						minOccurs="0"
-						maxOccurs="1">
+					<xs:element name="Footer" type="SectionItemType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>Optional Section that stays at the bottom of a
 								form.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="Rules"
-						type="RulesType"> </xs:element>
+					<xs:element minOccurs="0" name="Rules" type="RulesType"> </xs:element>
 				</xs:sequence>
-				<xs:attribute
-					name="lineage"
-					type="xs:string"
-					use="required">
+				<xs:attribute name="lineage" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>A string identifier that is used to group multiple
 							versions of a single form. The lineage is constant for all versions of a
@@ -309,20 +211,14 @@
 							@lineage="Lung.Bmk.227"</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="version"
-					type="xs:string"
-					use="required">
+				<xs:attribute name="version" type="xs:string" use="required">
 					<xs:annotation>
 						<xs:documentation>@version contains the version text for the current form.
 							It is designed to be used in conjunction with @baseURI and @lineage.
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="versionPrev"
-					type="xs:string"
-					use="optional">
+				<xs:attribute name="versionPrev" type="xs:string" use="optional">
 					<xs:annotation>
 						<xs:documentation>@versionPrev identifies the immediate previous version of
 							the current FDF. The format is the same as version. The primary role of
@@ -332,19 +228,14 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="fullURI"
-					type="URI_Atype"
-					use="required">
+				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>The full URI that uniquely identifies the current form. It
 							is created by concatenating @baseURI + lineage + version. Each of the
 							components is separated by a single forward slash.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="filename"
-					type="xs:string">
+				<xs:attribute name="filename" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>@filename is the filename of the FDF when is saved to a
 							file storage device (e.g., a disk or USB drive). The filename appears
@@ -353,17 +244,13 @@
 							reason. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="formTitle"
-					type="xs:string">
+				<xs:attribute name="formTitle" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>@formTitle is a human readable title for display when
 							choosing forms. Added 4/27/16</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="basedOnURI"
-					type="URI_Atype">
+				<xs:attribute name="basedOnURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>@basedOnURI is a URI that identifies the SDC form that
 							that the current FDF is based upon. In most cases, this should be a
@@ -375,10 +262,7 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="instanceID"
-					type="xs:string"
-					use="optional">
+				<xs:attribute name="instanceID" type="xs:string" use="optional">
 					<xs:annotation>
 						<xs:documentation>@instanceID is unique string (e.g., a GUID) used to
 							identify a unique instance of a form, such as a form used during a
@@ -389,10 +273,7 @@
 							allowed in an FDF. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="instanceVersion"
-					type="xs:dateTime"
-					use="optional">
+				<xs:attribute name="instanceVersion" type="xs:dateTime" use="optional">
 					<xs:annotation>
 						<xs:documentation>@instanceVersion Timestamp is used to identify a unique instance of a form.
 							Used for tracking form responses across time and across multiple
@@ -401,9 +282,7 @@
 							It is not allowed in an FDF. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="instanceVersionURI"
-					type="URI_Atype">
+				<xs:attribute name="instanceVersionURI" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>NEW: Globally-unique URI used to identify a unique
 							instance of a form's saved responses. It is used for tracking form
@@ -432,10 +311,7 @@
 							in an FDF. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="instanceVersionPrev"
-					type="xs:dateTime"
-					use="optional">
+				<xs:attribute name="instanceVersionPrev" type="xs:dateTime" use="optional">
 					<xs:annotation>
 						<xs:documentation>NEW: Unique dateTime used to identify the immediate
 							previous instance of an form instance. Used for tracking form responses
@@ -444,8 +320,7 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="approvalStatus">
+				<xs:attribute name="approvalStatus">
 					<xs:annotation>
 						<xs:documentation>Describes report fitness for clinical or other action
 							inProcess: currently being edited, users should not rely on results
@@ -456,23 +331,16 @@
 						</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:string">
-							<xs:enumeration
-								value="inProcess"/>
-							<xs:enumeration
-								value="preliminary"/>
-							<xs:enumeration
-								value="approved"/>
-							<xs:enumeration
-								value="cancelled"/>
-							<xs:enumeration
-								value="retracted"/>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="inProcess"/>
+							<xs:enumeration value="preliminary"/>
+							<xs:enumeration value="approved"/>
+							<xs:enumeration value="cancelled"/>
+							<xs:enumeration value="retracted"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
-				<xs:attribute
-					name="completionStatus">
+				<xs:attribute name="completionStatus">
 					<xs:annotation>
 						<xs:documentation>The extent to which a report contains all of the requested
 							information pending: no information is yet available incomplete: some
@@ -480,25 +348,19 @@
 							available in the requested report</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:string">
-							<xs:enumeration
-								value="pending"/>
-							<xs:enumeration
-								value="incomplete"/>
-							<xs:enumeration
-								value="complete"/>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="pending"/>
+							<xs:enumeration value="incomplete"/>
+							<xs:enumeration value="complete"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseAttributes"/>
+				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType
-		name="ChildItemsType">
+	<xs:complexType name="ChildItemsType">
 		<xs:annotation>
 			<xs:documentation>ChildItems have descendants that are of type DisplayedType. They may
 				include primary items of type SectionType, QuestionType, InjectFormType,
@@ -507,16 +369,12 @@
 				item.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:group
-					maxOccurs="unbounded"
-					ref="ChildElementsGroup"/>
+			<xs:extension base="ExtensionBaseType">
+				<xs:group maxOccurs="unbounded" ref="ChildElementsGroup"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="InjectFormType">
+	<xs:complexType name="InjectFormType">
 		<xs:annotation>
 			<xs:documentation>CHANGED: This type represents a form or portion of a form that is
 				imported into the current form at a specific location. It allows the composition of
@@ -531,106 +389,43 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="IdentifiedExtensionType">
-				<xs:choice>
-					<xs:element
-						name="Section"
-						type="SectionItemType"/>
-					<xs:element
-						name="Question"
-						type="QuestionItemType"/>
-					<xs:element
-						name="FormDesign"
-						type="FormDesignType"/>
+			<xs:extension base="IdentifiedExtensionType">
+				<!--Feb 03, 222: Changed minOccurs from 1 to 0 to allow SDC templates to reference an injectable part, but are not yet populated with an instantiated injection.-->
+				<xs:choice minOccurs="0">
+					<xs:element name="Section" type="SectionItemType"/>
+					<xs:element name="Question" type="QuestionItemType"/>
+					<xs:element name="FormDesign" type="FormDesignType"/>
 				</xs:choice>
-				<xs:attribute
-					name="pkgFullURI"
-					type="URI_Atype">
+				<xs:attribute name="InjectionSourceURI" type="URI_Atype" use="required">
 					<xs:annotation>
-						<xs:documentation>The injected package is retrieved form pkgManagerURI + "/"
-							+ pkgFullURI. If pkgFullURI is null, then then current form is used
-							injection.</xs:documentation>
+						<xs:documentation>NEW (2/24/2022): The source of the SDC FormDesign, Section or Question to inject
+The suggested form of the URI is:
+
+serverURI + \fullURI for the FDF (as described in the SDC Technical Reference Guide [TRG])
+Retrieves the latest package version with FDF responses (contains the latest FDF-R content)
+-OR-
+serverURI +\instanceVersionURI for the FDF-R (as described in the TRG)
+Retrieves a specific package version with FDF responses  (contains the FDF-R content from a specific point in time)</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="rootItemID"
-					type="URI_Atype"
-					use="required">
+				<xs:attribute name="rootItemID" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>The rootItemID is the ID of the form or form part that
 							will be injected. It must point to a valid FormDesign, Section or
 							Question element. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="pkgManagerURI"
-					type="URI_Atype">
+				<xs:attribute name="serverURI" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>The server from which the injected package will be
-							retrieved. </xs:documentation>
+						<xs:documentation>The server from which the injected package will be 
+retrieved. Former name "pkgManagerURI"</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="X_pkgID"
-					type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>This ID represents the Package that contains the form to
-							be injected. The package may contain an empty form or a form containing
-							responses. </xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute
-					name="X_pkgInstanceURI"
-					type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: Unique URI used to identify a unique instance of a
-							package. Used for tracking form responses across time and across
-							multiple episodes of editing by end-users. This URI does not change for
-							each edit session of a package instance.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute
-					name="X_pkgInstanceVersionURI"
-					type="URI_Atype">
-					<xs:annotation>
-
-						<xs:documentation>NEW: Unique URI used to identify a unique instance of a
-							package's saved responses. It is used for tracking package responses
-							across time and across multiple episodes of editing by end-users. This
-							URI must change for each edit/save session of a package instance. It may
-							be e.g., a new GUID, or a repeat of the pkgInstanceID followed by a
-							version number.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute
-					name="pkgBaseURI"
-					type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>DRAFT: The baseURI of the package, which indicates the
-							home source of the package. The formManagerURP + pkgBaseURI + pkgID are
-							concatenated to retrieve an empty form. formManagerURP + pkgBaseURI +
-							pkgInstanceVersionURI are concatenated to retrieve a specific version of
-							a populated form. formManagerURP + pkgBaseURI + pkgInstanceURI are
-							concatenated to retrieve the latest instance of a populated
-							form.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute
-					name="X_injectionID"
-					type="xs:string">
-					<xs:annotation>
-						<xs:documentation>Unique ID (GUID) to distinguish multiple instances of the
-							same injected node.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseReportingAttributes"/>
+				<xs:attributeGroup ref="ResponseReportingAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="LookupEndPointType">
+	<xs:complexType name="LookupEndPointType">
 		<xs:annotation>
 			<xs:documentation>LookupEndPointType represents list items that are derived from a web
 				service call of some type, instead of an explicit set of ListItem nodes specified in
@@ -639,15 +434,9 @@
 				ListFieldType.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="CallFuncActionType">
-				<xs:sequence
-					maxOccurs="1">
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="ResponseValue"
-						type="CodingType">
+			<xs:extension base="CallFuncActionType">
+				<xs:sequence maxOccurs="1">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue" type="CodingType">
 						<xs:annotation>
 							<xs:documentation>The user's response to the lookup list. The response
 								is recorded as a coding, terminology, classification, keyword, or
@@ -656,48 +445,32 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attribute
-					name="includesHeaderRow"
-					type="xs:boolean"
-					default="false"/>
+				<xs:attribute name="includesHeaderRow" type="xs:boolean" default="false"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ListItemType">
+	<xs:complexType name="ListItemType">
 		<xs:annotation>
 			<xs:documentation>ListItem elements represent answer choices that may appear under a
 				Question.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ListItemBaseType">
-				<xs:choice
-					minOccurs="0">
-					<xs:element
-						name="ChildItems"
-						type="ChildItemsType"
-						minOccurs="0"/>
+			<xs:extension base="ListItemBaseType">
+				<xs:choice minOccurs="0">
+					<xs:element name="ChildItems" type="ChildItemsType" minOccurs="0"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ListItemBaseType"
-		block=""
-		abstract="true">
+	<xs:complexType name="ListItemBaseType" block="" abstract="true">
 		<xs:annotation>
 			<xs:documentation>This base element is the foundation for ListItems, but does not
 				include the MainItems sub-group under each ListItem.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="DisplayedType">
+			<xs:extension base="DisplayedType">
 				<xs:sequence>
-					<xs:element
-						name="ListItemResponseField"
-						minOccurs="0"
-						maxOccurs="1"
+					<xs:element name="ListItemResponseField" minOccurs="0" maxOccurs="1"
 						type="ListItemResponseFieldType">
 						<xs:annotation>
 							<xs:documentation>A place to enter values (of any data type) that are
@@ -705,29 +478,12 @@
 								choice.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="OnSelect"
-						maxOccurs="unbounded"
-						minOccurs="0"
-						type="EventType"> </xs:element>
-					<xs:element
-						name="OnDeselect"
-						maxOccurs="unbounded"
-						minOccurs="0"
-						type="EventType"> </xs:element>
-					<xs:element
-						name="SelectIf"
-						minOccurs="0"
-						type="PredGuardType"> </xs:element>
-					<xs:element
-						name="DeselectIf"
-						minOccurs="0"
-						type="PredGuardType"> </xs:element>
+					<xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
+					<xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
+					<xs:element name="SelectIf" minOccurs="0" type="PredGuardType"> </xs:element>
+					<xs:element name="DeselectIf" minOccurs="0" type="PredGuardType"> </xs:element>
 				</xs:sequence>
-				<xs:attribute
-					default="false"
-					name="selected"
-					type="xs:boolean">
+				<xs:attribute default="false" name="selected" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Represents the default value of the ListItem in the
 							FormDesign template, or the user's response in selecting one or more
@@ -735,10 +491,7 @@
 							be selected.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="false"
-					name="selectionDisablesChildren"
-					type="xs:boolean">
+				<xs:attribute default="false" name="selectionDisablesChildren" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If set to true, then selecting this ListItem must
 							deactivate all descendant parts of the form, and ignore any user-entered
@@ -748,9 +501,7 @@
 							disabled questions should be removed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="selectionActivatesItems"
-					type="xs:NMTOKENS">
+				<xs:attribute name="selectionActivatesItems" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>NEW Selecting the current ListItem will enable the named
 							items in this attribute's content. Prefixing any named with a hyphen (-)
@@ -760,9 +511,7 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="selectionSelectsListItems"
-					type="xs:NMTOKENS">
+				<xs:attribute name="selectionSelectsListItems" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>NEW Selecting the current ListItem will select the named
 							ListItems in this attribute's content. Prefixing any named with a hyphen
@@ -771,20 +520,14 @@
 							suppress this reversal behavior. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="false"
-					name="selectionDeselectsSiblings"
-					type="xs:boolean">
+				<xs:attribute default="false" name="selectionDeselectsSiblings" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If the ancestor ListField has @multiselect = 'true', then
 							selecting this ListItem should de-select all other ListItem (sibling)
 							nodes except the current one.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="false"
-					name="omitWhenSelected"
-					type="xs:boolean">
+				<xs:attribute default="false" name="omitWhenSelected" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If @omitWhenSelected is set to true, then the question and
 							its response(s) should not be present in a typical report derived from
@@ -797,11 +540,8 @@
 							11/29/15 to replace @reportAction</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseReportingAttributes"/>
-				<xs:attribute
-					name="associatedValue"
-					type="xs:string">
+				<xs:attributeGroup ref="ResponseReportingAttributes"/>
+				<xs:attribute name="associatedValue" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>A typed value (e.g., an integer) that is uniquely
 							associated with a ListItem. An example is the integer 10 for a ListItem
@@ -815,9 +555,7 @@
 							be specified in @AssociatedValueType </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="associatedValueType"
-					type="DataTypeAll_StypeEnum">
+				<xs:attribute name="associatedValueType" type="DataTypeAll_StypeEnum">
 					<xs:annotation>
 						<xs:documentation>The data type of @AssociatedValue. Default is
 							string.</xs:documentation>
@@ -826,8 +564,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ListType">
+	<xs:complexType name="ListType">
 		<xs:annotation>
 			<xs:documentation>This type represents a list of specified answer choices. CHANGED
 				9/20/2016: Fix for serialization error which aggregated all DisplayedItems at the
@@ -836,49 +573,31 @@
 				ListItem for multi-select questions. </xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:choice
-					maxOccurs="unbounded">
-					<xs:element
-						minOccurs="0"
-						name="DisplayedItem"
-						type="DisplayedType"/>
-					<xs:element
-						name="ListItem"
-						type="ListItemType"
-						minOccurs="1"
-						maxOccurs="1"/>
+			<xs:extension base="ExtensionBaseType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="DisplayedItem" type="DisplayedType"/>
+					<xs:element name="ListItem" type="ListItemType" minOccurs="1" maxOccurs="1"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ListFieldType">
+	<xs:complexType name="ListFieldType">
 		<xs:annotation>
 			<xs:documentation>ListField is a grouper for list-like answer choices, which may be
 				derived from either a set of answer choice lists (a List composed of ListItems) or
 				or a list obtained from a LookupEndpoint URI.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
+			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element
-						minOccurs="0"
-						name="ListHeaderText"
-						type="RichTextType">
+					<xs:element minOccurs="0" name="ListHeaderText" type="RichTextType">
 						<xs:annotation>
 							<xs:documentation>The header row for a set of list items. If the list
 								has more than one column, the column text is separated by the
 								colTextDelimiter.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="1"
-						minOccurs="0"
-						name="DefaultCodeSystem"
-						type="CodeSystemType">
+					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
 						<xs:annotation>
 							<xs:documentation>If coded values are used for items in a List
 								(including ListItem and LookupEndPoint lists), then the default
@@ -890,9 +609,7 @@
 						</xs:annotation>
 					</xs:element>
 					<xs:choice>
-						<xs:element
-							name="List"
-							type="ListType">
+						<xs:element name="List" type="ListType">
 							<xs:annotation>
 								<xs:documentation>List refers to a set of possible answer choices
 									for the user to select. Child DisplayedItems may be interspersed
@@ -901,11 +618,7 @@
 									present for single-select questions.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element
-							name="LookupEndPoint"
-							minOccurs="1"
-							maxOccurs="1"
-							type="LookupEndPointType">
+						<xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1" type="LookupEndPointType">
 							<xs:annotation>
 								<xs:documentation>LookupEndPoint is used when the list items are
 									derived from a web service call of some type, instead of an
@@ -916,67 +629,41 @@
 							</xs:annotation>
 						</xs:element>
 					</xs:choice>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="IllegalListItemPairings"
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
 						type="PredSelectionTestType"/>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="IllegalCoSelectedListItems"
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalCoSelectedListItems"
 						type="PredSingleSelectionSetsType"/>
-					<xs:element
-						minOccurs="0"
-						name="AfterChange"
-						maxOccurs="unbounded"
-						type="EventType">
+					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded" type="EventType">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after List Field selections are
 								changed.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="OnEvent"
-						type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
-				<xs:attribute
-					default="|"
-					name="colTextDelimiter">
+				<xs:attribute default="|" name="colTextDelimiter">
 					<xs:annotation>
 						<xs:documentation>Character in the DisplayText that separates the columns
 							and rows in a single or multi-column list.</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:string">
-							<xs:length
-								value="1"/>
+						<xs:restriction base="xs:string">
+							<xs:length value="1"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
-				<xs:attribute
-					default="1"
-					name="numCols"
-					type="xs:unsignedByte">
+				<xs:attribute default="1" name="numCols" type="xs:unsignedByte">
 					<xs:annotation>
 						<xs:documentation>Number of columns in the list</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="1"
-					name="storedCol"
-					type="xs:unsignedByte">
+				<xs:attribute default="1" name="storedCol" type="xs:unsignedByte">
 					<xs:annotation>
 						<xs:documentation>Determines which column of the list is stored in a
 							database. This list is one-based.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="1"
-					name="minSelections">
+				<xs:attribute default="1" name="minSelections">
 					<xs:annotation>
 						<xs:documentation>Minimum number of answer choices (list items) that must be
 							selected by the user. Default value is 1. NEW: changed minimum value to
@@ -984,17 +671,12 @@
 							user.</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:unsignedShort">
-							<xs:minInclusive
-								value="1"/>
+						<xs:restriction base="xs:unsignedShort">
+							<xs:minInclusive value="1"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
-				<xs:attribute
-					default="1"
-					name="maxSelections"
-					type="xs:unsignedShort">
+				<xs:attribute default="1" name="maxSelections" type="xs:unsignedShort">
 					<xs:annotation>
 						<xs:documentation>Maximum number of answer choices (list items) that can be
 							selected by the user. Must be greater than or equal to minSelections,
@@ -1005,18 +687,13 @@
 							single-select. (Abbreviated as QS)</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="ordered"
-					type="xs:boolean">
+				<xs:attribute default="true" name="ordered" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If false, then the form implementation may change the
 							order of items in the list.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="defaultListItemDataType"
-					type="DataTypeAll_StypeEnum">
+				<xs:attribute name="defaultListItemDataType" type="DataTypeAll_StypeEnum">
 					<xs:annotation>
 						<xs:documentation>This attribute contains an SDC datatype enumeration. The
 							selected value is the datatype of the content for all
@@ -1031,8 +708,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ResponseFieldType">
+	<xs:complexType name="ResponseFieldType">
 		<xs:annotation>
 			<xs:documentation>This type is a template for a data entry field that accepts entries
 				(responses or answers) of any data type, including text, numbers, dates, and Base 64
@@ -1041,91 +717,60 @@
 				ListItem.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
+			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:sequence>
-						<xs:element
-							name="Response"
-							type="DataTypes_DEType"
-							minOccurs="1"
-							maxOccurs="1">
+						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1" maxOccurs="1">
 							<xs:annotation>
 								<xs:documentation>W3C Schema data type details</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:choice
-							minOccurs="0">
-							<xs:element
-								name="CallSetValue"
-								type="CallFuncActionType">
+						<xs:choice minOccurs="0">
+							<xs:element name="CallSetValue" type="CallFuncActionType">
 								<xs:annotation>
 									<xs:documentation>NEW</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-							<xs:element
-								name="SetValue"
-								type="ScriptCodeAnyType">
+							<xs:element name="SetValue" type="ScriptCodeAnyType">
 								<xs:annotation>
 									<xs:documentation>NEW</xs:documentation>
 								</xs:annotation>
 							</xs:element>
 						</xs:choice>
 					</xs:sequence>
-					<xs:element
-						name="TextAfterResponse"
-						type="RichTextType"
-						minOccurs="0"
-						maxOccurs="1">
+					<xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>TextAfterResponse is fixed text that appears after (to
 								the right of) the user's response on the data entry form. This may
 								be text for units such as "mm", "cm", etc.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="ResponseUnits"
-						minOccurs="0"
-						maxOccurs="1"
-						type="UnitsType">
+					<xs:element name="ResponseUnits" minOccurs="0" maxOccurs="1" type="UnitsType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						name="AfterChange"
-						type="EventType"
-						minOccurs="0">
+					<xs:element maxOccurs="unbounded" name="AfterChange" type="EventType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after the Response value is changed,
 								usually fired after a user leaves the Response
 								field.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="OnEvent"
-						type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:attributeGroup
-		name="ResponseAttributes">
-		<xs:attribute
-			name="changedData"
-			type="xs:boolean">
+	<xs:attributeGroup name="ResponseAttributes">
+		<xs:attribute name="changedData" type="xs:boolean">
 			<xs:annotation>
 				<xs:documentation>Identifies existence of data that has been changed in the current
 					instance of package/form/section/question compared to the previous instance of
 					the package/form/section/question</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute
-			name="newData"
-			type="xs:boolean">
+		<xs:attribute name="newData" type="xs:boolean">
 			<xs:annotation>
 				<xs:documentation>Identifies existence of data that is new to the current instance
 					of package, form, section, or question compared to the previous instance of the
@@ -1133,25 +778,19 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
-	<xs:attributeGroup
-		name="ResponseReportingAttributes">
+	<xs:attributeGroup name="ResponseReportingAttributes">
 		<xs:annotation>
 			<xs:documentation>Used to extend identified items (Section, Question, ListItem) for
 				nested/repeating responses in reports and data transmissions.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute
-			default="0"
-			name="repeat"
-			type="xs:nonNegativeInteger">
+		<xs:attribute default="0" name="repeat" type="xs:nonNegativeInteger">
 			<xs:annotation>
 				<xs:documentation>For repeating questions and sections, @repeat represents the
 					repeat ordinality, starting with 0. 0 indicates the original Question or
 					Section, not a repeated one. </xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute
-			name="instanceGUID"
-			type="xs:string">
+		<xs:attribute name="instanceGUID" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>A globally unique string assigned to a repeating Question or
 					Section, Injected Form, or any selected answer ListItem. This attribute's value
@@ -1160,9 +799,7 @@
 					allowed to repeat and nest deeply. </xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute
-			name="parentGUID"
-			type="xs:string">
+		<xs:attribute name="parentGUID" type="xs:string">
 			<xs:annotation>
 				<xs:documentation>A globally unique string assigned from a Section, Question,
 					ListItem or InjectedForm to the ID of its parent node (S, Q, LI or IF). This
@@ -1172,20 +809,15 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
-	<xs:complexType
-		name="ListItemResponseFieldType">
+	<xs:complexType name="ListItemResponseFieldType">
 		<xs:annotation>
 			<xs:documentation>This type represents a place to store a fill-in response associated
 				directly with a selected ListItem. The response may be optional or
 				required.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ResponseFieldType">
-				<xs:attribute
-					name="responseRequired"
-					type="xs:boolean"
-					default="false">
+			<xs:extension base="ResponseFieldType">
+				<xs:attribute name="responseRequired" type="xs:boolean" default="false">
 					<xs:annotation>
 						<xs:documentation>If @responseRequired is set to true, then the appropriate
 							text or Blob must be entered in the data-entry field associated with
@@ -1195,8 +827,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ButtonItemType">
+	<xs:complexType name="ButtonItemType">
 		<xs:annotation>
 			<xs:documentation>The ButtonItem type represents a visual area for a user to click, and
 				the click triggers a piece of "Action" code to run inside the form. The ButtonAction
@@ -1205,20 +836,14 @@
 				with the form framework's event model.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="DisplayedType">
+			<xs:extension base="DisplayedType">
 				<xs:choice>
-					<xs:element
-						minOccurs="0"
-						name="OnClick"
-						type="EventType"
-						maxOccurs="unbounded"/>
+					<xs:element minOccurs="0" name="OnClick" type="EventType" maxOccurs="unbounded"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="SectionItemType">
+	<xs:complexType name="SectionItemType">
 		<xs:annotation>
 			<xs:documentation>The Section is a grouper for all other types of objects. It may have a
 				distinctive visual display (e.g. a box containing other displayed objects), and it
@@ -1226,17 +851,12 @@
 				hiding and showing. </xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="SectionBaseType">
-				<xs:choice
-					minOccurs="0">
+			<xs:extension base="SectionBaseType">
+				<xs:choice minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>MainNodes choices</xs:documentation>
 					</xs:annotation>
-					<xs:element
-						name="ChildItems"
-						type="ChildItemsType"
-						minOccurs="0">
+					<xs:element name="ChildItems" type="ChildItemsType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Child items are of type DisplayedType. They may
 								include items of type SectionType, QuestionType, InjectFormType,
@@ -1247,79 +867,51 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="SectionBaseType"
-		abstract="true">
+	<xs:complexType name="SectionBaseType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>This base item is the same as the SectionItemType, except it lacks the
 				recursion created by the inclusion of MainItems sub-group.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="RepeatingType">
-				<xs:attribute
-					default="true"
-					name="ordered"
-					type="xs:boolean">
+			<xs:extension base="RepeatingType">
+				<xs:attribute default="true" name="ordered" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If false, then the form implementation may change the
 							order of items in the section.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseAttributes"/>
+				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="QuestionItemType">
+	<xs:complexType name="QuestionItemType">
 		<xs:annotation>
 			<xs:documentation>Represents questions. Parent items may be Section, Question, and
 				ListItem.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="QuestionItemBaseType">
-				<xs:choice
-					minOccurs="0">
-					<xs:element
-						name="ChildItems"
-						type="ChildItemsType"
-						minOccurs="0"/>
+			<xs:extension base="QuestionItemBaseType">
+				<xs:choice minOccurs="0">
+					<xs:element name="ChildItems" type="ChildItemsType" minOccurs="0"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="QuestionItemBaseType"
-		abstract="true">
+	<xs:complexType name="QuestionItemBaseType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>Represents questions. Parent items may be Section, Question, and
 				ListItem.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="RepeatingType">
-				<xs:choice
-					maxOccurs="1">
+			<xs:extension base="RepeatingType">
+				<xs:choice maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>Choice (ResponseField, ListField)</xs:documentation>
 					</xs:annotation>
-					<xs:element
-						name="ResponseField"
-						type="ResponseFieldType"
-						minOccurs="1"
-						maxOccurs="1"/>
-					<xs:element
-						name="ListField"
-						minOccurs="1"
-						maxOccurs="1"
-						type="ListFieldType"> </xs:element>
+					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType"> </xs:element>
 				</xs:choice>
-				<xs:attribute
-					default="false"
-					name="readOnly"
-					type="xs:boolean">
+				<xs:attribute default="false" name="readOnly" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If @readOnly is set to true, the this field may not be
 							edited by the user, and any default values set by template should be
@@ -1327,26 +919,19 @@
 							SubmitForm transaction.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseAttributes"/>
+				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="RepeatingType"
-		abstract="true">
+	<xs:complexType name="RepeatingType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>This type presents any display objects that may be repeated based upon
 				on the user's interaction with the form objects. Items derived from this type
 				include Sections and Questions.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="DisplayedType">
-				<xs:attribute
-					name="minCard"
-					type="xs:unsignedShort"
-					default="1">
+			<xs:extension base="DisplayedType">
+				<xs:attribute name="minCard" type="xs:unsignedShort" default="1">
 					<xs:annotation>
 						<xs:documentation>@minCard is the minimum number of repetitions allowed for
 							a section or question. The default value is 1, indicating that the user
@@ -1355,10 +940,7 @@
 							answer.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="maxCard"
-					default="1"
-					type="xs:unsignedShort">
+				<xs:attribute name="maxCard" default="1" type="xs:unsignedShort">
 					<xs:annotation>
 						<xs:documentation>@maxCard is the maximum number of repetitions allowed for
 							a section or question. The default value is 1, indicating that the
@@ -1368,13 +950,11 @@
 						</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attributeGroup
-					ref="ResponseReportingAttributes"/>
+				<xs:attributeGroup ref="ResponseReportingAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="DisplayedType">
+	<xs:complexType name="DisplayedType">
 		<xs:annotation>
 			<xs:documentation>This type represents any object that is designed to have a visual
 				presence on a form, e.g., Sections, Questions, ListItems, Notes and Blobs. (Other
@@ -1382,101 +962,61 @@
 				attribute.)</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="IdentifiedExtensionType">
+			<xs:extension base="IdentifiedExtensionType">
 				<xs:sequence>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="Link"
-						type="LinkType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Link" type="LinkType">
 						<xs:annotation>
 							<xs:documentation>Link to external information.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="BlobContent"
-						type="BlobType"
-						minOccurs="0"
-						maxOccurs="unbounded">
+					<xs:element name="BlobContent" type="BlobType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Blob information associated with the current
 								DisplayedType. The blob may contain any type of special media, but
 								must be base 64 encoded.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						name="Contact"
-						type="ContactType"
-						minOccurs="0">
+					<xs:element maxOccurs="unbounded" name="Contact" type="ContactType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Any desired contact information regarding, e.g., the
 								form item, authoring process, certifications, code or coding
 								processs.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="CodedValue"
-						type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue" type="CodingType">
 						<xs:annotation>
 							<xs:documentation>Coding, terminology, classification, keyword, or local
 								values</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="OnEnter"
-						type="EventType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						minOccurs="0"
-						name="OnExit"
-						type="EventType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
-						type="OnEventType">
+					<xs:element minOccurs="0" name="OnEnter" type="EventType" maxOccurs="unbounded"/>
+					<xs:element minOccurs="0" name="OnExit" type="EventType" maxOccurs="unbounded"/>
+					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be
 								specified.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="ActivateIf"
-						type="PredGuardType">
+					<xs:element minOccurs="0" name="ActivateIf" type="PredGuardType">
 						<xs:annotation>
 							<xs:documentation>Activate the DisplayedType item if the guard
 								conditions are met.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						minOccurs="0"
-						name="DeActivateIf"
-						type="PredGuardType">
+					<xs:element minOccurs="0" name="DeActivateIf" type="PredGuardType">
 						<xs:annotation>
 							<xs:documentation>DeActivate the DisplayedType item if the guard
 								conditions are met.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attribute
-					name="title"
-					type="xs:string">
+				<xs:attribute name="title" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>The primary text to show on the form. Also known as
 							"prompt" or "label" or "visibleText" or "caption"</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="enabled"
-					type="xs:boolean">
+				<xs:attribute default="true" name="enabled" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Determines whether the user can interact with the
 							displayed item when the form is first displayed. All disabled items are
@@ -1484,20 +1024,14 @@
 							attribute value is inherited by descendants.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="visible"
-					type="xs:boolean">
+				<xs:attribute default="true" name="visible" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Determines whether the item should be visible on a
 							computer screen when the form is first displayed. The attribute value is
 							inherited by descendants.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="mustImplement"
-					type="xs:boolean">
+				<xs:attribute default="true" name="mustImplement" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If this attribute is set to "true" (the default), then the
 							form implementation must make this item available for use on the form.
@@ -1508,9 +1042,7 @@
 							attribute set to false. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="True"
-					name="showInReport">
+				<xs:attribute default="True" name="showInReport">
 					<xs:annotation>
 						<xs:documentation>CHANGED to T/F/Optional If @showInReport on a Question is
 							false, then the Question and its ListItems (if any) should not be
@@ -1527,26 +1059,18 @@
 							observed.</xs:documentation>
 					</xs:annotation>
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:string">
-							<xs:enumeration
-								value="True"/>
-							<xs:enumeration
-								value="False"/>
-							<xs:enumeration
-								value="Optional"/>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="True"/>
+							<xs:enumeration value="False"/>
+							<xs:enumeration value="Optional"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:attributeGroup
-		name="IfAttributes">
-		<xs:attribute
-			name="onlyIf"
-			type="xs:boolean"
-			default="false">
+	<xs:attributeGroup name="IfAttributes">
+		<xs:attribute name="onlyIf" type="xs:boolean" default="false">
 			<xs:annotation>
 				<xs:documentation>(reversible); If onlyIf is true, then the stipulated Boolean
 					actions, which are executed when the If conditions evaluate to true, are
@@ -1564,31 +1088,23 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
-	<xs:complexType
-		name="EventType">
+	<xs:complexType name="EventType">
 		<xs:complexContent>
-			<xs:extension
-				base="PredActionType"> </xs:extension>
+			<xs:extension base="PredActionType"> </xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="OnEventType">
+	<xs:complexType name="OnEventType">
 		<xs:annotation>
 			<xs:documentation>Add a custom event handler to a form item such as a question, section
 				or list item.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="EventType">
-				<xs:attribute
-					name="eventName"
-					type="xs:string"
-					use="required"/>
+			<xs:extension base="EventType">
+				<xs:attribute name="eventName" type="xs:string" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSetAttributeType">
+	<xs:complexType name="ActSetAttributeType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item attributes. If
 				an "act" attribute (a type with the "act" prefix) has no value assigned, it is
@@ -1598,126 +1114,88 @@
 				value.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attribute
-					name="targetNames"
-					type="xs:NMTOKENS"
-					use="required">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="targetNames" type="xs:NMTOKENS" use="required">
 					<xs:annotation>
 						<xs:documentation>The names of the items affected by property
 							actions</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actVisible"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="actEnable"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="actMinCard"
-					type="xs:nonNegativeInteger">
+				<xs:attribute name="actVisible" type="xs:boolean"/>
+				<xs:attribute name="actEnable" type="xs:boolean"/>
+				<xs:attribute name="actMinCard" type="xs:nonNegativeInteger">
 					<xs:annotation>
 						<xs:documentation>Controls requirement to answer the question and the
 							minimum number of repeats.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actMaxCard"
-					type="xs:nonNegativeInteger">
+				<xs:attribute name="actMaxCard" type="xs:nonNegativeInteger">
 					<xs:annotation>
 						<xs:documentation>Controls requirement to answer the
 							question</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actActivate"
-					type="xs:boolean">
+				<xs:attribute name="actActivate" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Toggle visible and enabled together. Setting this to false
 							will de-activate all descendents but will not change their enabled or
 							visible properties.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSelect"
-					type="xs:boolean">
+				<xs:attribute name="actSelect" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Toggle selection of a List Item; not applicable to other
 							items.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actDeleteResponse"
-					type="xs:boolean">
+				<xs:attribute name="actDeleteResponse" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete any response in a Response field on a question or
 							ListItem. Not applicable to other item types.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actReadOnly"
-					type="xs:boolean">
+				<xs:attribute name="actReadOnly" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete any response in a Response field on a question or
 							ListItem. Not applicable to other item types.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actType"
-					type="xs:NMTOKENS">
+				<xs:attribute name="actType" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>Set the @type attribute value</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actStyleClass"
-					type="xs:NMTOKENS">
+				<xs:attribute name="actStyleClass" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>Set the @styleClass attribute value</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetTitleText"
-					type="xs:string">
+				<xs:attribute name="actSetTitleText" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set the @title text on an item.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetBase64HTML"
-					type="xs:base64Binary">
+				<xs:attribute name="actSetBase64HTML" type="xs:base64Binary">
 					<xs:annotation>
 						<xs:documentation>Set HTML as base-64-encoded binary</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetCode"
-					type="xs:string"/>
-				<xs:attribute
-					name="actSetCodeSystem"
-					type="xs:string"/>
-				<xs:attribute
-					name="actSetVal"
-					type="xs:string">
+				<xs:attribute name="actSetCode" type="xs:string"/>
+				<xs:attribute name="actSetCodeSystem" type="xs:string"/>
+				<xs:attribute name="actSetVal" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set a @val attribute with a supplied value. The correct
 							data type must be used if applicable.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetAssociatedValue"
-					type="xs:string">
+				<xs:attribute name="actSetAssociatedValue" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set @associatedValue attribute of a ListItem with a
 							supplied value. The correct data type must be used if
 							applicable.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetValFromRef"
-					type="xs:string">
+				<xs:attribute name="actSetValFromRef" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set a @val attribute. The correct data type must be used
 							if applicable. Supply the @name of an element that has a non-null @val
@@ -1725,9 +1203,7 @@
 							ignored.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetAssociatedValueFromRef"
-					type="xs:string">
+				<xs:attribute name="actSetAssociatedValueFromRef" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>Set @associatedValue attribute of a ListItem. The correct
 							data type must be used if applicable. Supply the @name of an element
@@ -1738,8 +1214,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSetAttrValueScriptType">
+	<xs:complexType name="ActSetAttrValueScriptType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item properties. If
 				an "act" property (a property with the "act" prefix) has no value assigned, it is
@@ -1749,18 +1224,14 @@
 				value.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ScriptCodeAnyType">
+			<xs:extension base="ScriptCodeAnyType">
 				<xs:sequence>
-					<xs:element
-						name="Target"
-						type="ItemNameAttributeType"/>
+					<xs:element name="Target" type="ItemNameAttributeType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSetBoolAttributeValueCode">
+	<xs:complexType name="ActSetBoolAttributeValueCodeType">
 		<xs:annotation>
 			<xs:documentation>Sets the value of any named attribute. However, it is primarily
 				designed for Response element(s) on a Question or ListItem. The value may be
@@ -1770,114 +1241,77 @@
 				template.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ScriptCodeBoolType">
-				<xs:attribute
-					name="elementName"
-					type="xs:NCName"
-					use="required">
+			<xs:extension base="ScriptCodeBoolType">
+				<xs:attribute name="elementName" type="xs:NCName" use="required">
 					<xs:annotation>
 						<xs:documentation>The @name attribute of the referenced
 							element.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="attributeName"
-					type="xs:NCName"
-					default="val">
+				<xs:attribute name="attributeName" type="xs:NCName" default="val">
 					<xs:annotation>
 						<xs:documentation>The name of any attribute on a named
 							element.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="X_targetNames"
-					type="xs:NMTOKENS"
-					use="required"/>
+				<xs:attribute name="X_targetNames" type="xs:NMTOKENS" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActShowMessageType">
+	<xs:complexType name="ActShowMessageType">
 		<xs:annotation>
 			<xs:documentation>Display a message to the form user, triggered by activity within the
 				form.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
+			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element
-						maxOccurs="unbounded"
-						name="Message"
-						type="RichTextType"> </xs:element>
+					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType"> </xs:element>
 				</xs:sequence>
-				<xs:attribute
-					name="alertLevel"
-					type="xs:string"/>
-				<xs:attribute
-					name="alertType"
-					type="xs:string"/>
-				<xs:attribute
-					name="messageType"
-					type="xs:string"/>
-				<xs:attribute
-					name="messageCode"
-					type="xs:string"/>
+				<xs:attribute name="alertLevel" type="xs:string"/>
+				<xs:attribute name="alertType" type="xs:string"/>
+				<xs:attribute name="messageType" type="xs:string"/>
+				<xs:attribute name="messageCode" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActShowFormType">
+	<xs:complexType name="ActShowFormType">
 		<xs:annotation>
 			<xs:documentation>Show an external form to interact with the user.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attribute
-					name="formID"
-					type="URI_Atype">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="formID" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>This ID represents the form to be
 							displayed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="packageID"
-					type="URI_Atype"
-					use="required">
+				<xs:attribute name="packageID" type="URI_Atype" use="required">
 					<xs:annotation>
 						<xs:documentation>This ID represents the Package that contains the form to
 							be displayed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="displayState"
-					type="xs:string"/>
+				<xs:attribute name="displayState" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSaveResponsesType">
+	<xs:complexType name="ActSaveResponsesType">
 		<xs:annotation>
 			<xs:documentation>Save the form's responses to the default persistance layer(s). The
 				default format is SDCSubmitForm, but other formats may be defined and
 				used.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
+			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element
-						name="MessageText"
-						type="RichTextType"/>
+					<xs:element name="MessageText" type="RichTextType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActShowReportType">
+	<xs:complexType name="ActShowReportType">
 		<xs:annotation>
 			<xs:documentation>Show a stored report. The following parameters may be used: reportID:
 				indicator of a report definition in SDC format. packageID: retrieve report as a
@@ -1888,169 +1322,103 @@
 				conjunctions with a packageID.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attribute
-					name="reportID"
-					type="URI_Atype">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="reportID" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>This ID represents the report to be
 							displayed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="packageID"
-					type="URI_Atype">
+				<xs:attribute name="packageID" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>This ID represents the Package that contains the report to
 							be displayed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="reportInstanceGuid"
-					type="xs:string"/>
-				<xs:attribute
-					name="reportInstanceVersonGuid"
-					type="xs:string"/>
-				<xs:attribute
-					name="displayState"
-					type="xs:string"/>
+				<xs:attribute name="reportInstanceGuid" type="xs:string"/>
+				<xs:attribute name="reportInstanceVersonGuid" type="xs:string"/>
+				<xs:attribute name="displayState" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActPreviewReportType">
+	<xs:complexType name="ActPreviewReportType">
 		<xs:annotation>
 			<xs:documentation>Show a report preview, based on data in the current form. The
 				following parameter may be used: reportID: points to a report definition in SDC
 				format.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attribute
-					name="reportID"
-					type="URI_Atype">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="reportID" type="URI_Atype">
 					<xs:annotation>
 						<xs:documentation>This ID represents the report to be
 							displayed.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="displayState"
-					type="xs:string"/>
+				<xs:attribute name="displayState" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSendReportType">
+	<xs:complexType name="ActSendReportType">
 		<xs:annotation>
 			<xs:documentation>Send a report to an endpoint, via email, fax or web service. The
 				default report will be transmittted in SDCSubmitForm format, but may adopt a custom
 				report type</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:choice
-					maxOccurs="unbounded">
-					<xs:element
-						name="Email"
-						type="EmailAddressType"/>
-					<xs:element
-						name="Fax"
-						type="PhoneNumberType"/>
-					<xs:element
-						name="WebService"
-						type="CallFuncActionType"/>
+			<xs:extension base="ExtensionBaseType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="Email" type="EmailAddressType"/>
+					<xs:element name="Fax" type="PhoneNumberType"/>
+					<xs:element name="WebService" type="CallFuncActionType"/>
 				</xs:choice>
-				<xs:attribute
-					name="reportID"
-					type="URI_Atype"/>
-				<xs:attribute
-					name="reportInstanceGuid"
-					type="xs:string"/>
-				<xs:attribute
-					name="reportInstanceVersonGuid"
-					type="xs:string"/>
+				<xs:attribute name="reportID" type="URI_Atype"/>
+				<xs:attribute name="reportInstanceGuid" type="xs:string"/>
+				<xs:attribute name="reportInstanceVersonGuid" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActSendMessageType">
+	<xs:complexType name="ActSendMessageType">
 		<xs:annotation>
 			<xs:documentation>Send a message to any endpoint. Messages may include alerts of various
 				types. The default datatype for messages is string.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="RichTextType">
+			<xs:extension base="RichTextType">
 				<xs:choice>
-					<xs:element
-						name="Email"
-						type="EmailAddressType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						name="Fax"
-						type="PhoneNumberType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						name="WebService"
-						type="CallFuncActionType"
-						maxOccurs="unbounded"/>
+					<xs:element name="Email" type="EmailAddressType" maxOccurs="unbounded"/>
+					<xs:element name="Fax" type="PhoneNumberType" maxOccurs="unbounded"/>
+					<xs:element name="WebService" type="CallFuncActionType" maxOccurs="unbounded"/>
 				</xs:choice>
-				<xs:attribute
-					name="messageType"
-					type="xs:string"/>
+				<xs:attribute name="messageType" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActValidateFormType">
+	<xs:complexType name="ActValidateFormType">
 		<xs:annotation>
 			<xs:documentation>Test the data in the form for proper data types, rule integrity, and
 				completeness of required questions.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:sequence
-					minOccurs="0">
-					<xs:element
-						minOccurs="0"
-						name="ValidationWebService"
-						type="CallFuncActionType"/>
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence minOccurs="0">
+					<xs:element minOccurs="0" name="ValidationWebService" type="CallFuncActionType"/>
 				</xs:sequence>
-				<xs:attribute
-					default="false"
-					name="validateDataTypes"
-					type="xs:boolean"/>
-				<xs:attribute
-					default="false"
-					name="validateRules"
-					type="xs:boolean"/>
-				<xs:attribute
-					default="false"
-					name="validateCompleteness"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="validationType"
-					type="xs:string"/>
+				<xs:attribute default="false" name="validateDataTypes" type="xs:boolean"/>
+				<xs:attribute default="false" name="validateRules" type="xs:boolean"/>
+				<xs:attribute default="false" name="validateCompleteness" type="xs:boolean"/>
+				<xs:attribute name="validationType" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActInjectType">
+	<xs:complexType name="ActInjectType">
 		<xs:annotation>
 			<xs:documentation>Inject a form or part of a form at the specified location. The
 				injected section may come from the current form.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="InjectFormType">
-				<xs:attribute
-					name="targetNames"
-					type="xs:NMTOKENS">
+			<xs:extension base="InjectFormType">
+				<xs:attribute name="targetNames" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>The names of the parent items that will have the form (or
 							form section) injected as child node(s).</xs:documentation>
@@ -2059,134 +1427,76 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActAddCodeType">
+	<xs:complexType name="ActAddCodeType">
 		<xs:annotation>
 			<xs:documentation>Add all or part of a coding section to the designated target
 				site.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ItemNameType">
+			<xs:extension base="ItemNameType">
 				<xs:sequence>
-					<xs:element
-						name="Code"
-						type="CodingType"/>
+					<xs:element name="Code" type="CodingType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActActionType">
+	<xs:complexType name="ActActionType">
 		<xs:annotation>
 			<xs:documentation>Add a custom action, not defined in the basic SDC
 				Schemas.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:group
-					maxOccurs="unbounded"
-					minOccurs="0"
-					ref="ParameterGroup"/>
-				<xs:attribute
-					name="action"
-					type="xs:string"
-					use="required"/>
+			<xs:extension base="ExtensionBaseType">
+				<xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
+				<xs:attribute name="action" type="xs:string" use="required"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ActionsType">
+	<xs:complexType name="ActionsType">
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:choice
-					maxOccurs="unbounded">
+			<xs:extension base="ExtensionBaseType">
+				<xs:choice maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>Then action choices and nested conditional
 							statements</xs:documentation>
 					</xs:annotation>
-					<xs:element
-						name="Action"
-						type="ActActionType">
+					<xs:element name="Action" type="ActActionType">
 						<xs:annotation>
 							<xs:documentation>A generic ExtensionBaseType for custom actions in a
 								"Then" section.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="SelectMatchingListItems"
-						type="RuleSelectMatchingListItemsType"> </xs:element>
-					<xs:element
-						name="AddCode"
-						type="ActAddCodeType"/>
-					<xs:element
-						name="Inject"
-						type="ActInjectType"/>
-					<xs:element
-						name="ShowURL"
-						type="CallFuncActionType"/>
-					<xs:element
-						name="Save"
-						type="ActSaveResponsesType"/>
-					<xs:element
-						name="SendReport"
-						type="ActSendReportType"/>
-					<xs:element
-						name="SendMessage111"
-						type="ActSendMessageType"/>
-					<xs:element
-						name="SetAttributeValue"
-						type="ActSetAttributeType"/>
-					<xs:element
-						name="SetAttributeValueScript"
-						type="ActSetAttrValueScriptType"/>
-					<xs:element
-						name="SetBoolAttributeValueCode"
-						type="ActSetBoolAttributeValueCode"/>
-					<xs:element
-						name="ShowForm"
-						type="ActShowFormType"/>
-					<xs:element
-						name="ShowMessage"
-						type="ActShowMessageType"/>
-					<xs:element
-						name="ShowReport"
-						type="ActShowReportType"/>
-					<xs:element
-						name="PreviewReport"
-						type="ActPreviewReportType"/>
-					<xs:element
-						name="ValidateForm"
-						type="ActValidateFormType"/>
-					<xs:element
-						name="RunCode"
-						type="ScriptCodeAnyType"/>
-					<xs:element
-						name="CallFunction"
-						type="CallFuncActionType">
+					<xs:element name="SelectMatchingListItems" type="RuleSelectMatchingListItemsType"> </xs:element>
+					<xs:element name="AddCode" type="ActAddCodeType"/>
+					<xs:element name="Inject" type="ActInjectType"/>
+					<xs:element name="ShowURL" type="CallFuncActionType"/>
+					<xs:element name="Save" type="ActSaveResponsesType"/>
+					<xs:element name="SendReport" type="ActSendReportType"/>
+					<xs:element name="SendMessage111" type="ActSendMessageType"/>
+					<xs:element name="SetAttributeValue" type="ActSetAttributeType"/>
+					<xs:element name="SetAttributeValueScript" type="ActSetAttrValueScriptType"/>
+					<xs:element name="SetBoolAttributeValueCode" type="ActSetBoolAttributeValueCodeType"/>
+					<xs:element name="ShowForm" type="ActShowFormType"/>
+					<xs:element name="ShowMessage" type="ActShowMessageType"/>
+					<xs:element name="ShowReport" type="ActShowReportType"/>
+					<xs:element name="PreviewReport" type="ActPreviewReportType"/>
+					<xs:element name="ValidateForm" type="ActValidateFormType"/>
+					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
+					<xs:element name="CallFunction" type="CallFuncActionType">
 						<xs:annotation>
 							<xs:documentation>Execute a local rule located elsewhere in the
 								FormDesign template. Use the @name value in @val property of
 								Function</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="ConditionalGroupAction"
-						type="PredActionType"/>
+					<xs:element name="ConditionalGroupAction" type="PredActionType"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:attributeGroup
-		name="SelectionDependencyAttributes">
-		<xs:attributeGroup
-			ref="BoolAttributes"/>
-		<xs:attribute
-			use="required"
-			name="selectedItemSet"
-			type="xs:NMTOKENS">
+	<xs:attributeGroup name="SelectionDependencyAttributes">
+		<xs:attributeGroup ref="BoolAttributes"/>
+		<xs:attribute use="required" name="selectedItemSet" type="xs:NMTOKENS">
 			<xs:annotation>
 				<xs:documentation>This list contains names of ListItems (answer choices) that are
 					watched for being selected or unselected. If a ListItem appears in this list,
@@ -2199,24 +1509,17 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:attributeGroup>
-	<xs:complexType
-		name="RuleSelectMatchingListItemsType">
+	<xs:complexType name="RuleSelectMatchingListItemsType">
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
+			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-					<xs:element
-						name="MatchSource"
-						type="ItemNameAttributeType"/>
-					<xs:element
-						name="ListItemMatchTargets"
-						type="RuleListItemMatchTargetsType"> </xs:element>
+					<xs:element name="MatchSource" type="ItemNameAttributeType"/>
+					<xs:element name="ListItemMatchTargets" type="RuleListItemMatchTargetsType"> </xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="RuleAutoSelectType">
+	<xs:complexType name="RuleAutoSelectType">
 		<xs:annotation>
 			<xs:documentation>This Rule selects/unselects ListItems based on the selected status of
 				other ListItems. This declarative rule determines (guards) when target ListItems
@@ -2234,15 +1537,10 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attributeGroup
-					ref="SelectionDependencyAttributes"/>
-				<xs:attributeGroup
-					ref="IfAttributes"/>
-				<xs:attribute
-					name="targetNameSelectList"
-					type="xs:NCName">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attributeGroup ref="SelectionDependencyAttributes"/>
+				<xs:attributeGroup ref="IfAttributes"/>
+				<xs:attribute name="targetNameSelectList" type="xs:NCName">
 					<xs:annotation>
 						<xs:documentation>This list contains the @names of ListItems that will be
 							automatically selected or deselected when the @selectedItemSet evaluates
@@ -2258,8 +1556,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="RuleAutoActivateType">
+	<xs:complexType name="RuleAutoActivateType">
 		<xs:annotation>
 			<xs:documentation>This Rule sets the activation status of Items based on the selection
 				status of other ListItems. This declarative rule determines (guards) when target
@@ -2277,15 +1574,10 @@
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attributeGroup
-					ref="SelectionDependencyAttributes"/>
-				<xs:attributeGroup
-					ref="IfAttributes"/>
-				<xs:attribute
-					name="targetNameActivationList"
-					type="xs:NCName">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attributeGroup ref="SelectionDependencyAttributes"/>
+				<xs:attributeGroup ref="IfAttributes"/>
+				<xs:attribute name="targetNameActivationList" type="xs:NCName">
 					<xs:annotation>
 						<xs:documentation>This list contains the @names of Identified Items that
 							will be automatically activated or deactivated when the @selectedItemSet
@@ -2298,40 +1590,28 @@
 							when @selectedItemSet is false. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="setVisibility"
-					type="toggleType">
+				<xs:attribute default="true" name="setVisibility" type="toggleType">
 					<xs:annotation>
 						<xs:documentation>Make target items visible when activated and vice versa.
 							Default = false. All descendants are affected in the same
 							way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="setEnabled"
-					type="toggleType">
+				<xs:attribute default="true" name="setEnabled" type="toggleType">
 					<xs:annotation>
 						<xs:documentation>Make target items enabled when activated and vice versa.
 							Default = true. All descendants are affected in the same
 							way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="true"
-					name="setExpanded"
-					type="toggleType">
+				<xs:attribute default="true" name="setExpanded" type="toggleType">
 					<xs:annotation>
 						<xs:documentation>Expand target items when activated and collapse item when
 							deactivated. Default = false. All descendants are affected in the same
 							way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="false"
-					name="X_removeResponsesWhenDeactivated"
-					type="xs:boolean">
+				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete all user selections, responses and comments when
 							the item is deactivated. Applies to all descendant items as well. User
@@ -2343,14 +1623,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="RuleListItemMatchTargetsType">
+	<xs:complexType name="RuleListItemMatchTargetsType">
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:attribute
-					name="MatchListItems"
-					type="xs:NMTOKENS">
+			<xs:extension base="ExtensionBaseType">
+				<xs:attribute name="MatchListItems" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>Takes the @name of one or more target ListItem elements.
 							If the source value matches the match supplied attribute criteria, then
@@ -2361,9 +1637,7 @@
 							spaces.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="MatchQuestions"
-					type="xs:NMTOKENS">
+				<xs:attribute name="MatchQuestions" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>Takes the @name of a Question element with ListItems. If
 							the source value matches the @associatedValue (or other
@@ -2374,26 +1648,19 @@
 							names may be specified, separated by spaces.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="associatedValue"
-					name="attributeToMatch">
+				<xs:attribute default="associatedValue" name="attributeToMatch">
 					<xs:simpleType>
-						<xs:restriction
-							base="xs:string">
-							<xs:enumeration
-								value="associatedValue"/>
-							<xs:enumeration
-								value="Code"/>
-							<xs:enumeration
-								value="TypeValue"/>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="associatedValue"/>
+							<xs:enumeration value="Code"/>
+							<xs:enumeration value="TypeValue"/>
 						</xs:restriction>
 					</xs:simpleType>
 				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredSelectionTestType">
+	<xs:complexType name="PredSelectionTestType">
 		<xs:annotation>
 			<xs:documentation>This Rule specifies a set of ListItems that cannot be selected
 				(@listItemNames) when a test ListItem (@testItemName) is selected. If any selection
@@ -2405,12 +1672,8 @@
 				IllegalSelectionTest</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="PredSingleSelectionSetsType">
-				<xs:attribute
-					name="testItemName"
-					type="xs:NMTOKEN"
-					use="required">
+			<xs:extension base="PredSingleSelectionSetsType">
+				<xs:attribute name="testItemName" type="xs:NMTOKEN" use="required">
 					<xs:annotation>
 						<xs:documentation>The ListItem that is being evaluated for the presence of
 							disallowed selections (in @listItemNames). This attributes contains the
@@ -2420,8 +1683,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredSingleSelectionSetsType">
+	<xs:complexType name="PredSingleSelectionSetsType">
 		<xs:annotation>
 			<xs:documentation>This Rule tests combinations of co-selected ListItems (answers). If
 				more than X items in the @listItemNames list are selected, then the result returns
@@ -2433,21 +1695,14 @@
 				true Renamed from: IllegalSelectionSets</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:attribute
-					name="listItemNames"
-					type="xs:NMTOKENS"
-					use="required">
+			<xs:extension base="FuncBoolBaseType">
+				<xs:attribute name="listItemNames" type="xs:NMTOKENS" use="required">
 					<xs:annotation>
 						<xs:documentation>Set of @name references for a set ListItems, delimited by
 							spaces.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					default="1"
-					name="maxSelections"
-					type="xs:short">
+				<xs:attribute default="1" name="maxSelections" type="xs:short">
 					<xs:annotation>
 						<xs:documentation>The maximum number of ListItems in @listItemNames that may
 							be selected at one time.</xs:documentation>
@@ -2456,23 +1711,19 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredMultiSelectionSetBoolType">
+	<xs:complexType name="PredMultiSelectionSetBoolType">
 		<xs:annotation>
 			<xs:documentation>This Rule component evaluates the @selected status of any set of
 				ListItems at runtime, and returns a true or false value based on the @selected
 				status of each ListItem. </xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:attributeGroup
-					ref="SelectionDependencyAttributes"/>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:attributeGroup ref="SelectionDependencyAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredEvalAttribValuesType">
+	<xs:complexType name="PredEvalAttribValuesType">
 		<xs:annotation>
 			<xs:documentation>This Rule evaluates an arbitrary set of attribute values from any item
 				and returns a Boolean summary value. In the PropertyValues condition, the contained
@@ -2482,14 +1733,9 @@
 				are not used for null propagation.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:attributeGroup
-					ref="BoolAttributes"/>
-				<xs:attribute
-					name="itemNames"
-					type="xs:NMTOKENS"
-					use="required">
+			<xs:extension base="FuncBoolBaseType">
+				<xs:attributeGroup ref="BoolAttributes"/>
+				<xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
 					<xs:annotation>
 						<xs:documentation>Required. This attribute holds the @name attributes of the
 							item(s) (Section, Question, List Item) to interrogate. These named items
@@ -2499,47 +1745,35 @@
 							propagation response.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="isSelected"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="isActive"
-					type="xs:boolean">
+				<xs:attribute name="isSelected" type="xs:boolean"/>
+				<xs:attribute name="isActive" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If visible and enabled are both true, then isActive is
 							true. Otherwise, it is false.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="hasSelectionsGTE"
-					type="xs:nonNegativeInteger">
+				<xs:attribute name="hasSelectionsGTE" type="xs:nonNegativeInteger">
 					<xs:annotation>
 						<xs:documentation>Applies only to Questions that have selection lists
 							(ListItems or LookupField). Evaluates to true if the number of selected
 							items equals or exceeds the entered value.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="hasSelectionsLTE"
-					type="xs:nonNegativeInteger">
+				<xs:attribute name="hasSelectionsLTE" type="xs:nonNegativeInteger">
 					<xs:annotation>
 						<xs:documentation>Applies only to Questions that have selection lists
 							(ListItems or LookupField). Evaluates to true if the number of selected
 							items is less than or equal to the entered value.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="hasSelectionsExact"
-					type="xs:nonNegativeInteger">
+				<xs:attribute name="hasSelectionsExact" type="xs:nonNegativeInteger">
 					<xs:annotation>
 						<xs:documentation>Applies only to Questions that have selection lists
 							(ListItems or LookupField). Evaluates to true if the number of selected
 							items equals the entered value.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="hasResponse"
-					type="xs:boolean">
+				<xs:attribute name="hasResponse" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Applies only to items that have Response Fields (Questions
 							and ListItems). If the ListItem or Question has a Response Field, and
@@ -2548,40 +1782,21 @@
 							retuns null and is not used for Boolean comparisons. </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="isVisible"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="isEnabled"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="isRequired"
-					type="xs:boolean">
+				<xs:attribute name="isVisible" type="xs:boolean"/>
+				<xs:attribute name="isEnabled" type="xs:boolean"/>
+				<xs:attribute name="isRequired" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>If the minCard value is greater than 0, then isRequired =
 							"true" If the minCard = "0" then isRequired = "false"</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="isReadOnly"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="hasType"
-					type="xs:NMTOKENS"/>
-				<xs:attribute
-					name="hasStyleClass"
-					type="xs:NMTOKENS"/>
-				<xs:attribute
-					name="hasValue"
-					type="xs:boolean"/>
-				<xs:attribute
-					name="supportDatesAndIntervals..."/>
-				<xs:attribute
-					name="hasPattern"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasValueEQ"
-					type="xs:string">
+				<xs:attribute name="isReadOnly" type="xs:boolean"/>
+				<xs:attribute name="hasType" type="xs:NMTOKENS"/>
+				<xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+				<xs:attribute name="hasValue" type="xs:boolean"/>
+				<xs:attribute name="supportDatesAndIntervals..."/>
+				<xs:attribute name="hasPattern" type="xs:string"/>
+				<xs:attribute name="hasValueEQ" type="xs:string">
 					<xs:annotation>
 						<xs:documentation>If the value is peceded by a colon (:) sign, then it is a
 							reference to the @val attribute of another element. References can refer
@@ -2590,38 +1805,19 @@
 							datatype.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="hasValueLT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasValueLTE"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasValueGT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasValueGTE"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueEQ"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueLT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueLTE"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueGT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueGTE"
-					type="xs:string"/>
+				<xs:attribute name="hasValueLT" type="xs:string"/>
+				<xs:attribute name="hasValueLTE" type="xs:string"/>
+				<xs:attribute name="hasValueGT" type="xs:string"/>
+				<xs:attribute name="hasValueGTE" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueEQ" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueLT" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueLTE" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueGT" type="xs:string"/>
+				<xs:attribute name="hasAssociatedValueGTE" type="xs:string"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredAlternativesType">
+	<xs:complexType name="PredAlternativesType">
 		<xs:annotation>
 			<xs:documentation>This Rule tests if one (or more) items in a list of items has received
 				a a valid user response (answer). In the simplest case, this Rule allows a user to
@@ -2637,27 +1833,16 @@
 				value = 0 meaning unlimited).</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:attributeGroup
-					ref="NotAttribute"/>
-				<xs:attribute
-					default="1"
-					name="minAnswered"
-					type="xs:int"
-					use="optional"/>
-				<xs:attribute
-					default="0"
-					name="maxAnswered"
-					type="xs:int">
+			<xs:extension base="FuncBoolBaseType">
+				<xs:attributeGroup ref="NotAttribute"/>
+				<xs:attribute default="1" name="minAnswered" type="xs:int" use="optional"/>
+				<xs:attribute default="0" name="maxAnswered" type="xs:int">
 					<xs:annotation>
 						<xs:documentation>@maxAnswered must be 0 or greater than or equal to
 							@minAnswered.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="itemNames"
-					type="xs:NMTOKENS">
+				<xs:attribute name="itemNames" type="xs:NMTOKENS">
 					<xs:annotation>
 						<xs:documentation>List of names of Sections, Questions, ListItems and/or
 							InjectedItems. Each of the named items will evaluate to true or false,
@@ -2680,120 +1865,73 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredGuardType">
+	<xs:complexType name="PredGuardType">
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:choice
-					maxOccurs="unbounded">
-					<xs:element
-						name="AttributeEval"
-						type="PredEvalAttribValuesType"> </xs:element>
-					<xs:element
-						name="ScriptBoolFunc"
-						type="ScriptCodeBoolType"> </xs:element>
-					<xs:element
-						name="CallBoolFunc"
-						type="CallFuncBoolType"/>
-					<xs:element
-						name="MultiSelections"
-						type="PredMultiSelectionSetBoolType"/>
-					<xs:element
-						name="SelectionTest"
-						type="PredSelectionTestType">
+			<xs:extension base="FuncBoolBaseType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="AttributeEval" type="PredEvalAttribValuesType"> </xs:element>
+					<xs:element name="ScriptBoolFunc" type="ScriptCodeBoolType"> </xs:element>
+					<xs:element name="CallBoolFunc" type="CallFuncBoolType"/>
+					<xs:element name="MultiSelections" type="PredMultiSelectionSetBoolType"/>
+					<xs:element name="SelectionTest" type="PredSelectionTestType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="SelectionSets">
+					<xs:element name="SelectionSets">
 						<xs:complexType>
 							<xs:complexContent>
-								<xs:extension
-									base="PredSingleSelectionSetsType">
-									<xs:attributeGroup
-										ref="NotAttribute"/>
+								<xs:extension base="PredSingleSelectionSetsType">
+									<xs:attributeGroup ref="NotAttribute"/>
 								</xs:extension>
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-					<xs:element
-						name="ItemAlternatives"
-						type="PredAlternativesType">
+					<xs:element name="ItemAlternatives" type="PredAlternativesType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						name="Group"
-						type="PredGuardType"/>
+					<xs:element name="Group" type="PredGuardType"/>
 				</xs:choice>
-				<xs:attributeGroup
-					ref="BoolAttributes"/>
+				<xs:attributeGroup ref="BoolAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="PredActionType">
+	<xs:complexType name="PredActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="FuncBoolBaseType">
+			<xs:extension base="FuncBoolBaseType">
 				<xs:sequence>
-					<xs:choice
-						maxOccurs="unbounded"
-						minOccurs="0">
-						<xs:element
-							name="AttributeEval"
-							type="AttributeEvalActionType"> </xs:element>
-						<xs:element
-							name="ScriptBoolFunc"
-							type="ScriptBoolFuncActionType"> </xs:element>
-						<xs:element
-							name="CallBoolFunction"
-							type="CallFuncBoolActionType"/>
-						<xs:element
-							name="MultiSelections"
-							type="MultiSelectionsActionType"> </xs:element>
-						<xs:element
-							name="SelectionSets"
-							type="SelectionSetsActionType"> </xs:element>
-						<xs:element
-							name="SelectionTest"
-							type="SelectionTestActionType">
+					<xs:choice maxOccurs="unbounded" minOccurs="0">
+						<xs:element name="AttributeEval" type="AttributeEvalActionType"> </xs:element>
+						<xs:element name="ScriptBoolFunc" type="ScriptBoolFuncActionType"> </xs:element>
+						<xs:element name="CallBoolFunction" type="CallFuncBoolActionType"/>
+						<xs:element name="MultiSelections" type="MultiSelectionsActionType"> </xs:element>
+						<xs:element name="SelectionSets" type="SelectionSetsActionType"> </xs:element>
+						<xs:element name="SelectionTest" type="SelectionTestActionType">
 							<xs:annotation>
 								<xs:documentation/>
 							</xs:annotation>
 						</xs:element>
-						<xs:element
-							name="Group"
-							type="PredActionType"/>
-						<xs:element
-							name="SelectMatchingListItems"
-							type="RuleSelectMatchingListItemsType"/>
+						<xs:element name="Group" type="PredActionType"/>
+						<xs:element name="SelectMatchingListItems" type="RuleSelectMatchingListItemsType"/>
 					</xs:choice>
-					<xs:group
-						ref="ActionElseType"/>
+					<xs:group ref="ActionElseType"/>
 				</xs:sequence>
-				<xs:attributeGroup
-					ref="BoolAttributes"/>
+				<xs:attributeGroup ref="BoolAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:element
-		name="PredActionType2">
+	<xs:element name="PredActionType2">
 		<xs:complexType>
 			<xs:complexContent>
-				<xs:extension
-					base="PredGuardType">
-					<xs:group
-						ref="ActionElseType"/>
+				<xs:extension base="PredGuardType">
+					<xs:group ref="ActionElseType"/>
 				</xs:extension>
 			</xs:complexContent>
 		</xs:complexType>
 	</xs:element>
-	<xs:complexType
-		name="RulesType">
+	<xs:complexType name="RulesType">
 		<xs:annotation>
 			<xs:documentation>Rules are procedures that affect form behaviour. They are usually
 				triggered by changes to the form by a form user. They may also be triggered by other
@@ -2813,48 +1951,20 @@
 				or one item in this list may be selected at a time. </xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:sequence
-					maxOccurs="unbounded">
-					<xs:element
-						minOccurs="0"
-						name="Validation"
-						type="ValidationType"> </xs:element>
-					<xs:element
-						name="AutoActivation"
-						type="RuleAutoActivateType"
-						maxOccurs="unbounded"
-						minOccurs="0"/>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="AutoSelection"
-						type="RuleAutoSelectType"/>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="SelectMatchingListItems"
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element minOccurs="0" name="Validation" type="ValidationType"> </xs:element>
+					<xs:element name="AutoActivation" type="RuleAutoActivateType" maxOccurs="unbounded" minOccurs="0"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection" type="RuleAutoSelectType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectMatchingListItems"
 						type="RuleSelectMatchingListItemsType"/>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="ConditionalActions"
-						type="PredActionType"/>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="ScriptedRule"
-						type="ScriptCodeAnyType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalActions" type="PredActionType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptedRule" type="ScriptCodeAnyType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 					</xs:element>
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="ExternalRule"
-						type="CallFuncActionType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule" type="CallFuncActionType">
 						<xs:annotation>
 							<xs:documentation>Rules that are called (by referencing the rule's @name
 								attribute) from another place in the form.</xs:documentation>
@@ -2864,23 +1974,18 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="CallFuncActionType">
+	<xs:complexType name="CallFuncActionType">
 		<xs:annotation>
 			<xs:documentation>Function or web service that returns a string
 				value.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="CallFuncType">
+			<xs:extension base="CallFuncType">
 				<xs:sequence>
 					<xs:annotation>
 						<xs:documentation/>
 					</xs:annotation>
-					<xs:element
-						name="ConditionalActions"
-						type="PredActionType"
-						minOccurs="0">
+					<xs:element name="ConditionalActions" type="PredActionType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Actions to take, usually based on the return @val
 								value of the function. Condiitons may be specified for each action.
@@ -2892,22 +1997,18 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="CallFuncBoolActionType">
+	<xs:complexType name="CallFuncBoolActionType">
 		<xs:annotation>
 			<xs:documentation>Function or web service that returns a string
 				value.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension
-				base="CallFuncBoolType">
+			<xs:extension base="CallFuncBoolType">
 				<xs:choice>
 					<xs:annotation>
 						<xs:documentation/>
 					</xs:annotation>
-					<xs:element
-						name="ConditionalActions"
-						type="PredActionType">
+					<xs:element name="ConditionalActions" type="PredActionType">
 						<xs:annotation>
 							<xs:documentation>Actions to take, usually based on the return @val
 								value of the function. Condiitons may be specified for each action.
@@ -2915,24 +2016,19 @@
 								level.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:group
-						ref="ActionElseType"/>
+					<xs:group ref="ActionElseType"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ScriptBoolFuncActionType">
+	<xs:complexType name="ScriptBoolFuncActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="ScriptCodeBoolType">
+			<xs:extension base="ScriptCodeBoolType">
 				<xs:choice>
 					<xs:annotation>
 						<xs:documentation/>
 					</xs:annotation>
-					<xs:element
-						name="ConditionalActions"
-						type="PredActionType">
+					<xs:element name="ConditionalActions" type="PredActionType">
 						<xs:annotation>
 							<xs:documentation>Actions to take, usually based on the return @val
 								value of the function. Condiitons may be specified for each action.
@@ -2940,97 +2036,66 @@
 								level.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:group
-						ref="ActionElseType"/>
+					<xs:group ref="ActionElseType"/>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="AttributeEvalActionType">
+	<xs:complexType name="AttributeEvalActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="PredEvalAttribValuesType">
-				<xs:group
-					ref="ActionElseType"/>
+			<xs:extension base="PredEvalAttribValuesType">
+				<xs:group ref="ActionElseType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="MultiSelectionsActionType">
+	<xs:complexType name="MultiSelectionsActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="PredMultiSelectionSetBoolType">
-				<xs:group
-					ref="ActionElseType"/>
+			<xs:extension base="PredMultiSelectionSetBoolType">
+				<xs:group ref="ActionElseType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="SelectionSetsActionType">
+	<xs:complexType name="SelectionSetsActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="PredSingleSelectionSetsType">
-				<xs:group
-					ref="ActionElseType"/>
-				<xs:attributeGroup
-					ref="NotAttribute"/>
+			<xs:extension base="PredSingleSelectionSetsType">
+				<xs:group ref="ActionElseType"/>
+				<xs:attributeGroup ref="NotAttribute"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="SelectionTestActionType">
+	<xs:complexType name="SelectionTestActionType">
 		<xs:complexContent>
-			<xs:extension
-				base="PredSelectionTestType">
-				<xs:group
-					ref="ActionElseType"/>
+			<xs:extension base="PredSelectionTestType">
+				<xs:group ref="ActionElseType"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType
-		name="ValidationType">
+	<xs:complexType name="ValidationType">
 		<xs:complexContent>
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:choice
-					maxOccurs="unbounded">
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="SelectionTest">
+			<xs:extension base="ExtensionBaseType">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="SelectionTest">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
 						<xs:complexType>
 							<xs:complexContent>
-								<xs:extension
-									base="PredSelectionTestType">
-									<xs:attributeGroup
-										ref="NotAttribute"/>
+								<xs:extension base="PredSelectionTestType">
+									<xs:attributeGroup ref="NotAttribute"/>
 								</xs:extension>
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-					<xs:element
-						name="SelectionSets"
-						maxOccurs="unbounded"
-						minOccurs="0">
+					<xs:element name="SelectionSets" maxOccurs="unbounded" minOccurs="0">
 						<xs:complexType>
 							<xs:complexContent>
-								<xs:extension
-									base="PredSingleSelectionSetsType">
-									<xs:attributeGroup
-										ref="NotAttribute"/>
+								<xs:extension base="PredSingleSelectionSetsType">
+									<xs:attributeGroup ref="NotAttribute"/>
 								</xs:extension>
 							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-					<xs:element
-						name="ItemAlternatives"
-						maxOccurs="unbounded"
-						minOccurs="0"
-						type="PredAlternativesType">
+					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0" type="PredAlternativesType">
 						<xs:annotation>
 							<xs:documentation/>
 						</xs:annotation>
@@ -3039,18 +2104,10 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:group
-		name="ActionElseType">
+	<xs:group name="ActionElseType">
 		<xs:sequence>
-			<xs:element
-				name="Actions"
-				minOccurs="0"
-				type="ActionsType"/>
-			<xs:element
-				minOccurs="0"
-				name="Else"
-				type="PredActionType"
-				maxOccurs="unbounded"/>
+			<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
+			<xs:element minOccurs="0" name="Else" type="PredActionType" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:group>
 </xs:schema>
