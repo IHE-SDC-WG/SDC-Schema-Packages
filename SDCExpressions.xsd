@@ -358,7 +358,7 @@ The function must understand the parameters and return an appropriate response o
          name="objectTypeName"
          type="xs:string">
          <xs:annotation>
-            <xs:documentation>If the function returns a custom object, even if serialized e.g., as XML of JSON, provide the object type name here.</xs:documentation>
+            <xs:documentation>If the function returns a custom object, even if serialized e.g., as XML or JSON, provide the object type name here.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
       <xs:attribute
@@ -380,11 +380,11 @@ The function must understand the parameters and return an appropriate response o
          name="returnVal"
          type="xs:string">
          <xs:annotation>
-            <xs:documentation>@val holds the return value of the function in string format.  The datatype of @val should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.
+            <xs:documentation>@returnVal holds the return value of the function in string format.  The datatype of @returnVal should be cast to the selected datatype in @dataTypeListAll.  Special characters must be escaped using standard XML escape codes.  @val holds a list of returned values if @returnList="true".  Lists are delimited by the value in @listDelimiter.
 
 If the datatype is Boolean, then ")" is evaluated as false" and all other non-null values are evaluated as "true".
 
-@val may hold a default value.</xs:documentation>
+@returnVal may hold a default value.</xs:documentation>
          </xs:annotation>
       </xs:attribute>
    </xs:attributeGroup>

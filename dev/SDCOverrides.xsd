@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:ihe:qrph:sdc:2016" xmlns="urn:ihe:qrph:sdc:2016"
+    xmlns:dex="urn:ihe:qrph:dex:2013" vc:minVersion="1.0"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <!-- 9/15/2016 Changes for IHE Profile Trial Implementation (for Jan 2017 Connectathon) -->
+    <xs:include schemaLocation="SDCResources.xsd"/>
+    <xs:element name="Changes" type="OverrideTemplateType"/>
+    <xs:complexType name="OverrideTemplateType">
+        <xs:complexContent>
+            <xs:extension base="ExtensionBaseType">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="Change" type="ChangeType"> </xs:element>
+                </xs:sequence>
+                <xs:attributeGroup ref="templateAttributes"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

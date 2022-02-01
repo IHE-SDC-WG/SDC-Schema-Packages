@@ -1,0 +1,5 @@
+2021-12-07 07:59:58: >> Resolved l106485g9054v19.rmoldwin to 98.34.80.89:33053-192.168.1.53:33333
+2021-12-07 07:59:58: LOCAL C:98.34.80.89(192.168.1.146) -> S:192.168.1.53:33333
+2021-12-07 07:59:58: -- Analysis Started by User Command
+2021-12-07 07:59:59: Changes: 0, Conflicts: 0, CopyTime: 0, FixState: 0, Errors: 0, All: 2073
+2021-12-07 07:59:59: -- Analysis Complete. Time 00:00:01, Speed: 2,073 files/s
