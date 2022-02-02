@@ -1328,40 +1328,198 @@ Sibs (all|prev|following) of the current item
 To use the current item during a iteration use the variable $ITER
 
 </xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:extension base="ReturnListType">
-            <xs:sequence>
-               <xs:element name="InputList" type="Any.Functions.ListType"/>
-               <xs:element name="Filter" type="ListFilterType"/>
-            </xs:sequence>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="CaseBlockType">
-      <xs:complexContent>
-         <xs:extension base="ExtensionBaseType">
-            <xs:sequence>
-               <xs:element maxOccurs="unbounded" name="Case" type="CaseBaseType"/>
-            </xs:sequence>
-            <xs:attribute default="true" form="unqualified" name="defaultBreakAfterCase"
-               type="xs:boolean">
-               <xs:annotation>
-                  <xs:documentation>Abort Case execution if the "If" part evaluates to true.  The default is true, meaning that the first If statement to evaluate to "true" will cause all subsequent Case sections to be skipped.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
-   <xs:complexType name="CaseBaseType">
-      <xs:complexContent>
-         <xs:extension base="IfThenType">
-            <xs:attribute form="unqualified" name="breakAfterCase" type="xs:boolean">
-               <xs:annotation>
-                  <xs:documentation>Abort Case execution if the "If" part evaluates to true.  Default is set in @defaultBreakAfterCase on the parent case block.</xs:documentation>
-               </xs:annotation>
-            </xs:attribute>
-         </xs:extension>
-      </xs:complexContent>
-   </xs:complexType>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GuardType">
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:sequence>
+					<xs:element name="AttributeCondition" maxOccurs="unbounded" minOccurs="0"
+						type="GetItemAttribValuesType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections"
+						type="MultiSelectionSetBoolType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest"
+						type="RuleSelectionTestType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0"
+						type="RuleSingleSelectionSetsType"> </xs:element>
+					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0"
+						type="AlternativesType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0"
+						type="ScriptCodeBoolType"> </xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="CallBoolCondition"
+						type="CallBoolFuncType"/>
+					<xs:element name="Group" type="GuardType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="BoolAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConditionsSubActionsType">
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:sequence>
+					<xs:element name="AttributeCondition" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="GetItemAttribValuesType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="MultiSelections">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="MultiSelectionSetBoolType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="IllegalSelectionSets" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="RuleSingleSelectionSetsType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalSelectionTest">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="RuleSelectionTestType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ScriptCondition" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ScriptCodeBoolType">
+									<xs:sequence minOccurs="0">
+										<xs:element name="Actions" minOccurs="0" type="ActionsType"
+										/>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Group" type="ConditionalGroupActionType" minOccurs="0"
+						maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="BoolAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ConditionalGroupActionType">
+		<xs:annotation>
+			<xs:documentation>Execute an Action based when the Boolean condition returns true.
+
+Boolean sub-Conditions and sub-Actions may be nested to any level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:choice>
+					<xs:element name="Conditions" minOccurs="0" type="ConditionsSubActionsType"> </xs:element>
+					<xs:element name="Actions" minOccurs="0" type="ActionsType"> </xs:element>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="RulesType">
+		<xs:annotation>
+			<xs:documentation>Rules are procedures that affect form behaviour.  They are usually triggered by changes to the form by a form user.  They may also be triggered by other rules or changes to form metadata (e.g., change to @visible).
+
+SDC decarative form rules consist of several types:
+
+Assertions are "predicate" expressions that evaulate to true or false, based upon the state of answers/responses or metadata within a form.  An asserion is equivalent to the "If" part of an If-Then block.  The implementation framework must assign a fucntion to handle any assertion that evaluates to False.  Assertions are no handled by the form itself.
+
+If-Then-Else blocks run a "Then" action if the "If block evaluated to true, and an "Else" block if the "If" block evaluates to false.
+
+An AutoSelection rule automatically selects an answer choice (ListItem) when another answer (or set of answers) is selected or unselected.
+
+IllegalSelectionTest evaluates to true if a disallowed set of answer choices is selected at the same time.  The implementation should take an action (alert user, cancel inout, etc) when a true result occurs.
+
+IllegalSelection Set restricts combinations of co-selected ListItems (answers).  In other words, only zero or one item in this list may be selected at a time.  
+ 
+</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ExtensionBaseType">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="Validation">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="ExtensionBaseType">
+									<xs:choice maxOccurs="unbounded">
+										<xs:element maxOccurs="unbounded" minOccurs="0"
+											name="IllegalSelectionTest" type="RuleSelectionTestType">
+											<xs:annotation>
+												<xs:documentation/>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="IllegalSelectionSets"
+											maxOccurs="unbounded" minOccurs="0"
+											type="RuleSingleSelectionSetsType"> </xs:element>
+										<xs:element name="ItemAlternatives" maxOccurs="unbounded"
+											minOccurs="0" type="AlternativesType">
+											<xs:annotation>
+												<xs:documentation/>
+											</xs:annotation>
+										</xs:element>
+									</xs:choice>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="AutoActivation" type="RuleAutoActivationType"
+						maxOccurs="unbounded" minOccurs="0"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
+						type="RuleAutoSelectType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalGroupActions"
+						type="ConditionalGroupActionType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ScriptedRule"
+						type="ScriptCodeAnyType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule"
+						type="CallFuncType">
+						<xs:annotation>
+							<xs:documentation>Rules that are called (by referencing the rule's @name attribute) from another place in the form.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 </xs:schema>
