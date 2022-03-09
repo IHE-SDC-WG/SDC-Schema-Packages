@@ -59,24 +59,24 @@ When appended to @baseURI, it can be used to retrieve all versions of one partic
 				</xs:attribute>
 				<xs:attribute name="fullURI" type="URI_Atype" use="required">
 					<xs:annotation>
-						<xs:documentation>NEW: The full URI that uniquely identifies the current package.</xs:documentation>
+						<xs:documentation>NEW: The full URI that uniquely identifies the current package instance.  This URI does not vary with updated versions of the package instance.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="instanceID" type="xs:string" use="optional">
 					<xs:annotation>
-						<xs:documentation>NEW: Unique string used to identify a unique instance of a form. Used for tracking form responses across time and across multiple episodes of editing by end-users.  This string does not change for each edit session of a package instance.
+						<xs:documentation>NEW: For packages containing FormDesign responses. Unique string used to identify a set of packaged versions (the package instance) over time. Used for tracking changed package responses across time and across multiple episodes of editing (versions) by end-users.  This string does not change for each edit session (version) of a package instance.
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="instanceVersion" type="xs:dateTime" use="optional">
 					<xs:annotation>
-						<xs:documentation>NEW: Timestamp used to identify a unique instance of a package.  Used for tracking form responses across time and across multiple episodes of editing by end-users.  This field must change for each edit session of a form instance.
+						<xs:documentation>NEW: For packages containing FormDesign responses. Timestamp used to identify a unique instance of a package.  Used for tracking form responses across time and across multiple episodes of editing by end-users.  This field must change for each edit session of a form instance.
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="instanceVersionURI" type="URI_Atype">
 					<xs:annotation>
-						<xs:documentation>NEW: Globally-unique URI used to identify a unique instance of a Pkg with saved FDF-R responses.  It is used for tracking Pkg responses across time and across multiple episodes of editing by end-users.  The instanceVersionURI must change for each edit/save session of a Pkg instance (defined by instanceVersion).  
+						<xs:documentation>NEW: For packages containing FormDesign responses. Globally-unique URI used to identify a unique instance of a Pkg with saved FDF-R responses.  It is used for tracking Pkg responses across time and across multiple episodes of editing by end-users.  The instanceVersionURI must change for each edit/save session of a Pkg instance (defined by instanceVersion).  
 
 The instanceVersionURI should be formatted similarly to the fullURI but must include values for instanceID and instanceVersion.  The instanceVersion value is the release date/time for the new version, in W3C datetime format.
 
@@ -100,47 +100,7 @@ The instanceVersionURI is not required, and is not allowed in an FDF.
 </xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="X_pkgPreviousInstanceVersionURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: Unique URI used to identify the immediate previous instance of a package containing responses.  This is the @pkgnstanceVersionURI that represents the instance of the package that the user opened up before beginning a new cycle of edit/save.  This attribute is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit session of a package instance.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="X_prevVersionURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: The full URI used to identify the package that is the immediate previous version of the current package</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="X_pkgInstanceURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package.  Used for tracking form responses across time and across multiple episodes of editing by end-users.  This URI does not change for each edit session of a package instance.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="X_pkgInstanceVersionURI" type="URI_Atype">
-					<xs:annotation>
-						<xs:documentation>NEW: Unique URI used to identify a unique instance of a package's saved responses.  It is used for tracking package responses across time and across multiple episodes of editing by end-users.  This URI must change for each edit/save session of a package instance.  It may be e.g., a new GUID, or a repeat of the pkgInstanceID followed by a version number.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="X_approvalStatus">
-					<xs:simpleType>
-						<xs:restriction base="xs:string">
-							<xs:enumeration value="inProcess"/>
-							<xs:enumeration value="preliminary"/>
-							<xs:enumeration value="approved"/>
-							<xs:enumeration value="retracted"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
-				<xs:attribute name="X_completionStatus">
-					<xs:simpleType>
-						<xs:restriction base="xs:string">
-							<xs:enumeration value="pending"/>
-							<xs:enumeration value="incomplete"/>
-							<xs:enumeration value="complete"/>
-							<xs:enumeration value="cancelled"/>
-							<xs:enumeration value="retracted"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
+
 				<xs:attributeGroup ref="ResponseAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
