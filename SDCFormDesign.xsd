@@ -178,24 +178,6 @@
 					<xs:element minOccurs="0" name="BeforeDataSubmit" type="EventType"/>
 					<xs:element minOccurs="0" name="BeforeCloseForm" type="EventType"/>
 					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType">
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType">
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be
 								specified.</xs:documentation>
@@ -331,6 +313,24 @@
 				</xs:attribute>
 				<xs:attribute name="instanceVersionPrev" type="xs:dateTime" use="optional">
 					<xs:annotation>
+						<xs:documentation>NEW: Unique dateTime used to identify the immediate
+							previous instance of an form instance. Used for tracking form responses
+							across time and across multiple episodes of editing by end-users. This
+							field must change for each edit session of a form instance.
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="approvalStatus">
+					<xs:annotation>
+						<xs:documentation>Describes report fitness for clinical or other action
+							inProcess: currently being edited, users should not rely on results
+							preliminary: report is awaiting final review and approval approved:
+							report is fit for clinical or other action; often synonymous with final
+							cancelled: report/procedure has been aborted before issued retracted:
+							report has been deemed unfit for clinical or other action
+						</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
 						<xs:restriction base="xs:string">
 							<xs:enumeration value="inProcess"/>
 							<xs:enumeration value="preliminary"/>
@@ -341,24 +341,6 @@
 					</xs:simpleType>
 				</xs:attribute>
 				<xs:attribute name="completionStatus">
-					<xs:annotation>
-						<xs:restriction
-							base="xs:string">
-							<xs:enumeration
-								value="inProcess"/>
-							<xs:enumeration
-								value="preliminary"/>
-							<xs:enumeration
-								value="approved"/>
-							<xs:enumeration
-								value="cancelled"/>
-							<xs:enumeration
-								value="retracted"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
-				<xs:attribute
-					name="completionStatus">
 					<xs:annotation>
 						<xs:documentation>The extent to which a report contains all of the requested
 							information pending: no information is yet available incomplete: some
@@ -434,27 +416,27 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="serverURI" type="URI_Atype">
-			<xs:extension base="CallFuncActionType">
-				<xs:sequence maxOccurs="1">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue" type="CodingType">
+					<xs:annotation>
+						<xs:documentation>The server from which the injected package will be 
+retrieved. Former name "pkgManagerURI"</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attributeGroup ref="ResponseReportingAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="LookupEndPointType">
+		<xs:annotation>
+			<xs:documentation>LookupEndPointType represents list items that are derived from a web
+				service call of some type, instead of an explicit set of ListItem nodes specified in
+				the FormDesign XML. The endpoint must return a list separated into individual list
+				items by the @colTextDelimiter value specified in the parent
 				ListFieldType.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-<<<<<<<<< Temporary merge branch 1
-			<xs:extension base="CallFuncType">
+			<xs:extension base="CallFuncActionType">
 				<xs:sequence maxOccurs="1">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue"
-=========
-			<xs:extension
-				base="CallFuncActionType">
-				<xs:sequence
-					maxOccurs="1">
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="ResponseValue"
->>>>>>>>> Temporary merge branch 2
-						type="CodingType">
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="ResponseValue" type="CodingType">
 						<xs:annotation>
 							<xs:documentation>The user's response to the lookup list. The response
 								is recorded as a coding, terminology, classification, keyword, or
@@ -478,28 +460,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					<xs:element name="ChildItems" type="ChildItemsType" minOccurs="0"/>
 				</xs:choice>
 			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListItemBaseType" block="" abstract="true">
+		<xs:annotation>
+			<xs:documentation>This base element is the foundation for ListItems, but does not
+				include the MainItems sub-group under each ListItem.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="DisplayedType">
+				<xs:sequence>
+					<xs:element name="ListItemResponseField" minOccurs="0" maxOccurs="1"
+						type="ListItemResponseFieldType">
+						<xs:annotation>
+							<xs:documentation>A place to enter values (of any data type) that are
+								directly associated with, and attached to, a selected answer
+								choice.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="OnSelect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
 					<xs:element name="OnDeselect" maxOccurs="unbounded" minOccurs="0" type="EventType"> </xs:element>
 					<xs:element name="SelectIf" minOccurs="0" type="PredGuardType"> </xs:element>
 					<xs:element name="DeselectIf" minOccurs="0" type="PredGuardType"> </xs:element>
-						name="OnSelect"
-						maxOccurs="unbounded"
-						minOccurs="0"
-						type="EventType"> </xs:element>
-					<xs:element
-						name="OnDeselect"
-						maxOccurs="unbounded"
-						minOccurs="0"
-						type="EventType"> </xs:element>
-					<xs:element
-						name="SelectIf"
-						minOccurs="0"
-						type="PredGuardType"> </xs:element>
-					<xs:element
-						name="DeselectIf"
-						minOccurs="0"
-						type="PredGuardType"> </xs:element>
->>>>>>>>> Temporary merge branch 2
 				</xs:sequence>
 				<xs:attribute default="false" name="selected" type="xs:boolean">
 					<xs:annotation>
@@ -597,7 +579,15 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					<xs:element name="ListItem" type="ListItemType" minOccurs="1" maxOccurs="1"/>
 				</xs:choice>
 			</xs:extension>
-					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ListFieldType">
+		<xs:annotation>
+			<xs:documentation>ListField is a grouper for list-like answer choices, which may be
+				derived from either a set of answer choice lists (a List composed of ListItems) or
+				or a list obtained from a LookupEndpoint URI.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:element minOccurs="0" name="ListHeaderText" type="RichTextType">
@@ -607,18 +597,18 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 								colTextDelimiter.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem"
-=========
-					<xs:element
-						maxOccurs="1"
-						minOccurs="0"
-						name="DefaultCodeSystem"
->>>>>>>>> Temporary merge branch 2
-						type="CodeSystemType">
+					<xs:element maxOccurs="1" minOccurs="0" name="DefaultCodeSystem" type="CodeSystemType">
 						<xs:annotation>
 							<xs:documentation>If coded values are used for items in a List
-						<xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1" type="LookupEndPointType">
+								(including ListItem and LookupEndPoint lists), then the default
+								coding system should be specified here. For ListItem nodes, any
+								exceptions to the coding system may be specified on the individual
+								ListItem nodes. For LookupEndPoints, the endpoint data can
+								optionally specify any exceptions in a dedicated CodeSystem column
+								in the returned list data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice>
 						<xs:element name="List" type="ListType">
 							<xs:annotation>
 								<xs:documentation>List refers to a set of possible answer choices
@@ -628,40 +618,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 									present for single-select questions.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
+						<xs:element name="LookupEndPoint" minOccurs="1" maxOccurs="1" type="LookupEndPointType">
+							<xs:annotation>
+								<xs:documentation>LookupEndPoint is used when the list items are
+									derived from a web service call of some type, instead of an
 									explicit set of ListItem nodes specified in the FormDesign XML.
 									The endpoint must return a list separated into individual list
 									items by the @colTextDelimiter value specified in the parent
+									ListFieldType.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalListItemPairings"
+						type="PredSelectionTestType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="IllegalCoSelectedListItems"
+						type="PredSingleSelectionSetsType"/>
 					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded" type="EventType">
-						type="RuleSelectionTestType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0"
-						name="IllegalCoSelectedListItems" type="RuleSingleSelectionSetsType"/>
-					<xs:element minOccurs="0" name="AfterChange" maxOccurs="unbounded"
-=========
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
-						minOccurs="0"
-						name="OnEvent"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType"/>
-						name="AfterChange"
-						maxOccurs="unbounded"
->>>>>>>>> Temporary merge branch 2
-						type="EventType">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after List Field selections are
 								changed.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
-=========
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="OnEvent"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
 				<xs:attribute default="|" name="colTextDelimiter">
 					<xs:annotation>
@@ -720,7 +698,15 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 						<xs:documentation>This attribute contains an SDC datatype enumeration. The
 							selected value is the datatype of the content for all
 							ListItem/@associatedValue content in the current List. It is used
-						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1" maxOccurs="1">
+							instead of associatedValueType. This element is used only if the
+							ListItems are all associated with coded values from a single coding
+							system. If associatedValueType on a ListItem has a datatype assigned,
+							then the latter datatype overrides the content in
+							defaultListItemDataType.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
 	</xs:complexType>
 	<xs:complexType name="ResponseFieldType">
 		<xs:annotation>
@@ -734,11 +720,11 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
 					<xs:sequence>
-<<<<<<<<< Temporary merge branch 1
-						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1"
-=========
-						<xs:element
-					<xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0" maxOccurs="1">
+						<xs:element name="Response" type="DataTypes_DEType" minOccurs="1" maxOccurs="1">
+							<xs:annotation>
+								<xs:documentation>W3C Schema data type details</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:choice minOccurs="0">
 							<xs:element name="CallSetValue" type="CallFuncActionType">
 								<xs:annotation>
@@ -750,36 +736,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 									<xs:documentation>NEW</xs:documentation>
 								</xs:annotation>
 							</xs:element>
-					<xs:element maxOccurs="unbounded" name="AfterChange" type="EventType" minOccurs="0">
->>>>>>>>> Temporary merge branch 2
-						maxOccurs="1">
+						</xs:choice>
+					</xs:sequence>
+					<xs:element name="TextAfterResponse" type="RichTextType" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>TextAfterResponse is fixed text that appears after (to
 								the right of) the user's response on the data entry form. This may
 								be text for units such as "mm", "cm", etc.</xs:documentation>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
-=========
-					<xs:element
-						maxOccurs="unbounded"
-						name="AfterChange"
-						type="EventType"
->>>>>>>>> Temporary merge branch 2
-						minOccurs="0">
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ResponseUnits" minOccurs="0" maxOccurs="1" type="UnitsType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element maxOccurs="unbounded" name="AfterChange" type="EventType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Event that occurs after the Response value is changed,
 								usually fired after a user leaves the Response
 								field.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent"
-=========
-					<xs:element
-						maxOccurs="unbounded"
-						minOccurs="0"
-						name="OnEvent"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType"/>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="OnEvent" type="OnEventType"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -908,30 +886,30 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 	</xs:complexType>
 	<xs:complexType name="QuestionItemType">
 		<xs:annotation>
-					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1" maxOccurs="1"/>
-					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType"> </xs:element>
+			<xs:documentation>Represents questions. Parent items may be Section, Question, and
+				ListItem.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="QuestionItemBaseType">
+				<xs:choice minOccurs="0">
+					<xs:element name="ChildItems" type="ChildItemsType" minOccurs="0"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="QuestionItemBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Represents questions. Parent items may be Section, Question, and
+				ListItem.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
 			<xs:extension base="RepeatingType">
 				<xs:choice maxOccurs="1">
 					<xs:annotation>
 						<xs:documentation>Choice (ResponseField, ListField)</xs:documentation>
 					</xs:annotation>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1"
-						maxOccurs="1"/>
-					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType">
-					</xs:element>
-=========
-					<xs:element
-						name="ResponseField"
-						type="ResponseFieldType"
-						minOccurs="1"
-						maxOccurs="1"/>
-					<xs:element
-						name="ListField"
-						minOccurs="1"
-						maxOccurs="1"
-						type="ListFieldType"> </xs:element>
->>>>>>>>> Temporary merge branch 2
+					<xs:element name="ResponseField" type="ResponseFieldType" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ListField" minOccurs="1" maxOccurs="1" type="ListFieldType"> </xs:element>
 				</xs:choice>
 				<xs:attribute default="false" name="readOnly" type="xs:boolean">
 					<xs:annotation>
@@ -969,51 +947,51 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 							section or question cannot be repeated on the data entry form. A value
 							of 0 indicates that the number of repeats is unlimited. If @maxCard is
 							not 0, then Must be greater than or equal to minCard.
-					<xs:element name="BlobContent" type="BlobType" minOccurs="0" maxOccurs="unbounded">
+						</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attributeGroup ref="ResponseReportingAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DisplayedType">
+		<xs:annotation>
 			<xs:documentation>This type represents any object that is designed to have a visual
 				presence on a form, e.g., Sections, Questions, ListItems, Notes and Blobs. (Other
 				items not inheriting this type may use an optional styleClass
 				attribute.)</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
+			<xs:extension base="IdentifiedExtensionType">
+				<xs:sequence>
+					<xs:element maxOccurs="unbounded" minOccurs="0" name="Link" type="LinkType">
+						<xs:annotation>
+							<xs:documentation>Link to external information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="BlobContent" type="BlobType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Blob information associated with the current
+								DisplayedType. The blob may contain any type of special media, but
+								must be base 64 encoded.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element maxOccurs="unbounded" name="Contact" type="ContactType" minOccurs="0">
-=========
-					<xs:element
-						name="BlobContent"
-						type="BlobType"
-						minOccurs="0"
->>>>>>>>> Temporary merge branch 2
+						<xs:annotation>
+							<xs:documentation>Any desired contact information regarding, e.g., the
+								form item, authoring process, certifications, code or coding
+								processs.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element maxOccurs="unbounded" minOccurs="0" name="CodedValue" type="CodingType">
-=========
-					<xs:element
-						maxOccurs="unbounded"
-						name="Contact"
-						type="ContactType"
+						<xs:annotation>
+							<xs:documentation>Coding, terminology, classification, keyword, or local
+								values</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element minOccurs="0" name="OnEnter" type="EventType" maxOccurs="unbounded"/>
 					<xs:element minOccurs="0" name="OnExit" type="EventType" maxOccurs="unbounded"/>
 					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded" type="OnEventType">
-					</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element minOccurs="0" name="OnEnter" type="EventType" maxOccurs="unbounded"/>
-					<xs:element minOccurs="0" name="OnExit" type="EventType" maxOccurs="unbounded"/>
-					<xs:element minOccurs="0" name="OnEvent" maxOccurs="unbounded"
-=========
-					<xs:element
-						minOccurs="0"
-						name="OnEnter"
-						type="EventType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						minOccurs="0"
-						name="OnExit"
-						type="EventType"
-						maxOccurs="unbounded"/>
-					<xs:element
-						minOccurs="0"
-						name="OnEvent"
-						maxOccurs="unbounded"
->>>>>>>>> Temporary merge branch 2
-						type="OnEventType">
 						<xs:annotation>
 							<xs:documentation>Generic event handler - eventName must be
 								specified.</xs:documentation>
@@ -1203,25 +1181,30 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="actSetCode" type="xs:string"/>
-				<xs:attribute name="actSetAssociatedValueFromRef" type="xs:string">
+				<xs:attribute name="actSetCodeSystem" type="xs:string"/>
+				<xs:attribute name="actSetVal" type="xs:string">
 					<xs:annotation>
+						<xs:documentation>Set a @val attribute with a supplied value. The correct
+							data type must be used if applicable.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="actSetAssociatedValue" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Set @associatedValue attribute of a ListItem with a
+							supplied value. The correct data type must be used if
+							applicable.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="actSetValFromRef" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Set a @val attribute. The correct data type must be used
 							if applicable. Supply the @name of an element that has a non-null @val
 							value of the correct datatype. Null values are
 							ignored.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute
-					name="actSetAssociatedValueFromRef"
-					type="xs:string">
-					<xs:annotation>
-	<xs:complexType name="ActSetAttrValueScriptType">
-						<xs:documentation>Set a @val attribute.  The correct data type must be used if applicable.  Supply the @name of an element that has a non-null @val value of the correct datatype.  Null values are ignored.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 				<xs:attribute name="actSetAssociatedValueFromRef" type="xs:string">
 					<xs:annotation>
-						<xs:documentation>Set @associatedValue attribute of a ListItem.  The correct data type must be used if applicable.  Supply the @name of an element that has a non-null @val value of the correct datatype.  Null values are ignored.</xs:documentation>
-=========
 						<xs:documentation>Set @associatedValue attribute of a ListItem. The correct
 							data type must be used if applicable. Supply the @name of an element
 							that has a non-null @val value of the correct datatype. Null values are
@@ -1231,7 +1214,7 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="ActSetBoolAttributeValueCodeType">
+	<xs:complexType name="ActSetAttrValueScriptType">
 		<xs:annotation>
 			<xs:documentation>This type is used to act upon the value of common item properties. If
 				an "act" property (a property with the "act" prefix) has no value assigned, it is
@@ -1248,12 +1231,7 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-<<<<<<<<< Temporary merge branch 1
-	<xs:complexType name="ActSetBoolAttributeValueCode">
-=========
-	<xs:complexType
-		name="ActSetBoolAttributeValueCode">
->>>>>>>>> Temporary merge branch 2
+	<xs:complexType name="ActSetBoolAttributeValueCodeType">
 		<xs:annotation>
 			<xs:documentation>Sets the value of any named attribute. However, it is primarily
 				designed for Response element(s) on a Question or ListItem. The value may be
@@ -1266,7 +1244,15 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			<xs:extension base="ScriptCodeBoolType">
 				<xs:attribute name="elementName" type="xs:NCName" use="required">
 					<xs:annotation>
-					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType"> </xs:element>
+						<xs:documentation>The @name attribute of the referenced
+							element.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="attributeName" type="xs:NCName" default="val">
+					<xs:annotation>
+						<xs:documentation>The name of any attribute on a named
+							element.</xs:documentation>
+					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="X_targetNames" type="xs:NMTOKENS" use="required"/>
 			</xs:extension>
@@ -1280,15 +1266,7 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:sequence>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType">
-					</xs:element>
-=========
-					<xs:element
-						maxOccurs="unbounded"
-						name="Message"
-						type="RichTextType"> </xs:element>
->>>>>>>>> Temporary merge branch 2
+					<xs:element maxOccurs="unbounded" name="Message" type="RichTextType"> </xs:element>
 				</xs:sequence>
 				<xs:attribute name="alertLevel" type="xs:string"/>
 				<xs:attribute name="alertType" type="xs:string"/>
@@ -1446,26 +1424,48 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 							form section) injected as child node(s).</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ActAddCodeType">
+		<xs:annotation>
+			<xs:documentation>Add all or part of a coding section to the designated target
+				site.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ItemNameType">
+				<xs:sequence>
+					<xs:element name="Code" type="CodingType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ActActionType">
+		<xs:annotation>
+			<xs:documentation>Add a custom action, not defined in the basic SDC
+				Schemas.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
 				<xs:group maxOccurs="unbounded" minOccurs="0" ref="ParameterGroup"/>
 				<xs:attribute name="action" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ActionsType">
 		<xs:complexContent>
-<<<<<<<<< Temporary merge branch 1
 			<xs:extension base="ExtensionBaseType">
-				<xs:choice maxOccurs="unbounded" minOccurs="0">
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="Parameter"
-						type="ParameterItemType"/>
-					<xs:element minOccurs="0" name="ParameterValue" type="ParameterValueType"
-						maxOccurs="unbounded"/>
-				</xs:choice>
-				<xs:attribute name="action" type="xs:string" use="required"/>
-=========
-			<xs:extension
-				base="ExtensionBaseType">
-				<xs:group
-					maxOccurs="unbounded"
-					minOccurs="0"
-					ref="ParameterGroup"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Then action choices and nested conditional
+							statements</xs:documentation>
+					</xs:annotation>
+					<xs:element name="Action" type="ActActionType">
+						<xs:annotation>
+							<xs:documentation>A generic ExtensionBaseType for custom actions in a
+								"Then" section.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="SelectMatchingListItems" type="RuleSelectMatchingListItemsType"> </xs:element>
 					<xs:element name="AddCode" type="ActAddCodeType"/>
 					<xs:element name="Inject" type="ActInjectType"/>
@@ -1483,28 +1483,6 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					<xs:element name="ValidateForm" type="ActValidateFormType"/>
 					<xs:element name="RunCode" type="ScriptCodeAnyType"/>
 					<xs:element name="CallFunction" type="CallFuncActionType">
-					<xs:element
-						name="ShowForm"
-						type="ActShowFormType"/>
-					<xs:element
-						name="ShowMessage"
-						type="ActShowMessageType"/>
-					<xs:element
-						name="ShowReport"
-						type="ActShowReportType"/>
-					<xs:element
-						name="PreviewReport"
-						type="ActPreviewReportType"/>
-					<xs:element
-						name="ValidateForm"
-						type="ActValidateFormType"/>
-					<xs:element
-						name="RunCode"
-						type="ScriptCodeAnyType"/>
-					<xs:element
-						name="CallFunction"
-						type="CallFuncActionType">
->>>>>>>>> Temporary merge branch 2
 						<xs:annotation>
 							<xs:documentation>Execute a local rule located elsewhere in the
 								FormDesign template. Use the @name value in @val property of
@@ -1611,7 +1589,14 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 							items will be deactivated, and hyphen-prefixed items will be activated
 							when @selectedItemSet is false. </xs:documentation>
 					</xs:annotation>
-				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated" type="xs:boolean">
+				</xs:attribute>
+				<xs:attribute default="true" name="setVisibility" type="toggleType">
+					<xs:annotation>
+						<xs:documentation>Make target items visible when activated and vice versa.
+							Default = false. All descendants are affected in the same
+							way.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 				<xs:attribute default="true" name="setEnabled" type="toggleType">
 					<xs:annotation>
 						<xs:documentation>Make target items enabled when activated and vice versa.
@@ -1626,14 +1611,7 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 							way.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-<<<<<<<<< Temporary merge branch 1
-				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated"
-=========
-				<xs:attribute
-					default="false"
-					name="X_removeResponsesWhenDeactivated"
->>>>>>>>> Temporary merge branch 2
-					type="xs:boolean">
+				<xs:attribute default="false" name="X_removeResponsesWhenDeactivated" type="xs:boolean">
 					<xs:annotation>
 						<xs:documentation>Delete all user selections, responses and comments when
 							the item is deactivated. Applies to all descendant items as well. User
@@ -1733,31 +1711,31 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="PredMultiSelectionSetBoolType">
+		<xs:annotation>
+			<xs:documentation>This Rule component evaluates the @selected status of any set of
+				ListItems at runtime, and returns a true or false value based on the @selected
+				status of each ListItem. </xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="FuncBoolBaseType">
+				<xs:attributeGroup ref="SelectionDependencyAttributes"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="PredEvalAttribValuesType">
+		<xs:annotation>
+			<xs:documentation>This Rule evaluates an arbitrary set of attribute values from any item
+				and returns a Boolean summary value. In the PropertyValues condition, the contained
+				Boolean attributed values are ANDed together (by default) to return a derived
+				Boolean value. Default values are used if the attribute is not explicitly set to a
+				value. For attributes without default values, omitted (null) values are ignored and
+				are not used for null propagation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
 			<xs:extension base="FuncBoolBaseType">
 				<xs:attributeGroup ref="BoolAttributes"/>
 				<xs:attribute name="itemNames" type="xs:NMTOKENS" use="required">
-					<xs:annotation>
-						<xs:documentation>If the value is peceded by a colon (:) sign, then it is a reference to the @val attribute of another element.  References can refer to any element with an @val attribute or @propVal on a Property.  The datatype must be cast to the appropriate target datatype.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="hasValueLT" type="xs:string"/>
-				<xs:attribute name="hasValueLTE" type="xs:string"/>
-				<xs:attribute name="hasValueGT" type="xs:string"/>
-				<xs:attribute name="hasValueGTE" type="xs:string"/>
-				<xs:attribute name="hasAssociatedValueEQ" type="xs:string"/>
-				<xs:attribute name="hasAssociatedValueLT" type="xs:string"/>
-				<xs:attribute name="hasAssociatedValueLTE" type="xs:string"/>
-				<xs:attribute name="hasAssociatedValueGT" type="xs:string"/>
-				<xs:attribute name="hasAssociatedValueGTE" type="xs:string"/>
-=========
-			<xs:extension
-				base="FuncBoolBaseType">
-				<xs:attributeGroup
-					ref="BoolAttributes"/>
-				<xs:attribute
-					name="itemNames"
-					type="xs:NMTOKENS"
-					use="required">
 					<xs:annotation>
 						<xs:documentation>Required. This attribute holds the @name attributes of the
 							item(s) (Section, Question, List Item) to interrogate. These named items
@@ -1805,6 +1783,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="isVisible" type="xs:boolean"/>
+				<xs:attribute name="isEnabled" type="xs:boolean"/>
+				<xs:attribute name="isRequired" type="xs:boolean">
+					<xs:annotation>
+						<xs:documentation>If the minCard value is greater than 0, then isRequired =
+							"true" If the minCard = "0" then isRequired = "false"</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="isReadOnly" type="xs:boolean"/>
+				<xs:attribute name="hasType" type="xs:NMTOKENS"/>
+				<xs:attribute name="hasStyleClass" type="xs:NMTOKENS"/>
+				<xs:attribute name="hasValue" type="xs:boolean"/>
+				<xs:attribute name="supportDatesAndIntervals..."/>
+				<xs:attribute name="hasPattern" type="xs:string"/>
+				<xs:attribute name="hasValueEQ" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>If the value is peceded by a colon (:) sign, then it is a
+							reference to the @val attribute of another element. References can refer
+							to any element with an @val attribute or @propVal on a Property. The
+							datatype must be cast to the appropriate target
+							datatype.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 				<xs:attribute name="hasValueLT" type="xs:string"/>
 				<xs:attribute name="hasValueLTE" type="xs:string"/>
 				<xs:attribute name="hasValueGT" type="xs:string"/>
@@ -1814,28 +1814,6 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 				<xs:attribute name="hasAssociatedValueLTE" type="xs:string"/>
 				<xs:attribute name="hasAssociatedValueGT" type="xs:string"/>
 				<xs:attribute name="hasAssociatedValueGTE" type="xs:string"/>
-				<xs:attribute
-					name="hasValueGT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasValueGTE"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueEQ"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueLT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueLTE"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueGT"
-					type="xs:string"/>
-				<xs:attribute
-					name="hasAssociatedValueGTE"
-					type="xs:string"/>
->>>>>>>>> Temporary merge branch 2
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -1894,6 +1872,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 					<xs:element name="AttributeEval" type="PredEvalAttribValuesType"> </xs:element>
 					<xs:element name="ScriptBoolFunc" type="ScriptCodeBoolType"> </xs:element>
 					<xs:element name="CallBoolFunc" type="CallFuncBoolType"/>
+					<xs:element name="MultiSelections" type="PredMultiSelectionSetBoolType"/>
+					<xs:element name="SelectionTest" type="PredSelectionTestType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="SelectionSets">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredSingleSelectionSetsType">
+									<xs:attributeGroup ref="NotAttribute"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="ItemAlternatives" type="PredAlternativesType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Group" type="PredGuardType"/>
+				</xs:choice>
 				<xs:attributeGroup ref="BoolAttributes"/>
 			</xs:extension>
 		</xs:complexContent>
@@ -1909,28 +1909,6 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 						<xs:element name="MultiSelections" type="MultiSelectionsActionType"> </xs:element>
 						<xs:element name="SelectionSets" type="SelectionSetsActionType"> </xs:element>
 						<xs:element name="SelectionTest" type="SelectionTestActionType">
-=========
-					<xs:choice
-						maxOccurs="unbounded"
-						minOccurs="0">
-						<xs:element
-							name="AttributeEval"
-							type="AttributeEvalActionType"> </xs:element>
-						<xs:element
-							name="ScriptBoolFunc"
-							type="ScriptBoolFuncActionType"> </xs:element>
-						<xs:element
-							name="CallBoolFunction"
-							type="CallFuncBoolActionType"/>
-						<xs:element
-							name="MultiSelections"
-							type="MultiSelectionsActionType"> </xs:element>
-						<xs:element
-							name="SelectionSets"
-							type="SelectionSetsActionType"> </xs:element>
-						<xs:element
-							name="SelectionTest"
-							type="SelectionTestActionType">
 							<xs:annotation>
 								<xs:documentation/>
 							</xs:annotation>
@@ -2070,6 +2048,28 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+	<xs:complexType name="MultiSelectionsActionType">
+		<xs:complexContent>
+			<xs:extension base="PredMultiSelectionSetBoolType">
+				<xs:group ref="ActionElseType"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelectionSetsActionType">
+		<xs:complexContent>
+			<xs:extension base="PredSingleSelectionSetsType">
+				<xs:group ref="ActionElseType"/>
+				<xs:attributeGroup ref="NotAttribute"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="SelectionTestActionType">
+		<xs:complexContent>
+			<xs:extension base="PredSelectionTestType">
+				<xs:group ref="ActionElseType"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="ValidationType">
 		<xs:complexContent>
 			<xs:extension base="ExtensionBaseType">
@@ -2082,51 +2082,29 @@ Retrieves a specific package version with FDF responses  (contains the FDF-R con
 							<xs:complexContent>
 								<xs:extension base="PredSelectionTestType">
 									<xs:attributeGroup ref="NotAttribute"/>
-										<xs:element maxOccurs="unbounded" minOccurs="0"
-											name="IllegalSelectionTest" type="RuleSelectionTestType">
-											<xs:annotation>
-												<xs:documentation/>
-					<xs:element name="SelectionSets" maxOccurs="unbounded" minOccurs="0">
+								</xs:extension>
+							</xs:complexContent>
 						</xs:complexType>
 					</xs:element>
-<<<<<<<<< Temporary merge branch 1
-					<xs:element name="AutoActivation" type="RuleAutoActivationType"
-						maxOccurs="unbounded" minOccurs="0"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="AutoSelection"
-						type="RuleAutoSelectType"/>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ConditionalGroupActions"
-					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0" type="PredAlternativesType">
+					<xs:element name="SelectionSets" maxOccurs="unbounded" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="PredSingleSelectionSetsType">
+									<xs:attributeGroup ref="NotAttribute"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
 					</xs:element>
-					<xs:element maxOccurs="unbounded" minOccurs="0" name="ExternalRule"
-						type="CallFuncType">
-=========
-					<xs:element
-						name="SelectionSets"
-						maxOccurs="unbounded"
-						minOccurs="0">
-	<xs:group name="ActionElseType">
-					<xs:annotation>
-						<xs:documentation>Takes the @name of a Question element with ListItems.  If the source value matches the @associatedValue (or other @attributeToMatch) of one or more ListItems, then the ListItem(s) should be selcted. The named Question and target ListItem must be activated (visible and enabled) in order for it to be selected.
-
-Read-only Questions/ListItems can be selected in the same manner.
-Multiple Queston names may be specified, separated by spaces.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute default="associatedValue" name="attributeToMatch">
-					<xs:simpleType>
-						<xs:restriction base="xs:string">
-							<xs:enumeration value="associatedValue"/>
-							<xs:enumeration value="Code"/>
-							<xs:enumeration value="TypeValue"/>
-						</xs:restriction>
-					</xs:simpleType>
-				</xs:attribute>
+					<xs:element name="ItemAlternatives" maxOccurs="unbounded" minOccurs="0" type="PredAlternativesType">
+						<xs:annotation>
+							<xs:documentation/>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-=========
-	<xs:group
-		name="ActionElseType">
+	<xs:group name="ActionElseType">
 		<xs:sequence>
 			<xs:element name="Actions" minOccurs="0" type="ActionsType"/>
 			<xs:element minOccurs="0" name="Else" type="PredActionType" maxOccurs="unbounded"/>
