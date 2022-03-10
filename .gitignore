@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Defective SDC XML from RefImp.xml
+/dev
+/_gsdata_
+/Docs
+*.html
