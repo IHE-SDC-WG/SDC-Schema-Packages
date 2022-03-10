@@ -1,0 +1,1765 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <title>Schema documentation for SDCBase.xsd</title>
+      <link rel="stylesheet" href="docHtml.css" type="text/css" /><script type="text/javascript">
+         <!--
+        var propertiesBoxes= new Array('properties_SDCBase.xsd', 
+				'properties_BaseType', 
+				'properties_baseAttributes_name', 
+				'properties_baseAttributes_type', 
+				'properties_baseAttributes_styleClass', 
+				'properties_baseAttributes_order', 
+				'properties_CommentType_val');
+var facetsBoxes= new Array('facets_baseAttributes_order');
+var usedByBoxes= new Array('usedBy_BaseType', 
+				'usedBy_CommentType', 
+				'usedBy_ExtensionType', 
+				'usedBy_baseAttributes_name', 
+				'usedBy_baseAttributes_type', 
+				'usedBy_baseAttributes_styleClass', 
+				'usedBy_baseAttributes_order', 
+				'usedBy_CommentType_val', 
+				'usedBy_baseAttributes');
+var sourceBoxes= new Array('source_BaseType', 
+				'source_CommentType', 
+				'source_ExtensionType', 
+				'source_baseAttributes_name', 
+				'source_baseAttributes_type', 
+				'source_baseAttributes_styleClass', 
+				'source_baseAttributes_order', 
+				'source_CommentType_val', 
+				'source_baseAttributes');
+var diagramBoxes= new Array('diagram_BaseType', 
+				'diagram_CommentType', 
+				'diagram_ExtensionType', 
+				'diagram_baseAttributes');
+var annotationBoxes= new Array('annotations_ExtensionType', 
+				'annotations_baseAttributes_name', 
+				'annotations_baseAttributes_type', 
+				'annotations_baseAttributes_styleClass', 
+				'annotations_baseAttributes_order', 
+				'annotations_baseAttributes');
+var attributesBoxes= new Array('attributes_BaseType', 
+				'attributes_CommentType', 
+				'attributes_ExtensionType', 
+				'attributes_baseAttributes');
+var modelBoxes= new Array('model_ExtensionType');
+
+      
+        var button_prefix = 'button_';
+        
+        /**
+        * Returns an element in the current HTML document.
+        *
+        * @param elementID Identifier of HTML element
+        * @return               HTML element object
+        */
+        function getElementObject(elementID) {
+            var elemObj = null;
+            if (document.getElementById) {
+                elemObj = document.getElementById(elementID);
+            }
+            return elemObj;
+        }
+        
+        /**
+        * Switches the state of a collapseable box, e.g.
+        * if it's opened, it'll be closed, and vice versa.
+        *
+        * @param boxID Identifier of box
+        */
+        function switchState(boxID) {
+            var boxObj = getElementObject(boxID);
+            var buttonObj = getElementObject(button_prefix + boxID);
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else if (boxObj.style.display == "none") {
+                // Box is closed, so open it
+                openBox(boxObj, buttonObj);
+            } else if (boxObj.style.display == "block") {
+                // Box is opened, so close it
+                closeBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+        * Opens a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function openBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "block";
+                
+                // Change text of button
+                if (boxObj.style.display == "block") {
+                    buttonObj.src = "img/btM.gif";
+                }
+            }
+        }
+        
+        /**
+        * Closes a collapseable box.
+        *
+        * @param boxObj       Collapseable box
+        * @param buttonObj Button controlling box
+        */
+        function closeBox(boxObj, buttonObj) {
+            if (boxObj == null || buttonObj == null) {
+                // Box or button not found
+            } else {
+                // Change 'display' CSS property of box
+                boxObj.style.display = "none";
+                
+                // Change text of button
+                if (boxObj.style.display == "none") {
+                    buttonObj.src = "img/btP.gif";
+                }
+            }
+        }
+    
+       function switchStateForAll(buttonObj, boxList) {
+            if (buttonObj == null) {
+                // button not found
+            } else if (buttonObj.value == "+") {
+                // Expand all
+                expandAll(boxList);
+                buttonObj.value = "-";
+            } else if (buttonObj.value == "-") {
+                // Collapse all
+                collapseAll(boxList);
+                buttonObj.value = "+";
+            }
+        }
+        
+        /**
+        * Closes all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function collapseAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                closeBox(boxObj, buttonObj);
+            }
+        }
+            
+        /**
+        * Open all boxes in a given list.
+        *
+        * @param boxList Array of box IDs
+        */
+        function expandAll(boxList) {
+            var idx;
+            for (idx = 0; idx < boxList.length; idx++) {
+                var boxObj = getElementObject(boxList[idx]);
+                var buttonObj = getElementObject(button_prefix + boxList[idx]);
+                openBox(boxObj, buttonObj);
+            }
+        }
+        
+        /**
+         * Update the message presented in the title of the html page.
+         * - If the documentation was splited by namespace we present something like: "Documentation for namespace 'ns'"
+         * - If the documentation was splited by location we present somehing like: "Documentation for 'Schema.xsd'"
+         * - If no split we always present: "Documentation for 'MainSchema.xsd'"
+         */
+        function updatePageTitle(message) {
+            top.document.title = message;
+        }
+        
+          
+                    
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function findAndFloat(id, x_displacement, y_displacement){
+
+            var element = getElementObject(id);            
+            
+            window[id + "_obj"] = element;
+            
+            if(document.layers) {
+               element.style = element;
+            }
+            
+            element.current_y = y_displacement;      
+            element.first_time = true;
+         
+            element.floatElement = function(){
+               // It may be closed by an user action.
+                
+               // Target X and Y coordinates.
+               var x, y;
+               
+               var myWidth = 0, myHeight = 0;
+               if( typeof( window.innerWidth ) == 'number' ) {
+                  //Non-IE
+                  myWidth = window.innerWidth;
+                  myHeight = window.innerHeight;
+               } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+                  //IE 6+ in 'standards compliant mode'
+                  myWidth = document.documentElement.clientWidth;
+                  myHeight = document.documentElement.clientHeight;
+               } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+                  //IE 4 compatible
+                  myWidth = document.body.clientWidth;
+                  myHeight = document.body.clientHeight;
+               }
+               
+               
+               x = myWidth - x_displacement;
+               
+               var ns = (navigator.appName.indexOf("Netscape") != -1);               
+               y = ns ? pageYOffset : document.documentElement && document.documentElement.scrollTop ? 
+                  document.documentElement.scrollTop : document.body.scrollTop;               
+               y = y + y_displacement;               
+               
+               // The current y is the current coordinate of the floating element.
+               // This should be at the limit the y target coordinate.
+               this.current_y += (y - this.current_y)/1.25;
+               
+               // Add the pixels constant after the values
+               // and move the element.
+               var px = document.layers ? "" : "px";
+               this.style.left =  x + px;
+               this.style.top =  this.current_y + px;
+                              
+               setTimeout(this.id + "_obj.floatElement()", 100);
+            }
+            
+            element.floatElement();
+            return element;
+          }
+
+         /**
+          * Finds an HTML element by its ID and makes it floatable over the normal content.
+          *
+          * @param x_displacement The difference in pixels to the right side of the window from 
+          *           the left side of the element.
+          * @param y_displacement The difference in pixels to the right side of the window from 
+          *           the top of the element.          
+          */
+         function selectTOCGroupBy(id, isChunked, indexFileLocation, indexFileNamespace, indexFileComponent){
+
+            if (!isChunked) {
+             var selectIds = new Array('toc_group_by_namespace', 'toc_group_by_location', 'toc_group_by_component_type');
+             // Make all the tabs invisible.
+               for (i = 0; i < 3; i++){
+                  var tab = getElementObject(selectIds[i]);
+                  tab.style.display = 'none';
+               }
+               var selTab = getElementObject(id);
+               selTab.style.display = 'block';
+            } else {
+             if (id == 'toc_group_by_namespace') {
+               parent.indexFrame.location = indexFileNamespace;
+             } else  if (id == 'toc_group_by_location') {
+               parent.indexFrame.location = indexFileLocation;
+             } else  if (id == 'toc_group_by_component_type') {
+              parent.indexFrame.location = indexFileComponent;
+             }
+            }
+         }
+          
+
+    
+                    //--></script></head>
+   <body>
+      <div id="global_controls" class="globalControls" style="position:absolute;right:0;">
+         <table class="rt">
+            <tr>
+               <td class="rt_cornerTopLeft"></td>
+               <td class="rt_lineTop"></td>
+               <td class="rt_cornerTopRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_lineLeft"></td>
+               <td class="rt_content">
+                  <h3>Showing:</h3>
+                  <table>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, annotationBoxes);" class="control" /></span><span class="globalControlName">Annotations</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, attributesBoxes);" class="control" /></span><span class="globalControlName">Attributes </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, diagramBoxes);" class="control" /></span><span class="globalControlName">Diagrams</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, facetsBoxes);" class="control" /></span><span class="globalControlName">Facets </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, modelBoxes);" class="control" /></span><span class="globalControlName">Model </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, propertiesBoxes);" class="control" /></span><span class="globalControlName">Properties </span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, sourceBoxes);" class="control" /></span><span class="globalControlName">Source</span></td>
+                     </tr>
+                     <tr>
+                        <td><span><input type="checkbox" value="-" checked="checked" onclick="switchStateForAll(this, usedByBoxes);" class="control" /></span><span class="globalControlName">Used by </span></td>
+                     </tr>
+                  </table>
+                  <div align="right"><span><input type="button" onclick="getElementObject('global_controls').style.display = 'none';" value="Close" /></span></div>
+               </td>
+               <td class="rt_lineRight"></td>
+            </tr>
+            <tr>
+               <td class="rt_cornerBottomLeft"></td>
+               <td class="rt_lineBottom"></td>
+               <td class="rt_cornerBottomRight"></td>
+            </tr>
+         </table>
+      </div><a id="SDCBase.xsd"></a><div class="componentTitle">Included schema <span class="qname">SDCBase.xsd</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:ihe:qrph:sdc:2016</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_SDCBase.xsd" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_SDCBase.xsd');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_SDCBase.xsd" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">attribute form default</td>
+                                    <td><b>unqualified</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">element form default</td>
+                                    <td><b>qualified</b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">version</td>
+                                    <td><b>3.0</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="BaseType"></a><div class="componentTitle">Complex Type <span class="qname">BaseType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:ihe:qrph:sdc:2016</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_BaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_BaseType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_BaseType" style="display:block"><img alt="Diagram" border="0" src="img/SDCBase_xsd_Complex_Type_BaseType.jpeg" usemap="#SDCBase_xsd_Complex_Type_BaseType" /><map name="SDCBase_xsd_Complex_Type_BaseType" id="SDCBase_xsd_Complex_Type_BaseType">
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes" href="SDCBase_xsd.html#baseAttributes" coords="149,42,275,68" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_BaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_BaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_BaseType" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">abstract</td>
+                                    <td><b>true</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_BaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_BaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_BaseType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Types </td>
+                                    <td><b><a href="SDCResources_xsd.html#AreaCodeType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">AreaCodeType</a></b>, <b><a href="SDCResources_xsd.html#ChangeTrackingType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">ChangeTrackingType</a></b>, <b><a href="SDCResources_xsd.html#CodeMatchType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">CodeMatchType</a></b>, <b><a href="SDCBase_xsd.html#CommentType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">CommentType</a></b>, <b><a href="SDCResources_xsd.html#CountryCodeType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">CountryCodeType</a></b>, <b><a href="SDCResources_xsd.html#ExtensionBaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">ExtensionBaseType</a></b>, <b><a href="SDCBase_xsd.html#ExtensionType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">ExtensionType</a></b>, <b><a href="SDCDataTypes_xsd.html#HTML_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">HTML_Stype</a></b>, <b><a href="SDCResources_xsd.html#ReplacedIDsType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">ReplacedIDsType</a></b>, <b><a href="SDCResources_xsd.html#TargetItemNameType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">TargetItemNameType</a></b>, <b><a href="SDCDataTypes_xsd.html#XML_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">XML_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#anyType_DEtype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">anyType_DEtype</a></b>, <b><a href="SDCDataTypes_xsd.html#anyURI_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">anyURI_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#base64Binary_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">base64Binary_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#boolean_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">boolean_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#byte_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">byte_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#dateTimeStamp_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">dateTimeStamp_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#dateTime_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">dateTime_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#date_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">date_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#dayTimeDuration_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">dayTimeDuration_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#decimal_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">decimal_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#double_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">double_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#duration_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">duration_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#float_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">float_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#gDay_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">gDay_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#gMonthDay_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">gMonthDay_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#gMonth_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">gMonth_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#gYearMonth_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">gYearMonth_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#gYear_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">gYear_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#hexBinary_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">hexBinary_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#int_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">int_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#integer_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">integer_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#long_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">long_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#negativeInteger_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">negativeInteger_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#nonNegativeInteger_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">nonNegativeInteger_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#nonPositiveInteger_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">nonPositiveInteger_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#positiveInteger_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">positiveInteger_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#short_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">short_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#string_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">string_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#time_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">time_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#unsignedByte_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">unsignedByte_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#unsignedInt_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">unsignedInt_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#unsignedLong_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">unsignedLong_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#unsignedShort_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">unsignedShort_Stype</a></b>, <b><a href="SDCDataTypes_xsd.html#yearMonthDuration_Stype" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCDataTypes.xsd')">yearMonthDuration_Stype</a></b></td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn">Elements </td>
+                                    <td><b><a href="SDCTemplateAdmin_xsd.html#InterfaceType_Documentation" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCTemplateAdmin.xsd')">InterfaceType/Documentation</a></b>, <b><a href="SDCTemplateAdmin_xsd.html#InterfaceType_Fields" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCTemplateAdmin.xsd')">InterfaceType/Fields</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_BaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_BaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_BaseType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">name</a></b></td>
+                                    <td><b>xs:ID</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned identifier, similar to a unique control/object</span><span class="tI">
+</span><span class="tT">name, used to provide the ability for programmatic manipulation of an</span><span class="tI">
+</span><span class="tT">element.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">@order allows the form template developer to define a sequential</span><span class="tI">
+</span><span class="tT">order for elements in a template. This serves the purpose of providing a</span><span class="tI">
+</span><span class="tT">definitive/original order to sections, questions, answer choices, etc., when</span><span class="tI">
+</span><span class="tT">required for display purposes. This is important when the original XML ordering</span><span class="tI">
+</span><span class="tT">may become disrupted due to the use of an implementation technology that does</span><span class="tI">
+</span><span class="tT">not natively support ordering (e.g., object collections), and it can also</span><span class="tI">
+</span><span class="tT">provide a check on the proper importing of the XML tree during</span><span class="tI">
+</span><span class="tT">implementation.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_styleClass" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">styleClass</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned class name for display styling, generally for</span><span class="tI">
+</span><span class="tT">use with an external style sheet.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">type</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The @type attribute can contain custom metadata "tokens" for the</span><span class="tI">
+</span><span class="tT">element, chosen from a standardized list of terms. Tokens are short alphanumeric</span><span class="tI">
+</span><span class="tT">text strings, defined by the W3C Schema NMTOKEN specification, that are defined</span><span class="tI">
+</span><span class="tT">in an Implementation Guide. The type xsd:NMTOKEN represents a single string</span><span class="tI">
+</span><span class="tT">token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -</span><span class="tI">
+</span><span class="tT">), underscores ( _ ), and colons ( : ). They may start with any of these</span><span class="tI">
+</span><span class="tT">characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be</span><span class="tI">
+</span><span class="tT">specific for one or more kinds of SDC elements. Multiple tokens in the type</span><span class="tI">
+</span><span class="tT">attribute should be separated by whitespace. Type tokens may be used to specify</span><span class="tI">
+</span><span class="tT">special handling by an application, and are usually used to define form display</span><span class="tI">
+</span><span class="tT">constraints, but may include other custom metadata as well. Style metadata</span><span class="tI">
+</span><span class="tT">should generally be handled with @styleClass rather than @type. @type token</span><span class="tI">
+</span><span class="tT">examples include: tooltip, statusLineText, alignTopLeft, align:bottom,</span><span class="tI">
+</span><span class="tT">_pageBreak-after, etc. @type metadata should generally not affect the</span><span class="tI">
+</span><span class="tT">information content of a form.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_BaseType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_BaseType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_BaseType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> abstract=</span><span class="tAV">"true"</span><span class="tAN"> name=</span><span class="tAV">"BaseType"</span><span class="tAN"> block=</span><span class="tAV">""</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attributeGroup</span><span class="tAN"> ref=</span><span class="tAV">"baseAttributes"</span><span class="tEl">/&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CommentType"></a><div class="componentTitle">Complex Type <span class="qname">CommentType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:ihe:qrph:sdc:2016</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_CommentType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_CommentType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_CommentType" style="display:block"><img alt="Diagram" border="0" src="img/SDCBase_xsd_Complex_Type_CommentType.jpeg" usemap="#SDCBase_xsd_Complex_Type_CommentType" /><map name="SDCBase_xsd_Complex_Type_CommentType" id="SDCBase_xsd_Complex_Type_CommentType">
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes" href="SDCBase_xsd.html#baseAttributes" coords="182,82,308,108" />
+                                 <area alt="SDCBase_xsd.tmp#BaseType" href="SDCBase_xsd.html#BaseType" coords="154,3,339,25" />
+                                 <area alt="SDCBase_xsd.tmp#CommentType_val" href="SDCBase_xsd.html#CommentType_val" coords="165,221,235,246" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="SDCBase_xsd.html#BaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">BaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="SDCBase_xsd.html#BaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">BaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="SDCBase_xsd.html#CommentType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">CommentType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CommentType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CommentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CommentType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="SDCResources_xsd.html#ExtensionBaseType_Comment" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">ExtensionBaseType/Comment</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_CommentType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_CommentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_CommentType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">name</a></b></td>
+                                    <td><b>xs:ID</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned identifier, similar to a unique control/object</span><span class="tI">
+</span><span class="tT">name, used to provide the ability for programmatic manipulation of an</span><span class="tI">
+</span><span class="tT">element.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">@order allows the form template developer to define a sequential</span><span class="tI">
+</span><span class="tT">order for elements in a template. This serves the purpose of providing a</span><span class="tI">
+</span><span class="tT">definitive/original order to sections, questions, answer choices, etc., when</span><span class="tI">
+</span><span class="tT">required for display purposes. This is important when the original XML ordering</span><span class="tI">
+</span><span class="tT">may become disrupted due to the use of an implementation technology that does</span><span class="tI">
+</span><span class="tT">not natively support ordering (e.g., object collections), and it can also</span><span class="tI">
+</span><span class="tT">provide a check on the proper importing of the XML tree during</span><span class="tI">
+</span><span class="tT">implementation.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_styleClass" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">styleClass</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned class name for display styling, generally for</span><span class="tI">
+</span><span class="tT">use with an external style sheet.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">type</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The @type attribute can contain custom metadata "tokens" for the</span><span class="tI">
+</span><span class="tT">element, chosen from a standardized list of terms. Tokens are short alphanumeric</span><span class="tI">
+</span><span class="tT">text strings, defined by the W3C Schema NMTOKEN specification, that are defined</span><span class="tI">
+</span><span class="tT">in an Implementation Guide. The type xsd:NMTOKEN represents a single string</span><span class="tI">
+</span><span class="tT">token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -</span><span class="tI">
+</span><span class="tT">), underscores ( _ ), and colons ( : ). They may start with any of these</span><span class="tI">
+</span><span class="tT">characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be</span><span class="tI">
+</span><span class="tT">specific for one or more kinds of SDC elements. Multiple tokens in the type</span><span class="tI">
+</span><span class="tT">attribute should be separated by whitespace. Type tokens may be used to specify</span><span class="tI">
+</span><span class="tT">special handling by an application, and are usually used to define form display</span><span class="tI">
+</span><span class="tT">constraints, but may include other custom metadata as well. Style metadata</span><span class="tI">
+</span><span class="tT">should generally be handled with @styleClass rather than @type. @type token</span><span class="tI">
+</span><span class="tT">examples include: tooltip, statusLineText, alignTopLeft, align:bottom,</span><span class="tI">
+</span><span class="tT">_pageBreak-after, etc. @type metadata should generally not affect the</span><span class="tI">
+</span><span class="tT">information content of a form.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#CommentType_val" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">val</a></b></td>
+                                    <td><b>xs:string</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CommentType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CommentType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CommentType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"CommentType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"BaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"val"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="ExtensionType"></a><div class="componentTitle">Complex Type <span class="qname">ExtensionType</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:ihe:qrph:sdc:2016</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_ExtensionType" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Similar to the Schema type xs:anyType, but requires strict validation, and includes optional baseAttributes. Developer will need to declare a namespace and provide a Schema to validate the contents.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_ExtensionType" style="display:block"><img alt="Diagram" border="0" src="img/SDCBase_xsd_Complex_Type_ExtensionType.jpeg" usemap="#SDCBase_xsd_Complex_Type_ExtensionType" /><map name="SDCBase_xsd_Complex_Type_ExtensionType" id="SDCBase_xsd_Complex_Type_ExtensionType">
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes" href="SDCBase_xsd.html#baseAttributes" coords="205,82,331,108" />
+                                 <area alt="SDCBase_xsd.tmp#BaseType" href="SDCBase_xsd.html#BaseType" coords="177,3,362,25" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>extension of <b><a href="SDCBase_xsd.html#BaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">BaseType</a></b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type hierarchy</b></td>
+                        <td>
+                           <ul class="internal">
+                              <li class="internal"><b><a href="SDCBase_xsd.html#BaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">BaseType</a></b><ul class="internal">
+                                    <li class="internal"><b><a href="SDCBase_xsd.html#ExtensionType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">ExtensionType</a></b></li>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_ExtensionType" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Element </td>
+                                    <td><b><a href="SDCResources_xsd.html#ExtensionBaseType_Extension" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCResources.xsd')">ExtensionBaseType/Extension</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Model</b><div class="floatRight"><input id="button_model_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('model_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="model_ExtensionType" style="display:block"><b>ANY element from ANY namespace</b></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_ExtensionType" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">name</a></b></td>
+                                    <td><b>xs:ID</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned identifier, similar to a unique control/object</span><span class="tI">
+</span><span class="tT">name, used to provide the ability for programmatic manipulation of an</span><span class="tI">
+</span><span class="tT">element.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">@order allows the form template developer to define a sequential</span><span class="tI">
+</span><span class="tT">order for elements in a template. This serves the purpose of providing a</span><span class="tI">
+</span><span class="tT">definitive/original order to sections, questions, answer choices, etc., when</span><span class="tI">
+</span><span class="tT">required for display purposes. This is important when the original XML ordering</span><span class="tI">
+</span><span class="tT">may become disrupted due to the use of an implementation technology that does</span><span class="tI">
+</span><span class="tT">not natively support ordering (e.g., object collections), and it can also</span><span class="tI">
+</span><span class="tT">provide a check on the proper importing of the XML tree during</span><span class="tI">
+</span><span class="tT">implementation.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_styleClass" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">styleClass</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned class name for display styling, generally for</span><span class="tI">
+</span><span class="tT">use with an external style sheet.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">type</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The @type attribute can contain custom metadata "tokens" for the</span><span class="tI">
+</span><span class="tT">element, chosen from a standardized list of terms. Tokens are short alphanumeric</span><span class="tI">
+</span><span class="tT">text strings, defined by the W3C Schema NMTOKEN specification, that are defined</span><span class="tI">
+</span><span class="tT">in an Implementation Guide. The type xsd:NMTOKEN represents a single string</span><span class="tI">
+</span><span class="tT">token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -</span><span class="tI">
+</span><span class="tT">), underscores ( _ ), and colons ( : ). They may start with any of these</span><span class="tI">
+</span><span class="tT">characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be</span><span class="tI">
+</span><span class="tT">specific for one or more kinds of SDC elements. Multiple tokens in the type</span><span class="tI">
+</span><span class="tT">attribute should be separated by whitespace. Type tokens may be used to specify</span><span class="tI">
+</span><span class="tT">special handling by an application, and are usually used to define form display</span><span class="tI">
+</span><span class="tT">constraints, but may include other custom metadata as well. Style metadata</span><span class="tI">
+</span><span class="tT">should generally be handled with @styleClass rather than @type. @type token</span><span class="tI">
+</span><span class="tT">examples include: tooltip, statusLineText, alignTopLeft, align:bottom,</span><span class="tI">
+</span><span class="tT">_pageBreak-after, etc. @type metadata should generally not affect the</span><span class="tI">
+</span><span class="tT">information content of a form.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                              <table>
+                                 <tr>
+                                    <td width="100%"><b>Wildcard:  </b>ANY attribute from ANY namespace
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_ExtensionType" type="image" src="img/btM.gif" value="-" onclick="switchState('source_ExtensionType');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_ExtensionType" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:complexType</span><span class="tAN"> name=</span><span class="tAV">"ExtensionType"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Similar to the Schema type xs:anyType, but requires strict validation, and includes optional baseAttributes. Developer will need to declare a namespace and provide a Schema to validate the contents.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:complexContent</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:extension</span><span class="tAN"> base=</span><span class="tAV">"BaseType"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:sequence</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:any</span><span class="tAN"> maxOccurs=</span><span class="tAV">"unbounded"</span><span class="tAN"> processContents=</span><span class="tAV">"strict"</span><span class="tAN"> namespace=</span><span class="tAV">"##any"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:sequence&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:anyAttribute</span><span class="tAN"> processContents=</span><span class="tAV">"strict"</span><span class="tAN"> namespace=</span><span class="tAV">"##any"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+          </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Developer must supply a namespace and a Schema to validate the attributes.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:anyAttribute&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:extension&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:complexContent&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:complexType&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="baseAttributes_name"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b> / @name</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_baseAttributes_name" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_baseAttributes_name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_baseAttributes_name" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Developer assigned identifier, similar to a unique control/object</span><span class="tI">
+</span><span class="tT">name, used to provide the ability for programmatic manipulation of an</span><span class="tI">
+</span><span class="tT">element.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:ID</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_baseAttributes_name" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_baseAttributes_name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_baseAttributes_name" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_baseAttributes_name" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_baseAttributes_name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_baseAttributes_name" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attribute Group </td>
+                                    <td><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_baseAttributes_name" type="image" src="img/btM.gif" value="-" onclick="switchState('source_baseAttributes_name');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_baseAttributes_name" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"xs:ID"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Developer assigned identifier, similar to a unique control/object name, used to provide the ability for programmatic manipulation of an element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="baseAttributes_type"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b> / @type</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_baseAttributes_type" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_baseAttributes_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_baseAttributes_type" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">The @type attribute can contain custom metadata "tokens" for the</span><span class="tI">
+</span><span class="tT">element, chosen from a standardized list of terms. Tokens are short alphanumeric</span><span class="tI">
+</span><span class="tT">text strings, defined by the W3C Schema NMTOKEN specification, that are defined</span><span class="tI">
+</span><span class="tT">in an Implementation Guide. The type xsd:NMTOKEN represents a single string</span><span class="tI">
+</span><span class="tT">token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -</span><span class="tI">
+</span><span class="tT">), underscores ( _ ), and colons ( : ). They may start with any of these</span><span class="tI">
+</span><span class="tT">characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be</span><span class="tI">
+</span><span class="tT">specific for one or more kinds of SDC elements. Multiple tokens in the type</span><span class="tI">
+</span><span class="tT">attribute should be separated by whitespace. Type tokens may be used to specify</span><span class="tI">
+</span><span class="tT">special handling by an application, and are usually used to define form display</span><span class="tI">
+</span><span class="tT">constraints, but may include other custom metadata as well. Style metadata</span><span class="tI">
+</span><span class="tT">should generally be handled with @styleClass rather than @type. @type token</span><span class="tI">
+</span><span class="tT">examples include: tooltip, statusLineText, alignTopLeft, align:bottom,</span><span class="tI">
+</span><span class="tT">_pageBreak-after, etc. @type metadata should generally not affect the</span><span class="tI">
+</span><span class="tT">information content of a form.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:NMTOKENS</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_baseAttributes_type" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_baseAttributes_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_baseAttributes_type" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_baseAttributes_type" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_baseAttributes_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_baseAttributes_type" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attribute Group </td>
+                                    <td><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_baseAttributes_type" type="image" src="img/btM.gif" value="-" onclick="switchState('source_baseAttributes_type');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_baseAttributes_type" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"type"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKENS"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The @type attribute can contain custom metadata "tokens" for the element, chosen from a standardized list of terms. Tokens are short alphanumeric text strings, defined by the W3C Schema NMTOKEN specification, that are defined in an Implementation Guide. The type xsd:NMTOKEN represents a single string token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( - ), underscores ( _ ), and colons ( : ). They may start with any of these characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be specific for one or more kinds of SDC elements. Multiple tokens in the type attribute should be separated by whitespace. Type tokens may be used to specify special handling by an application, and are usually used to define form display constraints, but may include other custom metadata as well. Style metadata should generally be handled with @styleClass rather than @type. @type token examples include: tooltip, statusLineText, alignTopLeft, align:bottom, _pageBreak-after, etc. @type metadata should generally not affect the information content of a form.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="baseAttributes_styleClass"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b> / @styleClass</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_baseAttributes_styleClass" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_baseAttributes_styleClass');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_baseAttributes_styleClass" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">Developer assigned class name for display styling, generally for</span><span class="tI">
+</span><span class="tT">use with an external style sheet.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:NMTOKENS</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_baseAttributes_styleClass" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_baseAttributes_styleClass');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_baseAttributes_styleClass" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_baseAttributes_styleClass" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_baseAttributes_styleClass');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_baseAttributes_styleClass" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attribute Group </td>
+                                    <td><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_baseAttributes_styleClass" type="image" src="img/btM.gif" value="-" onclick="switchState('source_baseAttributes_styleClass');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_baseAttributes_styleClass" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"styleClass"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKENS"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Developer assigned class name for display styling, generally for use with an external style sheet.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="baseAttributes_order"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b> / @order</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_baseAttributes_order" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_baseAttributes_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_baseAttributes_order" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">@order allows the form template developer to define a sequential</span><span class="tI">
+</span><span class="tT">order for elements in a template. This serves the purpose of providing a</span><span class="tI">
+</span><span class="tT">definitive/original order to sections, questions, answer choices, etc., when</span><span class="tI">
+</span><span class="tT">required for display purposes. This is important when the original XML ordering</span><span class="tI">
+</span><span class="tT">may become disrupted due to the use of an implementation technology that does</span><span class="tI">
+</span><span class="tT">not natively support ordering (e.g., object collections), and it can also</span><span class="tI">
+</span><span class="tT">provide a check on the proper importing of the XML tree during</span><span class="tI">
+</span><span class="tT">implementation.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td>restriction of <b>xs:decimal</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_baseAttributes_order" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_baseAttributes_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_baseAttributes_order" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Facets</b></div>
+                           <div class="floatRight"><input id="button_facets_baseAttributes_order" type="image" src="img/btM.gif" value="-" onclick="switchState('facets_baseAttributes_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="facets_baseAttributes_order" style="display:block">
+                              <table class="facetsTable">
+                                 <tr>
+                                    <td class="firstColumn">minInclusive</td>
+                                    <td width="30%"><b>0</b></td>
+                                    <td>
+                                       <div class="annotation"></div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_baseAttributes_order" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_baseAttributes_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_baseAttributes_order" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Attribute Group </td>
+                                    <td><b><a href="SDCBase_xsd.html#baseAttributes" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">baseAttributes</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_baseAttributes_order" type="image" src="img/btM.gif" value="-" onclick="switchState('source_baseAttributes_order');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_baseAttributes_order" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">@order allows the form template developer to define a sequential order for elements in a template. This serves the purpose of providing a definitive/original order to sections, questions, answer choices, etc., when required for display purposes. This is important when the original XML ordering may become disrupted due to the use of an implementation technology that does not natively support ordering (e.g., object collections), and it can also provide a check on the proper importing of the XML tree during implementation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:decimal"</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:minInclusive</span><span class="tAN"> value=</span><span class="tAV">"0"</span><span class="tEl">/&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attribute&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="CommentType_val"></a><div class="componentTitle">Attribute <span class="qname"><b><a href="SDCBase_xsd.html#CommentType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">CommentType</a></b> / @val</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>No namespace</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn"><b>Type</b></td>
+                        <td><b>xs:string</b></td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Properties</b></div>
+                           <div class="floatRight"><input id="button_properties_CommentType_val" type="image" src="img/btM.gif" value="-" onclick="switchState('properties_CommentType_val');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="properties_CommentType_val" style="display:block">
+                              <table class="propertiesTable">
+                                 <tr>
+                                    <td class="firstColumn" style="white-space: nowrap;">content</td>
+                                    <td><b>simple</b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_CommentType_val" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_CommentType_val');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_CommentType_val" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="SDCBase_xsd.html#CommentType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">CommentType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_CommentType_val" type="image" src="img/btM.gif" value="-" onclick="switchState('source_CommentType_val');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_CommentType_val" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"val"</span><span class="tAN"> type=</span><span class="tAV">"xs:string"</span><span class="tEl">/&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table><a id="baseAttributes"></a><div class="componentTitle">Attribute Group <span class="qname">baseAttributes</span></div>
+      <table class="rt">
+         <tr>
+            <td class="rt_cornerTopLeft"></td>
+            <td class="rt_lineTop"></td>
+            <td class="rt_cornerTopRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_lineLeft"></td>
+            <td class="rt_content">
+               <table class="component">
+                  <tbody>
+                     <tr>
+                        <td class="firstColumn"><b>Namespace</b></td>
+                        <td>urn:ihe:qrph:sdc:2016</td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Annotations</b></div>
+                           <div class="floatRight"><input id="button_annotations_baseAttributes" type="image" src="img/btM.gif" value="-" onclick="switchState('annotations_baseAttributes');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="annotations_baseAttributes" style="display:block">
+                              <div class="annotation">
+                                 <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                    <tr>
+                                       <td width="100%"><pre><span class="tT">A set of optional attributes that may apply to any type of element in</span><span class="tI">
+</span><span class="tT">an XML document.</span></pre></td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Diagram</b></div>
+                           <div class="floatRight"><input id="button_diagram_baseAttributes" type="image" src="img/btM.gif" value="-" onclick="switchState('diagram_baseAttributes');" class="control" /></div>
+                        </td>
+                        <td class="diagram">
+                           <div id="diagram_baseAttributes" style="display:block"><img alt="Diagram" border="0" src="img/SDCBase_xsd_Attribute_Group_baseAttributes.jpeg" usemap="#SDCBase_xsd_Attribute_Group_baseAttributes" /><map name="SDCBase_xsd_Attribute_Group_baseAttributes" id="SDCBase_xsd_Attribute_Group_baseAttributes">
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes_name" href="SDCBase_xsd.html#baseAttributes_name" coords="174,0,250,25" />
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes_type" href="SDCBase_xsd.html#baseAttributes_type" coords="174,94,245,119" />
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes_styleClass" href="SDCBase_xsd.html#baseAttributes_styleClass" coords="174,188,274,213" />
+                                 <area alt="SDCBase_xsd.tmp#baseAttributes_order" href="SDCBase_xsd.html#baseAttributes_order" coords="174,268,250,293" /></map></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Used by</b></div>
+                           <div class="floatRight"><input id="button_usedBy_baseAttributes" type="image" src="img/btM.gif" value="-" onclick="switchState('usedBy_baseAttributes');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="usedBy_baseAttributes" style="display:block">
+                              <table class="usedByTable">
+                                 <tr>
+                                    <td class="firstColumn">Complex Type </td>
+                                    <td><b><a href="SDCBase_xsd.html#BaseType" target="mainFrame" title="urn:ihe:qrph:sdc:2016" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">BaseType</a></b></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Attributes</b></div>
+                           <div class="floatRight"><input id="button_attributes_baseAttributes" type="image" src="img/btM.gif" value="-" onclick="switchState('attributes_baseAttributes');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="attributes_baseAttributes" style="display:block">
+                              <table class="attributesTable">
+                                 <thead>
+                                    <tr>
+                                       <th>QName</th>
+                                       <th width="10%">Type</th>
+                                       <th width="5%">Use</th>
+                                       <th>Annotation</th>
+                                    </tr>
+                                 </thead>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_name" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">name</a></b></td>
+                                    <td><b>xs:ID</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned identifier, similar to a unique control/object</span><span class="tI">
+</span><span class="tT">name, used to provide the ability for programmatic manipulation of an</span><span class="tI">
+</span><span class="tT">element.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_order" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">order</a></b></td>
+                                    <td>restriction of <b>xs:decimal</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">@order allows the form template developer to define a sequential</span><span class="tI">
+</span><span class="tT">order for elements in a template. This serves the purpose of providing a</span><span class="tI">
+</span><span class="tT">definitive/original order to sections, questions, answer choices, etc., when</span><span class="tI">
+</span><span class="tT">required for display purposes. This is important when the original XML ordering</span><span class="tI">
+</span><span class="tT">may become disrupted due to the use of an implementation technology that does</span><span class="tI">
+</span><span class="tT">not natively support ordering (e.g., object collections), and it can also</span><span class="tI">
+</span><span class="tT">provide a check on the proper importing of the XML tree during</span><span class="tI">
+</span><span class="tT">implementation.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_styleClass" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">styleClass</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">Developer assigned class name for display styling, generally for</span><span class="tI">
+</span><span class="tT">use with an external style sheet.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td class="firstColumn"><b><a href="SDCBase_xsd.html#baseAttributes_type" target="mainFrame" title="No namespace" onclick="updatePageTitle('Schema documentation for SDCBase.xsd')">type</a></b></td>
+                                    <td><b>xs:NMTOKENS</b></td>
+                                    <td>optional</td>
+                                    <td>
+                                       <div class="annotation">
+                                          <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                             <tr>
+                                                <td width="100%"><pre><span class="tT">The @type attribute can contain custom metadata "tokens" for the</span><span class="tI">
+</span><span class="tT">element, chosen from a standardized list of terms. Tokens are short alphanumeric</span><span class="tI">
+</span><span class="tT">text strings, defined by the W3C Schema NMTOKEN specification, that are defined</span><span class="tI">
+</span><span class="tT">in an Implementation Guide. The type xsd:NMTOKEN represents a single string</span><span class="tI">
+</span><span class="tT">token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( -</span><span class="tI">
+</span><span class="tT">), underscores ( _ ), and colons ( : ). They may start with any of these</span><span class="tI">
+</span><span class="tT">characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be</span><span class="tI">
+</span><span class="tT">specific for one or more kinds of SDC elements. Multiple tokens in the type</span><span class="tI">
+</span><span class="tT">attribute should be separated by whitespace. Type tokens may be used to specify</span><span class="tI">
+</span><span class="tT">special handling by an application, and are usually used to define form display</span><span class="tI">
+</span><span class="tT">constraints, but may include other custom metadata as well. Style metadata</span><span class="tI">
+</span><span class="tT">should generally be handled with @styleClass rather than @type. @type token</span><span class="tI">
+</span><span class="tT">examples include: tooltip, statusLineText, alignTopLeft, align:bottom,</span><span class="tI">
+</span><span class="tT">_pageBreak-after, etc. @type metadata should generally not affect the</span><span class="tI">
+</span><span class="tT">information content of a form.</span></pre></td>
+                                             </tr>
+                                          </table>
+                                       </div>
+                                    </td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td class="firstColumn">
+                           <div class="floatLeft"><b>Source</b></div>
+                           <div class="floatRight"><input id="button_source_baseAttributes" type="image" src="img/btM.gif" value="-" onclick="switchState('source_baseAttributes');" class="control" /></div>
+                        </td>
+                        <td>
+                           <div id="source_baseAttributes" style="display:block">
+                              <table style="table-layout:fixed;white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space: -o-pre-wrap;word-wrap: break-word;_white-space:pre;" class="preWrapContainer">
+                                 <tr>
+                                    <td width="100%"><pre><span class="tEl">&lt;xs:attributeGroup</span><span class="tAN"> name=</span><span class="tAV">"baseAttributes"</span><span class="tEl">&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">A set of optional attributes that may apply to any type of element in an XML document.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"name"</span><span class="tAN"> type=</span><span class="tAV">"xs:ID"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Developer assigned identifier, similar to a unique control/object name, used to provide the ability for programmatic manipulation of an element.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"type"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKENS"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">The @type attribute can contain custom metadata "tokens" for the element, chosen from a standardized list of terms. Tokens are short alphanumeric text strings, defined by the W3C Schema NMTOKEN specification, that are defined in an Implementation Guide. The type xsd:NMTOKEN represents a single string token. NMTOKEN values may consist of letters, digits, periods ( . ), hyphens ( - ), underscores ( _ ), and colons ( : ). They may start with any of these characters. (www.datypic.com/sc/xsd/t-xsd_NMTOKEN.html) @type tokens may be specific for one or more kinds of SDC elements. Multiple tokens in the type attribute should be separated by whitespace. Type tokens may be used to specify special handling by an application, and are usually used to define form display constraints, but may include other custom metadata as well. Style metadata should generally be handled with @styleClass rather than @type. @type token examples include: tooltip, statusLineText, alignTopLeft, align:bottom, _pageBreak-after, etc. @type metadata should generally not affect the information content of a form.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"styleClass"</span><span class="tAN"> type=</span><span class="tAV">"xs:NMTOKENS"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">Developer assigned class name for display styling, generally for use with an external style sheet.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;xs:attribute</span><span class="tAN"> name=</span><span class="tAV">"order"</span><span class="tEl">&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:annotation</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:documentation</span><span class="tEl">&gt;</span><span class="tT" style="white-space:normal">@order allows the form template developer to define a sequential order for elements in a template. This serves the purpose of providing a definitive/original order to sections, questions, answer choices, etc., when required for display purposes. This is important when the original XML ordering may become disrupted due to the use of an implementation technology that does not natively support ordering (e.g., object collections), and it can also provide a check on the proper importing of the XML tree during implementation.</span><span class="tEl">&lt;/xs:documentation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:annotation&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;xs:simpleType</span><span class="tEl">&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;xs:restriction</span><span class="tAN"> base=</span><span class="tAV">"xs:decimal"</span><span class="tEl">&gt;</span><span class="tI">
+        </span><span class="tEl">&lt;xs:minInclusive</span><span class="tAN"> value=</span><span class="tAV">"0"</span><span class="tEl">/&gt;</span><span class="tI">
+      </span><span class="tEl">&lt;/xs:restriction&gt;</span><span class="tI">
+    </span><span class="tEl">&lt;/xs:simpleType&gt;</span><span class="tI">
+  </span><span class="tEl">&lt;/xs:attribute&gt;</span><span class="tI">
+</span><span class="tEl">&lt;/xs:attributeGroup&gt;</span></pre></td>
+                                 </tr>
+                              </table>
+                           </div>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+            <td class="rt_lineRight"></td>
+         </tr>
+         <tr>
+            <td class="rt_cornerBottomLeft"></td>
+            <td class="rt_lineBottom"></td>
+            <td class="rt_cornerBottomRight"></td>
+         </tr>
+      </table>
+      <div class="footer">
+         <hr />
+         <div align="center">XML Schema documentation generated by <a href="http://www.oxygenxml.com" target="_parent"><span class="oXygenLogo"><span class="redX">&lt;</span>o<span class="redX">X</span>ygen<span class="redX">/&gt;</span></span></a><sup>®</sup> XML Editor.
+         </div>
+      </div><script type="text/javascript">
+         <!--
+                     // The namespace is the selected option in the TOC combo.
+                    
+                     // Floats the toolbar.
+                     var globalControls = getElementObject("global_controls"); 
+                     
+                     if(globalControls != null){
+	                     var browser=navigator.appName;
+						 var version = parseFloat(navigator.appVersion.split('MSIE')[1]);
+						 
+						 var IE6 = false;
+						 if ((browser=="Microsoft Internet Explorer") && (version < 7)){
+						 	IE6 = true;
+						 }
+	
+	                     //alert (IE6 + " |V| " + version);
+	                     
+	                     if(IE6){
+	                     	// On IE 6 the 'fixed' property is not supported. We must use javascript. 
+	                         globalControls.style.position='absolute';                         
+	                         // The global controls will do not exist in the TOC frame, when chunking.
+	                         findAndFloat("global_controls", 225, 30);    
+	                     } else {
+	                      	  globalControls.style.position='fixed';                     	
+	                     }
+	                     
+	                     globalControls.style.right='0';                       
+                     }
+                //--></script></body>
+</html>
