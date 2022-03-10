@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+    <FormDesign order="0" baseURI="sdc.org" lineage="Samples.Samp1" version="v001"
+        ID="Samples.Samp1_v001_sdcFDF"
+        fullURI="_baseURI=sdc.org&amp;_lineage=Samples.Samp1&amp;_version=v001&amp;_docType=sdcFDF"
+        filename="Samples.Samp1_v001_sdcFDF.xml" formTitle="Sample Blocks"
+        xmlns="urn:ihe:qrph:sdc:2016">
+        <Header ID="H1" title="This is a Header"/>
+        <Body ID="B1"> </Body>
+        <Footer ID="F1" title="This is a Footer"/>
+        <Rules/>
+    </FormDesign>
+
+
+
+
+
+
+    <FormDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema" order="0"
+        ID="Lung.Bmk.227_1.001.011.RC1_sdcFDF" baseURI="cap.org"
+        fullURI="_baseURI=cap.org&amp;_lineage=Lung.Bmk.227&amp;_version=1.001.011.RC1&amp;_docType=sdcFDF"
+        filename="Lung.Bmk.227_1.001.011.RC1_sdcFDF.xml" lineage="Lung.Bmk.227"
+        formTitle="Lung Biomarker Reporting Template" version="1.001.011.RC1"
+        xmlns="urn:ihe:qrph:sdc:2016"
+        xsi:schemaLocation="urn:ihe:qrph:sdc:2016 file:/C:/Users/rmoldwi/Documents/SDC/SDC%20Git%20Repo/sdc-schema-package/SDCRetrieveForm.xsd">
+        <Property name="Copyright" type="CAPeCC_static_text" styleClass="copyright" order="1"
+            propName="Copyright"
+            val="(c) 2018 College of American Pathologists.  All rights reserved.  License required for use."/>
+        <Property name="GenericHeaderText" type="CAPeCC_static_text" order="2"
+            propName="GenericHeaderText" val="Cancer Biomarker Reporting Template"/>
+        <Property name="Category" type="CAPeCC_meta" order="3" propName="Category" val="Thorax"/>
+        <Property name="OfficialName" type="CAPeCC_meta" order="4" propName="OfficialName"
+            val="Lung Biomarker Reporting Template"/>
+        <Property name="CAP_ProtocolName" type="CAPeCC_meta" order="5" propName="CAP_ProtocolName"/>
+        <Property name="CAP_ProtocolVersion" type="CAPeCC_meta" order="6"
+            propName="CAP_ProtocolVersion" val="1.3.0.1"/>
+        <Property name="TemplateID" type="CAPeCC_meta" order="7" propName="TemplateID"
+            val="227.100004300"/>
+        <Property name="Restrictions" type="CAPeCC_meta" order="8" propName="Restrictions"
+            val="For non-small cell carcinoma of the lung. Use of this template is optional."/>
+        <Property name="CAP_Required" type="CAPeCC_meta" order="9" propName="CAP_Required"
+            val="false"/>
+        <Property name="AccreditationDate" type="CAPeCC_meta dt.dateTime" order="10"
+            propName="AccreditationDate"/>
+        <Property name="WebPostingDate" type="CAPeCC_meta dt.dateTime" order="11"
+            propName="WebPostingDate" val="6/27/2016 12:00:00 AM"/>
+        <Property name="ShortName" type="CAPeCC_meta" order="12" propName="ShortName" val="Lung.Bmk"/>
+        <Property name="ApprovalStatus" type="CAPeCC_meta" order="13" propName="ApprovalStatus"
+            val="RC1"/>
+        <Body name="Body" order="14" ID="Lung.Bmk.227_1.001.011.RC1_sdcFDF_Body"> </Body>
+        <Footer name="footer" order="838" ID="Footer.Lung.Bmk.227_1.001.011.RC1_sdcFDF">
+            <Property type="meta" styleClass="copyright" order="839" propName="CopyrightFooter"
+                val="(c) 2018 College of American Pathologists.  All rights reserved.  License required for use."
+            />
+        </Footer>
+    </FormDesign>
+
+    <Body ID="B1">
+        <ChildItems>
+            <DisplayedItem name="DI_29723" order="16" ID="29723.100004300"
+                title="Completion of the template is the responsibility of the laboratory performing the biomarker testing and / or providing the interpretation. When both testing and interpretation are performed elsewhere (e.g., a reference laboratory), synoptic reporting of the results by the laboratory submitting the tissue for testing is also encouraged to ensure that all information is included in the patient’s medical record and thus readily available to the treating clinical team.">
+                <Property propName="reportText" val="{no text}"/>
+            </DisplayedItem>
+
+            <Section name="S_S1" order="26" ID="S1" title="This is a SECTION (Note A)"
+                mustImplement="false" minCard="0">
+                <Property name="p_rptTxt_S1_1" order="27" propName="reportText" val="SPECIMEN"/>
+
+                <ChildItems>
+
+                    <Question name="Q_QM1" order="100" ID="QM1" title="This is a QM question title"
+                        mustImplement="false" minCard="0">
+                        <ListField name="lf_Q_QM1_1" order="101" maxSelections="0">
+                            <List name="lst_Q_QM1_2" order="102">
+                                <ListItem name="LI_LI1" order="103" ID="LI1"
+                                    title="ListItem.title.1"/>
+                                <ListItem name="LI_LI2" order="104" ID="LI2"
+                                    title="ListItem.title.2"/>
+                                <ListItem name="LI_LI3" order="105" ID="LI3"
+                                    title="ListItem.title.3"/>
+                                <ListItem name="LI_LI4" order="106" ID="LI4"
+                                    title="ListItem.title.4"/>
+                                <ListItem name="LI_LI5" order="107" ID="LI5"
+                                    title="ListItem.title.5">
+                                    <Property name="p_rptTxt_LI4_1" order="108"
+                                        propName="reportText" val="{no text}"/>
+                                    <ListItemResponseField name="lirf_LI4_2" order="109"
+                                        responseRequired="true">
+                                        <Response name="rsp_LI4_3" order="110">
+                                            <string name="str_LI4_4" order="111" maxLength="4000"/>
+                                        </Response>
+                                    </ListItemResponseField>
+                                </ListItem>
+                            </List>
+                        </ListField>
+                    </Question>
+
+                </ChildItems>
+
+            </Section>
+        </ChildItems>
+    </Body>
+
+    <Body ID="S1">
+        <ChildItems>
+
+            <DisplayedItem ID="DI1" title="I am a note on the  screen"/>
+
+            <ChildItems>
+
+                <Question ID="QS1" title="This is a question title">
+                    <ListField>
+                        <List>
+                            <ListItem ID="LI1" title="ListItem.title.1"/>
+                            <ListItem ID="LI2" title="ListItem.title.2"/>
+                            <ListItem ID="LI3" title="ListItem.title.3"/>
+                        </List>
+                    </ListField>
+                </Question>
+
+            </ChildItems>
+
+            <Section ID="S2" title="This is a SECTION">
+                <Question ID="QS2" title="This is a another question title">
+                    <ListField>
+                        <List>
+                            <ListItem ID="LI4" title="ListItem.title.4"/>
+                            <ListItem ID="LI5" title="ListItem.title.5"/>
+                            <ListItem ID="LI6" title="ListItem.title.6"/>
+                        </List>
+                    </ListField>
+                </Question>
+
+            </Section>
+
+        </ChildItems>
+    </Body>
+
+
+<Section ID="S1">
+    <ChildItems>
+
+        <DisplayedItem ID="DI1" title="I am a note on the  screen"/>
+
+        <Question ID="Q1" title="This is a question title">
+            <ListField>
+                <List>
+                    <ListItem ID="LI1" title="ListItem.title.1"/>
+                    <ListItem ID="LI2" title="ListItem.title.2"/>
+                    <ListItem ID="LI3" title="ListItem.title.3"/>
+                </List>
+            </ListField>
+        </Question>
+
+    </ChildItems>
+</Section>
+
+
+</root>

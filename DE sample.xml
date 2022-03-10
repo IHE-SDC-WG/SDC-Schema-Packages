@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DataElement xmlns="urn:ihe:qrph:sdc:2016" ID="DE1"
+    fullURI="http://my.my.org/123" lineage="mylineage.my" baseURI="http://my.my.org/"
+ version="1" versionPrev=""
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:ihe:qrph:sdc:2016 SDCFormDesign.xsd">
+    <Question ID="1" title="myQuestion">
+        <ListField >
+            <List>
+                <ListItem ID="LI1"/>
+            </List>
+        </ListField>
+        
+    </Question>
+    
+</DataElement>
