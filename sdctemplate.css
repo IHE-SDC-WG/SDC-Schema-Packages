@@ -1,6 +1,139 @@
+/*version=2018_08_17*/
+html {font-family:Arial}
+/* Style The Dropdown Button */
+        .dropbtn {
+			
+            background-color: #009BBF;  /* #4CAF50;*/
+            color: white;
+            padding: 4px 4px 4px 8px;
+            font-size: 14px;
+            border: none;
+            /* cursor: pointer; */
+            margin-right:0px;
+			height:28px;
+        }
+		
+		
+		
+		
+
+        /* The container <div> - h ttmlo position the dropdown content */
+		.menubutton {
+			position: relative;
+            display: inline-block;
+			margin-right:0px;
+			padding-right:0px;
+		}
+		
+        .dropdown {
+            position: relative;
+            display: inline-block;
+			margin-right:0px;
+			padding-right:0px;
+        }
+
+		.dropdown::after {
+			/*content: '\25b6';*/
+			content: '\25bc';
+			float:right;
+			vertical-align:middle;
+			padding-top:4px;
+			padding-bottom:4px;
+			color: white;
+			background-color: #009BBF;
+            margin-right:10px;
+			height:20px;
+        }
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            color:white;
+            background-color: #009BBF;
+            min-width: 140px;			
+            margin-left:0px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor:pointer;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #f1f1f1;color:black}
+
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {
+            background-color: #009BBF;
+        }
+
+		
+		label.checkbox-label input[type=checkbox]{
+        position: relative;
+        vertical-align: middle;
+		font-weight:normal;
+        bottom: 1px;
+    }
+	
+	.idDisplay a{color:inherit;}
+
+.collapse_all_control{
+	background-color: white;
+	/*color:purple;*/
+	cursor:pointer;
+	/*font-weight:bold;	*/
+}
+
+.expand_all_control{
+	background-color: white;
+	color:purple;
+	cursor:pointer;
+	font-weight:bold;	
+}
+
+.collapse_control{
+	background-color: white;
+	/*color:blue;*/
+	cursor:pointer;
+	/*font-weight:bold;	*/
+}
+
+.collapse_q_control{
+	background-color: white;
+	/*color:blue;	*/
+	cursor:pointer;
+	/*font-weight:bold;	*/
+}
+
+.expand_control{
+	background-color: white;
+	color:blue;
+	cursor:pointer;
+	font-weight:bold;	
+}
+
+.expand_q_control{
+	background-color: white;
+	color:blue;
+	cursor:pointer;
+	font-weight:bold;	
+}
+
+/* for sections */
 .collapsable{
-	/*background-color: yellow;*/
-	color:whitesmoke;
+	background-color: whitesmoke;
+	color:blue;
 	cursor:pointer;
 	font-weight:bold;					
 }
@@ -23,6 +156,32 @@
 	float:left;
 }
 
+/* for questions */
+.collapsable_q{
+	background-color: white;
+	cursor:pointer;				
+}
+
+.collapsable_q:before{
+	color:blue;
+	content: "\25E2";   /*lower-right triangle - with fill*/
+	vertical-align:middle;
+	margin-left:4px;
+	margin-right:6px;
+	float:left;
+}
+
+.collapsed_q:before{
+	color:blue;
+	cursor:pointer;
+	/*content: "\25B7"; */   /*right-pointing traingle - no fill*/
+	content: "\25B6";
+	vertical-align:top;
+	margin-left:4px;
+	margin-right:6px;
+	float:left;
+}
+
 Body{
    font-family: Arial;
    font-size: 12px;
@@ -42,19 +201,80 @@ p
 	margin-bottom:2px;
 	padding:0px;
 }
-				
+
+.split {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	
+	overflow-y: scroll;
+	overflow-x: auto;
+	height: 800px;
+}
+
+.split.split-horizontal {
+	height: 800px;
+	/* height: 100%; */
+	float: left;
+	overflow-y: scroll;
+}
+
+.altText{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: yellow; /**/
+   color: black;
+   font-weight:bold
+}
+
+.mustImplement{
+   display: inline;
+    font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+}
+
+.reportText{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: orange; /*coral*/
+   color: black;
+   font-weight:bold
+}
+.name{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #572D1D; 
+   color: white;
+   font-weight:bold
+}
+.row{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+
 .BodyGroup{
-   margin-left: 100px;
+   margin-left: 110px; 
    margin-right: auto;
    text-align: left;
 }
 
 .HeaderTable{
-   width: 97.5%;
+   width: 99.75%;
    margin-top: 5px;
    margin-bottom: 5px;
-   margin-left: 20px;
-   /*    margin-right: 25px;*/
+   /*margin-left: 20px;*/
+   margin-left:2px;
+   margin-right: 2px;
    border: solid 1px #000080;
    padding: 0px;
    clear: both;
@@ -109,6 +329,7 @@ p
    background-color: #000080;
    color: #FFFFFF;
    padding: 2px;
+   
    cursor:pointer;
 }
 
@@ -145,6 +366,11 @@ p
    display: inline;
    font-weight: normal;
    font-size: 11px;
+}
+
+.ChangeDisplay{
+   display: inline;
+   font-weight: normal;
 }
 
 .idDisplay{
@@ -277,6 +503,207 @@ p
 	margin-left: 4px;
 }
 
+.newItem{
+   background-color: green;
+   color: white;
+   font-style: normal;
+   font-weight: bold;
+   margin-left: 5px;
+}
+
+#diff th {
+    background-color: #E9E9E9;
+    padding: 0px;
+    text-align: left;
+    font-size: 1.2em;
+    font-family: Arial;
+    font-weight: bold;
+    color: #666;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+/*Response Attributes*/
+.dataType{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #deb887; /*burlywood*/
+   color: black;
+   font-weight:bold
+}
+.answerUnits{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #deb887; /*burlywood*/
+   color: black;
+   font-weight:bold
+}
+
+.ResponseUnits{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #deb887; /*burlywood*/
+   color: black;
+   font-weight:bold
+}
+
+.TextAfterResponse{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #deb887; /*burlywood*/
+   color: black;
+   font-weight:bold
+}
+.responseRequired{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight:bold
+}
+/*ListItems*/
+.sdc{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #7fffd4; /*aquamarine*/
+   color: black;
+   font-weight:bold
+}
+.sds{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #7fffd4; /*aquamarine*/
+   color: black;
+   font-weight:bold
+}
+.omitWhenSel{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight:bold
+}
+.selected{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*yellow*/
+   color: black;
+   font-weight:bold
+}
+
+/*Common Attributes*/
+.notRequired /*for the "+" sign*/{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight: bold;
+}
+
+.length{
+   background-color: purple;
+   color: white;
+   font-style: normal;
+   font-weight: bold;
+   margin-left: 5px;
+}
+
+
+/*Question and Section Attributes*/
+.deprecatedItem{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: purple;
+   color: white;
+   font-weight:bold
+}
+
+.parent{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #000000; /*black*/
+   color: white;
+   font-weight:bold
+}
+
+.prevSibling{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #4169e1; /*royal blue*/
+   color: white;
+   font-weight:bold
+}
+
+.minCard{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight:bold
+}
+.maxCard{
+   display: inline;
+   font-style: normal;
+    font-weight:bold;
+     margin-left: 5px;
+   background-color: #00bfff; /*deepSkyBlue*/
+   color: black;
+   font-weight:bold
+}
+
+.ajcc {
+	background-color: red;
+	color: white;
+}
+
+.figo {
+	background-color: red;
+	color: white;
+}
+
+.cs {
+	background-color: red;
+	color: white;
+}
+
+.templateTitle {
+	background-color: yellow;
+	color: black;
+}
+
+.resChanged{
+	background-color: red;
+	color: white;
+}
+
 /*
 .NoteText{
    padding: 2px;
@@ -356,6 +783,7 @@ p
 
 }
 
+
 #S1
 {
 	font-size: 18px;
@@ -368,6 +796,7 @@ p
 .right.noBreak{float: right}
 .right{float: right;clear:both}
 .float-right{float: right;}
+.float-left{float: left;}
 .Header_left
 {
 	color:purple;
@@ -376,18 +805,90 @@ p
 	font-weight: bold;
 	
 }
+/*
 .left
 {
 	text-align:left;clear:both;
 }
+*/
 .copyright
 {
 	font-style:italic;
-	float:left;
+	/*float:left;*/
 }
 
 .section_wthin_list
 {
 	margin-left:20px;
 	
+}
+
+.error
+{
+	
+	border: solid 1px red;
+	background-color: red;
+	color:white;
+}
+
+.formTitle{
+	font-weight:bold;
+	font-size:20px;
+	color:navy;
+}
+
+
+#confirmBox
+{
+    display: none;
+    background-color: #eee;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    position: fixed;
+    width: 300px;
+    left: 50%;
+    margin-left: -150px;
+    padding: 6px 8px 8px;
+    box-sizing: border-box;
+    text-align: center;
+}
+#confirmBox .button {
+    background-color: #ccc;
+    display: inline-block;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    padding: 2px;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+}
+#confirmBox .button:hover
+{
+    background-color: #ddd;
+}
+#confirmBox .message
+{
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+#columnarblock {
+    width: 100%;
+    /*border: solid 1px #000;*/
+    display: flex;
+    justify-content: space-between;
+	background:lightblue;
+}
+
+#left-column {
+    width: 80%;
+	padding:4px;
+    /*border: solid 1px #000;*/
+}
+
+#right-column {
+    width: 20%;
+	padding:4px;
+    /*border: solid 1px #000;*/
+    height: 200px;
 }
